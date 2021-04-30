@@ -1,0 +1,74 @@
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.exe
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.deps.json
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.runtimeconfig.json
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.runtimeconfig.dev.json
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.dll
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.pdb
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.Views.dll
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.Views.pdb
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.csprojAssemblyReference.cache
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.AssemblyInfoInputs.cache
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.AssemblyInfo.cs
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.csproj.CoreCompileInputs.cache
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.RazorAssemblyInfo.cache
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.RazorAssemblyInfo.cs
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\staticwebassets\21-IF4101-Transactional.StaticWebAssets.Manifest.cache
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\staticwebassets\21-IF4101-Transactional.StaticWebAssets.xml
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\scopedcss\bundle\21-IF4101-Transactional.styles.css
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.TagHelpers.input.cache
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.TagHelpers.output.cache
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.RazorCoreGenerate.cache
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.RazorTargetAssemblyInfo.cache
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.RazorTargetAssemblyInfo.cs
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.Views.pdb
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.dll
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.pdb
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.genruntimeconfig.cache
+C:\Users\José David\source\repos\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.csproj.CopyComplete
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\appsettings.Development.json
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\appsettings.json
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.exe
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.deps.json
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.runtimeconfig.json
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.runtimeconfig.dev.json
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.dll
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.pdb
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.Views.dll
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.Views.pdb
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.csprojAssemblyReference.cache
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.AssemblyInfoInputs.cache
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.AssemblyInfo.cs
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.csproj.CoreCompileInputs.cache
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.MvcApplicationPartsAssemblyInfo.cache
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.RazorAssemblyInfo.cache
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.RazorAssemblyInfo.cs
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\staticwebassets\21-IF4101-Transactional.StaticWebAssets.Manifest.cache
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\staticwebassets\21-IF4101-Transactional.StaticWebAssets.xml
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\scopedcss\bundle\21-IF4101-Transactional.styles.css
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.TagHelpers.input.cache
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.TagHelpers.output.cache
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.RazorCoreGenerate.cache
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.RazorTargetAssemblyInfo.cache
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.RazorTargetAssemblyInfo.cs
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.Views.pdb
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.dll
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.pdb
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.genruntimeconfig.cache
+E:\UCR\I - 2021\Lenguajes\Project\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.csproj.CopyComplete
