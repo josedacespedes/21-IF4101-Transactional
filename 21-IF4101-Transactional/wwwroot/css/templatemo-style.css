@@ -331,18 +331,37 @@ section {
         background-color: transparent;
     }
 
-        .custom-navbar .navbar-toggle .icon-bar {
-            background: #252525;
-            border-color: transparent;
-        }
+    .custom-navbar .navbar-toggle .icon-bar {
+        background: #252525;
+        border-color: transparent;
+    }
 
+    .login {
+        width: 220px;
+        height: 200px;
+        background-color:aliceblue;
+        padding: 10px;
+    }
 
+    .btn-login {
+        margin-left: 65px;
+    }
 
-/*---------------------------------------
+/*    #about form span i {
+        font-size: 20px;
+    }
+
+    #about form span {
+        color: white;
+        position: relative;
+        bottom: 40px;
+        left: 180px;
+    }*/
+  /*---------------------------------------
       HOME  & SLIDER            
   -----------------------------------------*/
 
-#home {
+    #home {
     padding: 0;
 }
 
