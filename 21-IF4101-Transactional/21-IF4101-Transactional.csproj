@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <Folder Include="Models\Data\" />
-    <Folder Include="Models\Domain\" />
     <Folder Include="Tests\" />
   </ItemGroup>
 
