@@ -2,7 +2,7 @@
 
 var formStudent = document.getElementById("registerStudentForm");
 
-// ADD STUDENT
+/*--------------------------------------------- ADD STUDENT-----------------------------------------------------------*/
 
 //SHOW/HID PASSWORD
 $('#showPasswordSudent').hover(function () {
@@ -35,8 +35,8 @@ function checkLastName() {
 }
 
 function checkStudentId() {
-    initialLetter = studentId.charAt(0);
-    restNumeric = studentId.substring(1, studentId.length);
+    var initialLetter = studentId.charAt(0);
+    var restNumeric = studentId.substring(1, studentId.length);
 
     if ((studentId.length != 6) || !(initialLetter == initialLetter.toUpperCase()) || !(isNaN(restNumeric)) || !studentId) {
         return false;
@@ -56,7 +56,7 @@ function checkEmail() {
 
 function checkPassword() {
 
-    if (!(password.length != 8) || !(/^(?=.{ 8,}) (?=.* [a - z])(?=.* [A - Z])(?=.* [!.#$%^&* +*!=]).* $)/.test(password)) || !password) {
+    if (!(password.length != 8) || !(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.* [!.#$ %^&*_=+-]).{ 8, 8 } $/.test(password)) || !password) {
         return false;
     } else {
         return true;
@@ -99,13 +99,12 @@ function putErrorInput() {
     return validate;
 }
 
+//ACTION ADD
 formStudent.addEventListener("submit", function (e) {
     e.preventDefault();
 
     if (!putErrorInput()) {
         //AJAX
     }
-
-
 
 });
