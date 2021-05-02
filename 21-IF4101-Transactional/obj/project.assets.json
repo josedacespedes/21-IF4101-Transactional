@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
+      "projectUniqueName": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
       "projectName": "21-IF4101-Transactional",
-      "projectPath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
+      "projectPath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
       "packagesPath": "C:\\Users\\Vampirin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional\\obj\\",
+      "outputPath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Vampirin\\AppData\\Roaming\\NuGet\\NuGet.Config",
