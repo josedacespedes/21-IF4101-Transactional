@@ -6,9 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Data\" />
-    <Folder Include="Models\Domain\" />
     <Folder Include="Tests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
 </Project>
