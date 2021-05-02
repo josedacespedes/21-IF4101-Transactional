@@ -465,13 +465,13 @@ section {
       ADD STUDENT              
   -----------------------------------------*/
 
-#about figure {
+#addApplicant figure {
     display: inline-block;
     vertical-align: top;
     margin-left: 15px;
 }
 
-    #about figure span {
+    #addApplicant figure span {
         float: left;
         margin-left: -15px;
         padding: 15px 20px;
@@ -479,7 +479,7 @@ section {
         top: 20px;
     }
 
-        #about figure span i {
+        #addApplicant figure span i {
             background: #41ADE7;
             border-radius: 50px;
             color: #ffffff;
@@ -674,7 +674,7 @@ footer {
     }
 
     .feature-thumb,
-    .about-info,
+    .addApplicant-info,
     .team-thumb,
     .footer-info {
         margin-bottom: 50px;

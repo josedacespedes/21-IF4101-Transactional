@@ -58,7 +58,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
                     <li><a href="#top" class="smoothScroll">News</a></li>
-                    <li><a href="#about" class="smoothScroll">Sign In</a></li>
+                    <li><a href="#addApplicant" class="smoothScroll">Sign In</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -136,8 +136,70 @@
         </div>
     </section>
 
-    <!-- REGISTER STUDENT -->
-    <section id="about" class="displayNoUser">
+    <!-- Add APPLICANT -->
+    <section id="addApplicant" class="displayNoUser">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="addApplicant-info">
+                        <h2>Join the Business Informatics community</h2>
+                        <figure>
+                            <span><i class="fa fa-newspaper-o"></i></span>
+                            <figcaption>
+                                <h3>Know news</h3>
+                                <p>Know and comment news of Business Informatics.</p>
+                            </figcaption>
+                        </figure>
+
+                        <figure>
+                            <span><i class="fa fa-question"></i></span>
+                            <figcaption>
+                                <h3>Queries to comunnity</h3>
+                                <p>Ask and answer questions to community students.</p>
+                            </figcaption>
+                        </figure>
+
+                        <figure>
+                            <span><i class="fa fa-calendar"></i></span>
+                            <figcaption>
+                                <h3>Request appointment</h3>
+                                <p>Solicit your appointment with a community professor.</p>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-12">
+                    <div class="entry-form">
+                        <form id="registerApplicantForm" autocomplete="off">
+                            <h2>Join community</h2>
+                            <input type="text" name="firstNameApplicant" id="firstNameApplicant" class="form-control" placeholder="First name" required="" minlength="3" maxlength="50" pattern="[A-Za-z áéíóúñÑ]+">
+
+                            <input type="text" name="lastNameApplicant" id="lastNameApplicant" class="form-control" placeholder="Last name" required="" minlength="10" maxlength="100" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+">
+
+                            <input type="text" name="studentIdApplicant" id="studentIdApplicant" class="form-control" placeholder="Student id" required="" minlength="6" maxlength="6" pattern="(?=.*[A-Z]).{1}[0-9]+" title="Valid student id">
+
+                            <input type="email" name="emailApplicant" id="emailApplicant" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr">
+
+                            <input type="password" name="passwordApplicant" id="passwordApplicant" class="form-control" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)">
+                            <span id="showPasswordApplicant"><i class="fa fa-eye" id="iconPasswordApplicant"></i></span>
+
+                            <button type="submit" class="submit-btn form-control">Sign in</button>
+
+                            <div id="alertMessageAddStudent"></div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- REGISTER PROFESSOR -->
+    <section id="addProfessor" class="displayAdmin">
         <div class="container">
             <div class="row">
 
@@ -198,7 +260,7 @@
     </section>
 
 
-    <!-- REGISTER PROFESSOR -->
+
     <!-- FOOTER -->
     <footer id="footer" class="displayAll">
         <div class="container">
