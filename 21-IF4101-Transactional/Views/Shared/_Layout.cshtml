@@ -65,7 +65,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
                     <li><a href="#top" class="smoothScroll">News</a></li>
-                    <li><a href="#about" class="smoothScroll">Register</a></li>
+                    <li><a href="#about" class="smoothScroll">Sign In</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -78,7 +78,7 @@
 
 
     <!-- HOME -->
-    <section id="home">
+    <section id="home" class="dissplayAll">
         <div class="row">
 
             <div class="owl-carousel owl-theme home-slider">
@@ -156,22 +156,24 @@
                     </div>
                 </div>
 
-                <div class="col-md-offset-1 col-md-4 col-sm-12">
+                <div class="col-md-4 col-sm-12">
                     <div class="entry-form">
                         <form id="registerStudentForm" autocomplete="off">
                             <h2>Join community</h2>
-                            <input type="text" name="firstName" class="form-control" placeholder="First name" required="">
+                            <input type="text" name="firstName" id="formFirstNameStudent" class="form-control" placeholder="First name" required="" minlength="3" maxlength="50" pattern="[A-Za-z áéíóú]+">
 
-                            <input type="text" name="lastName" class="form-control" placeholder="Last name" required="">
+                            <input type="text" name="lastName" id="formLastNameStudent" class="form-control" placeholder="Last name" required="" minlength="10" maxlength="100" pattern="[A-Za-záéíóúñ](?=.* ).{1,}[A-Za-záéíóúñ]+">
 
-                            <input type="text" name="studentId" class="form-control" placeholder="Student ID" required="">
+                            <input type="text" name="studentId" id="formIdStudent" class="form-control" placeholder="Student id" required="" minlength="6" maxlength="6" pattern="(?=.*[A-Z]).{1}[0-9]+">
 
-                            <input type="email" name="email" class="form-control" placeholder="Institutional email address" required="">
+                            <input type="email" name="email" id="formEmailStudent" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="domain ucr.ac.cr">
 
-                            <input type="password" name="password" class="form-control" placeholder="Password" required="">
+                            <input type="password" name="password" id="formPasswordStudent" class="form-control password" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)">
+                            <span id="showPasswordSudent"><i class="fa fa-eye" id="iconPasswordStudent"></i></span>
 
-                            <button class="submit-btn form-control" id="form-submit">Register</button>
+                            <button type="submit" class="submit-btn form-control">Sign in</button>
 
+                            <div id="alertMessageAddStudent"></div>
                         </form>
                     </div>
                 </div>
@@ -230,23 +232,6 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 col-sm-12">
-                    <div class="footer-info newsletter-form">
-                        <div class="section-title">
-                            <h2>Newsletter Signup</h2>
-                        </div>
-                        <div>
-                            <div class="form-group">
-                                <form action="#" method="get">
-                                    <input type="email" class="form-control" placeholder="Enter your email" name="email" id="email" required="">
-                                    <input type="submit" class="form-control" name="submit" id="form-submit" value="Send me">
-                                </form>
-                                <span><sup>*</sup> Please note - we do not spam your email.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </footer>
@@ -258,6 +243,7 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/smoothscroll.js"></script>
     <script src="js/custom.js"></script>
+    <script src="~/js/student.js"></script>
 
 </body>
 </html>

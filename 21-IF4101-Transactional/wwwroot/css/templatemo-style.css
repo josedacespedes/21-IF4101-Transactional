@@ -98,6 +98,8 @@ input, button,
     padding-bottom: 40px;
 }
 
+
+
     .section-title h2 {
         margin: 0;
     }
@@ -148,7 +150,7 @@ input, button,
         color: #252020;
         width: 50%;
         height: 50px;
-        margin: 30px auto;
+        margin: auto;
         margin-bottom: 10px;
     }
 
@@ -178,7 +180,9 @@ section {
     height: 390px;
 }
 
-
+.formInput-error {
+    border-bottom: 1px solid red !important;
+}
 
 /*---------------------------------------
      BUTTONS               
@@ -405,7 +409,7 @@ section {
 
 
 /*---------------------------------------
-      ABOUT              
+      ADD STUDENT              
   -----------------------------------------*/
 
 #about figure {
@@ -433,40 +437,20 @@ section {
             text-align: center;
         }
 
+#about form #iconPasswordStudent {
+    font-size: 20px;
+}
 
-
-/*---------------------------------------
-      TEAM              
-  -----------------------------------------*/
-
-.team-thumb {
-    background: #ffffff;
+#about form #showPasswordSudent {
+    color: white;
     position: relative;
-    overflow: hidden;
-    text-align: left;
+    bottom: 40px;
+    left: 180px;
 }
 
-.team-info {
-    padding: 20px 30px;
-}
 
-.team-image img {
-    width: 100%;
-}
 
-.team-thumb .social-icon {
-    border-top: 1px solid #f0f0f0;
-    padding: 4px 20px 0 20px;
-}
 
-    .team-thumb .social-icon li a {
-        background: #ffffff;
-        color: #252020;
-    }
-
-.team-info h3 {
-    margin: 0;
-}
 
 /*---------------------------------------
      FOOTER              
@@ -706,6 +690,15 @@ footer {
 
     .contact-image {
         margin-top: 0;
+    }
+
+    .entry-form {
+        border-radius: 0;
+        padding: 2em;
+        max-width: 100%;
+        max-height: 100%;
+        width: inherit;
+        height: inherit;
     }
 }
 
