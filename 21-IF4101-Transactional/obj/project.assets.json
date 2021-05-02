@@ -454,19 +454,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Vampirin\\.nuget\\packages\\": {}
+    "C:\\Users\\José David\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
+      "projectUniqueName": "E:\\UCR\\I - 2021\\Lenguajes\\Project\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
       "projectName": "21-IF4101-Transactional",
-      "projectPath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
-      "packagesPath": "C:\\Users\\Vampirin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\obj\\",
+      "projectPath": "E:\\UCR\\I - 2021\\Lenguajes\\Project\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
+      "packagesPath": "C:\\Users\\José David\\.nuget\\packages\\",
+      "outputPath": "E:\\UCR\\I - 2021\\Lenguajes\\Project\\21-IF4101-Transactional\\21-IF4101-Transactional\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Vampirin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\José David\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -518,13 +518,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

@@ -38,9 +38,8 @@
         </div>
     </section>
 
-
     <!-- MENU -->
-    <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+    <section class="navbar custom-navbar navbar-fixed-top displayNoUser" role="navigation">
         <div class="container">
 
             <div class="navbar-header">
@@ -93,8 +92,7 @@
         </div>
     </section>
 
-
-    <!-- HOME -->
+    <!-- NEWS -->
     <section id="home" class="dissplayAll">
         <div class="row">
 
@@ -175,18 +173,18 @@
 
                 <div class="col-md-4 col-sm-12">
                     <div class="entry-form">
-                        <form id="registerStudentForm" autocomplete="off">
+                        <form id="registerApplicantForm" autocomplete="off">
                             <h2>Join community</h2>
-                            <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First name" required="" minlength="3" maxlength="50" pattern="[A-Za-z áéíóúñÑ]+">
+                            <input type="text" name="firstNameApplicant" id="firstNameApplicant" class="form-control" placeholder="First name" required="" minlength="3" maxlength="50" pattern="[A-Za-z áéíóúñÑ]+">
 
-                            <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last name" required="" minlength="10" maxlength="100" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+">
+                            <input type="text" name="lastNameApplicant" id="lastNameApplicant" class="form-control" placeholder="Last name" required="" minlength="10" maxlength="100" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+">
 
-                            <input type="text" name="studentId" id="studentId" class="form-control" placeholder="Student id" required="" minlength="6" maxlength="6" pattern="(?=.*[A-Z]).{1}[0-9]+" title="Valid student id">
+                            <input type="text" name="studentIdApplicant" id="studentIdApplicant" class="form-control" placeholder="Student id" required="" minlength="6" maxlength="6" pattern="(?=.*[A-Z]).{1}[0-9]+" title="Valid student id">
 
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr">
+                            <input type="email" name="emailApplicant" id="emailApplicant" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr">
 
-                            <input type="password" name="password" id="password" class="form-control password" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)">
-                            <span id="showPasswordSudent"><i class="fa fa-eye" id="iconPasswordStudent"></i></span>
+                            <input type="password" name="passwordApplicant" id="passwordApplicant" class="form-control" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)">
+                            <span id="showPasswordApplicant"><i class="fa fa-eye" id="iconPasswordApplicant"></i></span>
 
                             <button type="submit" class="submit-btn form-control">Sign in</button>
 
@@ -199,8 +197,10 @@
         </div>
     </section>
 
+
+    <!-- REGISTER PROFESSOR -->
     <!-- FOOTER -->
-    <footer id="footer">
+    <footer id="footer" class="displayAll">
         <div class="container">
             <div class="row">
 
