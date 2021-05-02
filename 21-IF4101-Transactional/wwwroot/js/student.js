@@ -1,20 +1,18 @@
 "use strict";
 
-var formStudent = document.getElementById("registerStudentForm");
+var formStudent = document.getElementById("registerApplicantForm");
 
 /*--------------------------------------------- ADD STUDENT-----------------------------------------------------------*/
 
-
-
 //SHOW/HID PASSWORD
-$('#showPasswordSudent').hover(function () {
-    $('.password').attr('type', 'text');
+$('#showPasswordApplicant').hover(function () {
+    $('#passwordApplicant').attr('type', 'text');
 }, function () {
-    $('.password').attr('type', 'password');
+    $('#passwordApplicant').attr('type', 'password');
 });
 
 //VALIDATIONS
-function checkFirstName(firstName) {
+function checkFirstNameApplicant(firstName) {
     if ((firstName.length < 3 || firstName.length > 50) || !(/^[a-zA-Z \u00E0-\u00FC\u00f1\u00d1]+$/.test(firstName)) || !firstName) {
         return false;
     } else {
@@ -22,7 +20,7 @@ function checkFirstName(firstName) {
     }
 }
 
-function checkLastName(lastName) {
+function checkLastNameApplicant(lastName) {
     if ((lastName.length < 10 || lastName.length > 100) || !(/^[a-zA-Z \u00E0-\u00FC\u00f1\u00d1]+$/.test(lastName)) || lastName.indexOf(' ') < 0 || !lastName) {
         return false;
     } else {
@@ -30,7 +28,7 @@ function checkLastName(lastName) {
     }
 }
 
-function checkStudentId(studentId) {
+function checkStudentIdApplicant(studentId) {
     var initialLetter = studentId.charAt(0);
     var restNumeric = studentId.substring(1, studentId.length);
 
@@ -41,7 +39,7 @@ function checkStudentId(studentId) {
     }
 }
 
-function checkEmail(email) {
+function checkEmailApplicant(email) {
 
     if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@ucr\.ac\.cr/.test(email)) || !email) {
         return false;
@@ -50,7 +48,7 @@ function checkEmail(email) {
     }
 }
 
-function checkPassword(password) {
+function checkPasswordApplicant(password) {
     if ((password.length != 8) || !(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!.#$%^&*_=+-]).*$/.test(password)) || !password) {
         return false;
     } else {
@@ -59,42 +57,42 @@ function checkPassword(password) {
 }
 
 function cleanErrorInput() {
-    $('#firstName').removeClass("formInput-error");
-    $('#lastName').removeClass("formInput-error");
-    $('#studentId').removeClass("formInput-error");
-    $('#email').removeClass("formInput-error");
-    $('#password').removeClass("formInput-error");
+    $('#firstNameApplicant').removeClass("formInput-error");
+    $('#lastNameApplicant').removeClass("formInput-error");
+    $('#studentIdApplicant').removeClass("formInput-error");
+    $('#emailApplicant').removeClass("formInput-error");
+    $('#passwordApplicant').removeClass("formInput-error");
 }
 
 function putErrorInput() {
     cleanErrorInput();
     var validate = true;
-    var student = {
-        firstName: $('#firstName').val(),
-        lastName: $('#lastName').val(),
-        studentId: $('#studentId').val(),
-        email: $('#email').val(),
-        password: $('#password').val()
+    var Applicant = {
+        firstNameApplicant: $('#firstNameApplicant').val(),
+        lastNameApplicant: $('#lastNameApplicant').val(),
+        studentIdApplicant: $('#studentIdApplicant').val(),
+        emailApplicant: $('#emailApplicant').val(),
+        passwordApplicant: $('#passwordApplicant').val()
     };
 
-    if (!checkFirstName(student.firstName)) {
-        $('#firstName').addClass("formInput-error");
+    if (!checkFirstNameApplicant(Applicant.firstNameApplicant)) {
+        $('#firstNameApplicant').addClass("formInput-error");
         validate = false;
     }
-    if (!checkLastName(student.lastName)) {
-        $('#lastName').addClass("formInput-error");
+    if (!checkLastNameApplicant(Applicant.lastNameApplicant)) {
+        $('#lastNameApplicant').addClass("formInput-error");
         validate = false;
     }
-    if (!checkStudentId(student.studentId)) {
-        $('#studentId').addClass("formInput-error");
+    if (!checkStudentIdApplicant(Applicant.studentIdApplicant)) {
+        $('#studentIdApplicant').addClass("formInput-error");
         validate = false;
     }
-    if (!checkEmail(student.email)) {
-        $('#email').addClass("formInput-error");
+    if (!checkEmailApplicant(Applicant.emailApplicant)) {
+        $('#emailApplicant').addClass("formInput-error");
         validate = false;
     }
-    if (!checkPassword(student.password)) {
-        $('#password').addClass("formInput-error");
+    if (!checkPasswordApplicant(Applicant.passwordApplicant)) {
+        $('#passwordApplicant').addClass("formInput-error");
         validate = false;
     }
     return validate;
