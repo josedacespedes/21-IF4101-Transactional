@@ -80,7 +80,7 @@ input, button,
 }
 
     a:hover, a:active, a:focus {
-        color: #29ca8e;
+        color: #41ADE7;
         outline: none;
     }
 
@@ -266,7 +266,7 @@ section {
 
 .custom-navbar {
     background: #ffffff;
-    border-top: 5px solid #29ca8e;
+    border-top: 5px solid #41ADE7;
     border-bottom: 0;
     -webkit-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
@@ -293,7 +293,7 @@ section {
     }
 
         .custom-navbar .navbar-nav.navbar-right li a .fa {
-            background: #29ca8e;
+            background: #41ADE7;
             border-radius: 100%;
             color: #ffffff;
             width: 30px;
@@ -317,12 +317,12 @@ section {
     }
 
     .custom-navbar .nav li a:hover {
-        background-color: #29ca8e;
+        background-color: #41ADE7;
         color: #ffffff;
     }
 
     .custom-navbar .nav li.active > a {
-        background-color: #29ca8e;
+        background-color: #41ADE7;
         color: #ffffff;
     }
 
@@ -427,7 +427,7 @@ section {
     }
 
         #about figure span i {
-            background: #29ca8e;
+            background: #41ADE7;
             border-radius: 50px;
             color: #ffffff;
             font-size: 25px;
@@ -532,7 +532,7 @@ footer {
 }
 
     .newsletter-form input[type="submit"]:hover {
-        background: #29ca8e;
+        background: #41ADE7;
         border-color: transparent;
     }
 
@@ -563,11 +563,10 @@ footer {
 
         .social-icon li a {
             border-radius: 100px;
-            color: #29ca8e;
-            font-size: 15px;
-            width: 35px;
-            height: 35px;
-            line-height: 35px;
+            font-size: 35px;
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
             text-decoration: none;
             text-align: center;
             transition: all 0.4s ease-in-out;
@@ -575,10 +574,29 @@ footer {
             margin: 5px 5px 5px 0;
         }
 
-            .social-icon li a:hover {
-                background: #29ca8e;
-                color: #ffffff;
+        .social-icon li .fa-facebook-square {
+            color: #4064AC;
+        }
+
+        .social-icon li .fa-twitter {
+            color: #00B0E9;
+        }
+
+        .social-icon li .fa-instagram {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+
+            .social-icon li .fa-instagram:hover {
+                -webkit-text-fill-color: white;
             }
+
+        .social-icon li a:hover {
+            background: #41ADE7;
+            color: #ffffff;
+        }
 
 
 
