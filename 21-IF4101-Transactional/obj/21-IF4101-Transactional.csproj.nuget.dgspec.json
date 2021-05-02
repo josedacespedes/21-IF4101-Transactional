@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\UCR\\I - 2021\\Lenguajes\\Project\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj": {}
+    "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj": {}
   },
   "projects": {
-    "E:\\UCR\\I - 2021\\Lenguajes\\Project\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj": {
+    "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\UCR\\I - 2021\\Lenguajes\\Project\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
+        "projectUniqueName": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
         "projectName": "21-IF4101-Transactional",
-        "projectPath": "E:\\UCR\\I - 2021\\Lenguajes\\Project\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
-        "packagesPath": "C:\\Users\\José David\\.nuget\\packages\\",
-        "outputPath": "E:\\UCR\\I - 2021\\Lenguajes\\Project\\21-IF4101-Transactional\\21-IF4101-Transactional\\obj\\",
+        "projectPath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
+        "packagesPath": "C:\\Users\\Vampirin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\José David\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Vampirin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
