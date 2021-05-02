@@ -1,6 +1,6 @@
 "use strict";
 
-var formStudent = document.getElementById("registerApplicantForm");
+var formApplicant = document.getElementById("registerApplicantForm");
 
 /*--------------------------------------------- ADD STUDENT-----------------------------------------------------------*/
 
@@ -99,7 +99,7 @@ function putErrorInput() {
 }
 
 //ACTION ADD
-formStudent.addEventListener("submit", function (e) {
+formApplicant.addEventListener("submit", function (e) {
     e.preventDefault();
 
     if (putErrorInput()) {
