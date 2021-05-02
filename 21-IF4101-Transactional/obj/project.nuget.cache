@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "oBJOPGznA71CxStkQMDklau3/EIDL98tXbhyjKSdVZTq7CDeZ4oeWrQpjcZGIAyT706Uzcxon+YMzyxoSsT+Lg==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\yulia\\Desktop\\PROYECTO_LENGUAJES\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
-=======
   "dgSpecHash": "Wf90p2Kmr7GATm6T9haV7IUkwbsPI3M/BuwHz7va75jNpHG1QsKQGF3kQseZ4gmh0lZHp7W+BfoMvapXgcHWyQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
->>>>>>> 7ba447d00a976cb65552aa82bf3f7c4e0d8d1c7b
   "expectedPackageFiles": [],
   "logs": []
 }
