@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yulia\\Desktop\\PROYECTO_LENGUAJES\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj": {}
+    "E:\\UCR\\Lenguajes\\Proyecto\\Sprint 1\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yulia\\Desktop\\PROYECTO_LENGUAJES\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj": {
+    "E:\\UCR\\Lenguajes\\Proyecto\\Sprint 1\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yulia\\Desktop\\PROYECTO_LENGUAJES\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
+        "projectUniqueName": "E:\\UCR\\Lenguajes\\Proyecto\\Sprint 1\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
         "projectName": "21-IF4101-Transactional",
-        "projectPath": "C:\\Users\\yulia\\Desktop\\PROYECTO_LENGUAJES\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
-        "packagesPath": "C:\\Users\\yulia\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yulia\\Desktop\\PROYECTO_LENGUAJES\\21-IF4101-Transactional\\21-IF4101-Transactional\\obj\\",
+        "projectPath": "E:\\UCR\\Lenguajes\\Proyecto\\Sprint 1\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
+        "packagesPath": "C:\\Users\\WAOR\\.nuget\\packages\\",
+        "outputPath": "E:\\UCR\\Lenguajes\\Proyecto\\Sprint 1\\21-IF4101-Transactional\\21-IF4101-Transactional\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\yulia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\WAOR\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +43,12 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
