@@ -503,6 +503,20 @@ section {
 
 
 
+/*---------------------------------------
+      ADD PROFESSOR              
+  -----------------------------------------*/
+
+#iconPasswordProfessor {
+    font-size: 20px;
+}
+
+#showPasswordProfessor {
+    color: white;
+    position: relative;
+    bottom: 40px;
+    left: 180px;
+}
 
 
 /*---------------------------------------
