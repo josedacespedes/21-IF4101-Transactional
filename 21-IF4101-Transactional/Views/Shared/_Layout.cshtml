@@ -58,7 +58,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
                     <li><a href="#top" class="smoothScroll">News</a></li>
-                    <li><a href="#about" class="smoothScroll">Sign In</a></li>
+                    <li><a href="#addApplicant" class="smoothScroll">Sign In</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -136,13 +136,13 @@
         </div>
     </section>
 
-    <!-- REGISTER STUDENT -->
-    <section id="about" class="displayNoUser">
+    <!-- REGISTER APPLICANT -->
+    <section id="addApplicant" class="displayNoUser">
         <div class="container">
             <div class="row">
 
                 <div class="col-md-6 col-sm-12">
-                    <div class="about-info">
+                    <div class="addApplicant-info">
                         <h2>Join the Business Informatics community</h2>
                         <figure>
                             <span><i class="fa fa-newspaper-o"></i></span>
@@ -199,6 +199,38 @@
 
 
     <!-- REGISTER PROFESSOR -->
+    <section id="addProfessor" class="displayAdmin">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="entry-form">
+                        <form id="registerProfessorForm" autocomplete="off">
+                            <h2>Add Professor</h2>
+                            <input type="text" name="firstNameProfessor" id="firstNameProfessor" class="form-control" placeholder="First name" required="" minlength="3" maxlength="50" pattern="[A-Za-z áéíóúñÑ]+">
+
+                            <input type="text" name="lastNameProfessor" id="lastNameProfessor" class="form-control" placeholder="Last name" required="" minlength="10" maxlength="100" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+">
+
+                            <input type="text" name="IdProfessor" id="IdProfessor" class="form-control" placeholder="Professor id" required="" minlength="5" maxlength="5" pattern="[0-9P-]+" title="Valid professor id">
+
+                            <input type="email" name="emailProfessor" id="emailProfessor" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr">
+
+                            <input type="password" name="passwordProfessor" id="passwordProfessor" class="form-control" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)">
+                            <span id="showPasswordProfessor"><i class="fa fa-eye" id="iconPasswordProfessor"></i></span>
+
+                            <button type="submit" class="submit-btn form-control">Add</button>
+
+                            <div id="alertMessageAddProfessor"></div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
     <!-- FOOTER -->
     <footer id="footer" class="displayAll">
         <div class="container">
@@ -254,5 +286,7 @@
     <script src="js/custom.js"></script>
     <script src="js/login.js"></script>
     <script src="js/student.js"></script>
+    <script src="js/professor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 </body>
 </html>
