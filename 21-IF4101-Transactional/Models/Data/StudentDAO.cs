@@ -96,5 +96,43 @@ namespace _21_IF4101_Transactional.Models
 
         }
 
+        public List<Student> Get()
+        {
+
+            List<Student> students = new List<Student>();
+
+            //usaremos using para englobar todo lo que tiene que ver con una misma cosa u objeto. En este caso, todo lo envuelto acá tiene que ver con connection, la cual sacamos con la clase SqlConnection y con el string de conexión que tenemos en nuestro appsetting.json
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("SelectStudent", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo. 
+                command.CommandType = System.Data.CommandType.StoredProcedure; //acá decimos que lo que se ejecutará es un SP
+
+                //logica del get/select
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+                //leemos todas las filas provenientes de BD
+                while (sqlDataReader.Read())
+                {
+                    students.Add(new Student
+                    {
+                        Id = Convert.ToInt32(sqlDataReader["Id"]),
+                        Name = sqlDataReader["Name"].ToString(),
+                        Lastname = sqlDataReader["Lastname"].ToString(),
+                        StudentID = sqlDataReader["StudentID"].ToString(),
+                        Email = sqlDataReader["Email"].ToString(),
+                        Password = sqlDataReader["Password"].ToString(),
+                        State = Convert.ToInt32(sqlDataReader["State"])
+                    });
+
+                }
+
+                connection.Close(); //cerramos conexión. 
+            }
+
+
+            return students; //retornamos resultado al Controller.  
+
+        }
+
     }
 }

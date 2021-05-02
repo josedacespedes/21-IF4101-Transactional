@@ -34,7 +34,7 @@ namespace _21_IF4101_Transactional.Controllers
 
         public IActionResult Insert([FromBody] Student student)
         {
-            //llamada al modelo para insertar el estudiante (ahora pasándole parámetro al constructor): 
+            //llamada al modelo para insertar el estudiante 
             studentDAO = new StudentDAO(_configuration);
             int existToReturn = studentDAO.VerifyStudentID(student.StudentID);
 
@@ -55,6 +55,12 @@ namespace _21_IF4101_Transactional.Controllers
         }
 
 
+        public IActionResult Get()
+        {
+            //llamada al modelo para obtener los estudiantes
+            studentDAO = new StudentDAO(_configuration);
+            return Ok(studentDAO.Get());
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
