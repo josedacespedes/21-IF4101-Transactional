@@ -62,9 +62,56 @@
                     <li><a href="#about" class="smoothScroll">Sign In</a></li>
                 </ul>
 
+                @*<ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-sign-in"></i>
+                        Login
+                        </a>
+                    </li>
+                    <div>
+                        <form>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Example label</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Another label</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                            </div>
+                        </form>
+                    </div>
+                </ul>*@
+
+
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><i class="fa fa-sign-in"></i> Login</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-sign-in"></i>
+                            Login
+                        </a>
+                        <div class="dropdown-menu login d-flex justify-content-center" aria-labelledby="navbarDropdown2">
+                            <form>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Email</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="name.lastname@ucr.ac.cr"  title="Invalid email address" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput2">Password</label>
+                                    <input type="password" name="password" class="form-control" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!.#$%^&_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&_=+-)" />
+                                    @*<span id="showPassword"><i class="fa fa-eye"></i></span>*@
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-primary btn-login">Login</button>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
                 </ul>
+
+
+
+
             </div>
 
         </div>
