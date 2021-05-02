@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yulia\\Desktop\\PROYECTO_LENGUAJES\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj": {}
+    "E:\\UCR\\I - 2021\\Lenguajes\\Project\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yulia\\Desktop\\PROYECTO_LENGUAJES\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj": {
+    "E:\\UCR\\I - 2021\\Lenguajes\\Project\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yulia\\Desktop\\PROYECTO_LENGUAJES\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
+        "projectUniqueName": "E:\\UCR\\I - 2021\\Lenguajes\\Project\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
         "projectName": "21-IF4101-Transactional",
-        "projectPath": "C:\\Users\\yulia\\Desktop\\PROYECTO_LENGUAJES\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
-        "packagesPath": "C:\\Users\\yulia\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yulia\\Desktop\\PROYECTO_LENGUAJES\\21-IF4101-Transactional\\21-IF4101-Transactional\\obj\\",
+        "projectPath": "E:\\UCR\\I - 2021\\Lenguajes\\Project\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
+        "packagesPath": "C:\\Users\\José David\\.nuget\\packages\\",
+        "outputPath": "E:\\UCR\\I - 2021\\Lenguajes\\Project\\21-IF4101-Transactional\\21-IF4101-Transactional\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\yulia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\José David\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
