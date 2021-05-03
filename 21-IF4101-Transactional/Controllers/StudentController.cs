@@ -10,25 +10,24 @@ using System.Threading.Tasks;
 
 namespace _21_IF4101_Transactional.Controllers
 {
-    public class HomeController : Controller
+    public class StudentController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<StudentController> _logger;
         private readonly IConfiguration _configuration;
         StudentDAO studentDAO;
 
-        public HomeController(ILogger<HomeController> logger)
+        public IActionResult Insert([FromBody] Student student)
         {
-            _logger = logger;
+            //llamada al modelo para insertar el estudiante           
+                int resultToReturn = studentDAO.Insert(student); //acá guardamos un 1 o un 0, dependiendo de si se insertó el estudiante o no
+                return Ok(resultToReturn); //retornamos el 1 o el 0 a la vista         
         }
 
-        public IActionResult Index()
+        public IActionResult Get()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            //llamada al modelo para obtener los estudiantes
+            studentDAO = new StudentDAO(_configuration);
+            return Ok(studentDAO.Get());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
