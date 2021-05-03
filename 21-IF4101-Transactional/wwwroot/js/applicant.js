@@ -1,6 +1,8 @@
 "use strict";
 
+//VARIABLES
 var formApplicant = document.getElementById("registerApplicantForm");
+var alertMessageAddStudent = document.getElementById("alertMessageAddStudent");
 
 /*--------------------------------------------- ADD STUDENT-----------------------------------------------------------*/
 
@@ -64,36 +66,29 @@ function cleanErrorInputApplicant() {
     $('#passwordApplicant').removeClass("formInput-error");
 }
 
-function putErrorInputApplicant() {
+function putErrorInputApplicant(applicant) {
     cleanErrorInputApplicant();
-    var validate = true;
-    var Applicant = {
-        firstNameApplicant: $('#firstNameApplicant').val(),
-        lastNameApplicant: $('#lastNameApplicant').val(),
-        studentIdApplicant: $('#studentIdApplicant').val(),
-        emailApplicant: $('#emailApplicant').val(),
-        passwordApplicant: $('#passwordApplicant').val()
-    };
+    var validate = false;
 
-    if (!checkFirstNameApplicant(Applicant.firstNameApplicant)) {
+    if (!checkFirstNameApplicant(applicant.firstNameApplicant)) {
         $('#firstNameApplicant').addClass("formInput-error");
-        validate = false;
+        validate = true;
     }
-    if (!checkLastNameApplicant(Applicant.lastNameApplicant)) {
+    if (!checkLastNameApplicant(applicant.lastNameApplicant)) {
         $('#lastNameApplicant').addClass("formInput-error");
-        validate = false;
+        validate = true;
     }
-    if (!checkStudentIdApplicant(Applicant.studentIdApplicant)) {
+    if (!checkStudentIdApplicant(applicant.studentIdApplicant)) {
         $('#studentIdApplicant').addClass("formInput-error");
-        validate = false;
+        validate = true;
     }
-    if (!checkEmailApplicant(Applicant.emailApplicant)) {
+    if (!checkEmailApplicant(applicant.emailApplicant)) {
         $('#emailApplicant').addClass("formInput-error");
-        validate = false;
+        validate = true;
     }
-    if (!checkPasswordApplicant(Applicant.passwordApplicant)) {
+    if (!checkPasswordApplicant(applicant.passwordApplicant)) {
         $('#passwordApplicant').addClass("formInput-error");
-        validate = false;
+        validate = true;
     }
     return validate;
 }
@@ -102,8 +97,35 @@ function putErrorInputApplicant() {
 formApplicant.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    if (putErrorInputApplicant()) {
+    var applicant = {
+        firstNameApplicant: $('#firstNameApplicant').val(),
+        lastNameApplicant: $('#lastNameApplicant').val(),
+        studentIdApplicant: $('#studentIdApplicant').val(),
+        emailApplicant: $('#emailApplicant').val(),
+        passwordApplicant: $('#passwordApplicant').val()
+    };
+
+    if (!putErrorInputApplicant(applicant)) {
         //AJAX
+        //$.ajax({
+        //    url: "/Applicant/Insert",
+        //    data: JSON.stringify(applicant),
+        //    type: "POST",
+        //    contentType: "application/json;charset=utf-8",
+        //    dataType: "json",
+        //    success: function (result) {
+        //        if (result == 1) {
+        //            alertMessageAddStudent.innerHTML = `<label class="text-success">Register successfully</label>`;//Msg enter success
+        //            formApplicant.reset(); //Clean form fields
+        //        } else if (result == -1) {
+        //            alertMessageAddStudent.innerHTML = `<label class="text-danger">Student is already exist</label>`;//Msg  existence
+        //        }
+        //    },
+        //    error: function (errorMessage) {
+        //        alert("Error");
+        //        alert(errorMessage.responseText);
+        //    }
+        //});
     }
 
 });

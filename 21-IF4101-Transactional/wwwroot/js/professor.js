@@ -1,6 +1,8 @@
 "use strict";
 
 var formProfessor = document.getElementById("registerProfessorForm");
+var professor;
+var alertMessageAddProfessor = document.getElementById("alertMessageAddProfessor");
 
 /*--------------------------------------------- ADD PROFESSOR-----------------------------------------------------------*/
 
@@ -69,36 +71,29 @@ function cleanErrorInputProfessor() {
     $('#passwordProfessor').removeClass("formInput-error");
 }
 
-function putErrorInputProfessor() {
+function putErrorInputProfessor(professor) {
     cleanErrorInputProfessor();
-    var validate = true;
-    var Professor = {
-        firstNameProfessor: $('#firstNameProfessor').val(),
-        lastNameProfessor: $('#lastNameProfessor').val(),
-        idProfessor: $('#idProfessor').val(),
-        emailProfessor: $('#emailProfessor').val(),
-        passwordProfessor: $('#passwordProfessor').val()
-    };
+    var validate = false;
 
-    if (!checkFirstNameProfessor(Professor.firstNameProfessor)) {
+    if (!checkFirstNameProfessor(professor.firstNameProfessor)) {
         $('#firstNameProfessor').addClass("formInput-error");
-        validate = false;
+        validate = true;
     }
-    if (!checkLastNameProfessor(Professor.lastNameProfessor)) {
+    if (!checkLastNameProfessor(professor.lastNameProfessor)) {
         $('#lastNameProfessor').addClass("formInput-error");
-        validate = false;
+        validate = true;
     }
-    if (!checkIdProfessor(Professor.idProfessor)) {
+    if (!checkIdProfessor(professor.idProfessor)) {
         $('#idProfessor').addClass("formInput-error");
-        validate = false;
+        validate = true;
     }
-    if (!checkEmailProfessor(Professor.emailProfessor)) {
+    if (!checkEmailProfessor(professor.emailProfessor)) {
         $('#emailProfessor').addClass("formInput-error");
-        validate = false;
+        validate = true;
     }
-    if (!checkPasswordProfessor(Professor.passwordProfessor)) {
+    if (!checkPasswordProfessor(professor.passwordProfessor)) {
         $('#passwordProfessor').addClass("formInput-error");
-        validate = false;
+        validate = true;
     }
     return validate;
 }
@@ -107,8 +102,37 @@ function putErrorInputProfessor() {
 formProfessor.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    if (putErrorInputProfessor()) {
+    var professor = {
+        firstNameProfessor: $('#firstNameProfessor').val(),
+        lastNameProfessor: $('#lastNameProfessor').val(),
+        idProfessor: $('#idProfessor').val(),
+        emailProfessor: $('#emailProfessor').val(),
+        passwordProfessor: $('#passwordProfessor').val()
+    };
+
+    if (!putErrorInputProfessor(professor)) {
         //AJAX
+        /*
+        $.ajax({
+            url: "/Professor/Insert",
+            data: JSON.stringify(professor),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                if (result == 1) {
+                    alertMessageAddProfessor.innerHTML = `<label class="text-success">Register successfully</label>`;//Msg enter success
+                    formApplicant.reset(); //Clean form fields
+                } else if (result == -1) {
+                    alertMessageAddProfessor.innerHTML = `<label class="text-danger">Student is already exist</label>`;//Msg  existence
+                }
+            },
+            error: function (errorMessage) {
+                alert("Error");
+                alert(errorMessage.responseText);
+            }
+        });
+        */
     }
 
 });
