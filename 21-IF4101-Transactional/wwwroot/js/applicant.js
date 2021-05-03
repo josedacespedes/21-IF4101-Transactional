@@ -56,7 +56,7 @@ function checkPasswordApplicant(password) {
     }
 }
 
-function cleanErrorInput() {
+function cleanErrorInputApplicant() {
     $('#firstNameApplicant').removeClass("formInput-error");
     $('#lastNameApplicant').removeClass("formInput-error");
     $('#studentIdApplicant').removeClass("formInput-error");
@@ -64,8 +64,8 @@ function cleanErrorInput() {
     $('#passwordApplicant').removeClass("formInput-error");
 }
 
-function putErrorInput() {
-    cleanErrorInput();
+function putErrorInputApplicant() {
+    cleanErrorInputApplicant();
     var validate = true;
     var Applicant = {
         firstNameApplicant: $('#firstNameApplicant').val(),
@@ -102,7 +102,7 @@ function putErrorInput() {
 formApplicant.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    if (putErrorInput()) {
+    if (putErrorInputApplicant()) {
         //AJAX
     }
 

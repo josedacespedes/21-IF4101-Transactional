@@ -61,7 +61,7 @@ function checkPasswordProfessor(password) {
     }
 }
 
-function cleanErrorInput() {
+function cleanErrorInputProfessor() {
     $('#firstNameProfessor').removeClass("formInput-error");
     $('#lastNameProfessor').removeClass("formInput-error");
     $('#idProfessor').removeClass("formInput-error");
@@ -69,8 +69,8 @@ function cleanErrorInput() {
     $('#passwordProfessor').removeClass("formInput-error");
 }
 
-function putErrorInput() {
-    cleanErrorInput();
+function putErrorInputProfessor() {
+    cleanErrorInputProfessor();
     var validate = true;
     var Professor = {
         firstNameProfessor: $('#firstNameProfessor').val(),
@@ -107,7 +107,7 @@ function putErrorInput() {
 formProfessor.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    if (putErrorInput()) {
+    if (putErrorInputProfessor()) {
         //AJAX
     }
 
