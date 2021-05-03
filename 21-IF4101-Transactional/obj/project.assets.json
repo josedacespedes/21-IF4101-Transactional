@@ -454,19 +454,40 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
+    "C:\\Users\\WAOR\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+=======
     "C:\\Users\\Vampirin\\.nuget\\packages\\": {}
+>>>>>>> 716cd576d50e287243223464bf15e51cd678a4d1
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
+      "projectUniqueName": "E:\\UCR\\Lenguajes\\Proyecto\\Sprint 1\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
+      "projectName": "21-IF4101-Transactional",
+      "projectPath": "E:\\UCR\\Lenguajes\\Proyecto\\Sprint 1\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
+      "packagesPath": "C:\\Users\\WAOR\\.nuget\\packages\\",
+      "outputPath": "E:\\UCR\\Lenguajes\\Proyecto\\Sprint 1\\21-IF4101-Transactional\\21-IF4101-Transactional\\obj\\",
+=======
       "projectUniqueName": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
       "projectName": "21-IF4101-Transactional",
       "projectPath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
       "packagesPath": "C:\\Users\\Vampirin\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\obj\\",
+>>>>>>> 716cd576d50e287243223464bf15e51cd678a4d1
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
+<<<<<<< HEAD
+        "C:\\Users\\WAOR\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+=======
         "C:\\Users\\Vampirin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 716cd576d50e287243223464bf15e51cd678a4d1
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

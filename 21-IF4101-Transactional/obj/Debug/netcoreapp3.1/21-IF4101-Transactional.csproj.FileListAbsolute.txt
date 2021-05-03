@@ -146,6 +146,45 @@ C:\Users\yulia\Desktop\PROYECTO_LENGUAJES\21-IF4101-Transactional\21-IF4101-Tran
 C:\Users\yulia\Desktop\PROYECTO_LENGUAJES\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.pdb
 C:\Users\yulia\Desktop\PROYECTO_LENGUAJES\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.genruntimeconfig.cache
 C:\Users\yulia\Desktop\PROYECTO_LENGUAJES\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.csproj.CopyComplete
+<<<<<<< HEAD
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\appsettings.Development.json
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\appsettings.json
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.exe
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.deps.json
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.runtimeconfig.json
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.runtimeconfig.dev.json
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.dll
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.pdb
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.Views.dll
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\21-IF4101-Transactional.Views.pdb
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.csprojAssemblyReference.cache
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.AssemblyInfoInputs.cache
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.AssemblyInfo.cs
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.csproj.CoreCompileInputs.cache
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.MvcApplicationPartsAssemblyInfo.cache
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.RazorAssemblyInfo.cache
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.RazorAssemblyInfo.cs
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\staticwebassets\21-IF4101-Transactional.StaticWebAssets.Manifest.cache
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\staticwebassets\21-IF4101-Transactional.StaticWebAssets.xml
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\scopedcss\bundle\21-IF4101-Transactional.styles.css
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.TagHelpers.input.cache
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.TagHelpers.output.cache
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.RazorCoreGenerate.cache
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.RazorTargetAssemblyInfo.cache
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.RazorTargetAssemblyInfo.cs
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.Views.pdb
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.dll
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.pdb
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.genruntimeconfig.cache
+E:\UCR\Lenguajes\Proyecto\Sprint 1\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.csproj.CopyComplete
+=======
 C:\Users\yulia\Desktop\PROYECTO_LENGUAJES\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
 C:\Users\yulia\Desktop\PROYECTO_LENGUAJES\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
 C:\Users\yulia\Desktop\PROYECTO_LENGUAJES\21-IF4101-Transactional\21-IF4101-Transactional\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
@@ -201,3 +240,4 @@ C:\Users\Vampirin\OneDrive\Escritorio\21-IF4101-Transactional\21-IF4101-Transact
 C:\Users\Vampirin\OneDrive\Escritorio\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.dll
 C:\Users\Vampirin\OneDrive\Escritorio\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.pdb
 C:\Users\Vampirin\OneDrive\Escritorio\21-IF4101-Transactional\21-IF4101-Transactional\obj\Debug\netcoreapp3.1\21-IF4101-Transactional.genruntimeconfig.cache
+>>>>>>> 990f755b35e6d40180da1c27268546142f6eb56a
