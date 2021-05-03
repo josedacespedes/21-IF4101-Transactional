@@ -80,7 +80,7 @@ input, button,
 }
 
     a:hover, a:active, a:focus {
-        color: #29ca8e;
+        color: #41ADE7;
         outline: none;
     }
 
@@ -97,6 +97,8 @@ input, button,
 .section-title {
     padding-bottom: 40px;
 }
+
+
 
     .section-title h2 {
         margin: 0;
@@ -148,7 +150,7 @@ input, button,
         color: #252020;
         width: 50%;
         height: 50px;
-        margin: 30px auto;
+        margin: auto;
         margin-bottom: 10px;
     }
 
@@ -178,7 +180,9 @@ section {
     height: 390px;
 }
 
-
+.formInput-error {
+    border-bottom: 1px solid red !important;
+}
 
 /*---------------------------------------
      BUTTONS               
@@ -262,7 +266,7 @@ section {
 
 .custom-navbar {
     background: #ffffff;
-    border-top: 5px solid #29ca8e;
+    border-top: 5px solid #41ADE7;
     border-bottom: 0;
     -webkit-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
@@ -289,7 +293,7 @@ section {
     }
 
         .custom-navbar .navbar-nav.navbar-right li a .fa {
-            background: #29ca8e;
+            background: #41ADE7;
             border-radius: 100%;
             color: #ffffff;
             width: 30px;
@@ -313,12 +317,12 @@ section {
     }
 
     .custom-navbar .nav li a:hover {
-        background-color: #29ca8e;
+        background-color: #41ADE7;
         color: #ffffff;
     }
 
     .custom-navbar .nav li.active > a {
-        background-color: #29ca8e;
+        background-color: #41ADE7;
         color: #ffffff;
     }
 
@@ -331,37 +335,71 @@ section {
         background-color: transparent;
     }
 
-    .custom-navbar .navbar-toggle .icon-bar {
-        background: #252525;
-        border-color: transparent;
+        .custom-navbar .navbar-toggle .icon-bar {
+            background: #252525;
+            border-color: transparent;
+        }
+
+/*---------------------------------------
+        LOGIN            
+  -----------------------------------------*/
+
+.login {
+    width: 220px;
+    height: 240px;
+    background-color: aliceblue;
+    padding: 10px;
+}
+
+.btn-login {
+    margin-left: 65px;
+}
+
+/*    #login figure {
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 15px;
     }
 
-    .login {
-        width: 220px;
-        height: 200px;
-        background-color:aliceblue;
-        padding: 10px;
-    }
-
-    .btn-login {
-        margin-left: 65px;
-    }
-
-/*    #about form span i {
-        font-size: 20px;
-    }
-
-    #about form span {
-        color: white;
+    #login figure span {
+        float: left;
+        margin-left: -15px;
+        padding: 15px 20px;
         position: relative;
-        bottom: 40px;
-        left: 180px;
+        top: 20px;
+    }
+
+    #login figure span i {
+        background: #41ADE7;
+        border-radius: 50px;
+        color: #ffffff;
+        font-size: 25px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
     }*/
-  /*---------------------------------------
+
+#iconPasswordLogin {
+    font-size: 20px;
+}
+
+#showPasswordLogin {
+    border-radius: 70px;
+    color: black;
+    position: relative;
+    bottom: 28px;
+    left: 170px;
+}
+
+
+
+
+/*---------------------------------------
       HOME  & SLIDER            
   -----------------------------------------*/
 
-    #home {
+#home {
     padding: 0;
 }
 
@@ -424,16 +462,16 @@ section {
 
 
 /*---------------------------------------
-      ABOUT              
+      ADD STUDENT              
   -----------------------------------------*/
 
-#about figure {
+#addApplicant figure {
     display: inline-block;
     vertical-align: top;
     margin-left: 15px;
 }
 
-    #about figure span {
+    #addApplicant figure span {
         float: left;
         margin-left: -15px;
         padding: 15px 20px;
@@ -441,8 +479,8 @@ section {
         top: 20px;
     }
 
-        #about figure span i {
-            background: #29ca8e;
+        #addApplicant figure span i {
+            background: #41ADE7;
             border-radius: 50px;
             color: #ffffff;
             font-size: 25px;
@@ -452,40 +490,34 @@ section {
             text-align: center;
         }
 
+#iconPasswordApplicant {
+    font-size: 20px;
+}
+
+#showPasswordApplicant {
+    color: white;
+    position: relative;
+    bottom: 40px;
+    left: 180px;
+}
+
 
 
 /*---------------------------------------
-      TEAM              
+      ADD PROFESSOR              
   -----------------------------------------*/
 
-.team-thumb {
-    background: #ffffff;
+#iconPasswordProfessor {
+    font-size: 20px;
+}
+
+#showPasswordProfessor {
+    color: white;
     position: relative;
-    overflow: hidden;
-    text-align: left;
+    bottom: 40px;
+    left: 180px;
 }
 
-.team-info {
-    padding: 20px 30px;
-}
-
-.team-image img {
-    width: 100%;
-}
-
-.team-thumb .social-icon {
-    border-top: 1px solid #f0f0f0;
-    padding: 4px 20px 0 20px;
-}
-
-    .team-thumb .social-icon li a {
-        background: #ffffff;
-        color: #252020;
-    }
-
-.team-info h3 {
-    margin: 0;
-}
 
 /*---------------------------------------
      FOOTER              
@@ -567,7 +599,7 @@ footer {
 }
 
     .newsletter-form input[type="submit"]:hover {
-        background: #29ca8e;
+        background: #41ADE7;
         border-color: transparent;
     }
 
@@ -598,11 +630,10 @@ footer {
 
         .social-icon li a {
             border-radius: 100px;
-            color: #29ca8e;
-            font-size: 15px;
-            width: 35px;
-            height: 35px;
-            line-height: 35px;
+            font-size: 35px;
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
             text-decoration: none;
             text-align: center;
             transition: all 0.4s ease-in-out;
@@ -610,10 +641,29 @@ footer {
             margin: 5px 5px 5px 0;
         }
 
-            .social-icon li a:hover {
-                background: #29ca8e;
-                color: #ffffff;
+        .social-icon li .fa-facebook-square {
+            color: #4064AC;
+        }
+
+        .social-icon li .fa-twitter {
+            color: #00B0E9;
+        }
+
+        .social-icon li .fa-instagram {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+
+            .social-icon li .fa-instagram:hover {
+                -webkit-text-fill-color: white;
             }
+
+        .social-icon li a:hover {
+            background: #41ADE7;
+            color: #ffffff;
+        }
 
 
 
@@ -638,7 +688,7 @@ footer {
     }
 
     .feature-thumb,
-    .about-info,
+    .addApplicant-info,
     .team-thumb,
     .footer-info {
         margin-bottom: 50px;
@@ -725,6 +775,15 @@ footer {
 
     .contact-image {
         margin-top: 0;
+    }
+
+    .entry-form {
+        border-radius: 0;
+        padding: 2em;
+        max-width: 100%;
+        max-height: 100%;
+        width: inherit;
+        height: inherit;
     }
 }
 

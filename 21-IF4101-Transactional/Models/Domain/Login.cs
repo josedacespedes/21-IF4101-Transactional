@@ -7,5 +7,7 @@ namespace _21_IF4101_Transactional.Models.Domain
 {
     public class Login
     {
+
+ 
     }
 }
