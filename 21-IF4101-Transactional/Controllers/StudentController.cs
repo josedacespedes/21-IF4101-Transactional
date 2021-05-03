@@ -8,28 +8,26 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-//NO PONER NADA AQUÍ **********************
-
 namespace _21_IF4101_Transactional.Controllers
 {
-    public class HomeController : Controller
+    public class StudentController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<StudentController> _logger;
         private readonly IConfiguration _configuration;
+        StudentDAO studentDAO;
 
-        public HomeController(ILogger<HomeController> logger)
+        public IActionResult Insert([FromBody] Student student)
         {
-            _logger = logger;
+            //llamada al modelo para insertar el estudiante           
+                int resultToReturn = studentDAO.Insert(student); 
+                return Ok(resultToReturn);        
         }
 
-        public IActionResult Index()
+        public IActionResult Get()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            //llamada al modelo para obtener los estudiantes
+            studentDAO = new StudentDAO(_configuration);
+            return Ok(studentDAO.Get());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

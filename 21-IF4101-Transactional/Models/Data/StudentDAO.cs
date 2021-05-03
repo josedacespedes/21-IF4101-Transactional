@@ -40,9 +40,9 @@ namespace _21_IF4101_Transactional.Models
                     
                     command.CommandType = System.Data.CommandType.StoredProcedure; 
 
-                    command.Parameters.AddWithValue("@Name", student.Name);
-                    command.Parameters.AddWithValue("@Lastname", student.Lastname);
-                    command.Parameters.AddWithValue("@StudentID", student.StudentID);
+                    command.Parameters.AddWithValue("@FirstName", student.FirstName);
+                    command.Parameters.AddWithValue("@LastName", student.LastName);
+                    command.Parameters.AddWithValue("@StudentId", student.StudentId);
                     command.Parameters.AddWithValue("@Email", student.Email);
                     command.Parameters.AddWithValue("@Password", student.Password);
 
@@ -62,39 +62,6 @@ namespace _21_IF4101_Transactional.Models
             }
         }
 
-        public int VerifyStudentID(string studentID)
-        {
-            SqlConnection connection = null;
-            try
-            {
-                using (connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    SqlCommand command = new SqlCommand("VerifyStudentID", connection);
-                    command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@StudentID", studentID);
-
-                    var returnParameter = command.Parameters.Add("@Exists", SqlDbType.Int);
-                    returnParameter.Direction = ParameterDirection.ReturnValue;
-                    command.ExecuteNonQuery();
-
-                    int result = (int)returnParameter.Value;
-                    connection.Close();
-
-                    return result;
-                }
-            }
-            catch (SqlException ex)
-            {
-                return ex.Number;
-            }
-            finally
-            {
-                if (connection != null)
-                    connection.Close();
-            }
-
-        }
 
         public List<Student> Get()
         {
@@ -116,9 +83,9 @@ namespace _21_IF4101_Transactional.Models
                     students.Add(new Student
                     {
                         Id = Convert.ToInt32(sqlDataReader["Id"]),
-                        Name = sqlDataReader["Name"].ToString(),
-                        Lastname = sqlDataReader["Lastname"].ToString(),
-                        StudentID = sqlDataReader["StudentID"].ToString(),
+                        FirstName = sqlDataReader["FirstName"].ToString(),
+                        LastName = sqlDataReader["LastName"].ToString(),
+                        StudentId = sqlDataReader["StudentId"].ToString(),
                         Email = sqlDataReader["Email"].ToString(),
                         Password = sqlDataReader["Password"].ToString(),
                         State = Convert.ToInt32(sqlDataReader["State"])
