@@ -35,11 +35,11 @@ namespace _21_IF4101_Transactional.Models.Data
 
                     command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    command.Parameters.AddWithValue("@FirstName", applicant.FirstName);
-                    command.Parameters.AddWithValue("@LastName", applicant.LastName);
-                    command.Parameters.AddWithValue("@ApplicantId", applicant.ApplicantId);
-                    command.Parameters.AddWithValue("@Email", applicant.Email);
-                    command.Parameters.AddWithValue("@Password", applicant.Password);
+                    command.Parameters.AddWithValue("@FirstNameApplicant", applicant.FirstNameApplicant);
+                    command.Parameters.AddWithValue("@LastNameApplicant", applicant.LastNameApplicant);
+                    command.Parameters.AddWithValue("@StudentIdApplicant", applicant.StudentIdApplicant);
+                    command.Parameters.AddWithValue("@EmailApplicant", applicant.EmailApplicant);
+                    command.Parameters.AddWithValue("@PasswordApplicant", applicant.PasswordApplicant);
 
                     resultToReturn = command.ExecuteNonQuery();
                     connection.Close(); //cerramos conexión. 
@@ -76,11 +76,11 @@ namespace _21_IF4101_Transactional.Models.Data
                     applicants.Add(new Applicant
                     {
                         Id = Convert.ToInt32(sqlDataReader["Id"]),
-                        FirstName = sqlDataReader["FirstName"].ToString(),
-                        LastName = sqlDataReader["LastName"].ToString(),
-                        ApplicantId = sqlDataReader["ApplicantId"].ToString(),
-                        Email = sqlDataReader["Email"].ToString(),
-                        Password = sqlDataReader["Password"].ToString()
+                        FirstNameApplicant = sqlDataReader["FirstNameApplicant"].ToString(),
+                        LastNameApplicant = sqlDataReader["LastNameApplicant"].ToString(),
+                        StudentIdApplicant = sqlDataReader["StudentIdApplicant"].ToString(),
+                        EmailApplicant = sqlDataReader["EmailApplicant"].ToString(),
+                        PasswordApplicant = sqlDataReader["PasswordApplicant"].ToString()
                     });
 
                 }
@@ -93,7 +93,7 @@ namespace _21_IF4101_Transactional.Models.Data
 
         }
 
-        public int VerifyApplicantID(string applicantId)
+        public int VerifyApplicantID(string studentIdApplicant)
         {
             SqlConnection connection = null;
             try
@@ -103,7 +103,7 @@ namespace _21_IF4101_Transactional.Models.Data
                     connection.Open();
                     SqlCommand command = new SqlCommand("VerifyApplicantID", connection);
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@ApplicantId", applicantId);
+                    command.Parameters.AddWithValue("@StudentIdApplicant", studentIdApplicant);
 
                     var returnParameter = command.Parameters.Add("@Exists", SqlDbType.Int);
                     returnParameter.Direction = ParameterDirection.ReturnValue;
