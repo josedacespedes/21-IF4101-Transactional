@@ -71,12 +71,12 @@
                             <form id="loginForm" autocomplete="off">
                                 <div class="form-group">
                                     <label for="formGroupExampleInput">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr" />
+                                    <input type="email" name="email" id="emailLogin" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr" />
                                 </div>
                                 <div id="validateMessageEmail"></div>
                                 <div class="form-group">
                                     <label for="formGroupExampleInput2">Password</label>
-                                    <input type="password" name="password" id="password" class="form-control password" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)" />
+                                    <input type="password" name="password" id="passwordLogin" class="form-control password" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)" />
                                     <span id="showPasswordLogin"><i class="fa fa-eye" id="iconPasswordLogin"></i></span>
                                 </div>
                                 <div id="validateMessagePassword"></div>
@@ -202,7 +202,6 @@
     <section id="addProfessor" class="displayAdmin">
         <div class="container">
             <div class="row">
-
                 <div class="col-md-6 col-sm-12">
                     <div class="entry-form">
                         <form id="registerProfessorForm" autocomplete="off">
@@ -225,11 +224,30 @@
                     </div>
                 </div>
 
+                <!-- REGISTER COURSE -->
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="entry-form">
+                        <form id="registerCourseForm" autocomplete="off">
+                            <h2>Add Course</h2>
+                            <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Course name" required="" minlength="10" maxlength="30" title="Fill out with the course name">
+
+                            <input type="text" name="IdCourse" id="idCourse" class="form-control" placeholder="Course code" required="" minlength="4" maxlength="4" pattern="[0-9IF-]+" title="Fill out with 4 numbers">
+
+                            <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Credits number" required="" minlength="1" maxlength="1" pattern="[0-4]+" title="Fill out with a number in range 0 to 4">
+
+                            <input type="text" name="courseStatus" id="courseStatus" class="form-control" placeholder="Course status" required="" minlength="1" maxlength="1" pattern="[0-1]+" title="Fill out with 0 or 1">
+
+                            <button type="submit" class="submit-btn form-control">Add</button>
+
+                            <div id="alertMessageAddCourse"></div>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
-
-
 
     <!-- FOOTER -->
     <footer id="footer" class="displayAll">
@@ -287,6 +305,7 @@
     <script src="js/login.js"></script>
     <script src="js/student.js"></script>
     <script src="js/professor.js"></script>
+    <script src="js/course.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 </body>
 </html>
