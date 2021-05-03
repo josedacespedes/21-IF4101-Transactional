@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-var formProfessor = document.getElementById("registerCourseForm");
+var registerCourseForm = document.getElementById("registerCourseForm");
 
 /*--------------------------------------------- ADD COURSE-----------------------------------------------------------*/
 
