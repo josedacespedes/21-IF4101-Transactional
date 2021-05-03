@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-var formProfessor = document.getElementById("registerCourseForm");
+var registerCourseForm = document.getElementById("registerCourseForm");
 
 /*--------------------------------------------- ADD COURSE-----------------------------------------------------------*/
 
@@ -30,7 +30,7 @@ function checkCourseCode(courseCode) {
 }
 
 function checkCourseCreditsNumber(courseCreditsNumber) {
-    var restNumeric = courseCode.substring(0, courseCreditsNumber.length);
+    var restNumeric = courseCreditsNumber.substring(0, courseCreditsNumber.length);
     var num_var = Int32.Parse(courseCreditsNumber);
 
     if ((courseCreditsNumber.length != 1) || (num_var < 1 || num_var > 4) || (isNaN(restNumeric)) || !courseCreditsNumber) {
@@ -41,7 +41,7 @@ function checkCourseCreditsNumber(courseCreditsNumber) {
 }
 
 function checkCourseStatus(courseStatus) {
-    var restNumeric = courseCode.substring(0, courseStatus.length);
+    var restNumeric = courseStatus.substring(0, courseStatus.length);
     var num_var = Int32.Parse(courseStatus);
 
     if ((courseStatus.length != 1) || (num_var != 0 || num_var != 1) || (isNaN(restNumeric)) || !courseStatus) {
@@ -65,7 +65,7 @@ function putErrorInput() {
     var validate = true;
     var Course = {
         courseName: $('#courseName').val(),
-        courseId: $('#courseId').val(),
+        courseId: $('#idCourse').val(),
         coursecreditsNumber: $('#creditsNumber').val(),
         courseStatus: $('#courseStatus').val()
     };
@@ -75,7 +75,7 @@ function putErrorInput() {
         validate = false;
     }
     if (!checkCourseCode(Course.courseId)) {
-        $('#courseId').addClass("formInput-error");
+        $('#idCourse').addClass("formInput-error");
         validate = false;
     }
     if (!checkCourseCreditsNumber(Course.coursecreditsNumber)) {
