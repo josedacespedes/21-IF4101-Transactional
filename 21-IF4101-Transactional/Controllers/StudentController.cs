@@ -12,9 +12,15 @@ namespace _21_IF4101_Transactional.Controllers
 {
     public class StudentController : Controller
     {
-        //private readonly ILogger<StudentController> _logger;
+        private readonly ILogger<StudentController> _logger;
         private readonly IConfiguration _configuration;
         StudentDAO studentDAO;
+
+        public StudentController(ILogger<StudentController> logger, IConfiguration configuration)
+        {
+            _logger = logger;
+            _configuration = configuration;
+        }
 
         public IActionResult Insert([FromBody] Student student)
         {
