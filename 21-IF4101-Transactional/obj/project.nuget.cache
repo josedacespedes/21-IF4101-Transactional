@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "ok4YUBqoBO5kd01dbYBSzpO1SmW1hryC8n2+H4DeffBGNmnC4X/IizSTgAn+qhjCdjDulyOETQY7iyqYW6H8xg==",
   "success": true,
   "projectFilePath": "E:\\UCR\\Lenguajes\\Proyecto\\Sprint 1\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
@@ -13,6 +14,21 @@
     "C:\\Users\\WAOR\\.nuget\\packages\\system.data.sqlclient\\4.8.2\\system.data.sqlclient.4.8.2.nupkg.sha512",
     "C:\\Users\\WAOR\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\WAOR\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
+=======
+  "dgSpecHash": "dNO5aXq7dMyjhRHFeOZdXfuPDICZgxsMs7YwG2UKp51YuPufonSbkOMfdKx1UzweM1hxRzlXjRvD7+tFiLdxTw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Vampirin\\OneDrive\\Escritorio\\21-IF4101-Transactional\\21-IF4101-Transactional\\21-IF4101-Transactional.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Vampirin\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\Vampirin\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\Vampirin\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
+    "C:\\Users\\Vampirin\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Vampirin\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Vampirin\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Vampirin\\.nuget\\packages\\system.data.sqlclient\\4.8.2\\system.data.sqlclient.4.8.2.nupkg.sha512",
+    "C:\\Users\\Vampirin\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
+    "C:\\Users\\Vampirin\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
+>>>>>>> 716cd576d50e287243223464bf15e51cd678a4d1
   ],
   "logs": []
 }

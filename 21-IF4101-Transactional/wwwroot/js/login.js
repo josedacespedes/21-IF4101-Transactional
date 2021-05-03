@@ -32,23 +32,23 @@ function checkPassword(password) {
 }
 
 function cleanErrorInput() {
-    $('#email').removeClass("formInput-error");
-    $('#password').removeClass("formInput-error");
+    $('#emailLogin').removeClass("formInput-error");
+    $('#passwordLogin').removeClass("formInput-error");
 }
 
 function putErrorInput() {
     cleanErrorInput();
     var validate = true;
     var noUser = {
-        email: $('#email').val(),
-        password: $('#password').val()
+        email: $('#emailLogin').val(),
+        password: $('#passwordLogin').val()
     };
     if (!checkEmail(noUser.email)) {
-        $('#email').addClass("formInput-error");
+        $('#emailLogin').addClass("formInput-error");
         validate = false;
     }
     if (!checkPassword(noUser.password)) {
-        $('#password').addClass("formInput-error");
+        $('#passwordLogin').addClass("formInput-error");
         validate = false;
     }
     return validate;
