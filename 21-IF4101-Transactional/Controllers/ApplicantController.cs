@@ -3,6 +3,7 @@ using _21_IF4101_Transactional.Models.Data;
 using _21_IF4101_Transactional.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,8 +14,16 @@ namespace _21_IF4101_Transactional.Controllers
 {
     public class ApplicantController : Controller
     {
-        //private readonly ILogger<StudentController> _logger;
+        private readonly ILogger<ApplicantController> _logger;
         private readonly IConfiguration _configuration;
+
+        public ApplicantController(ILogger<ApplicantController> logger, IConfiguration configuration)
+        {
+            _logger = logger;
+            _configuration = configuration;
+        }
+
+
         ApplicantDAO applicantDAO;
 
         public IActionResult Insert([FromBody] Applicant applicant)
