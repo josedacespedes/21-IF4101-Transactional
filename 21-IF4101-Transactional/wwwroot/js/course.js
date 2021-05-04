@@ -1,6 +1,7 @@
 ﻿"use strict";
 
 var registerCourseForm = document.getElementById("registerCourseForm");
+var messageToSend = document.getElementById("alertMessageAddCourse");
 
 /*--------------------------------------------- ADD COURSE-----------------------------------------------------------*/
 
@@ -43,8 +44,8 @@ function checkCourseCreditsNumber(courseCreditsNumber) {
 function checkCourseStatus(courseStatus) {
     var restNumeric = courseStatus.substring(0, courseStatus.length);
     var num_var = parseInt(courseStatus);
-
-    if ((courseStatus.length != 1) || (num_var != 0 || num_var != 1) || (isNaN(restNumeric)) || !courseStatus) {
+    console.log("entro aca");
+    if ((courseStatus.length != 1) || (num_var < 0 || num_var > 1) || (isNaN(restNumeric)) || !courseStatus) {
         return false;
     } else {
         return true;
@@ -53,48 +54,73 @@ function checkCourseStatus(courseStatus) {
 
 
 
-function cleanErrorInput() {
+function cleanErrorInputCourse() {
     $('#courseName').removeClass("formInput-error");
     $('#idCourse').removeClass("formInput-error");
     $('#creditsNumber').removeClass("formInput-error");
     $('#courseStatus').removeClass("formInput-error");
 }
 
-function putErrorInput() {
-    cleanErrorInput();
-    var validate = true;
-    var Course = {
+function putErrorInputCourse(Course) {
+    cleanErrorInputCourse();
+    var validate = false;
+
+    if (!checkCourseName(Course.courseName)) {
+        $('#courseName').addClass("formInput-error");
+        validate = true;
+    }
+    if (!checkCourseCode(Course.courseId)) {
+        $('#idCourse').addClass("formInput-error");
+        validate = true;
+    }
+    if (!checkCourseCreditsNumber(Course.coursecreditsNumber)) {
+        $('#creditsNumber').addClass("formInput-error");
+        validate = true;
+    }
+    if (!checkCourseStatus(Course.courseStatus)) {
+        $('#courseStatus').addClass("formInput-error");
+        validate = true;
+    }
+    return validate;
+}
+
+//ACTION ADD
+registerCourseForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    var course = {
         courseName: $('#courseName').val(),
         courseId: $('#idCourse').val(),
         coursecreditsNumber: $('#creditsNumber').val(),
         courseStatus: $('#courseStatus').val()
     };
 
-    if (!checkCourseName(Course.courseName)) {
-        $('#courseName').addClass("formInput-error");
-        validate = false;
+    if (!putErrorInputCourse(course)) {
+        $.ajax({
+            url: "/Course/Insert",
+            data: JSON.stringify(course),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                if (result == 1) {
+                    messageToSend.innerHTML = "<label class='text-success'>Course added successfully</label>";
+                    $('#courseName').val("");
+                    $('#idCourse').val("");
+                    $('#creditsNumber').val("");
+                    $('#courseStatus').val("");
+                } else if (result == 3) {
+                    messageToSend.innerHTML = "<label class='text-danger'>Course already exist</label>";
+                }
+                else {
+                    messageToSend.innerHTML = "<label class='text-danger'>Error to insert</label>";
+                }
+            },
+            error: function (errorMessage) {
+                alert("Error");
+                alert(errorMessage.responseText);
+            }
+        });
     }
-    if (!checkCourseCode(Course.courseId)) {
-        $('#idCourse').addClass("formInput-error");
-        validate = false;
-    }
-    if (!checkCourseCreditsNumber(Course.coursecreditsNumber)) {
-        $('#creditsNumber').addClass("formInput-error");
-        validate = false;
-    }
-    if (!checkCourseStatus(Course.courseStatus)) {
-        $('#courseStatus').addClass("formInput-error");
-        validate = false;
-    }
-    return validate;
-}
 
-//ACTION ADD
-//registerCourseForm.addEventListener("submit", function (e) {
-//    e.preventDefault();
-
-//    if (putErrorInput()) {
-//        //AJAX
-//    }
-
-//});
+});
