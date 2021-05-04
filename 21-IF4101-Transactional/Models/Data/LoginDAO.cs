@@ -11,7 +11,7 @@ namespace _21_IF4101_Transactional.Models.Data
     {
 
         private readonly IConfiguration _configuration;
-        String connectionString;
+        string connectionString;
 
         public LoginDAO(IConfiguration configuration)
         {
@@ -48,7 +48,7 @@ namespace _21_IF4101_Transactional.Models.Data
 
         public List<String> GetPaswords()
         {
-            List<String> mails = new List<String>();
+            List<String> passwords = new List<String>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -60,12 +60,13 @@ namespace _21_IF4101_Transactional.Models.Data
                 //leemos todas las filas provenientes de BD
                 while (sqlDataReader.Read())
                 {
-                    mails.Add(sqlDataReader["Password"].ToString());
+                    passwords.Add(sqlDataReader["Password"].ToString());
                 }
                 connection.Close(); //cerramos conexión.
             }
-            return mails; //retornamos resultado al Controller.
+            return passwords; //retornamos resultado al Controller.
         }
+
 
         public String CheckPasswordEmail(string Email, string Password)
         {
@@ -77,11 +78,15 @@ namespace _21_IF4101_Transactional.Models.Data
                 SqlCommand command = new SqlCommand("CheckPasswordEmail", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo.
                 command.CommandType = System.Data.CommandType.StoredProcedure; //acá decimos que lo que se ejecutará es un SP
                 command.Parameters.AddWithValue("@Email", Email);
-                command.Parameters.AddWithValue("@Password", Password); //logica del get/select
+                command.Parameters.AddWithValue("@Password", Password);                        //logica del get/select
                 SqlDataReader sqlDataReader = command.ExecuteReader();
                 //leemos todas las filas provenientes de BD
 
-                name += sqlDataReader["Name"].ToString();
+                name += sqlDataReader["FirstName"].ToString();
+                //while (sqlDataReader.Read())
+                //{
+                //    mails.Add(sqlDataReader["Email"].ToString());
+                //}
                 connection.Close(); //cerramos conexión.
             }
             return name; //retornamos resultado al Controller.

@@ -31,7 +31,7 @@ function checkCourseCode(courseCode) {
 
 function checkCourseCreditsNumber(courseCreditsNumber) {
     var restNumeric = courseCreditsNumber.substring(0, courseCreditsNumber.length);
-    var num_var = Int32.Parse(courseCreditsNumber);
+    var num_var = parseInt(courseCreditsNumber);
 
     if ((courseCreditsNumber.length != 1) || (num_var < 1 || num_var > 4) || (isNaN(restNumeric)) || !courseCreditsNumber) {
         return false;
@@ -42,7 +42,7 @@ function checkCourseCreditsNumber(courseCreditsNumber) {
 
 function checkCourseStatus(courseStatus) {
     var restNumeric = courseStatus.substring(0, courseStatus.length);
-    var num_var = Int32.Parse(courseStatus);
+    var num_var = parseInt(courseStatus);
 
     if ((courseStatus.length != 1) || (num_var != 0 || num_var != 1) || (isNaN(restNumeric)) || !courseStatus) {
         return false;
@@ -90,11 +90,11 @@ function putErrorInput() {
 }
 
 //ACTION ADD
-registerCourseForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+//registerCourseForm.addEventListener("submit", function (e) {
+//    e.preventDefault();
 
-    if (putErrorInput()) {
-        //AJAX
-    }
+//    if (putErrorInput()) {
+//        //AJAX
+//    }
 
-});
+//});
