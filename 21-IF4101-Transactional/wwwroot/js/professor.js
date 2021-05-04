@@ -146,3 +146,24 @@ formProfessor.addEventListener("submit", function (e) {
     }
 
 });
+
+function submitFunction() {
+    let name = "José David";
+    let email = "ucrtransactionaladm1n@gmail.com";
+    let message = "hola";
+
+    sendEmail(name, email, message);
+}
+
+function sendEmail(name, email, message) {
+    Email.send({
+        Host: "smtp.gmail.com",
+        Username: "ucrtransactionaladm1n@gmail.com",
+        Password: "usuarioadmin",
+        To: "ktoche131@yahoo.com",
+        From: "ucrtransactionaladm1n@gmail.com",
+        Subject: `${name} sent you a message`,
+        Body: `Name: ${name} <br/> Email: ${email} <br/> Message: ${message}`,
+
+    }).then((message) => alert("emails sent"));
+}

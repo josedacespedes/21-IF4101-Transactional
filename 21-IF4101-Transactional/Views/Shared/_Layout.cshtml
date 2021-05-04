@@ -248,6 +248,7 @@
         </div>
     </section>
 
+    <button type="button" onclick="submitFunction()" class="submit-btn form-control">EMAIL</button>
 
     <!-- COURSES LIST -->
     <section id="courseList" class="displayAdmin">
@@ -257,27 +258,27 @@
                 <div class="col-md-2 col-sm-12"></div>
                 <div class="col-md-8 col-sm-12">
                     @*<div class="listTable">*@
-                        <table class="table table-hover table-dark" id="courseTable">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Code</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Credits Number</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>IF-4040</td>
-                                    <td>Informatica Empresarial</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <td>IF-4152</td>
-                                    <td>Programacion II</td>
-                                    <td>4</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <table class="table table-hover table-dark" id="courseTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Code</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Credits Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>IF-4040</td>
+                                <td>Informatica Empresarial</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>IF-4152</td>
+                                <td>Programacion II</td>
+                                <td>4</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     @*</div>*@
                 </div>
                 <div class="col-md-2 col-sm-12"></div>
@@ -343,5 +344,7 @@
     <script src="js/professor.js"></script>
     <script src="js/course.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
 </body>
 </html>
