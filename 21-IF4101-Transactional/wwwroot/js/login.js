@@ -31,6 +31,7 @@ function checkPassword(password) {
     }
 }
 
+
 function cleanErrorInput() {
     $('#emailLogin').removeClass("formInput-error");
     $('#passwordLogin').removeClass("formInput-error");
@@ -57,7 +58,8 @@ function putErrorInput() {
 //ACTION ADD
 loginForm.addEventListener("submit", function (e) {
     e.preventDefault();
-
+    var email = $('#emailLogin').val();
+    var password = $('#passwordLogin').val();
     if (putErrorInput()) {
         //AJAX
     }
