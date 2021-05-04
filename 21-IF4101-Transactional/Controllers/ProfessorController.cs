@@ -24,6 +24,17 @@ namespace _21_IF4101_Transactional.Controllers
             _configuration = configuration;
         }
 
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+
         public IActionResult Insert([FromBody] Professor professor)
         {
             //llamada al modelo para insertar el profesor
@@ -42,6 +53,19 @@ namespace _21_IF4101_Transactional.Controllers
 
         }
 
+        public IActionResult Get()
+        {
+            //llamada al modelo para obtener los profesores
+            professorDAO = new ProfessorDAO(_configuration);
+            return Ok(professorDAO.Get());
+        }
+
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
 
     }
 }
