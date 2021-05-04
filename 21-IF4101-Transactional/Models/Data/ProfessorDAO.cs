@@ -95,5 +95,41 @@ namespace _21_IF4101_Transactional.Models.Data
             }
 
         }
+
+        public List<Professor> Get()
+        {
+
+            List<Professor> applicants = new List<Professor>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("SelectProfessor", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure; //acá decimos que lo que se ejecutará es un SP
+
+                //logica del get/select
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+                //leemos todas las filas provenientes de BD
+                while (sqlDataReader.Read())
+                {
+                    applicants.Add(new Professor
+                    {
+                        Id = Convert.ToInt32(sqlDataReader["Id"]),
+                        FirstNameProfessor = sqlDataReader["FirstNameProfessor"].ToString(),
+                        LastNameProfessor = sqlDataReader["LastNameProfessor"].ToString(),
+                        IdProfessor = sqlDataReader["IdProfessor"].ToString(),
+                        EmailProfessor = sqlDataReader["EmaiLProfessor"].ToString(),
+                        PasswordProfessor = sqlDataReader["PasswordProfessor"].ToString()
+                    });
+
+                }
+
+                connection.Close(); //cerramos conexión. 
+            }
+
+
+            return applicants; //retornamos resultado al Controller.  
+
+        }
     }
 }

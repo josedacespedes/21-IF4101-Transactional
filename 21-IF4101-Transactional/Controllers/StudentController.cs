@@ -22,6 +22,17 @@ namespace _21_IF4101_Transactional.Controllers
             _configuration = configuration;
         }
 
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+
         public IActionResult Insert([FromBody] Student student)
         {
             //llamada al modelo para insertar el estudiante           
