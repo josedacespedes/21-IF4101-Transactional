@@ -199,10 +199,10 @@
 
 
     <!-- REGISTER PROFESSOR -->
-    <section id="addProfessor" class="displayAdmin">
+    <section id="addProfessorCourse" class="displayAdmin">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-sm-12 addProfessorCourse-info">
                     <div class="entry-form">
                         <form id="registerProfessorForm" autocomplete="off">
                             <h2>Add Professor</h2>
@@ -210,7 +210,7 @@
 
                             <input type="text" name="lastNameProfessor" id="lastNameProfessor" class="form-control" placeholder="Last name" required="" minlength="10" maxlength="100" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+" title="Surnames">
 
-                            <input type="text" name="IdProfessor" id="idProfessor" class="form-control" placeholder="Professor id" required="" minlength="5" maxlength="5" pattern="[0-9P-]+" title="Valid professor id">
+                            <input type="text" name="IdProfessor" id="idProfessor" class="form-control" placeholder="Professor id" required="" minlength="7" maxlength="7" pattern="[0-9P-]+" title="Valid professor id">
 
                             <input type="email" name="emailProfessor" id="emailProfessor" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr">
 

@@ -98,6 +98,14 @@ function putErrorInputProfessor(professor) {
     return validate;
 }
 
+//HIDE MSG FORM
+$("#firstNameProfessor").click(function () {
+    alertMessageAddProfessor.innerHTML = "";
+});
+$("#idProfessor").click(function () {
+    alertMessageAddProfessor.innerHTML = "";
+});
+
 //ACTION ADD
 formProfessor.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -112,7 +120,6 @@ formProfessor.addEventListener("submit", function (e) {
 
     if (!putErrorInputProfessor(professor)) {
         //AJAX
-        /*
         $.ajax({
             url: "/Professor/Insert",
             data: JSON.stringify(professor),
@@ -122,9 +129,13 @@ formProfessor.addEventListener("submit", function (e) {
             success: function (result) {
                 if (result == 1) {
                     alertMessageAddProfessor.innerHTML = `<label class="text-success">Register successfully</label>`;//Msg enter success
-                    formApplicant.reset(); //Clean form fields
+                    formProfessor.reset(); //Clean form fields
                 } else if (result == -1) {
-                    alertMessageAddProfessor.innerHTML = `<label class="text-danger">Student is already exist</label>`;//Msg  existence
+                    $('#idProfessor').addClass("formInput-error");
+                    alertMessageAddProfessor.innerHTML = `<label class="text-danger">Professor is already exist</label>`;//Msg  existence
+                } else if (result == -2) {
+                    $('#emailProfessor').addClass("formInput-error");
+                    alertMessageAddProfessor.innerHTML = `<label class="text-danger">Email is already exist</label>`;//Msg  existence
                 }
             },
             error: function (errorMessage) {
@@ -132,7 +143,6 @@ formProfessor.addEventListener("submit", function (e) {
                 alert(errorMessage.responseText);
             }
         });
-        */
     }
 
 });
