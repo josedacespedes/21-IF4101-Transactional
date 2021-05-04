@@ -490,11 +490,29 @@ section {
     left: 46%;
 }
 
+/*---------------------------------------
+     COURSE LIST              
+  -----------------------------------------*/
+
+#courseTitle {
+    text-align: center;
+}
+
+#courseTable {
+    margin: auto;
+    background-color: lightgray;
+    color: black;
+    text-align: center;
+}
+
+table th {
+    text-align: center;
+}
+
 
 /*---------------------------------------
      FOOTER              
   -----------------------------------------*/
-
 footer {
     background: #252020;
     padding: 120px 0;
