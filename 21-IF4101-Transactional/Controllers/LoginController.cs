@@ -40,18 +40,19 @@ namespace _21_IF4101_Transactional.Controllers
             mails = loginDAO.GetMails();
             pass = loginDAO.GetPaswords();
             string name = "";
-            if (mails.Contains(Email))
+            if (Email.Equals("admin@ucr.ac.cr") && Password.Equals("Admin12."))
+            {
+                return Ok();
+            }
+            else if (mails.Contains(Email))
             {
                 if (pass.Contains(Password))
                 {
-                    //string nameE = loginDAO.GetNameEmail(Email);
-                    //string nameP = loginDAO.GetNamePassword(Password);
                     name += loginDAO.CheckPasswordEmail(Email, Password);
                     if (!name.Equals(""))
                     {
                         //success
                         return Ok();
-                        
                         //int resultToReturn = loginDAO.Insert(student); //acá guardamos un 1 o un 0, dependiendo de si se insertó el estudiante o no
                         //return Ok(resultToReturn); //retornamos el 1 o el 0 a la vista
                     }
@@ -68,8 +69,6 @@ namespace _21_IF4101_Transactional.Controllers
             else
             {
                 return Error(); //Error (Correo no valido)
-
-
             }
             return View();
         }
