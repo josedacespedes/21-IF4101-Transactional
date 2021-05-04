@@ -344,28 +344,28 @@ section {
         LOGIN            
   -----------------------------------------*/
 
-    .login {
-        width: 220px;
-        height: 240px;
-        background-color: aliceblue;
-        padding: 10px;
-    }
+.login {
+    width: 220px;
+    height: 240px;
+    background-color: aliceblue;
+    padding: 10px;
+}
 
-    .btn-login {
-        margin-left: 65px;
-    }
+.btn-login {
+    margin-left: 65px;
+}
 
-    #iconPasswordLogin {
-        font-size: 20px;
-    }
+#iconPasswordLogin {
+    font-size: 20px;
+}
 
-    #showPasswordLogin {
-        border-radius: 70px;
-        color: black;
-        position: relative;
-        bottom: 28px;
-        left: 170px;
-    }
+#showPasswordLogin {
+    border-radius: 70px;
+    color: black;
+    position: relative;
+    bottom: 28px;
+    left: 170px;
+}
 
 /*---------------------------------------
       HOME  & SLIDER            
@@ -467,10 +467,10 @@ section {
 }
 
 #showPasswordApplicant {
-    color: white;
+    color: grey;
     position: relative;
-    bottom: 40px;
-    left: 180px;
+    bottom: 2.5em;
+    left: 46%;
 }
 
 
@@ -484,10 +484,10 @@ section {
 }
 
 #showPasswordProfessor {
-    color: white;
+    color: grey;
     position: relative;
-    bottom: 40px;
-    left: 180px;
+    bottom: 2.5em;
+    left: 46%;
 }
 
 
@@ -643,13 +643,21 @@ footer {
      RESPONSIVE STYLES              
   -----------------------------------------*/
 
-@media screen and (max-width: 1170px) {
+@media screen and (max-width: 1200px) {
     .custom-navbar .navbar-nav.navbar-nav-first {
         margin-left: inherit;
+    }
+
+    .addProfessorCourse-info .entry-form {
+        margin-left: -90px;
     }
 }
 
 @media only screen and (max-width: 992px) {
+    .addProfessorCourse-info .entry-form {
+        margin-left: 0px;
+    }
+
     section,
     footer {
         padding: 60px 0;
@@ -662,7 +670,8 @@ footer {
     .feature-thumb,
     .addApplicant-info,
     .team-thumb,
-    .footer-info {
+    .footer-info,
+    .addProfessorCourse-info {
         margin-bottom: 50px;
     }
 

@@ -33,7 +33,7 @@ namespace _21_IF4101_Transactional.Models.Domain
         public int Id { get => id; set => id = value; }
         public string FirstNameProfessor { get => firstNameProfessor; set => firstNameProfessor = value; }
         public string LastNameProfessor { get => lastNameProfessor; set => lastNameProfessor = value; }
-        public string IdProfessor { get => idProfessor; set => IdProfessor = value; }
+        public string IdProfessor { get => idProfessor; set => idProfessor = value; }
         public string EmailProfessor { get => emailProfessor; set => emailProfessor = value; }
         public string PasswordProfessor { get => passwordProfessor; set => passwordProfessor = value; }
         public int StateProfessor { get => stateProfessor; set => stateProfessor = value; }

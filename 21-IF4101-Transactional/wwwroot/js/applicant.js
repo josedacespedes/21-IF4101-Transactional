@@ -93,6 +93,15 @@ function putErrorInputApplicant(applicant) {
     return validate;
 }
 
+//HIDE MSG FORM
+$("#firstNameApplicant").click(function () {
+    alertMessageAddStudent.innerHTML = "";
+});
+$("#studentIdApplicant").click(function () {
+    alertMessageAddStudent.innerHTML = "";
+});
+
+
 //ACTION ADD
 formApplicant.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -118,7 +127,11 @@ formApplicant.addEventListener("submit", function (e) {
                     alertMessageAddStudent.innerHTML = `<label class="text-success">Register successfully</label>`;//Msg enter success
                     formApplicant.reset(); //Clean form fields
                 } else if (result == -1) {
+                    $('#studentIdApplicant').addClass("formInput-error");
                     alertMessageAddStudent.innerHTML = `<label class="text-danger">Student is already exist</label>`;//Msg  existence
+                } else if (result == -2) {
+                    $('#emailApplicant').addClass("formInput-error");
+                    alertMessageAddStudent.innerHTML = `<label class="text-danger">Email is already exist</label>`;//Msg  existence
                 }
             },
             error: function (errorMessage) {
