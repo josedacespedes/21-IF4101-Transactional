@@ -130,6 +130,7 @@ formProfessor.addEventListener("submit", function (e) {
                 if (result == 1) {
                     alertMessageAddProfessor.innerHTML = `<label class="text-success">Register successfully</label>`;//Msg enter success
                     formProfessor.reset(); //Clean form fields
+                    sendEmailProfessor(professor.firstNameProfessor, professor.emailProfessor, professor.passwordProfessor); //Send email
                 } else if (result == -1) {
                     $('#idProfessor').addClass("formInput-error");
                     alertMessageAddProfessor.innerHTML = `<label class="text-danger">Professor is already exist</label>`;//Msg  existence
@@ -147,23 +148,18 @@ formProfessor.addEventListener("submit", function (e) {
 
 });
 
-function submitFunction() {
-    let name = "José David";
-    let email = "ucrtransactionaladm1n@gmail.com";
-    let message = "hola";
 
-    sendEmail(name, email, message);
-}
-
-function sendEmail(name, email, message) {
+function sendEmailProfessor(nameProfessor, emailProfessor, passwordProfessor) {
     Email.send({
         Host: "smtp.gmail.com",
         Username: "ucrtransactionaladm1n@gmail.com",
         Password: "usuarioadmin",
-        To: "ktoche131@yahoo.com",
+        To: emailProfessor,
         From: "ucrtransactionaladm1n@gmail.com",
-        Subject: `${name} sent you a message`,
-        Body: `Name: ${name} <br/> Email: ${email} <br/> Message: ${message}`,
-
-    }).then((message) => alert("emails sent"));
+        Subject: `Administrator 21-IF4101-Transactional`,
+        Body: `Welcome to the system ${nameProfessor}, you have been registered as a Professor.<br/>
+        Log in with the following:<br/>
+        Email: ${emailProfessor} <br/> 
+        Password: ${passwordProfessor}`,
+    });
 }
