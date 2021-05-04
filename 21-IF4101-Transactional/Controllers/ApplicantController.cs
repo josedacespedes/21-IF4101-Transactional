@@ -30,7 +30,7 @@ namespace _21_IF4101_Transactional.Controllers
         {
             //llamada al modelo para insertar el estudiante aplicante
             applicantDAO = new ApplicantDAO(_configuration);
-            int existToReturn = applicantDAO.VerifyApplicantID(applicant.ApplicantId);
+            int existToReturn = applicantDAO.VerifyApplicantID(applicant.StudentIdApplicant);
 
             if (existToReturn == 1)
             {
