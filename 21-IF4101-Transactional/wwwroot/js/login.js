@@ -6,9 +6,9 @@ var loginForm = document.getElementById("loginForm");
 
 //SHOW/HID PASSWORD
 $('#showPasswordLogin').hover(function () {
-    $('.password').attr('type', 'text');
+    $('#passwordLogin').attr('type', 'text');
 }, function () {
-    $('.password').attr('type', 'password');
+    $('#passwordLogin').attr('type', 'password');
 });
 
 
@@ -38,23 +38,25 @@ function cleanErrorInput() {
 }
 
 function putErrorInput() {
-    cleanErrorInput();
+    
     var validate = true;
-    var noUser = {
-        email: $('#emailLogin').val(),
-        password: $('#passwordLogin').val()
-    };
-    if (!checkEmail(noUser.email)) {
+    var email = document.getElementById("emailLogin").val;
+    var password = document.getElementById("passwordLogin").val;
+    console.log(email);
+    console.log(password);
+    //cleanErrorInput();
+    if (!checkEmail(email)) {
         $('#emailLogin').addClass("formInput-error");
         validate = false;
     }
-    if (!checkPassword(noUser.password)) {
+    if (!checkPassword(password)) {
         $('#passwordLogin').addClass("formInput-error");
         validate = false;
     }
     return validate;
 }
 
+<<<<<<< HEAD
 //ACTION ADD
 loginForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -63,5 +65,46 @@ loginForm.addEventListener("submit", function (e) {
     if (putErrorInput()) {
         //AJAX
     }
+=======
+function add() {
 
-});
+    /*loginForm.addEventListener("submit", function (e) {*/
+        //e.preventDefault();
+        var messageToSend = document.getElementById("validateMessage");
+        var email = document.getElementById("emailLogin").value;
+        var password = document.getElementById("passwordLogin").value;
+        console.log("Holaaaaaaaaaaaaaaaa");
+        console.log(putErrorInput());
+        /*if (putErrorInput()) {*/
+            //AJAX
+            console.log("Esta entrando al AJAX");
+            $.ajax({
+                url: "/Login/Login",
+                data: { "Email": email, "Password": password },
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    console.log("Esta consultando al DAO");
+                    if (result == 1) {
+                        messageToSend.innerHTML = "<label class='text-success'>Welcome!</label>";
+                        $('#emailLogin').val("");
+                        $('#passwordLogin').val("");
+                    }
+                    else {
+                        messageToSend.innerHTML = "<label class='text-danger'>Error to verify login</label>";
+                    }
+                    $('#emailLogin').val("");
+                    $('#passwordLogin').val("");
+                },
+                error: function (errorMessage) {
+                    //alert("Error");
+                    //alert(errorMessage.responseText);
+                }
+            });
+        //}
+
+    //});
+>>>>>>> 6796b8b64f5e4e04e69d25f7a28744fa2cd4820b
+
+}

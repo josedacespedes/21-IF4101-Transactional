@@ -66,6 +66,10 @@ namespace _21_IF4101_Transactional.Models.Data
             }
             return passwords; //retornamos resultado al Controller.
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6796b8b64f5e4e04e69d25f7a28744fa2cd4820b
 
         
         public String CheckPasswordEmail(string Email, string Password)

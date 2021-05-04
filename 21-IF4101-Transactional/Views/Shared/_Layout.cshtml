@@ -68,23 +68,22 @@
                             Login
                         </a>
                         <div class="dropdown-menu login" aria-labelledby="navbarDropdown2">
-                            <form id="loginForm" autocomplete="off">
+                            @*<form id="loginForm" autocomplete="off">*@
                                 <div class="form-group">
                                     <label for="formGroupExampleInput">Email</label>
-                                    <input type="email" name="email" id="emailLogin" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr" />
+                                    <input type="email" name="emailLogin" id="emailLogin" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr" />
                                 </div>
-                                <div id="validateMessageEmail"></div>
                                 <div class="form-group">
                                     <label for="formGroupExampleInput2">Password</label>
-                                    <input type="password" name="password" id="passwordLogin" class="form-control password" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)" />
+                                    <input type="password" name="passwordLogin" id="passwordLogin" class="form-control password" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)" />
                                     <span id="showPasswordLogin"><i class="fa fa-eye" id="iconPasswordLogin"></i></span>
                                 </div>
-                                <div id="validateMessagePassword"></div>
-                                <div id="validateMessageFields"></div>
+                                <div id="messageToSend"></div>
                                 <div>
-                                    <button type="submit" class="submit-btn btn-primary form-control">Login</button>
+                                    @*<button type="submit" class="submit-btn btn-primary form-control" onclick="return add()">Login</button>*@
+                                    <button class="submit-btn form-control" onclick="return add()" id="form-submit">Login</button>
                                 </div>
-                            </form>
+                            @*</form>*@
                         </div>
                     </li>
                 </ul>
@@ -303,7 +302,7 @@
     <script src="js/smoothscroll.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/login.js"></script>
-    <script src="js/student.js"></script>
+    <script src="/js/applicant.js"></script>
     <script src="js/professor.js"></script>
     <script src="js/course.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>

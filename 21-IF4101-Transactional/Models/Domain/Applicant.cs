@@ -8,31 +8,31 @@ namespace _21_IF4101_Transactional.Models.Domain
     public class Applicant
     {
         private int id;
-        private string firstName;
-        private string lastName;
-        private string applicantId;
-        private string email;
-        private string password;
+        private string firstNameApplicant;
+        private string lastNameApplicant;
+        private string studentIdApplicant;
+        private string emailApplicant;
+        private string passwordApplicant;
 
         public Applicant()
         {
         }
 
-        public Applicant(int id, string firstName, string lastName, string applicantId, string email, string password)
+        public Applicant(int id, string firstNameApplicant, string lastNameApplicant, string studentIdApplicant, string emailApplicant, string passwordApplicant)
         {
             this.Id = id;
-            this.FirstName = firstName;
-            this.LastName = lastName;
-            this.ApplicantId = applicantId;
-            this.Email = email;
-            this.Password = password;
+            this.FirstNameApplicant = firstNameApplicant;
+            this.LastNameApplicant = lastNameApplicant;
+            this.StudentIdApplicant = studentIdApplicant;
+            this.EmailApplicant = emailApplicant;
+            this.PasswordApplicant = passwordApplicant;
         }
 
         public int Id { get => id; set => id = value; }
-        public string FirstName { get => firstName; set => firstName = value; }
-        public string LastName { get => lastName; set => lastName = value; }
-        public string ApplicantId { get => applicantId; set => applicantId = value; }
-        public string Email { get => email; set => email = value; }
-        public string Password { get => password; set => password = value; }
+        public string FirstNameApplicant { get => firstNameApplicant; set => firstNameApplicant = value; }
+        public string LastNameApplicant { get => lastNameApplicant; set => lastNameApplicant = value; }
+        public string StudentIdApplicant { get => studentIdApplicant; set => studentIdApplicant = value; }
+        public string EmailApplicant { get => emailApplicant; set => emailApplicant = value; }
+        public string PasswordApplicant { get => passwordApplicant; set => passwordApplicant = value; }
     }
 }
