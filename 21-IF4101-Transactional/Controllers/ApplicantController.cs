@@ -46,7 +46,7 @@ namespace _21_IF4101_Transactional.Controllers
             {
                 return Ok(-1);
             }
-            else 
+            else
             {
                 int resultToReturn = applicantDAO.Insert(applicant); //acá guardamos un 1 o un 0, dependiendo de si se insertó el aplicante o no
                 return Ok(resultToReturn); //retornamos el 1 o el 0 a la vista
@@ -58,8 +58,7 @@ namespace _21_IF4101_Transactional.Controllers
         {
             //llamada al modelo para obtener los estudiantes aplicantes
             applicantDAO = new ApplicantDAO(_configuration);
-            return Ok(applicantDAO.Get());
-
+            return Json(new { data = applicantDAO.Get() });
         }
 
         public IActionResult Delete(int Id)

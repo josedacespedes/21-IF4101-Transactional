@@ -3,6 +3,11 @@
 //VARIABLES
 var formApplicant = document.getElementById("registerApplicantForm");
 var alertMessageAddStudent = document.getElementById("alertMessageAddStudent");
+var tableApplicant;
+
+$(document).ready(function () {
+    loadListApplicant();
+});
 
 /*--------------------------------------------- ADD STUDENT-----------------------------------------------------------*/
 
@@ -142,3 +147,28 @@ formApplicant.addEventListener("submit", function (e) {
     }
 
 });
+
+/*--------------------------------------------- LIST PROFESSOR-----------------------------------------------------------*/
+function loadListApplicant() {
+    tableApplicant = $("#applicantTable").DataTable({
+        "destroy": true,
+        "ajax": {
+            "url": "/Applicant/Get",
+            "tpye": 'GET',
+            "datatype": "json"
+        },
+        lengthMenu: [7, 20, 50, 100],
+        "columns": [
+            { "data": "studentIdApplicant" },
+            {
+                render: function (data, type, row) {
+                    return row.firstNameApplicant + " " + row.lastNameApplicant;
+                }
+            },
+            { "data": "emailApplicant" },
+            {
+                defaultContent: "<button id='' name='' type='button' data-bs-toggle='' data-bs-target='' class='btn btn-success' title='Grupos'><i class='fa fa-check'></i></button> <button id='' name='' type='button' data-bs-toggle='' data-bs-target='' class='btn btn-danger' title='Grupos'><i class='fa fa-trash'></i></button>"
+            }
+        ]
+    });
+}
