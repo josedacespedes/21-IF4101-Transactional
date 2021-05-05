@@ -1,5 +1,7 @@
 ﻿"use strict";
 
+const { error } = require("jquery");
+
 var loginForm = document.getElementById("loginForm");
 
 // Login
@@ -31,17 +33,20 @@ function checkPassword(password) {
     }
 }
 
+
 function cleanErrorInput() {
     $('#emailLogin').removeClass("formInput-error");
     $('#passwordLogin').removeClass("formInput-error");
 }
 
-function putErrorInput() {
-    
+function putErrorInput(email, password) {
+
     var validate = true;
-    var email = document.getElementById("emailLogin").val;
-    var password = document.getElementById("passwordLogin").val;
-    console.log(email);
+    //var email = document.getElementById("emailLogin").value;
+    //var password = document.getElementById("passwordLogin").value;
+    //var email = $('#emailLogin').val();
+    //var password = $('#passwordLogin').val();
+    console.log("PutErrorInput "+email);
     console.log(password);
     //cleanErrorInput();
     if (!checkEmail(email)) {
@@ -55,43 +60,69 @@ function putErrorInput() {
     return validate;
 }
 
+
+//ACTION ADD
+
+
+//loginForm.addEventListener("submit", function (e) {
+//    e.preventDefault();
+//    var email = $('#emailLogin').val();
+//    var password = $('#passwordLogin').val();
+//    if (putErrorInput()) {
+//        //AJAX
+//    }
+
 function add() {
 
+
     /*loginForm.addEventListener("submit", function (e) {*/
-        //e.preventDefault();
-        var messageToSend = document.getElementById("validateMessage");
-        var email = document.getElementById("emailLogin").value;
-        var password = document.getElementById("passwordLogin").value;
-        console.log("Holaaaaaaaaaaaaaaaa");
-        console.log(putErrorInput());
-        /*if (putErrorInput()) {*/
-            //AJAX
-            console.log("Esta entrando al AJAX");
-            $.ajax({
-                url: "/Login/Login",
-                data: { "Email": email, "Password": password },
-                type: "POST",
-                contentType: "application/json;charset=utf-8",
-                dataType: "json",
-                success: function (result) {
-                    console.log("Esta consultando al DAO");
-                    if (result == 1) {
-                        messageToSend.innerHTML = "<label class='text-success'>Welcome!</label>";
-                        $('#emailLogin').val("");
-                        $('#passwordLogin').val("");
-                    }
-                    else {
-                        messageToSend.innerHTML = "<label class='text-danger'>Error to verify login</label>";
-                    }
+    //e.preventDefault();
+    var messageToSend = document.getElementById("validateMessage");
+    var login = {
+        email: $('#emailLogin').val(),
+        password: $('#passwordLogin').val()
+    }
+    //var email = $('#emailLogin').val();
+    //var password = $('#passwordLogin').val();
+    console.log(login.email);
+    console.log(login.password);
+    //console.log(putErrorInput(email, password));
+    //if (putErrorInput(email, password)) {
+        //AJAX
+        
+        $.ajax({
+            url: "/Login/Login",
+            data: JSON.stringify(login),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            
+            success: function (result) {  //(result = 1): Admin  (result = 2): Student  (result = 3): Professor
+                console.log("Esta consultando al DAO");
+                console.log(result);
+                if (result == 1) {
                     $('#emailLogin').val("");
                     $('#passwordLogin').val("");
-                },
-                error: function (errorMessage) {
-                    //alert("Error");
-                    //alert(errorMessage.responseText);
+                    alert("Es admin");
+                    //messageToSend.innerHTML = "<label class='text-success'>Welcome!</label>";
                 }
-            });
-        //}
+                else if (result == 2) {
+                    alert("Es estudiante");
+                    //messageToSend.innerHTML = "<label class='text-danger'>Error to verify login</label>";
+                } else if (result == 3) {
+                    alert("Es profesor");
+                } else {
+                    alert("Error de contraseña o usuario");
+                }
+                $('#emailLogin').val("");
+                $('#passwordLogin').val("");
+            },
+            error: function (errorMessage) {
+                alert("Error de contraseña o usuario");
+                //alert(errorMessage.responseText);
+            }
+        });
+    //}
 
     //});
 
