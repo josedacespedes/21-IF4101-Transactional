@@ -3,6 +3,7 @@
 var formProfessor = document.getElementById("registerProfessorForm");
 var professor;
 var alertMessageAddProfessor = document.getElementById("alertMessageAddProfessor");
+var tableProfessor;
 
 //MASK
 $(document).ready(function () {
@@ -127,16 +128,17 @@ formProfessor.addEventListener("submit", function (e) {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                if (result == 1) {
-                    alertMessageAddProfessor.innerHTML = `<label class="text-success">Register successfully</label>`;//Msg enter success
-                    formProfessor.reset(); //Clean form fields
-                    sendEmailProfessor(professor.firstNameProfessor, professor.emailProfessor, professor.passwordProfessor); //Send email
-                } else if (result == -1) {
+                if (result == -1) {
                     $('#idProfessor').addClass("formInput-error");
                     alertMessageAddProfessor.innerHTML = `<label class="text-danger">Professor is already exist</label>`;//Msg  existence
                 } else if (result == -2) {
                     $('#emailProfessor').addClass("formInput-error");
                     alertMessageAddProfessor.innerHTML = `<label class="text-danger">Email is already exist</label>`;//Msg  existence
+                } else {
+                    alertMessageAddProfessor.innerHTML = `<label class="text-success">Register successfully</label>`;//Msg enter success
+                    formProfessor.reset(); //Clean form fields
+                    sendEmailProfessor(professor.firstNameProfessor, professor.emailProfessor, professor.passwordProfessor); //Send email
+                    tableProfessor.ajax.reload();
                 }
             },
             error: function (errorMessage) {
@@ -164,15 +166,17 @@ function sendEmailProfessor(nameProfessor, emailProfessor, passwordProfessor) {
     });
 }
 
+
 /*--------------------------------------------- LIST PROFESSOR-----------------------------------------------------------*/
 function loadListProfessor() {
-    $("#professorTable").DataTable({
+    tableProfessor = $("#professorTable").DataTable({
         "destroy": true,
         "ajax": {
             "url": "/Professor/Get",
             "tpye": 'GET',
             "datatype": "json"
         },
+        lengthMenu: [7, 20, 50, 100],
         "columns": [
             { "data": "idProfessor" },
             {

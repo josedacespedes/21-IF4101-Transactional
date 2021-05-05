@@ -123,15 +123,15 @@ formApplicant.addEventListener("submit", function (e) {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                if (result == 1) {
-                    alertMessageAddStudent.innerHTML = `<label class="text-success">Register successfully</label>`;//Msg enter success
-                    formApplicant.reset(); //Clean form fields
-                } else if (result == -1) {
+                if (result == -1) {
                     $('#studentIdApplicant').addClass("formInput-error");
                     alertMessageAddStudent.innerHTML = `<label class="text-danger">Student is already exist</label>`;//Msg  existence
                 } else if (result == -2) {
                     $('#emailApplicant').addClass("formInput-error");
                     alertMessageAddStudent.innerHTML = `<label class="text-danger">Email is already exist</label>`;//Msg  existence
+                } else {
+                    alertMessageAddStudent.innerHTML = `<label class="text-success">Register successfully</label>`;//Msg enter success
+                    formApplicant.reset(); //Clean form fields
                 }
             },
             error: function (errorMessage) {

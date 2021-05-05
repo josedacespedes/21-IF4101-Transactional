@@ -209,12 +209,13 @@ section {
         border-color: transparent;
     }
 
-
-
+.sidePadding {
+    padding-left: 15px;
+    padding-right: 15px;
+}
 /*---------------------------------------
        PRE LOADER              
   -----------------------------------------*/
-
 .preloader {
     position: fixed;
     top: 0;
