@@ -38,7 +38,6 @@ namespace _21_IF4101_Transactional.Models.Data
                 SqlCommand command = new SqlCommand("InsertCourse", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo.
                 command.CommandType = System.Data.CommandType.StoredProcedure; //acá decimos que lo que se ejecutará es un SP
                                                                                //acá abajo le pasamos los parámetros al SP. En @ van los nombres de los parámetros en SP y a la par los valores. No pasamos el Id porque es autoincremental en la tabla, entonces no lo necesitamos:
-                command.Parameters.AddWithValue("@Id", course.Id);
                 command.Parameters.AddWithValue("@Code", course.Code);
                 command.Parameters.AddWithValue("@Name", course.Name);
                 command.Parameters.AddWithValue("@Credits", course.Credits);
