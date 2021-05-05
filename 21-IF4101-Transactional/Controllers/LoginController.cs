@@ -1,5 +1,6 @@
 ﻿using _21_IF4101_Transactional.Models;
 using _21_IF4101_Transactional.Models.Data;
+using _21_IF4101_Transactional.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -17,9 +18,10 @@ namespace _21_IF4101_Transactional.Controllers
         private readonly IConfiguration _configuration;
         LoginDAO loginDAO;
 
-        public LoginController(ILogger<LoginController> logger)
+        public LoginController(ILogger<LoginController> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _configuration = configuration;
         }
 
         public IActionResult Index()
@@ -32,45 +34,29 @@ namespace _21_IF4101_Transactional.Controllers
             return View();
         }
 
-        public IActionResult Login(string Email, string Password)
+        public IActionResult Login([FromBody] Login login)
         {
             loginDAO = new LoginDAO(_configuration);
-            List<String> mails = new List<String>();
-            List<String> pass = new List<String>();
-            mails = loginDAO.GetMails();
-            pass = loginDAO.GetPaswords();
-            string name = "";
-            if (Email.Equals("admin@ucr.ac.cr") && Password.Equals("Admin12."))
+            if (login.Email.Equals("admin@ucr.ac.cr") && login.Password.Equals("Admin12."))
             {
-                return Ok();
+
+                return Ok(1);
             }
-            else if (mails.Contains(Email))
+            else if (loginDAO.CheckPasswordEmail(login.Email, login.Password) != 0)
             {
-                if (pass.Contains(Password))
-                {
-                    name += loginDAO.CheckPasswordEmail(Email, Password);
-                    if (!name.Equals(""))
-                    {
-                        //success
-                        return Ok();
-                        //int resultToReturn = loginDAO.Insert(student); //acá guardamos un 1 o un 0, dependiendo de si se insertó el estudiante o no
-                        //return Ok(resultToReturn); //retornamos el 1 o el 0 a la vista
-                    }
-                    else
-                    {
-                        return Error(); //Error (contraseña o correo invalido)
-                    }
-                }
-                else
-                {
-                    return Error(); //Error (contraseña o correo invalido)
-                }
+
+
+                //success
+                return Ok(loginDAO.CheckPasswordEmail(login.Email, login.Password));
+                //int resultToReturn = loginDAO.Insert(student); //acá guardamos un 1 o un 0, dependiendo de si se insertó el estudiante o no
+                //return Ok(resultToReturn); //retornamos el 1 o el 0 a la vista
+
             }
             else
             {
-                return Error(); //Error (Correo no valido)
+                return Ok(0); //Error (contraseña o correo invalido)
             }
-            return View();
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -80,4 +66,5 @@ namespace _21_IF4101_Transactional.Controllers
         }
     }
 }
+
 

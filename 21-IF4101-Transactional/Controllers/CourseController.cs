@@ -18,9 +18,10 @@ namespace _21_IF4101_Transactional.Controllers
         private readonly IConfiguration _configuration;
         CourseDAO courseDAO;
 
-        public CourseController(ILogger<CourseController> logger)
+        public CourseController(ILogger<CourseController> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _configuration = configuration;
         }
 
         public IActionResult Index()
