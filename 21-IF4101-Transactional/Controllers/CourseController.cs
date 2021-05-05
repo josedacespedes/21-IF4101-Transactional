@@ -44,11 +44,10 @@ namespace _21_IF4101_Transactional.Controllers
 
             if (codes.Contains(course.Code.ToString()))
             {
-                return Error();
+                return Ok(3);
             }
             else
             {
-
                 int resultToReturn = courseDAO.Insert(course); //acá guardamos un 1 o un 0, dependiendo de si se insertó el estudiante o no
                 return Ok(resultToReturn); //retornamos el 1 o el 0 a la vista
             }

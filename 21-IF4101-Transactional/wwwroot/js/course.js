@@ -11,8 +11,9 @@ $(document).ready(function () {
 });
 
 //VALIDATIONS
-function checkCourseName(courseName) {
-    if ((courseName.length < 10 || courseName.length > 30) || !(/^[a-zA-Z \u00E0-\u00FC\u00f1\u00d1]+$/.test(courseName)) || !courseName) {
+function checkCourseName(course) {
+    console.log(course.name);
+    if ((course.length < 10 || course.length > 30) || !(/^[a-zA-Z \u00E0-\u00FC\u00f1\u00d1]+$/.test(course)) || !course) {
         return false;
     } else {
         return true;
@@ -31,10 +32,8 @@ function checkCourseCode(courseCode) {
 }
 
 function checkCourseCreditsNumber(courseCreditsNumber) {
-    var restNumeric = courseCreditsNumber.substring(0, courseCreditsNumber.length);
-    var num_var = parseInt(courseCreditsNumber);
 
-    if ((courseCreditsNumber.length != 1) || (num_var < 1 || num_var > 4) || (isNaN(restNumeric)) || !courseCreditsNumber) {
+    if ((courseCreditsNumber < 1 || courseCreditsNumber > 4)) {
         return false;
     } else {
         return true;
@@ -42,10 +41,8 @@ function checkCourseCreditsNumber(courseCreditsNumber) {
 }
 
 function checkCourseStatus(courseStatus) {
-    var restNumeric = courseStatus.substring(0, courseStatus.length);
-    var num_var = parseInt(courseStatus);
     console.log("entro aca");
-    if ((courseStatus.length != 1) || (num_var < 0 || num_var > 1) || (isNaN(restNumeric)) || !courseStatus) {
+    if ((courseStatus < 0 || courseStatus > 1)) {
         return false;
     } else {
         return true;
@@ -65,19 +62,19 @@ function putErrorInputCourse(Course) {
     cleanErrorInputCourse();
     var validate = false;
 
-    if (!checkCourseName(Course.courseName)) {
+    if (!checkCourseName(Course.name)) {
         $('#courseName').addClass("formInput-error");
         validate = true;
     }
-    if (!checkCourseCode(Course.courseId)) {
+    if (!checkCourseCode(Course.code)) {
         $('#idCourse').addClass("formInput-error");
         validate = true;
     }
-    if (!checkCourseCreditsNumber(Course.coursecreditsNumber)) {
+    if (!checkCourseCreditsNumber(Course.credits)) {
         $('#creditsNumber').addClass("formInput-error");
         validate = true;
     }
-    if (!checkCourseStatus(Course.courseStatus)) {
+    if (!checkCourseStatus(Course.state)) {
         $('#courseStatus').addClass("formInput-error");
         validate = true;
     }
@@ -89,10 +86,10 @@ registerCourseForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     var course = {
-        courseName: $('#courseName').val(),
-        courseId: $('#idCourse').val(),
-        coursecreditsNumber: $('#creditsNumber').val(),
-        courseStatus: $('#courseStatus').val()
+        name: $('#courseName').val(),
+        code: $('#idCourse').val(),
+        credits: parseInt($('#creditsNumber').val()),
+        state: parseInt($('#courseStatus').val())
     };
 
     if (!putErrorInputCourse(course)) {
