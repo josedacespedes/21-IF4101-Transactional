@@ -57,7 +57,7 @@ namespace _21_IF4101_Transactional.Controllers
         {
             //llamada al modelo para obtener los profesores
             professorDAO = new ProfessorDAO(_configuration);
-            return Ok(professorDAO.Get());
+            return Json(new { data = professorDAO.Get() });
         }
 
 

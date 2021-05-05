@@ -4,18 +4,18 @@ var formProfessor = document.getElementById("registerProfessorForm");
 var professor;
 var alertMessageAddProfessor = document.getElementById("alertMessageAddProfessor");
 
-/*--------------------------------------------- ADD PROFESSOR-----------------------------------------------------------*/
+//MASK
+$(document).ready(function () {
+    $('#idProfessor').mask('P-00000');
+    loadListProfessor();
+});
 
+/*--------------------------------------------- ADD PROFESSOR-----------------------------------------------------------*/
 //SHOW/HID PASSWORD
 $('#showPasswordProfessor').hover(function () {
     $('#passwordProfessor').attr('type', 'text');
 }, function () {
     $('#passwordProfessor').attr('type', 'password');
-});
-
-//MASK
-$(document).ready(function () {
-    $('#idProfessor').mask('P-00000');
 });
 
 //VALIDATIONS
@@ -163,3 +163,26 @@ function sendEmailProfessor(nameProfessor, emailProfessor, passwordProfessor) {
         Password: ${passwordProfessor}`,
     });
 }
+
+/*--------------------------------------------- LIST PROFESSOR-----------------------------------------------------------*/
+function loadListProfessor() {
+    $("#professorTable").DataTable({
+        "destroy": true,
+        "ajax": {
+            "url": "/Professor/Get",
+            "tpye": 'GET',
+            "datatype": "json"
+        },
+        "columns": [
+            { "data": "idProfessor" },
+            {
+                render: function (data, type, row) {
+                    return row.firstNameProfessor + " " + row.lastNameProfessor;
+                }
+            },
+            { "data": "emailProfessor" },
+            { defaultContent: "<button id='' name='' type='button' data-bs-toggle='' data-bs-target='' class='btn btn-primary' title='Grupos'><i class='fa fa-link'></i></button>" }
+        ]
+    });
+}
+
