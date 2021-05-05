@@ -250,6 +250,7 @@
         </div>
     </section>
 
+
     <!-- REGISTER COURSE -->
     <!--<div class="col-md-6 col-sm-12">
         <div class="entry-form">
@@ -305,9 +306,33 @@
         </div>
     </section>
 
-    <!-- PROFESSOR LIST -->
-    <section id="preofesorList" class="displayAdmin">
+
+
+    <!-- APPLICANT LIST -->
+    <section id="applicantList" class="displayAdmin">
+        <div class="container">
+            <div class="col-md-12">
+                <h2 id="applicantTittle">Applicant List</h2>
+                <div class="row sidePadding">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="applicantTable">
+                            <thead class="table-primary headTable">
+                                <tr class="text-center">
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyApplicantTable" class="text-center font-weight-bold">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+
 
     <!-- FOOTER -->
     <footer id="footer" class="displayAll">
@@ -368,8 +393,7 @@
     <script src="js/course.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script> <!-- Mask inputs -->
     <script src="https://smtpjs.com/v3/smtp.js"></script> <!-- Email -->
-
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script> <!-- Datatable -->
 
 </body>
 </html>
