@@ -57,6 +57,42 @@ namespace _21_IF4101_Transactional.Models.Data
             }
         }
 
+        internal int InsertStudent(Applicant applicant)
+        {
+            int resultToReturn; //declaramos variable que guardará un 1 o un 0 de acuerdo a si se insertó o no el applicant
+
+            SqlConnection connection = null;
+            try
+            {
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open(); //abrimos conexión
+                    SqlCommand command = new SqlCommand("InsertStudent", connection);
+
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@FirstNameApplicant", applicant.FirstNameApplicant);
+                    command.Parameters.AddWithValue("@LastNameApplicant", applicant.LastNameApplicant);
+                    command.Parameters.AddWithValue("@StudentIdApplicant", applicant.StudentIdApplicant);
+                    command.Parameters.AddWithValue("@EmailApplicant", applicant.EmailApplicant);
+                    command.Parameters.AddWithValue("@PasswordApplicant", applicant.PasswordApplicant);
+
+                    resultToReturn = command.ExecuteNonQuery();
+                    connection.Close(); //cerramos conexión. 
+                }
+                return resultToReturn;
+            }
+            catch (SqlException ex)
+            {
+                return ex.Number;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+        }
+
         public List<Applicant> Get()
         {
 
@@ -135,9 +171,9 @@ namespace _21_IF4101_Transactional.Models.Data
             {
                 connection.Open(); //abrimos conexión
                 SqlCommand command = new SqlCommand("DeleteApplicant", connection);
-                command.CommandType = System.Data.CommandType.StoredProcedure; 
+                command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@Id", Id);
-                resultToReturn = command.ExecuteNonQuery(); 
+                resultToReturn = command.ExecuteNonQuery();
                 connection.Close(); //cerramos conexión. 
             }
 

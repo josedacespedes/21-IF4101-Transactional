@@ -54,6 +54,14 @@ namespace _21_IF4101_Transactional.Controllers
 
         }
 
+        public IActionResult InsertStudent([FromBody] Applicant applicant)
+        {
+            //llamada al modelo para insertar el estudiante aplicante
+            applicantDAO = new ApplicantDAO(_configuration);
+            int resultToReturn = applicantDAO.InsertStudent(applicant); //acá guardamos un 1 o un 0, dependiendo de si se insertó el aplicante o no
+            return Ok(resultToReturn); //retornamos el 1 o el 0 a la vista
+        }
+
         public IActionResult Get()
         {
             //llamada al modelo para obtener los estudiantes aplicantes
