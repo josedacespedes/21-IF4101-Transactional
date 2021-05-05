@@ -184,6 +184,11 @@ section {
     border-bottom: 1px solid red !important;
 }
 
+.headTable {
+    background: #41ADE7;
+    color: white;
+}
+
 /*---------------------------------------
      BUTTONS               
   -----------------------------------------*/

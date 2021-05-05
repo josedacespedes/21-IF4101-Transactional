@@ -18,6 +18,7 @@
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="css/templatemo-style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
     <!-- END MAIN CSS -->
 </head>
 
@@ -197,11 +198,34 @@
     </section>
 
 
-    <!-- REGISTER PROFESSOR -->
+    <!--  PROFESSOR -->
     <section id="addProfessorCourse" class="displayAdmin">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-12 addProfessorCourse-info">
+
+                <!-- LIST  -->
+                <div class="col-md-6 col-sm-12  addProfessorCourse-info">
+                    <h2 id="professorTittle">Professor List</h2>
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-striped" id="professorTable">
+                                <thead class="table-primary headTable">
+                                    <tr class="text-center">
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Group</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyProfessorTable" class="text-center font-weight-bold">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ADD  -->
+                <div class="col-md-6 col-sm-12">
                     <div class="entry-form">
                         <form id="registerProfessorForm" autocomplete="off">
                             <h2>Add Professor</h2>
@@ -222,34 +246,29 @@
                         </form>
                     </div>
                 </div>
-
-                <!-- REGISTER COURSE -->
-
-                <div class="col-md-6 col-sm-12">
-                    <div class="entry-form">
-                        <form id="registerCourseForm" autocomplete="off">
-                            <h2>Add Course</h2>
-                            <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Course name" required="" minlength="10" maxlength="30" title="Fill out with the course name">
-
-                            <input type="text" name="IdCourse" id="idCourse" class="form-control" placeholder="Course code" required="" minlength="4" maxlength="4" pattern="[0-9IF-]+" title="Fill out with 4 numbers">
-
-                            <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Credits number" required="" minlength="1" maxlength="1" pattern="[0-4]+" title="Fill out with a number in range 0 to 4">
-
-                            <input type="text" name="courseStatus" id="courseStatus" class="form-control" placeholder="Course status" required="" minlength="1" maxlength="1" pattern="[0-1]+" title="Fill out with 0 or 1">
-
-                            <button type="submit" class="submit-btn form-control">Add</button>
-
-                            <div id="alertMessageAddCourse"></div>
-                        </form>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <button type="button" onclick="submitFunction()" class="submit-btn form-control">EMAIL</button>
+    <!-- REGISTER COURSE -->
+    <!--<div class="col-md-6 col-sm-12">
+        <div class="entry-form">
+            <form id="registerCourseForm" autocomplete="off">
+                <h2>Add Course</h2>
+                <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Course name" required="" minlength="10" maxlength="30" title="Fill out with the course name">
 
+                <input type="text" name="IdCourse" id="idCourse" class="form-control" placeholder="Course code" required="" minlength="4" maxlength="4" pattern="[0-9IF-]+" title="Fill out with 4 numbers">
+
+                <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Credits number" required="" minlength="1" maxlength="1" pattern="[0-4]+" title="Fill out with a number in range 0 to 4">
+
+                <input type="text" name="courseStatus" id="courseStatus" class="form-control" placeholder="Course status" required="" minlength="1" maxlength="1" pattern="[0-1]+" title="Fill out with 0 or 1">
+
+                <button type="submit" class="submit-btn form-control">Add</button>
+
+                <div id="alertMessageAddCourse"></div>
+            </form>
+        </div>
+    </div>-->
     <!-- COURSES LIST -->
     <section id="courseList" class="displayAdmin">
         <div class="container">
@@ -284,6 +303,10 @@
                 <div class="col-md-2 col-sm-12"></div>
             </div>
         </div>
+    </section>
+
+    <!-- PROFESSOR LIST -->
+    <section id="preofesorList" class="displayAdmin">
     </section>
 
     <!-- FOOTER -->
@@ -343,8 +366,10 @@
     <script src="/js/applicant.js"></script>
     <script src="js/professor.js"></script>
     <script src="js/course.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script> <!-- Mask inputs -->
+    <script src="https://smtpjs.com/v3/smtp.js"></script> <!-- Email -->
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
 </body>
 </html>
