@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-const { error } = require("jquery");
+/*const { error } = require("jquery");*/
 
 var loginForm = document.getElementById("loginForm");
 
@@ -16,7 +16,7 @@ $('#showPasswordLogin').hover(function () {
 
 //VALIDATIONS
 
-function checkEmail(email) {
+function checkEmailLogin(email) {
 
     if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@ucr\.ac\.cr/.test(email)) || !email) {
         return false;
@@ -25,7 +25,7 @@ function checkEmail(email) {
     }
 }
 
-function checkPassword(password) {
+function checkPasswordLogin(password) {
     if ((password.length != 8) || !(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!.#$%^&*_=+-]).*$/.test(password)) || !password) {
         return false;
     } else {
@@ -34,26 +34,26 @@ function checkPassword(password) {
 }
 
 
-function cleanErrorInput() {
+function cleanErrorInputLogin() {
     $('#emailLogin').removeClass("formInput-error");
     $('#passwordLogin').removeClass("formInput-error");
 }
 
-function putErrorInput(email, password) {
+function putErrorInputLogin(email, password) {
 
     var validate = true;
     //var email = document.getElementById("emailLogin").value;
     //var password = document.getElementById("passwordLogin").value;
     //var email = $('#emailLogin').val();
     //var password = $('#passwordLogin').val();
-    console.log("PutErrorInput "+email);
-    console.log(password);
+    //console.log("PutErrorInput "+email);
+    //console.log(password);
     //cleanErrorInput();
-    if (!checkEmail(email)) {
+    if (!checkEmailLogin(email)) {
         $('#emailLogin').addClass("formInput-error");
         validate = false;
     }
-    if (!checkPassword(password)) {
+    if (!checkPasswordLogin(password)) {
         $('#passwordLogin').addClass("formInput-error");
         validate = false;
     }
@@ -77,15 +77,15 @@ function add() {
 
     /*loginForm.addEventListener("submit", function (e) {*/
     //e.preventDefault();
-    var messageToSend = document.getElementById("validateMessage");
+    var messageToSend = document.getElementById("messageToSendLogin");
     var login = {
         email: $('#emailLogin').val(),
         password: $('#passwordLogin').val()
     }
     //var email = $('#emailLogin').val();
     //var password = $('#passwordLogin').val();
-    console.log(login.email);
-    console.log(login.password);
+    //console.log(login.email);
+    //console.log(login.password);
     //console.log(putErrorInput(email, password));
     //if (putErrorInput(email, password)) {
         //AJAX
@@ -101,17 +101,26 @@ function add() {
                 console.log("Esta consultando al DAO");
                 console.log(result);
                 if (result == 1) {
+                    messageToSend.innerHTML = "<label class='text-success'>Welcome Administrator!</label>";
                     $('#emailLogin').val("");
                     $('#passwordLogin').val("");
+                    login.reset();
                     alert("Es admin");
-                    //messageToSend.innerHTML = "<label class='text-success'>Welcome!</label>";
                 }
                 else if (result == 2) {
+                    //messageToSend.innerHTML = "<label class='text-danger'>Wlcome Student!</label>";
+                    $('#emailLogin').val("");
+                    $('#passwordLogin').val("");
+                    login.reset();
                     alert("Es estudiante");
-                    //messageToSend.innerHTML = "<label class='text-danger'>Error to verify login</label>";
                 } else if (result == 3) {
+                    //messageToSend.innerHTML = "<label class='text-danger'>Welcome Teacher!</label>";
+                    $('#emailLogin').val("");
+                    $('#passwordLogin').val("");
+                    login.reset();
                     alert("Es profesor");
                 } else {
+                    //messageToSend.innerHTML = "<label class='text-danger'>Error to verify login</label>";
                     alert("Error de contraseña o usuario");
                 }
                 $('#emailLogin').val("");

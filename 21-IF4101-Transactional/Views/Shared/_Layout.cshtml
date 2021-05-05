@@ -79,10 +79,10 @@
                                 <input type="password" name="passwordLogin" id="passwordLogin" class="form-control password" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)" />
                                 <span id="showPasswordLogin"><i class="fa fa-eye" id="iconPasswordLogin"></i></span>
                             </div>
-                            <div id="messageToSend"></div>
+                            <div id="messageToSendLogin"></div>
                             <div>
                                 @*<button type="submit" class="submit-btn btn-primary form-control" onclick="return add()">Login</button>*@
-                                <button class="submit-btn form-control" onclick="return add()" id="form-submit">Login</button>
+                                <button class="submit-btn btn-primary form-control" onclick="return add()" id="form-submit">Login</button>
                             </div>
                             @*</form>*@
                         </div>
@@ -250,63 +250,55 @@
         </div>
     </section>
 
-
-    <!-- REGISTER COURSE -->
-    <!--<div class="col-md-6 col-sm-12">
-        <div class="entry-form">
-            <form id="registerCourseForm" autocomplete="off">
-                <h2>Add Course</h2>
-                <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Course name" required="" minlength="10" maxlength="30" title="Fill out with the course name">
-
-                <input type="text" name="IdCourse" id="idCourse" class="form-control" placeholder="Course code" required="" minlength="4" maxlength="4" pattern="[0-9IF-]+" title="Fill out with 4 numbers">
-
-                <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Credits number" required="" minlength="1" maxlength="1" pattern="[0-4]+" title="Fill out with a number in range 0 to 4">
-
-                <input type="text" name="courseStatus" id="courseStatus" class="form-control" placeholder="Course status" required="" minlength="1" maxlength="1" pattern="[0-1]+" title="Fill out with 0 or 1">
-
-                <button type="submit" class="submit-btn form-control">Add</button>
-
-                <div id="alertMessageAddCourse"></div>
-            </form>
-        </div>
-    </div>-->
-    <!-- COURSES LIST -->
-    <section id="courseList" class="displayAdmin">
+    <!--  REGISTER COURSE -->
+    <section id="addCourse" class="displayAdmin">
         <div class="container">
-            <h2 id="courseTitle">Course List</h2>
             <div class="row">
-                <div class="col-md-2 col-sm-12"></div>
-                <div class="col-md-8 col-sm-12">
-                    @*<div class="listTable">*@
-                    <table class="table table-hover table-dark" id="courseTable">
-                        <thead>
-                            <tr>
-                                <th scope="col">Code</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Credits Number</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>IF-4040</td>
-                                <td>Informatica Empresarial</td>
-                                <td>4</td>
-                            </tr>
-                            <tr>
-                                <td>IF-4152</td>
-                                <td>Programacion II</td>
-                                <td>4</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    @*</div>*@
+
+                <!-- ADD  -->
+                <div class="col-md-6 col-sm-12">
+                    <div class="entry-form">
+                        <form id="registerCourseForm" autocomplete="off">
+                            <h2>Add Course</h2>
+                            <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Course name" required="" minlength="10" maxlength="30" title="Fill out with the course name">
+
+                            <input type="text" name="idCourse" id="idCourse" class="form-control" placeholder="Course code" required="" minlength="4" maxlength="4" pattern="[0-9IF-]+" title="Fill out with 4 numbers">
+
+                            <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Credits number" required="" minlength="1" maxlength="1" pattern="[0-4]+" title="Fill out with a number in range 0 to 4">
+
+                            <input type="text" name="courseStatus" id="courseStatus" class="form-control" placeholder="Course status" required="" minlength="1" maxlength="1" pattern="[0-1]+" title="Fill out with 0 or 1">
+
+                            <button type="submit" class="submit-btn form-control">Add</button>
+
+                            <div id="alertMessageAddCourse"></div>
+                        </form>
+                    </div>
                 </div>
-                <div class="col-md-2 col-sm-12"></div>
+
+                <!-- LIST  -->
+                <div class="col-md-6 addCourse-info">
+                    <h2 id="courseTittle">Course List</h2>
+                    <div class="row sidePadding">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered" id="courseTable">
+                                <thead class="table-primary headTable">
+                                    <tr class="text-center">
+                                        <th>Code</th>
+                                        <th>Name</th>
+                                        <th>Credits Number</th>
+                                        <th>Status</th>
+                                        <th>Group</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyCourseTable" class="text-center font-weight-bold">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
-
 
     <!-- APPLICANT LIST -->
     <section id="applicantList" class="displayAdmin">
