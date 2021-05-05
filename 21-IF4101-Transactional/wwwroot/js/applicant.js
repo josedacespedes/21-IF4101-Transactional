@@ -167,8 +167,88 @@ function loadListApplicant() {
             },
             { "data": "emailApplicant" },
             {
-                defaultContent: "<button id='' name='' type='button' data-bs-toggle='' data-bs-target='' class='btn btn-success' title='Grupos'><i class='fa fa-check'></i></button> <button id='' name='' type='button' data-bs-toggle='' data-bs-target='' class='btn btn-danger' title='Grupos'><i class='fa fa-trash'></i></button>"
+                defaultContent: "<button id='acceptApplicant' name='acceptApplicant' type='button' oncli class='btn btn-success' title='Accept'><i class='fa fa-check'></i></button> <button id='rejectApplicant' name='rejectApplicant' type='button' class='btn btn-danger' title='Reject'><i class='fa fa-trash'></i></button>"
             }
         ]
+    });
+}
+
+// ELIMINAR APPLICANT
+$("#applicantTable tbody").on("click", "#rejectApplicant", function () {
+
+    var data = tableApplicant.row($(this).parents("tr")).data();
+    var rowToRemove = $(this).parents('tr');
+
+    Swal.fire({
+        title: "Are you sure about delete this applicant?",
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: `Confirm`,
+        denyButtonText: `Cancel`,
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "/Applicant/Delete",
+                data: { Id: data.id },
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    tableApplicant.row(rowToRemove).remove().draw(); //Remove of list
+                },
+                error: function (errorMessage) {
+                    alert("Failed to delete Applicant");
+                }
+            });
+
+        }
+    });
+});
+
+// AGREGAR APPLICANT
+$("#applicantTable tbody").on("click", "#acceptApplicant", function () {
+
+    var data = tableApplicant.row($(this).parents("tr")).data();
+    var applicant = {
+        firstNameApplicant: data.firstNameApplicant,
+        lastNameApplicant: data.lastNameApplicant,
+        studentIdApplicant: data.studentIdApplicant,
+        emailApplicant: data.emailApplicant,
+        passwordApplicant: data.passwordApplicant
+    };
+
+    var rowToRemove = $(this).parents('tr');
+
+    $.ajax({
+        url: "/Applicant/InsertStudent",
+        data: JSON.stringify(applicant),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            tableApplicant.row(rowToRemove).remove().draw(); //Remove of list
+            sendEmailStudent(data.firstNameApplicant, data.emailApplicant, data.passwordApplicant); //Send Email
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+});
+
+
+function sendEmailStudent(nameStudent, emailStudent, passwordStudent) {
+    Email.send({
+        Host: "smtp.gmail.com",
+        Username: "ucrtransactionaladm1n@gmail.com",
+        Password: "usuarioadmin",
+        To: emailStudent,
+        From: "ucrtransactionaladm1n@gmail.com",
+        Subject: `Administrator 21-IF4101-Transactional`,
+        Body: `Welcome to the system ${nameStudent}, you have been accepted as a Student.<br/>
+        Log in with the following:<br/>
+        Email: ${emailStudent} <br/> 
+        Password: ${passwordStudent}`,
     });
 }
