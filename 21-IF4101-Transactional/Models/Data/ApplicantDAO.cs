@@ -163,6 +163,40 @@ namespace _21_IF4101_Transactional.Models.Data
 
         }
 
+        public int VerifyEmailApplicant(string emailApplicant)
+        {
+            SqlConnection connection = null;
+            try
+            {
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("VerifyEmailUnique", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Email", emailApplicant);
+
+                    var returnParameter = command.Parameters.Add("@Exists", SqlDbType.Int);
+                    returnParameter.Direction = ParameterDirection.ReturnValue;
+                    command.ExecuteNonQuery();
+
+                    int result = (int)returnParameter.Value;
+                    connection.Close();
+
+                    return result;
+                }
+            }
+            catch (SqlException ex)
+            {
+                return ex.Number;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+
+        }
+
         public int Delete(int Id)
         {
             int resultToReturn; //declaramos variable que guardará un 1 o un 0 de acuerdo a si se eliminó o no el APPLICANT
