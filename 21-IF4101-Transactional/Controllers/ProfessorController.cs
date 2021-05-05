@@ -40,10 +40,14 @@ namespace _21_IF4101_Transactional.Controllers
             //llamada al modelo para insertar el profesor
             professorDAO = new ProfessorDAO(_configuration);
             int existToReturn = professorDAO.VerifyProfessorId(professor.IdProfessor);
-
+            int existToReturnEmail = professorDAO.VerifyEmailApplicant(professor.EmailProfessor);
             if (existToReturn == 1)
             {
                 return Ok(-1);
+            }
+            else if (existToReturnEmail == 1)
+            {
+                return Ok(-2);
             }
             else
             {
