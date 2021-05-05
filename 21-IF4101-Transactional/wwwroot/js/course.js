@@ -8,6 +8,7 @@ var messageToSend = document.getElementById("alertMessageAddCourse");
 //MASK
 $(document).ready(function () {
     $('#idCourse').mask('IF-0000');
+    loadCourseList();
 });
 
 //VALIDATIONS
@@ -41,7 +42,6 @@ function checkCourseCreditsNumber(courseCreditsNumber) {
 }
 
 function checkCourseStatus(courseStatus) {
-    console.log("entro aca");
     if ((courseStatus < 0 || courseStatus > 1)) {
         return false;
     } else {
@@ -81,6 +81,12 @@ function putErrorInputCourse(Course) {
     return validate;
 }
 
+//HIDE MSG FORM
+$("#idCourse").click(function () {
+    messageToSend.innerHTML = "";
+});
+
+
 //ACTION ADD
 registerCourseForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -102,11 +108,9 @@ registerCourseForm.addEventListener("submit", function (e) {
             success: function (result) {
                 if (result == 1) {
                     messageToSend.innerHTML = "<label class='text-success'>Course added successfully</label>";
-                    $('#courseName').val("");
-                    $('#idCourse').val("");
-                    $('#creditsNumber').val("");
-                    $('#courseStatus').val("");
+                    registerCourseForm.reset();
                 } else if (result == 3) {
+                    $('#idCourse').addClass("formInput-error");
                     messageToSend.innerHTML = "<label class='text-danger'>Course already exist</label>";
                 }
                 else {
@@ -119,5 +123,24 @@ registerCourseForm.addEventListener("submit", function (e) {
             }
         });
     }
-
 });
+
+function loadCourseList() {
+    tableProfessor = $("#courseTable").DataTable({
+        "destroy": true,
+        "ajax": {
+            "url": "/Course/Get",
+            "tpye": 'GET',
+            "datatype": "json"
+        },
+        lengthMenu: [7, 20, 50, 100],
+        "columns": [
+            { "data": "code" },
+            { "data": "name" },
+            { "data": "credits" },
+            { "data": "state" },
+            { defaultContent: "<button id='' name='' type='button' data-bs-toggle='' data-bs-target='' class='btn btn-primary' title='Grupos'><i class='fa fa-link'></i></button>" }
+        ]
+    });
+}
+
