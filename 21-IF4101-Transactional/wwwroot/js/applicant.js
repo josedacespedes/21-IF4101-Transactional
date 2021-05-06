@@ -137,6 +137,7 @@ formApplicant.addEventListener("submit", function (e) {
                 } else {
                     alertMessageAddStudent.innerHTML = `<label class="text-success">Register successfully</label>`;//Msg enter success
                     formApplicant.reset(); //Clean form fields
+                    sendEmailStudentWait(applicant.firstNameApplicant, applicant.emailApplicant);
                 }
             },
             error: function (errorMessage) {
@@ -196,6 +197,7 @@ $("#applicantTable tbody").on("click", "#rejectApplicant", function () {
                 dataType: "json",
                 success: function (result) {
                     tableApplicant.row(rowToRemove).remove().draw(); //Remove of list
+                    sendEmailStudentReject(data.firstNameApplicant, data.emailApplicant); //Send Email
                 },
                 error: function (errorMessage) {
                     alert("Failed to delete Applicant");
@@ -228,7 +230,7 @@ $("#applicantTable tbody").on("click", "#acceptApplicant", function () {
         dataType: "json",
         success: function (result) {
             tableApplicant.row(rowToRemove).remove().draw(); //Remove of list
-            sendEmailStudent(data.firstNameApplicant, data.emailApplicant, data.passwordApplicant); //Send Email
+            sendEmailStudentAccept(data.firstNameApplicant, data.emailApplicant, data.passwordApplicant); //Send Email
         },
         error: function (errorMessage) {
             alert("Error");
@@ -238,7 +240,7 @@ $("#applicantTable tbody").on("click", "#acceptApplicant", function () {
 });
 
 
-function sendEmailStudent(nameStudent, emailStudent, passwordStudent) {
+function sendEmailStudentAccept(nameStudent, emailStudent, passwordStudent) {
     Email.send({
         Host: "smtp.gmail.com",
         Username: "ucrtransactionaladm1n@gmail.com",
@@ -249,6 +251,30 @@ function sendEmailStudent(nameStudent, emailStudent, passwordStudent) {
         Body: `Welcome to the system ${nameStudent}, you have been accepted as a Student.<br/>
         Log in with the following:<br/>
         Email: ${emailStudent} <br/> 
-        Password: ${passwordStudent}`,
+        Password: ${passwordStudent}`
+    });
+}
+
+function sendEmailStudentReject(nameStudent, emailStudent) {
+    Email.send({
+        Host: "smtp.gmail.com",
+        Username: "ucrtransactionaladm1n@gmail.com",
+        Password: "usuarioadmin",
+        To: emailStudent,
+        From: "ucrtransactionaladm1n@gmail.com",
+        Subject: `Administrator 21-IF4101-Transactional`,
+        Body: `Hi ${nameStudent}, unfortunately your registration has been rejected.`
+    });
+}
+
+function sendEmailStudentWait(nameStudent, emailStudent) {
+    Email.send({
+        Host: "smtp.gmail.com",
+        Username: "ucrtransactionaladm1n@gmail.com",
+        Password: "usuarioadmin",
+        To: emailStudent,
+        From: "ucrtransactionaladm1n@gmail.com",
+        Subject: `Administrator 21-IF4101-Transactional`,
+        Body: `Hi ${nameStudent}, wait for your registration response`
     });
 }
