@@ -28,7 +28,7 @@
     </main>
 </div>
 
-<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+<body id="news" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
     <!-- PRE LOADER -->
     <section class="preloader">
@@ -52,13 +52,13 @@
                 </button>
 
                 <!-- lOGO TEXT HERE -->
-                <a href="#" class="navbar-brand">Business Informatics</a>
+                <a href="#top" class="navbar-brand">Business Informatics</a>
             </div>
 
             <!-- MENU LINKS -->
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
-                    <li><a href="#top" class="smoothScroll">News</a></li>
+                    <li><a href="#news" class="smoothScroll">News</a></li>
                     <li><a href="#addApplicant" class="smoothScroll">Sign In</a></li>
                 </ul>
 
@@ -72,18 +72,18 @@
                             @*<form id="loginForm" autocomplete="off">*@
                             <div class="form-group">
                                 <label for="formGroupExampleInput">Email</label>
-                                <input type="email" name="emailLogin" id="emailLogin" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr" />
+                                <input type="email" name="emailLogin" id="emailLogin" autocomplete="off" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr" />
                             </div>
                             <div class="form-group">
                                 <label for="formGroupExampleInput2">Password</label>
-                                <input type="password" name="passwordLogin" id="passwordLogin" class="form-control password" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)" />
+                                <input type="password" name="passwordLogin" id="passwordLogin" autocomplete="off" class="form-control password" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)" />
                                 <span id="showPasswordLogin"><i class="fa fa-eye" id="iconPasswordLogin"></i></span>
                             </div>
-                            <div id="messageToSendLogin"></div>
-                            <div>
+                            <div id="buttonLogin">
                                 @*<button type="submit" class="submit-btn btn-primary form-control" onclick="return add()">Login</button>*@
                                 <button class="submit-btn btn-primary form-control" onclick="return add()" id="form-submit">Login</button>
                             </div>
+                            <div id="messageToSendLogin"></div>
                             @*</form>*@
                         </div>
                     </li>
@@ -268,12 +268,13 @@
 
                             <input type="text" name="idCourse" id="idCourse" class="form-control" placeholder="Course code" required="" minlength="4" maxlength="4" pattern="[0-9IF-]+" title="Fill out with 4 numbers">
 
-                            <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Credits number" required="" minlength="1" maxlength="1" pattern="[0-4]+" title="Fill out with a number in range 0 to 4">
+                            <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Credits number" required="" minlength="1" maxlength="1" pattern="[1-4]+" title="Fill out with a number in range 1 to 4">
 
                             <input type="text" name="courseStatus" id="courseStatus" class="form-control" placeholder="Course status" required="" minlength="1" maxlength="1" pattern="[0-1]+" title="Fill out with 0 or 1">
 
-                            <button type="submit" class="submit-btn form-control">Add</button>
-
+                            <div id="buttonSubmitAddCourse">
+                                <button type="submit" class="submit-btn form-control" >Add</button>
+                            </div>
                             <div id="alertMessageAddCourse"></div>
                         </form>
                     </div>
