@@ -138,6 +138,7 @@ formApplicant.addEventListener("submit", function (e) {
                     alertMessageAddStudent.innerHTML = `<label class="text-success">Register successfully</label>`;//Msg enter success
                     formApplicant.reset(); //Clean form fields
                     sendEmailStudentWait(applicant.firstNameApplicant, applicant.emailApplicant);
+                    
                 }
             },
             error: function (errorMessage) {
@@ -153,6 +154,7 @@ formApplicant.addEventListener("submit", function (e) {
 function loadListApplicant() {
     tableApplicant = $("#applicantTable").DataTable({
         "destroy": true,
+        "autoWidth": false,
         "ajax": {
             "url": "/Applicant/Get",
             "tpye": 'GET',
