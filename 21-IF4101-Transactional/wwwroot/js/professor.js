@@ -138,7 +138,7 @@ formProfessor.addEventListener("submit", function (e) {
                     alertMessageAddProfessor.innerHTML = `<label class="text-success">Register successfully</label>`;//Msg enter success
                     formProfessor.reset(); //Clean form fields
                     sendEmailProfessor(professor.firstNameProfessor, professor.emailProfessor, professor.passwordProfessor); //Send email
-                    tableProfessor.ajax.reload();
+                    $('#professorTable').DataTable().ajax.reload();
                 }
             },
             error: function (errorMessage) {
@@ -171,6 +171,7 @@ function sendEmailProfessor(nameProfessor, emailProfessor, passwordProfessor) {
 function loadListProfessor() {
     tableProfessor = $("#professorTable").DataTable({
         "destroy": true,
+        "autoWidth": false,
         "ajax": {
             "url": "/Professor/Get",
             "tpye": 'GET',

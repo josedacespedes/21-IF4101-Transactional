@@ -6,6 +6,12 @@ var loginForm = document.getElementById("loginForm");
 
 // Login
 
+$(document).ready(function () {
+    $(".displayAdmin").hide();
+    $(".displayStudent").hide();
+    $(".displayProfessor").hide();
+});
+
 //SHOW/HID PASSWORD
 $('#showPasswordLogin').hover(function () {
     $('#passwordLogin').attr('type', 'text');
@@ -74,19 +80,22 @@ function add() {
             dataType: "json",
             
             success: function (result) {  //(result = 1): Admin  (result = 2): Student  (result = 3): Professor
-                console.log("Esta consultando al DAO");
-                console.log(result);
                 if (result == 1) {
+                    $('#emailLogin').val("");
+                    $('#passwordLogin').val("");
                     showDisplay("admin");
-                    login.reset();
                 }
                 else if (result == 2) {
+                    $('#emailLogin').val("");
+                    $('#passwordLogin').val("");
                     showDisplay("student");
-                    login.reset();
                 } else if (result == 3) {
+                    $('#emailLogin').val("");
+                    $('#passwordLogin').val("");
                     showDisplay("professor");
-                    login.reset();
                 } else if (result == 0) {
+                    $('#emailLogin').val("");
+                    $('#passwordLogin').val("");
                     alert("Error de contraseña o usuario");
                 }
                 $('#emailLogin').val("");

@@ -2,7 +2,7 @@
 
 var registerCourseForm = document.getElementById("registerCourseForm");
 var messageToSend = document.getElementById("alertMessageAddCourse");
-
+var tableCourse;
 /*--------------------------------------------- ADD COURSE-----------------------------------------------------------*/
 
 //MASK
@@ -109,6 +109,7 @@ registerCourseForm.addEventListener("submit", function (e) {
                 if (result == 1) {
                     messageToSend.innerHTML = "<label class='text-success'>Course added successfully</label>";
                     registerCourseForm.reset();
+                    $('#courseTable').DataTable().ajax.reload();
                 } else if (result == 3) {
                     $('#idCourse').addClass("formInput-error");
                     messageToSend.innerHTML = "<label class='text-danger'>Course already exist</label>";
@@ -126,8 +127,9 @@ registerCourseForm.addEventListener("submit", function (e) {
 });
 
 function loadCourseList() {
-    tableProfessor = $("#courseTable").DataTable({
+    tableCourse = $("#courseTable").DataTable({
         "destroy": true,
+        "autoWidth": false,
         "ajax": {
             "url": "/Course/Get",
             "tpye": 'GET',
