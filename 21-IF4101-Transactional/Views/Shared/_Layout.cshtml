@@ -2,14 +2,8 @@
 <html lang="en">
 <head>
 
-    <title>Known - Education HTML Template</title>
-    <!--
+    <title>Business Informatics community</title>
 
-    Known Template
-
-    https://templatemo.com/tm-516-known
-
-    -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="description" content="">
@@ -24,7 +18,8 @@
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="css/templatemo-style.css">
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <!-- END MAIN CSS -->
 </head>
 
 <div class="container">
@@ -33,7 +28,7 @@
     </main>
 </div>
 
-<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+<body id="news" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
     <!-- PRE LOADER -->
     <section class="preloader">
@@ -44,9 +39,8 @@
         </div>
     </section>
 
-
     <!-- MENU -->
-    <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+    <section class="navbar custom-navbar navbar-fixed-top displayNoUser" role="navigation">
         <div class="container">
 
             <div class="navbar-header">
@@ -54,34 +48,56 @@
                     <span class="icon icon-bar"></span>
                     <span class="icon icon-bar"></span>
                     <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
                 </button>
 
                 <!-- lOGO TEXT HERE -->
-                <a href="#" class="navbar-brand">Known</a>
+                <a href="#top" class="navbar-brand">Business Informatics</a>
             </div>
 
             <!-- MENU LINKS -->
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
-                    <li><a href="#top" class="smoothScroll">Home</a></li>
-                    <li><a href="#about" class="smoothScroll">About</a></li>
-                    <li><a href="#team" class="smoothScroll">Our Teachers</a></li>
-                    <li><a href="#courses" class="smoothScroll">Courses</a></li>
-                    <li><a href="#testimonial" class="smoothScroll">Reviews</a></li>
-                    <li><a href="#contact" class="smoothScroll">Contact</a></li>
+                    <li><a href="#news" class="smoothScroll">News</a></li>
+                    <li><a href="#addApplicant" class="smoothScroll">Sign In</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><i class="fa fa-phone"></i> +65 2244 1100</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#login" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-sign-in"></i>
+                            Login
+                        </a>
+                        <div class="dropdown-menu login" aria-labelledby="navbarDropdown2">
+                            @*<form id="loginForm" autocomplete="off">*@
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Email</label>
+                                <input type="email" name="emailLogin" id="emailLogin" autocomplete="off" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr" />
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Password</label>
+                                <input type="password" name="passwordLogin" id="passwordLogin" autocomplete="off" class="form-control password" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)" />
+                                <span id="showPasswordLogin"><i class="fa fa-eye" id="iconPasswordLogin"></i></span>
+                            </div>
+                            <div id="buttonLogin">
+                                @*<button type="submit" class="submit-btn btn-primary form-control" onclick="return add()">Login</button>*@
+                                <button class="submit-btn btn-primary form-control" onclick="return add()" id="form-submit">Login</button>
+                            </div>
+                            <div id="messageToSendLogin"></div>
+                            @*</form>*@
+                        </div>
+                    </li>
                 </ul>
             </div>
-
         </div>
     </section>
 
+    <!-- NEWS -->
+    <section id="home" class="displayAll">
+        <div class="text-center">
+            <h1 style="color:black" class="display-4">Welcome to community Business Informatics news</h1>
+        </div>
 
-    <!-- HOME -->
-    <section id="home">
         <div class="row">
 
             <div class="owl-carousel owl-theme home-slider">
@@ -124,87 +140,59 @@
         </div>
     </section>
 
-
-    <!-- FEATURE -->
-    <section id="feature">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="feature-thumb">
-                        <span>01</span>
-                        <h3>Trending Courses</h3>
-                        <p>Known is free education HTML Bootstrap Template. You can download and use this for your website.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="feature-thumb">
-                        <span>02</span>
-                        <h3>Books & Library</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing eiusmod tempor incididunt ut labore et dolore magna.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="feature-thumb">
-                        <span>03</span>
-                        <h3>Certified Teachers</h3>
-                        <p>templatemo provides a wide variety of free Bootstrap Templates for you. Please tell your friends about us. Thank you.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ABOUT -->
-    <section id="about">
+    <!-- REGISTER APPLICANT -->
+    <section id="addApplicant" class="displayNoUser">
         <div class="container">
             <div class="row">
 
                 <div class="col-md-6 col-sm-12">
-                    <div class="about-info">
-                        <h2>Start your journey to a better life with online practical courses</h2>
-
+                    <div class="addApplicant-info">
+                        <h2>Join the Business Informatics community</h2>
                         <figure>
-                            <span><i class="fa fa-users"></i></span>
+                            <span><i class="fa fa-newspaper-o"></i></span>
                             <figcaption>
-                                <h3>Professional Trainers</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint ipsa voluptatibus.</p>
+                                <h3>Know news</h3>
+                                <p>Know and comment news of Business Informatics.</p>
                             </figcaption>
                         </figure>
 
                         <figure>
-                            <span><i class="fa fa-certificate"></i></span>
+                            <span><i class="fa fa-question"></i></span>
                             <figcaption>
-                                <h3>International Certifications</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint ipsa voluptatibus.</p>
+                                <h3>Queries to comunnity</h3>
+                                <p>Ask and answer questions to community students.</p>
                             </figcaption>
                         </figure>
 
                         <figure>
-                            <span><i class="fa fa-bar-chart-o"></i></span>
+                            <span><i class="fa fa-calendar"></i></span>
                             <figcaption>
-                                <h3>Free for 3 months</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint ipsa voluptatibus.</p>
+                                <h3>Request appointment</h3>
+                                <p>Solicit your appointment with a community professor.</p>
                             </figcaption>
                         </figure>
+
                     </div>
                 </div>
 
-                <div class="col-md-offset-1 col-md-4 col-sm-12">
+                <div class="col-md-4 col-sm-12">
                     <div class="entry-form">
-                        <form action="#" method="post">
-                            <h2>Signup today</h2>
-                            <input type="text" name="full name" class="form-control" placeholder="Full name" required="">
+                        <form id="registerApplicantForm" autocomplete="off">
+                            <h2>Join community</h2>
+                            <input type="text" name="firstNameApplicant" id="firstNameApplicant" class="form-control" placeholder="First name" required="" minlength="3" maxlength="50" pattern="[A-Za-z áéíóúñÑ]+">
 
-                            <input type="email" name="email" class="form-control" placeholder="Your email address" required="">
+                            <input type="text" name="lastNameApplicant" id="lastNameApplicant" class="form-control" placeholder="Last name" required="" minlength="10" maxlength="100" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+" title="Insert two surnames">
 
-                            <input type="password" name="password" class="form-control" placeholder="Your password" required="">
+                            <input type="text" name="studentIdApplicant" id="studentIdApplicant" class="form-control" placeholder="Student id" required="" minlength="6" maxlength="6" pattern="(?=.*[A-Z]).{1}[0-9]+" title="Valid student id">
 
-                            <button class="submit-btn form-control" id="form-submit">Get started</button>
+                            <input type="email" name="emailApplicant" id="emailApplicant" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr">
+
+                            <input type="password" name="passwordApplicant" id="passwordApplicant" class="form-control" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)">
+                            <span id="showPasswordApplicant"><i class="fa fa-eye" id="iconPasswordApplicant"></i></span>
+
+                            <button type="submit" class="submit-btn form-control">Sign in</button>
+
+                            <div id="alertMessageAddStudent"></div>
                         </form>
                     </div>
                 </div>
@@ -214,417 +202,157 @@
     </section>
 
 
-    <!-- TEAM -->
-    <section id="team">
+    <!--  PROFESSOR -->
+    <section id="addProfessor" class="displayAdmin">
         <div class="container">
             <div class="row">
 
-                <div class="col-md-12 col-sm-12">
-                    <div class="section-title">
-                        <h2>Teachers <small>Meet Professional Trainers</small></h2>
+                <!-- LIST  -->
+                <div class="col-md-6 addProfessor-info">
+                    <h2 id="professorTittle">Professor List</h2>
+                    <div class="row sidePadding">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered" id="professorTable">
+                                <thead class="table-primary headTable">
+                                    <tr class="text-center">
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Group</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyProfessorTable" class="text-center font-weight-bold">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-md-3 col-sm-6">
-                    <div class="team-thumb">
-                        <div class="team-image">
-                            <img src="images/author-image1.jpg" class="img-responsive" alt="">
-                        </div>
-                        <div class="team-info">
-                            <h3>Mark Wilson</h3>
-                            <span>I love Teaching</span>
-                        </div>
-                        <ul class="social-icon">
-                            <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-instagram"></a></li>
-                        </ul>
+                <!-- ADD  -->
+                <div class="col-md-6 col-sm-12">
+                    <div class="entry-form">
+                        <form id="registerProfessorForm" autocomplete="off">
+                            <h2>Add Professor</h2>
+                            <input type="text" name="firstNameProfessor" id="firstNameProfessor" class="form-control" placeholder="First name" required="" minlength="3" maxlength="50" pattern="[A-Za-z áéíóúñÑ]+">
+
+                            <input type="text" name="lastNameProfessor" id="lastNameProfessor" class="form-control" placeholder="Last name" required="" minlength="10" maxlength="100" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+" title="Insert two surnames">
+
+                            <input type="text" name="IdProfessor" id="idProfessor" class="form-control" placeholder="Professor id" required="" minlength="7" maxlength="7" pattern="[0-9P-]+" title="Valid professor id">
+
+                            <input type="email" name="emailProfessor" id="emailProfessor" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr">
+
+                            <input type="password" name="passwordProfessor" id="passwordProfessor" class="form-control" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)">
+                            <span id="showPasswordProfessor"><i class="fa fa-eye" id="iconPasswordProfessor"></i></span>
+
+                            <button type="submit" class="submit-btn form-control">Add</button>
+
+                            <div id="alertMessageAddProfessor"></div>
+                        </form>
                     </div>
                 </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="team-thumb">
-                        <div class="team-image">
-                            <img src="images/author-image2.jpg" class="img-responsive" alt="">
-                        </div>
-                        <div class="team-info">
-                            <h3>Catherine</h3>
-                            <span>Education is the key!</span>
-                        </div>
-                        <ul class="social-icon">
-                            <li><a href="#" class="fa fa-google"></a></li>
-                            <li><a href="#" class="fa fa-instagram"></a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="team-thumb">
-                        <div class="team-image">
-                            <img src="images/author-image3.jpg" class="img-responsive" alt="">
-                        </div>
-                        <div class="team-info">
-                            <h3>Jessie Ca</h3>
-                            <span>I like Online Courses</span>
-                        </div>
-                        <ul class="social-icon">
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-envelope-o"></a></li>
-                            <li><a href="#" class="fa fa-linkedin"></a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="team-thumb">
-                        <div class="team-image">
-                            <img src="images/author-image4.jpg" class="img-responsive" alt="">
-                        </div>
-                        <div class="team-info">
-                            <h3>Andrew Berti</h3>
-                            <span>Learning is fun</span>
-                        </div>
-                        <ul class="social-icon">
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-google"></a></li>
-                            <li><a href="#" class="fa fa-behance"></a></li>
-                        </ul>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
 
-
-    <!-- Courses -->
-    <section id="courses">
+    <!--  REGISTER COURSE -->
+    <section id="addCourse" class="displayAdmin">
         <div class="container">
             <div class="row">
 
-                <div class="col-md-12 col-sm-12">
-                    <div class="section-title">
-                        <h2>Popular Courses <small>Upgrade your skills with newest courses</small></h2>
+                <!-- ADD  -->
+                <div class="col-md-6 col-sm-12">
+                    <div class="entry-form">
+                        <form id="registerCourseForm" autocomplete="off">
+                            <h2>Add Course</h2>
+                            <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Course name" required="" minlength="10" maxlength="30" title="Fill out with the course name">
+
+                            <input type="text" name="idCourse" id="idCourse" class="form-control" placeholder="Course code" required="" minlength="4" maxlength="4" pattern="[0-9IF-]+" title="Fill out with 4 numbers">
+
+                            <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Credits number" required="" minlength="1" maxlength="1" pattern="[1-4]+" title="Fill out with a number in range 1 to 4">
+
+                            <input type="text" name="courseStatus" id="courseStatus" class="form-control" placeholder="Course status" required="" minlength="1" maxlength="1" pattern="[0-1]+" title="Fill out with 0 or 1">
+
+                            <div id="buttonSubmitAddCourse">
+                                <button type="submit" class="submit-btn form-control" >Add</button>
+                            </div>
+                            <div id="alertMessageAddCourse"></div>
+                        </form>
                     </div>
+                </div>
 
-                    <div class="owl-carousel owl-theme owl-courses">
-                        <div class="col-md-4 col-sm-4">
-                            <div class="item">
-                                <div class="courses-thumb">
-                                    <div class="courses-top">
-                                        <div class="courses-image">
-                                            <img src="images/courses-image1.jpg" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="courses-date">
-                                            <span><i class="fa fa-calendar"></i> 12 / 7 / 2018</span>
-                                            <span><i class="fa fa-clock-o"></i> 7 Hours</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="courses-detail">
-                                        <h3><a href="#">Social Media Management</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-
-                                    <div class="courses-info">
-                                        <div class="courses-author">
-                                            <img src="images/author-image1.jpg" class="img-responsive" alt="">
-                                            <span>Mark Wilson</span>
-                                        </div>
-                                        <div class="courses-price">
-                                            <a href="#"><span>USD 25</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <!-- LIST  -->
+                <div class="col-md-6 addCourse-info">
+                    <h2 id="courseTittle">Course List</h2>
+                    <div class="row sidePadding">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered" id="courseTable">
+                                <thead class="table-primary headTable">
+                                    <tr class="text-center">
+                                        <th>Code</th>
+                                        <th>Name</th>
+                                        <th>Credits Number</th>
+                                        <th>Status</th>
+                                        <th>Group</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyCourseTable" class="text-center font-weight-bold">
+                                </tbody>
+                            </table>
                         </div>
-
-                        <div class="col-md-4 col-sm-4">
-                            <div class="item">
-                                <div class="courses-thumb">
-                                    <div class="courses-top">
-                                        <div class="courses-image">
-                                            <img src="images/courses-image2.jpg" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="courses-date">
-                                            <span><i class="fa fa-calendar"></i> 20 / 7 / 2018</span>
-                                            <span><i class="fa fa-clock-o"></i> 4.5 Hours</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="courses-detail">
-                                        <h3><a href="#">Graphic & Web Design</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-
-                                    <div class="courses-info">
-                                        <div class="courses-author">
-                                            <img src="images/author-image2.jpg" class="img-responsive" alt="">
-                                            <span>Jessica</span>
-                                        </div>
-                                        <div class="courses-price">
-                                            <a href="#"><span>USD 80</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-4">
-                            <div class="item">
-                                <div class="courses-thumb">
-                                    <div class="courses-top">
-                                        <div class="courses-image">
-                                            <img src="images/courses-image3.jpg" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="courses-date">
-                                            <span><i class="fa fa-calendar"></i> 15 / 8 / 2018</span>
-                                            <span><i class="fa fa-clock-o"></i> 6 Hours</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="courses-detail">
-                                        <h3><a href="#">Marketing Communication</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-
-                                    <div class="courses-info">
-                                        <div class="courses-author">
-                                            <img src="images/author-image3.jpg" class="img-responsive" alt="">
-                                            <span>Catherine</span>
-                                        </div>
-                                        <div class="courses-price free">
-                                            <a href="#"><span>Free</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-4">
-                            <div class="item">
-                                <div class="courses-thumb">
-                                    <div class="courses-top">
-                                        <div class="courses-image">
-                                            <img src="images/courses-image4.jpg" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="courses-date">
-                                            <span><i class="fa fa-calendar"></i> 10 / 8 / 2018</span>
-                                            <span><i class="fa fa-clock-o"></i> 8 Hours</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="courses-detail">
-                                        <h3><a href="#">Summer Kids</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-
-                                    <div class="courses-info">
-                                        <div class="courses-author">
-                                            <img src="images/author-image1.jpg" class="img-responsive" alt="">
-                                            <span>Mark Wilson</span>
-                                        </div>
-                                        <div class="courses-price">
-                                            <a href="#"><span>USD 45</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-4">
-                            <div class="item">
-                                <div class="courses-thumb">
-                                    <div class="courses-top">
-                                        <div class="courses-image">
-                                            <img src="images/courses-image5.jpg" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="courses-date">
-                                            <span><i class="fa fa-calendar"></i> 5 / 10 / 2018</span>
-                                            <span><i class="fa fa-clock-o"></i> 10 Hours</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="courses-detail">
-                                        <h3><a href="#">Business &amp; Management</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-
-                                    <div class="courses-info">
-                                        <div class="courses-author">
-                                            <img src="images/author-image2.jpg" class="img-responsive" alt="">
-                                            <span>Jessica</span>
-                                        </div>
-                                        <div class="courses-price free">
-                                            <a href="#"><span>Free</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-
                 </div>
             </div>
+        </div>
     </section>
 
-
-    <!-- TESTIMONIAL -->
-    <section id="testimonial">
+    <!-- APPLICANT LIST -->
+    <section id="applicantList" class="displayAdmin">
         <div class="container">
-            <div class="row">
-
-                <div class="col-md-12 col-sm-12">
-                    <div class="section-title">
-                        <h2>Student Reviews <small>from around the world</small></h2>
-                    </div>
-
-                    <div class="owl-carousel owl-theme owl-client">
-                        <div class="col-md-4 col-sm-4">
-                            <div class="item">
-                                <div class="tst-image">
-                                    <img src="images/tst-image1.jpg" class="img-responsive" alt="">
-                                </div>
-                                <div class="tst-author">
-                                    <h4>Jackson</h4>
-                                    <span>Shopify Developer</span>
-                                </div>
-                                <p>You really do help young creative minds to get quality education and professional job search assistance. I’d recommend it to everyone!</p>
-                                <div class="tst-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-4">
-                            <div class="item">
-                                <div class="tst-image">
-                                    <img src="images/tst-image2.jpg" class="img-responsive" alt="">
-                                </div>
-                                <div class="tst-author">
-                                    <h4>Camila</h4>
-                                    <span>Marketing Manager</span>
-                                </div>
-                                <p>Trying something new is exciting! Thanks for the amazing law course and the great teacher who was able to make it interesting.</p>
-                                <div class="tst-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-4">
-                            <div class="item">
-                                <div class="tst-image">
-                                    <img src="images/tst-image3.jpg" class="img-responsive" alt="">
-                                </div>
-                                <div class="tst-author">
-                                    <h4>Barbie</h4>
-                                    <span>Art Director</span>
-                                </div>
-                                <p>Donec erat libero, blandit vitae arcu eu, lacinia placerat justo. Sed sollicitudin quis felis vitae hendrerit.</p>
-                                <div class="tst-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-4">
-                            <div class="item">
-                                <div class="tst-image">
-                                    <img src="images/tst-image4.jpg" class="img-responsive" alt="">
-                                </div>
-                                <div class="tst-author">
-                                    <h4>Andrio</h4>
-                                    <span>Web Developer</span>
-                                </div>
-                                <p>Nam eget mi eu ante faucibus viverra nec sed magna. Vivamus viverra sapien ex, elementum varius ex sagittis vel.</p>
-                                <div class="tst-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-    </section>
-
-
-    <!-- CONTACT -->
-    <section id="contact">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-6 col-sm-12">
-                    <form id="contact-form" role="form" action="" method="post">
-                        <div class="section-title">
-                            <h2>Contact us <small>we love conversations. let us talk!</small></h2>
-                        </div>
-
-                        <div class="col-md-12 col-sm-12">
-                            <input type="text" class="form-control" placeholder="Enter full name" name="name" required="">
-
-                            <input type="email" class="form-control" placeholder="Enter email address" name="email" required="">
-
-                            <textarea class="form-control" rows="6" placeholder="Tell us about your message" name="message" required=""></textarea>
-                        </div>
-
-                        <div class="col-md-4 col-sm-12">
-                            <input type="submit" class="form-control" name="send message" value="Send Message">
-                        </div>
-
-                    </form>
-                </div>
-
-                <div class="col-md-6 col-sm-12">
-                    <div class="contact-image">
-                        <img src="images/contact-image.jpg" class="img-responsive" alt="Smiling Two Girls">
+            <div class="col-md-12">
+                <h2 id="applicantTittle">Applicant List</h2>
+                <div class="row sidePadding">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="applicantTable">
+                            <thead class="table-primary headTable">
+                                <tr class="text-center">
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyApplicantTable" class="text-center font-weight-bold">
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
 
     <!-- FOOTER -->
-    <footer id="footer">
+    <footer id="footer" class="displayAll">
         <div class="container">
             <div class="row">
 
                 <div class="col-md-4 col-sm-6">
                     <div class="footer-info">
                         <div class="section-title">
-                            <h2>Headquarter</h2>
+                            <h2>University contacts</h2>
                         </div>
                         <address>
-                            <p>1800 dapibus a tortor pretium,<br> Integer nisl dui, ABC 12000</p>
+                            <ul class="social-icon">
+                                <li><a href="https://www.facebook.com/UniversidadCostaRica" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                <li><a href="https://twitter.com/UniversidadCR" class="fa fa-twitter"></a></li>
+                                <li><a href="https://www.instagram.com/universidaddecostarica" class="fa fa-instagram"></a></li>
+                            </ul>
                         </address>
 
-                        <ul class="social-icon">
-                            <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-instagram"></a></li>
-                        </ul>
-
                         <div class="copyright-text">
-                            <p>Copyright &copy; 2019 Company Name</p>
+                            <p>Copyright &copy; 2021 Bussiness Informatics Transactional</p>
 
-                            <p>Design: TemplateMo</p>
+                            <p>Project for the course of Commercial Applications 2021 at University of Costa Rica</p>
                         </div>
                     </div>
                 </div>
@@ -632,39 +360,16 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="footer-info">
                         <div class="section-title">
-                            <h2>Contact Info</h2>
+                            <h2>Developers info</h2>
+
                         </div>
                         <address>
-                            <p>+65 2244 1100, +66 1800 1100</p>
-                            <p><a href="mailto:youremail.co">hello@youremail.co</a></p>
+                            <p><a href="https://github.com/JoseKatoche">José David Alvarado Céspedes</a></p>
+                            <p><a href="https://github.com/Diego-Coto95">Juan Diego Coto Ramírez</a></p>
+                            <p><a href="https://github.com/Jenipher099">Jenipher Mata</a></p>
+                            <p><a href="https://github.com/WinstonAOR">Winston Ortega</a></p>
                         </address>
 
-                        <div class="footer_menu">
-                            <h2>Quick Links</h2>
-                            <ul>
-                                <li><a href="#">Career</a></li>
-                                <li><a href="#">Investor</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Refund Policy</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-12">
-                    <div class="footer-info newsletter-form">
-                        <div class="section-title">
-                            <h2>Newsletter Signup</h2>
-                        </div>
-                        <div>
-                            <div class="form-group">
-                                <form action="#" method="get">
-                                    <input type="email" class="form-control" placeholder="Enter your email" name="email" id="email" required="">
-                                    <input type="submit" class="form-control" name="submit" id="form-submit" value="Send me">
-                                </form>
-                                <span><sup>*</sup> Please note - we do not spam your email.</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -679,6 +384,15 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/smoothscroll.js"></script>
     <script src="js/custom.js"></script>
+    <script src="js/login.js"></script>
+    <script src="/js/applicant.js"></script>
+    <script src="js/professor.js"></script>
+    <script src="js/course.js"></script>
+    <script src="js/display.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script> <!-- Mask inputs -->
+    <script src="https://smtpjs.com/v3/smtp.js"></script> <!-- Email -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script> <!-- Datatable -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> <!-- Sweet alerts -->
 
 </body>
 </html>
