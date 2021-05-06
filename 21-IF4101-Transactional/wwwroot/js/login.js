@@ -17,8 +17,7 @@ $('#showPasswordLogin').hover(function () {
 //VALIDATIONS
 
 function checkEmailLogin(email) {
-
-    if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@ucr\.ac\.cr/.test(email)) || !email) {
+    if (email == "" || !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@ucr\.ac\.cr/.test(email)) || !email) {
         return false;
     } else {
         return true;
@@ -26,7 +25,7 @@ function checkEmailLogin(email) {
 }
 
 function checkPasswordLogin(password) {
-    if ((password.length != 8) || !(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!.#$%^&*_=+-]).*$/.test(password)) || !password) {
+    if (password =="" || (password.length != 8) || !(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!.#$%^&*_=+-]).*$/.test(password)) || !password) {
         return false;
     } else {
         return true;
@@ -42,54 +41,31 @@ function cleanErrorInputLogin() {
 function putErrorInputLogin(email, password) {
 
     var validate = true;
-    //var email = document.getElementById("emailLogin").value;
-    //var password = document.getElementById("passwordLogin").value;
-    //var email = $('#emailLogin').val();
-    //var password = $('#passwordLogin').val();
-    //console.log("PutErrorInput "+email);
-    //console.log(password);
-    //cleanErrorInput();
+    cleanErrorInputLogin();
     if (!checkEmailLogin(email)) {
         $('#emailLogin').addClass("formInput-error");
+        alert("Invalidate email!");
         validate = false;
     }
     if (!checkPasswordLogin(password)) {
         $('#passwordLogin').addClass("formInput-error");
+        alert("Invalidate password!")
         validate = false;
     }
     return validate;
 }
 
 
-//ACTION ADD
-
-
-//loginForm.addEventListener("submit", function (e) {
-//    e.preventDefault();
-//    var email = $('#emailLogin').val();
-//    var password = $('#passwordLogin').val();
-//    if (putErrorInput()) {
-//        //AJAX
-//    }
+//ACTION SIGN IN
 
 function add() {
-
-
-    /*loginForm.addEventListener("submit", function (e) {*/
-    //e.preventDefault();
-    var messageToSend = document.getElementById("messageToSendLogin");
+    
     var login = {
         email: $('#emailLogin').val(),
         password: $('#passwordLogin').val()
     }
-    //var email = $('#emailLogin').val();
-    //var password = $('#passwordLogin').val();
-    //console.log(login.email);
-    //console.log(login.password);
-    //console.log(putErrorInput(email, password));
-    //if (putErrorInput(email, password)) {
-        //AJAX
-        
+    
+    if (putErrorInputLogin(login.email, login.password)) {
         $.ajax({
             url: "/Login/Login",
             data: JSON.stringify(login),
@@ -101,26 +77,16 @@ function add() {
                 console.log("Esta consultando al DAO");
                 console.log(result);
                 if (result == 1) {
-                    messageToSend.innerHTML = "<label class='text-success'>Welcome Administrator!</label>";
-                    $('#emailLogin').val("");
-                    $('#passwordLogin').val("");
+                    showDisplay("admin");
                     login.reset();
-                    alert("Es admin");
                 }
                 else if (result == 2) {
-                    //messageToSend.innerHTML = "<label class='text-danger'>Wlcome Student!</label>";
-                    $('#emailLogin').val("");
-                    $('#passwordLogin').val("");
+                    showDisplay("student");
                     login.reset();
-                    alert("Es estudiante");
                 } else if (result == 3) {
-                    //messageToSend.innerHTML = "<label class='text-danger'>Welcome Teacher!</label>";
-                    $('#emailLogin').val("");
-                    $('#passwordLogin').val("");
+                    showDisplay("professor");
                     login.reset();
-                    alert("Es profesor");
-                } else {
-                    //messageToSend.innerHTML = "<label class='text-danger'>Error to verify login</label>";
+                } else if (result == 0) {
                     alert("Error de contraseña o usuario");
                 }
                 $('#emailLogin').val("");
@@ -128,11 +94,42 @@ function add() {
             },
             error: function (errorMessage) {
                 alert("Error de contraseña o usuario");
-                //alert(errorMessage.responseText);
             }
         });
-    //}
+    }
+}
 
-    //});
 
+
+function hiddenAll() {
+    $(".displayAll").hide();
+    $(".displayAdmin").hide();
+    $(".displayStudent").hide();
+    $(".displayProfessor").hide();
+    $(".displayNoUser").hide();
+}
+
+function showDisplay(usuario) {
+    switch (usuario) {
+        case "all":
+            hiddenAll();
+            $(".displayAll").show();
+            break;
+        case "admin":
+            hiddenAll();
+            $(".displayAdmin").show();
+            break;
+        case "student":
+            hiddenAll();
+            $(".displayStudent").show();
+            break;
+        case "professor":
+            hiddenAll();
+            $(".displayProfessor").show();
+            break;
+        case "noUser":
+            hiddenAll();
+            $(".displayNoUser").show();
+            break;
+    }
 }

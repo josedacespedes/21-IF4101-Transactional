@@ -159,35 +159,35 @@ input, button,
             color: #ffffff;
         }
 
-section {
-    position: relative;
-    padding: 100px 0;
-}
+        section {
+            position: relative;
+            padding: 100px 0;
+        }
 
-#team,
-#testimonial {
-    background: #f9f9f9;
-}
+        #team,
+        #testimonial {
+            background: #f9f9f9;
+        }
 
-#team,
-#testimonial {
-    text-align: center;
-}
+        #team,
+        #testimonial {
+            text-align: center;
+        }
 
-#google-map iframe {
-    border: 0;
-    width: 100%;
-    height: 390px;
-}
+        #google-map iframe {
+            border: 0;
+            width: 100%;
+            height: 390px;
+        }
 
-.formInput-error {
-    border-bottom: 1px solid red !important;
-}
+        .formInput-error {
+            border-bottom: 1px solid red !important;
+        }
 
-.headTable {
-    background: #41ADE7;
-    color: white;
-}
+        .headTable {
+            background: #41ADE7;
+            color: white;
+        }
 
 /*---------------------------------------
      BUTTONS               
@@ -209,9 +209,21 @@ section {
         border-color: transparent;
     }
 
-.sidePadding {
-    padding-left: 15px;
-    padding-right: 15px;
+    .sidePadding {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    #buttonSubmitAddCourse {
+        margin-top: 50px;
+    }
+
+    #buttonLogin {
+        margin-top: -15px;
+    }
+
+body {
+    background-color: #e3f2fd;
 }
 /*---------------------------------------
        PRE LOADER              

@@ -17,6 +17,7 @@ function showDisplay(usuario) {
         case "admin":
             hiddenAll();
             $(".displayAdmin").show();
+            $(".displayAll").show();
             break;
         case "student":
             hiddenAll();
