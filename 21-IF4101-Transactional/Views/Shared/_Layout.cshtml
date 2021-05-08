@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    <title>Business Informatics community</title>
+    <title>Comunidad de Informática Empresarial</title>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -10,6 +10,9 @@
     <meta name="keywords" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+     integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"> <!--Font Awesome-->>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -52,36 +55,36 @@
                 </button>
 
                 <!-- lOGO TEXT HERE -->
-                <a href="#top" class="navbar-brand">Business Informatics</a>
+                <a href="#top" class="navbar-brand">Informática Empresarial</a>
             </div>
 
             <!-- MENU LINKS -->
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
-                    <li><a href="#news" class="smoothScroll">News</a></li>
-                    <li><a href="#addApplicant" class="smoothScroll">Sign In</a></li>
+                    <li><a href="#news" class="smoothScroll">Noticias</a></li>
+                    <li><a href="#addApplicant" class="smoothScroll">Registro</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#login" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-sign-in"></i>
-                            Login
+                            Iniciar sesión
                         </a>
                         <div class="dropdown-menu login" aria-labelledby="navbarDropdown2">
                             @*<form id="loginForm" autocomplete="off">*@
                             <div class="form-group">
-                                <label for="formGroupExampleInput">Email</label>
-                                <input type="email" name="emailLogin" id="emailLogin" autocomplete="off" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr" />
+                                <label for="formGroupExampleInput">Correo Institucional</label>
+                                <input type="email" name="emailLogin" id="emailLogin" autocomplete="off" class="form-control" placeholder="Correo Institucional" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="El correo debe llevar el dominio @@ucr.ac.cr">
                             </div>
                             <div class="form-group">
-                                <label for="formGroupExampleInput2">Password</label>
-                                <input type="password" name="passwordLogin" id="passwordLogin" autocomplete="off" class="form-control password" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)" />
+                                <label for="formGroupExampleInput2">Contraseña</label>
+                                <input type="password" name="passwordLogin" id="passwordLogin" autocomplete="off" class="form-control password" placeholder="Contraseña" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="La contraseña necesita al menos 1 mayúscula, 1 minúscula, 1 número y un 1 símbolo (!. # $% ^ & * _ = + -)">
                                 <span id="showPasswordLogin"><i class="fa fa-eye" id="iconPasswordLogin"></i></span>
                             </div>
                             <div id="buttonLogin">
                                 @*<button type="submit" class="submit-btn btn-primary form-control" onclick="return add()">Login</button>*@
-                                <button class="submit-btn btn-primary form-control" onclick="return add()" id="form-submit">Login</button>
+                                <button class="submit-btn btn-primary form-control" onclick="return add()" id="form-submit">Ingresar</button>
                             </div>
                             <div id="messageToSendLogin"></div>
                             @*</form>*@
@@ -95,7 +98,7 @@
     <!-- NEWS -->
     <section id="home" class="displayAll">
         <div class="text-center">
-            <h1 style="color:black" class="display-4">Welcome to community Business Informatics news</h1>
+            <h1 style="color:black" class="display-4">Bienvenido a las noticias de la comunidad de Informática Empresarial</h1>
         </div>
 
         <div class="row">
@@ -105,9 +108,9 @@
                     <div class="caption">
                         <div class="container">
                             <div class="col-md-6 col-sm-12">
-                                <h1>Distance Learning Education Center</h1>
-                                <h3>Our online courses are designed to fit in your industry supporting all-round with latest technologies.</h3>
-                                <a href="#feature" class="section-btn btn btn-default smoothScroll">Discover more</a>
+                                <h1>Centro de Educación de Aprendizaje a Distancia</h1>
+                                <h3>Nuestros cursos en línea están diseñados para adaptarse a su industria y brindar soporte completo con las últimas tecnologías.</h3>
+                                <a href="#feature" class="section-btn btn btn-default smoothScroll">Más información acá</a>
                             </div>
                         </div>
                     </div>
@@ -117,9 +120,9 @@
                     <div class="caption">
                         <div class="container">
                             <div class="col-md-6 col-sm-12">
-                                <h1>Start your journey with our practical courses</h1>
-                                <h3>Our online courses are built in partnership with technology leaders and are designed to meet industry demands.</h3>
-                                <a href="#courses" class="section-btn btn btn-default smoothScroll">Take a course</a>
+                                <h1>Comienza tu viaje con nuestros cursos prácticos.</h1>
+                                <h3>Nuestros cursos en línea se crean en asociación con líderes en tecnología y están diseñados para satisfacer las demandas de la industria.</h3>
+                                <a href="#courses" class="section-btn btn btn-default smoothScroll">Tomar un curso</a>
                             </div>
                         </div>
                     </div>
@@ -129,9 +132,9 @@
                     <div class="caption">
                         <div class="container">
                             <div class="col-md-6 col-sm-12">
-                                <h1>Efficient Learning Methods</h1>
+                                <h1>Métodos de aprendizaje eficientes</h1>
                                 <h3>Nam eget sapien vel nibh euismod vulputate in vel nibh. Quisque eu ex eu urna venenatis sollicitudin ut at libero. Visit <a rel="nofollow" href="https://www.facebook.com/templatemo">templatemo</a> page.</h3>
-                                <a href="#contact" class="section-btn btn btn-default smoothScroll">Let's chat</a>
+                                <a href="#contact" class="section-btn btn btn-default smoothScroll">Comunicate con nosotros</a>
                             </div>
                         </div>
                     </div>
@@ -147,28 +150,28 @@
 
                 <div class="col-md-6 col-sm-12">
                     <div class="addApplicant-info">
-                        <h2>Join the Business Informatics community</h2>
+                        <h2>Únase a la comunidad de informática empresarial</h2>
                         <figure>
                             <span><i class="fa fa-newspaper-o"></i></span>
                             <figcaption>
-                                <h3>Know news</h3>
-                                <p>Know and comment news of Business Informatics.</p>
+                                <h3>Nuevas noticias</h3>
+                                <p>Conozca y comenta las novedades de Informática Empresarial.</p>
                             </figcaption>
                         </figure>
 
                         <figure>
                             <span><i class="fa fa-question"></i></span>
                             <figcaption>
-                                <h3>Queries to comunnity</h3>
-                                <p>Ask and answer questions to community students.</p>
+                                <h3>Consultas a la comunidad</h3>
+                                <p>Haga y responda preguntas a los estudiantes de la comunidad.</p>
                             </figcaption>
                         </figure>
 
                         <figure>
                             <span><i class="fa fa-calendar"></i></span>
                             <figcaption>
-                                <h3>Request appointment</h3>
-                                <p>Solicit your appointment with a community professor.</p>
+                                <h3>Solicitar cita</h3>
+                                <p>Solicite su cita con un profesor de la comunidad.</p>
                             </figcaption>
                         </figure>
 
@@ -178,19 +181,19 @@
                 <div class="col-md-4 col-sm-12">
                     <div class="entry-form">
                         <form id="registerApplicantForm" autocomplete="off">
-                            <h2>Join community</h2>
-                            <input type="text" name="firstNameApplicant" id="firstNameApplicant" class="form-control" placeholder="First name" required="" minlength="3" maxlength="50" pattern="[A-Za-z áéíóúñÑ]+">
+                            <h2>Únete a la comunidad</h2>
+                            <input type="text" name="firstNameApplicant" id="firstNameApplicant" class="form-control" placeholder="Nombre" required="" minlength="3" maxlength="50" pattern="[A-Za-z áéíóúñÑ]+">
 
-                            <input type="text" name="lastNameApplicant" id="lastNameApplicant" class="form-control" placeholder="Last name" required="" minlength="10" maxlength="100" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+" title="Insert two surnames">
+                            <input type="text" name="lastNameApplicant" id="lastNameApplicant" class="form-control" placeholder="Apellidos" required="" minlength="10" maxlength="100" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+" title="Inserte los dos apellidos">
 
-                            <input type="text" name="studentIdApplicant" id="studentIdApplicant" class="form-control" placeholder="Student id" required="" minlength="6" maxlength="6" pattern="(?=.*[A-Z]).{1}[0-9]+" title="Valid student id">
+                            <input type="text" name="studentIdApplicant" id="studentIdApplicant" class="form-control" placeholder="Carnet" required="" minlength="6" maxlength="6" pattern="(?=.*[A-Z]).{1}[0-9]+" title="Valide su formato de Carnet">
 
-                            <input type="email" name="emailApplicant" id="emailApplicant" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr">
+                            <input type="email" name="emailApplicant" id="emailApplicant" class="form-control" placeholder="Correo Institucional" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="El correo debe llevar el dominio @@ucr.ac.cr">
 
-                            <input type="password" name="passwordApplicant" id="passwordApplicant" class="form-control" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)">
+                            <input type="password" name="passwordApplicant" id="passwordApplicant" class="form-control" placeholder="Contraseña" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="La contraseña necesita al menos 1 mayúscula, 1 minúscula, 1 número y un 1 símbolo (!. # $% ^ & * _ = + -)">
                             <span id="showPasswordApplicant"><i class="fa fa-eye" id="iconPasswordApplicant"></i></span>
 
-                            <button type="submit" class="submit-btn form-control">Sign in</button>
+                            <button type="submit" class="submit-btn form-control">Enviar</button>
 
                             <div id="alertMessageAddStudent"></div>
                         </form>
@@ -209,16 +212,16 @@
 
                 <!-- LIST  -->
                 <div class="col-md-6 addProfessor-info">
-                    <h2 id="professorTittle">Professor List</h2>
+                    <h2 id="professorTittle">Lista de Profesores</h2>
                     <div class="row sidePadding">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered" id="professorTable">
                                 <thead class="table-primary headTable">
                                     <tr class="text-center">
                                         <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Group</th>
+                                        <th>Nombre</th>
+                                        <th>Correo Electrónico</th>
+                                        <th>Grupo</th>
                                     </tr>
                                 </thead>
                                 <tbody id="bodyProfessorTable" class="text-center font-weight-bold">
@@ -232,19 +235,19 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="entry-form">
                         <form id="registerProfessorForm" autocomplete="off">
-                            <h2>Add Professor</h2>
-                            <input type="text" name="firstNameProfessor" id="firstNameProfessor" class="form-control" placeholder="First name" required="" minlength="3" maxlength="50" pattern="[A-Za-z áéíóúñÑ]+">
+                            <h2>Agregar Profesor</h2>
+                            <input type="text" name="firstNameProfessor" id="firstNameProfessor" class="form-control" placeholder="Nombre" required="" minlength="3" maxlength="50" pattern="[A-Za-z áéíóúñÑ]+">
 
-                            <input type="text" name="lastNameProfessor" id="lastNameProfessor" class="form-control" placeholder="Last name" required="" minlength="10" maxlength="100" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+" title="Insert two surnames">
+                            <input type="text" name="lastNameProfessor" id="lastNameProfessor" class="form-control" placeholder="Apellidos" required="" minlength="10" maxlength="100" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+" title="Inserte los dos apellidos">
 
-                            <input type="text" name="IdProfessor" id="idProfessor" class="form-control" placeholder="Professor id" required="" minlength="7" maxlength="7" pattern="[0-9P-]+" title="Valid professor id">
+                            <input type="text" name="IdProfessor" id="idProfessor" class="form-control" placeholder="ID Profesor" required="" minlength="7" maxlength="7" pattern="[0-9P-]+" title="Valide el formato de ID">
 
-                            <input type="email" name="emailProfessor" id="emailProfessor" class="form-control" placeholder="Institutional email address" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="@@ucr.ac.cr">
+                            <input type="email" name="emailProfessor" id="emailProfessor" class="form-control" placeholder="Correo Institucional" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="El correo debe llevar el dominio @@ucr.ac.cr">
 
-                            <input type="password" name="passwordProfessor" id="passwordProfessor" class="form-control" placeholder="Password" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="At least 1 Uppercase, At least 1 Lowercase, At least 1 Number, At least 1 Symbol (!.#$%^&*_=+-)">
+                            <input type="password" name="passwordProfessor" id="passwordProfessor" class="form-control" placeholder="Contraseña" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="La contraseña necesita al menos 1 mayúscula, 1 minúscula, 1 número y un 1 símbolo (!. # $% ^ & * _ = + -)">
                             <span id="showPasswordProfessor"><i class="fa fa-eye" id="iconPasswordProfessor"></i></span>
 
-                            <button type="submit" class="submit-btn form-control">Add</button>
+                            <button type="submit" class="submit-btn form-control">Registrar</button>
 
                             <div id="alertMessageAddProfessor"></div>
                         </form>
@@ -263,17 +266,17 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="entry-form">
                         <form id="registerCourseForm" autocomplete="off">
-                            <h2>Add Course</h2>
-                            <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Course name" required="" minlength="10" maxlength="30" title="Fill out with the course name">
+                            <h2>Agregar Curso</h2>
+                            <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Nombre" required="" minlength="10" maxlength="30" title="Complete este campo con el nombre del curso">
 
-                            <input type="text" name="idCourse" id="idCourse" class="form-control" placeholder="Course code" required="" minlength="4" maxlength="4" pattern="[0-9IF-]+" title="Fill out with 4 numbers">
+                            <input type="text" name="idCourse" id="idCourse" class="form-control" placeholder="Código" required="" minlength="4" maxlength="4" pattern="[0-9IF-]+" title="Complete este campo con 4 números">
 
-                            <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Credits number" required="" minlength="1" maxlength="1" pattern="[1-4]+" title="Fill out with a number in range 1 to 4">
+                            <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Créditos" required="" minlength="1" maxlength="1" pattern="[1-4]+" title="Complete esta campo con un número en el rango de 2 a 6">
 
-                            <input type="text" name="courseStatus" id="courseStatus" class="form-control" placeholder="Course status" required="" minlength="1" maxlength="1" pattern="[0-1]+" title="Fill out with 0 or 1">
+                            <input type="text" name="courseStatus" id="courseStatus" class="form-control" placeholder="Estado" required="" minlength="1" maxlength="1" pattern="[0-1]+" title="Escoja si el Curso esta activo o no">
 
                             <div id="buttonSubmitAddCourse">
-                                <button type="submit" class="submit-btn form-control" >Add</button>
+                                <button type="submit" class="submit-btn form-control">Registrar</button>
                             </div>
                             <div id="alertMessageAddCourse"></div>
                         </form>
@@ -282,17 +285,17 @@
 
                 <!-- LIST  -->
                 <div class="col-md-6 addCourse-info">
-                    <h2 id="courseTittle">Course List</h2>
+                    <h2 id="courseTittle">Lista de Cursos</h2>
                     <div class="row sidePadding">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered" id="courseTable">
                                 <thead class="table-primary headTable">
                                     <tr class="text-center">
-                                        <th>Code</th>
-                                        <th>Name</th>
-                                        <th>Credits Number</th>
-                                        <th>Status</th>
-                                        <th>Group</th>
+                                        <th>Código</th>
+                                        <th>Nombre</th>
+                                        <th>Créditos</th>
+                                        <th>Estado</th>
+                                        <th>Grupo</th>
                                     </tr>
                                 </thead>
                                 <tbody id="bodyCourseTable" class="text-center font-weight-bold">
@@ -309,16 +312,16 @@
     <section id="applicantList" class="displayAdmin">
         <div class="container">
             <div class="col-md-12">
-                <h2 id="applicantTittle">Applicant List</h2>
+                <h2 id="applicantTittle">Lista de Aplicantes</h2>
                 <div class="row sidePadding">
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered" id="applicantTable">
                             <thead class="table-primary headTable">
                                 <tr class="text-center">
-                                    <th>Id</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Action</th>
+                                    <th>Carnet</th>
+                                    <th>Nombre</th>
+                                    <th>Correo Institucional</th>
+                                    <th>Acción</th>
                                 </tr>
                             </thead>
                             <tbody id="bodyApplicantTable" class="text-center font-weight-bold">
@@ -339,7 +342,7 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="footer-info">
                         <div class="section-title">
-                            <h2>University contacts</h2>
+                            <h2>Contacto Universidad</h2>
                         </div>
                         <address>
                             <ul class="social-icon">
@@ -350,9 +353,10 @@
                         </address>
 
                         <div class="copyright-text">
-                            <p>Copyright &copy; 2021 Bussiness Informatics Transactional</p>
+                            <p>Copyright &copy; Informática Empresarial Transaccional 2021</p>
 
-                            <p>Project for the course of Commercial Applications 2021 at University of Costa Rica</p>
+                            <p>Proyecto para el curso de Aplicaciones Comerciales 2021</p>
+                            <p>Universidad de Costa Rica</p>
                         </div>
                     </div>
                 </div>
@@ -360,14 +364,14 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="footer-info">
                         <div class="section-title">
-                            <h2>Developers info</h2>
+                            <h2>Información de los Desarrolladores</h2>
 
                         </div>
                         <address>
-                            <p><a href="https://github.com/JoseKatoche">José David Alvarado Céspedes</a></p>
-                            <p><a href="https://github.com/Diego-Coto95">Juan Diego Coto Ramírez</a></p>
-                            <p><a href="https://github.com/Jenipher099">Jenipher Mata</a></p>
-                            <p><a href="https://github.com/WinstonAOR">Winston Ortega</a></p>
+                            <p> <i class="fab fa-github"> </i><span> </span><a href="https://github.com/JoseKatoche" target="_blank">José David Alvarado Céspedes</a></p>
+                            <p> <i class="fab fa-github"> </i><span> </span><a href="https://github.com/Diego-Coto95" target="_blank">Juan Diego Coto Ramírez</a></p>
+                            <p> <i class="fab fa-github"> </i><span> </span><a href="https://github.com/Jenipher099" target="_blank">Jenipher Mata</a></p>
+                            <p> <i class="fab fa-github"> </i><span> </span><a href="https://github.com/WinstonAOR" target="_blank">Winston Ortega</a></p>
                         </address>
 
                     </div>
