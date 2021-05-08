@@ -14,7 +14,7 @@ $(document).ready(function () {
 //VALIDATIONS
 function checkCourseName(course) {
     console.log(course.name);
-    if ((course.length < 10 || course.length > 30) || !(/^[a-zA-Z \u00E0-\u00FC\u00f1\u00d1]+$/.test(course)) || !course) {
+    if ((course.length < 10 || course.length > 150) || !(/^[a-zA-Z \u00E0-\u00FC\u00f1\u00d1]+$/.test(course)) || !course) {
         return false;
     } else {
         return true;
