@@ -107,15 +107,15 @@ registerCourseForm.addEventListener("submit", function (e) {
             dataType: "json",
             success: function (result) {
                 if (result == 1) {
-                    messageToSend.innerHTML = "<label class='text-success'>Course added successfully</label>";
+                    messageToSend.innerHTML = "<label class='text-success'>Curso agregado exitosamente</label>";
                     registerCourseForm.reset();
                     $('#courseTable').DataTable().ajax.reload();
                 } else if (result == 3) {
                     $('#idCourse').addClass("formInput-error");
-                    messageToSend.innerHTML = "<label class='text-danger'>Course already exist</label>";
+                    messageToSend.innerHTML = "<label class='text-danger'>Este curso ya existe</label>";
                 }
                 else {
-                    messageToSend.innerHTML = "<label class='text-danger'>Error to insert</label>";
+                    messageToSend.innerHTML = "<label class='text-danger'>Error al ingresar credenciales</label>";
                 }
             },
             error: function (errorMessage) {

@@ -183,7 +183,7 @@ $("#applicantTable tbody").on("click", "#rejectApplicant", function () {
     var rowToRemove = $(this).parents('tr');
 
     Swal.fire({
-        title: "Are you sure about delete this applicant?",
+        title: "¿Está seguro de eliminar a este aplicante?",
         showDenyButton: true,
         showCancelButton: false,
         confirmButtonText: `Confirm`,
