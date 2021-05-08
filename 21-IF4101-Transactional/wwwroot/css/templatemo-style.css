@@ -455,6 +455,12 @@ body {
       ADD STUDENT              
   -----------------------------------------*/
 
+#firstNameApplicant, #lastNameApplicant,
+#studentIdApplicant, #emailApplicant,
+#passwordApplicant {
+    color: white;
+}
+
 #addApplicant figure {
     display: inline-block;
     vertical-align: top;
@@ -496,9 +502,15 @@ body {
 }
 
 
+
 /*---------------------------------------
       ADD PROFESSOR              
   -----------------------------------------*/
+#firstNameProfessor, #lastNameProfessor, #idProfessor, #emailProfessor,
+#passwordProfessor {
+    color: white;
+}
+
 #iconPasswordProfessor {
     font-size: 20px;
 }
@@ -513,6 +525,10 @@ body {
 /*---------------------------------------
      COURSE LIST              
   -----------------------------------------*/
+
+#courseName, #idCourse, #creditsNumber, #courseStatus {
+    color: white;
+}
 
 #courseTitle {
     text-align: center;
