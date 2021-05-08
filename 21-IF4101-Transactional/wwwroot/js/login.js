@@ -7,9 +7,9 @@ var loginForm = document.getElementById("loginForm");
 // Login
 
 $(document).ready(function () {
-    $(".displayAdmin").hide();
-    $(".displayStudent").hide();
-    $(".displayProfessor").hide();
+    //$(".displayAdmin").hide();
+    //$(".displayStudent").hide();
+    //$(".displayProfessor").hide();
 });
 
 //SHOW/HID PASSWORD
