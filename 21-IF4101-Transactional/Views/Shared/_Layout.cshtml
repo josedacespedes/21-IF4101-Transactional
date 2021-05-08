@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-     integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"> <!--Font Awesome-->>
+     integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"> <!--Font Awesome-->
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -98,7 +98,7 @@
     <!-- NEWS -->
     <section id="home" class="displayAll">
         <div class="text-center">
-            <h1 style="color:black" class="display-4">Bienvenido a las noticias de la comunidad de Informática Empresarial</h1>
+            <h2 id="main_title" class="display-4">Bienvenido a las noticias de la comunidad de Informática Empresarial</h2>
         </div>
 
         <div class="row">
@@ -184,7 +184,7 @@
                             <h2>Únete a la comunidad</h2>
                             <input type="text" name="firstNameApplicant" id="firstNameApplicant" class="form-control" placeholder="Nombre" required="" minlength="3" maxlength="50" pattern="[A-Za-z áéíóúñÑ]+">
 
-                            <input type="text" name="lastNameApplicant" id="lastNameApplicant" class="form-control" placeholder="Apellidos" required="" minlength="10" maxlength="100" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+" title="Inserte los dos apellidos">
+                            <input type="text" name="lastNameApplicant" id="lastNameApplicant" class="form-control" placeholder="Apellidos" required="" minlength="10" maxlength="50" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+" title="Inserte los dos apellidos">
 
                             <input type="text" name="studentIdApplicant" id="studentIdApplicant" class="form-control" placeholder="Carnet" required="" minlength="6" maxlength="6" pattern="(?=.*[A-Z]).{1}[0-9]+" title="Valide su formato de Carnet">
 
@@ -267,7 +267,7 @@
                     <div class="entry-form">
                         <form id="registerCourseForm" autocomplete="off">
                             <h2>Agregar Curso</h2>
-                            <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Nombre" required="" minlength="10" maxlength="30" title="Complete este campo con el nombre del curso">
+                            <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Nombre" required="" minlength="10" maxlength="150" title="Complete este campo con el nombre del curso">
 
                             <input type="text" name="idCourse" id="idCourse" class="form-control" placeholder="Código" required="" minlength="4" maxlength="4" pattern="[0-9IF-]+" title="Complete este campo con 4 números">
 

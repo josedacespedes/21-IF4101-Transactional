@@ -72,6 +72,10 @@ a {
     text-decoration: none !important;
 }
 
+#main_title {
+    color:black;
+}
+
 a,
 input, button,
 .form-control {
