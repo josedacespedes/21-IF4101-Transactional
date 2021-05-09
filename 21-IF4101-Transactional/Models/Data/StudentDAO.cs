@@ -36,8 +36,8 @@ namespace _21_IF4101_Transactional.Models
                 {
                     connection.Open(); //abrimos conexión
                     SqlCommand command = new SqlCommand("InsertStudent", connection);
-                    
-                    command.CommandType = System.Data.CommandType.StoredProcedure; 
+
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
 
                     command.Parameters.AddWithValue("@FirstName", student.FirstName);
                     command.Parameters.AddWithValue("@LastName", student.LastName);
@@ -71,7 +71,7 @@ namespace _21_IF4101_Transactional.Models
             {
                 connection.Open(); //abrimos conexión
                 SqlCommand command = new SqlCommand("SelectStudent", connection);
-                command.CommandType = System.Data.CommandType.StoredProcedure; 
+                command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 SqlDataReader sqlDataReader = command.ExecuteReader();
                 //leemos todas las filas provenientes de BD
@@ -95,6 +95,47 @@ namespace _21_IF4101_Transactional.Models
 
 
             return students; //retornamos resultado al Controller.  
+
+        }
+
+        public Student GetProfile(string email)
+        {
+            SqlConnection connection = null;
+            Student student = null;
+            try
+            {
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("SelectStudentPerfilByEmail", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+                    student = new Student();
+                    if (sqlDataReader.Read())
+                    {
+                        student.Id = Convert.ToInt32(sqlDataReader["Id"]);
+                        student.FirstName = sqlDataReader["FirstName"].ToString();
+                        student.LastName = sqlDataReader["LastName"].ToString();
+                        student.StudentId = sqlDataReader["StudentId"].ToString();
+                        student.Email = sqlDataReader["Email"].ToString();
+                        student.Image = sqlDataReader["Image"].ToString();
+                        student.Likes = sqlDataReader["Likes"].ToString();
+                    }
+                    connection.Close();
+                }
+                return student;
+            }
+            catch (SqlException)
+            {
+                return null;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
 
         }
 
