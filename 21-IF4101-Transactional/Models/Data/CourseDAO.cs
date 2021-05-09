@@ -95,5 +95,40 @@ namespace _21_IF4101_Transactional.Models.Data
             return courses; //retornamos resultado al Controller.
         }
 
+        public int Update(Course course)
+        {
+            int resultToReturn;
+            SqlConnection connection = null;
+
+            try
+            {
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open(); //abrimos conexión
+                    SqlCommand command = new SqlCommand("UpdateCourse", connection);
+
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Id", course.Code);
+                    command.Parameters.AddWithValue("@Name", course.Name);
+                    command.Parameters.AddWithValue("@Credits", course.Credits);
+                    command.Parameters.AddWithValue("@State", course.State);
+
+                    resultToReturn = command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                return resultToReturn;
+            }
+            catch (SqlException ex)
+            {
+                return ex.Number;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+        }
+
+
     }
 }

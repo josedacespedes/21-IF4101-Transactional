@@ -67,6 +67,13 @@ namespace _21_IF4101_Transactional.Controllers
             return Json(new { data = courseDAO.Get() });
         }
 
+        public IActionResult Update([FromBody] Course course)
+        {
+            //llamada al modelo para actualizar al curso
+            courseDAO = new CourseDAO(_configuration);
+            return Ok(courseDAO.Update(course));
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
