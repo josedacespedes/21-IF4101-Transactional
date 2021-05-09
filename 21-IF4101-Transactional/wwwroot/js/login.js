@@ -3,6 +3,7 @@
 /*const { error } = require("jquery");*/
 
 var loginForm = document.getElementById("loginForm");
+var alertMessageToSendLogin = document.getElementById("messageToSendLogin");
 
 // Login
 
@@ -31,7 +32,7 @@ function checkEmailLogin(email) {
 }
 
 function checkPasswordLogin(password) {
-    if (password =="" || (password.length != 8) || !(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!.#$%^&*_=+-]).*$/.test(password)) || !password) {
+    if (password == "" || (password.length != 8) || !(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!.#$%^&*_=+-]).*$/.test(password)) || !password) {
         return false;
     } else {
         return true;
@@ -63,14 +64,14 @@ function putErrorInputLogin(email, password) {
 
 
 //ACTION SIGN IN
+loginForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-function add() {
-    
     var login = {
         email: $('#emailLogin').val(),
         password: $('#passwordLogin').val()
     }
-    
+
     if (putErrorInputLogin(login.email, login.password)) {
         $.ajax({
             url: "/Login/Login",
@@ -78,37 +79,36 @@ function add() {
             type: "POST",
             contentType: "application/json;charset=utf-8",
             dataType: "json",
-            
+
             success: function (result) {  //(result = 1): Admin  (result = 2): Student  (result = 3): Professor
                 if (result == 1) {
-                    $('#emailLogin').val("");
-                    $('#passwordLogin').val("");
+                    loginForm.reset(); //Clean form fields
                     showDisplay("admin");
                 }
                 else if (result == 2) {
-                    $('#emailLogin').val("");
-                    $('#passwordLogin').val("");
+                    loginForm.reset(); //Clean form fields
                     showDisplay("student");
                 } else if (result == 3) {
-                    $('#emailLogin').val("");
-                    $('#passwordLogin').val("");
+                    loginForm.reset(); //Clean form fields
                     showDisplay("professor");
                 } else if (result == 0) {
-                    $('#emailLogin').val("");
-                    $('#passwordLogin').val("");
-                    alert("Error de contraseña o usuario");
+                    alertMessageToSendLogin.innerHTML = `<label class="text-danger">Email o contraseña incorrecta</label>`;
                 }
-                $('#emailLogin').val("");
-                $('#passwordLogin').val("");
             },
             error: function (errorMessage) {
                 alert("Error de contraseña o usuario");
             }
         });
     }
-}
+});
 
-
+//HIDE MSG FORM
+$("#emailLogin").click(function () {
+    alertMessageToSendLogin.innerHTML = "";
+});
+$("#passwordLogin").click(function () {
+    alertMessageToSendLogin.innerHTML = "";
+});
 
 function hiddenAll() {
     $(".displayAll").hide();
