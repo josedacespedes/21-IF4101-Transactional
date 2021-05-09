@@ -271,7 +271,15 @@
 
                             <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Créditos" required="" minlength="1" maxlength="1" pattern="[1-4]+" title="Complete esta campo con un número en el rango de 2 a 6">
 
-                            <input type="text" name="courseStatus" id="courseStatus" class="form-control" placeholder="Estado" required="" minlength="1" maxlength="1" pattern="[0-1]+" title="Escoja si el Curso esta activo o no">
+                            @*<input type="text" name="courseStatus" id="courseStatus" class="form-control" placeholder="Estado" required="" minlength="1" maxlength="1" pattern="[0-1]+" title="Escoja si el Curso esta activo o no">*@
+
+                            <div id="statusSwitch">
+                                <label id="courseStatusLabelOne">Estado</label>
+                                <label class="switch" id="courseStatusLabelTwo">
+                                    <input type="checkbox" name="courseStatus" id="courseStatus" title="Escoja si el Curso esta activo o no">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
 
                             <div id="buttonSubmitAddCourse">
                                 <button type="submit" class="submit-btn form-control">Registrar</button>

@@ -3,6 +3,7 @@
 var registerCourseForm = document.getElementById("registerCourseForm");
 var messageToSend = document.getElementById("alertMessageAddCourse");
 var tableCourse;
+
 /*--------------------------------------------- ADD COURSE-----------------------------------------------------------*/
 
 //MASK
@@ -13,7 +14,6 @@ $(document).ready(function () {
 
 //VALIDATIONS
 function checkCourseName(course) {
-    console.log(course.name);
     if ((course.length < 10 || course.length > 150) || !(/^[a-zA-Z \u00E0-\u00FC\u00f1\u00d1]+$/.test(course)) || !course) {
         return false;
     } else {
@@ -34,7 +34,7 @@ function checkCourseCode(courseCode) {
 
 function checkCourseCreditsNumber(courseCreditsNumber) {
 
-    if ((courseCreditsNumber < 1 || courseCreditsNumber > 4)) {
+    if ((courseCreditsNumber < 1 || courseCreditsNumber > 6)) {
         return false;
     } else {
         return true;
@@ -48,8 +48,6 @@ function checkCourseStatus(courseStatus) {
         return true;
     }
 }
-
-
 
 function cleanErrorInputCourse() {
     $('#courseName').removeClass("formInput-error");
@@ -91,11 +89,13 @@ $("#idCourse").click(function () {
 registerCourseForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
+    var checkStatus =  $("input[name='courseStatus']").is(':checked') ? 1 : 0; //Validate if th input is checked or not
+
     var course = {
         name: $('#courseName').val(),
         code: $('#idCourse').val(),
         credits: parseInt($('#creditsNumber').val()),
-        state: parseInt($('#courseStatus').val())
+        state: checkStatus
     };
 
     if (!putErrorInputCourse(course)) {
@@ -140,7 +140,11 @@ function loadCourseList() {
             { "data": "code" },
             { "data": "name" },
             { "data": "credits" },
-            { "data": "state" },
+            {
+                render: function (data, type, row) {
+                    return row.state == 1 ? 'Disponible' : 'No disponible';
+                }
+            },
             { defaultContent: "<button id='' name='' type='button' data-bs-toggle='' data-bs-target='' class='btn btn-primary' title='Grupos'><i class='fa fa-link'></i></button>" }
         ]
     });
