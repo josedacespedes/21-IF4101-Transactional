@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-     integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"> <!--Font Awesome-->
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"> <!--Font Awesome-->
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -53,43 +53,41 @@
                     <span class="icon icon-bar"></span>
                     <span class="icon icon-bar"></span>
                 </button>
-
-                <!-- lOGO TEXT HERE -->
                 <a href="#top" class="navbar-brand">Informática Empresarial</a>
             </div>
-
-            <!-- MENU LINKS -->
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
                     <li><a href="#news" class="smoothScroll">Noticias</a></li>
                     <li><a href="#addApplicant" class="smoothScroll">Registro</a></li>
+
                 </ul>
 
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right" id="loginRight">
+
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#login" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-sign-in"></i>
                             Iniciar sesión
                         </a>
                         <div class="dropdown-menu login" aria-labelledby="navbarDropdown2">
-                            @*<form id="loginForm" autocomplete="off">*@
-                            <div class="form-group">
-                                <label for="formGroupExampleInput">Correo Institucional</label>
-                                <input type="email" name="emailLogin" id="emailLogin" autocomplete="off" class="form-control" placeholder="Correo Institucional" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="El correo debe llevar el dominio @@ucr.ac.cr">
-                            </div>
-                            <div class="form-group">
-                                <label for="formGroupExampleInput2">Contraseña</label>
-                                <input type="password" name="passwordLogin" id="passwordLogin" autocomplete="off" class="form-control password" placeholder="Contraseña" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="La contraseña necesita al menos 1 mayúscula, 1 minúscula, 1 número y un 1 símbolo (!. # $% ^ & * _ = + -)">
-                                <span id="showPasswordLogin"><i class="fa fa-eye" id="iconPasswordLogin"></i></span>
-                            </div>
-                            <div id="buttonLogin">
-                                @*<button type="submit" class="submit-btn btn-primary form-control" onclick="return add()">Login</button>*@
-                                <button class="submit-btn btn-primary form-control" onclick="return add()" id="form-submit">Ingresar</button>
-                            </div>
-                            <div id="messageToSendLogin"></div>
-                            @*</form>*@
+                            <form id="loginForm" autocomplete="off">
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Correo Institucional</label>
+                                    <input type="email" name="emailLogin" id="emailLogin" autocomplete="off" class="form-control" placeholder="Correo Institucional" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="El correo debe llevar el dominio @@ucr.ac.cr">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput2">Contraseña</label>
+                                    <input type="password" name="passwordLogin" id="passwordLogin" autocomplete="off" class="form-control password" placeholder="Contraseña" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="La contraseña necesita al menos 1 mayúscula, 1 minúscula, 1 número y un 1 símbolo (!. # $% ^ & * _ = + -)">
+                                    <span id="showPasswordLogin"><i class="fa fa-eye" id="iconPasswordLogin"></i></span>
+                                </div>
+                                <div id="buttonLogin">
+                                    <button class="submit-btn btn-primary form-control" id="form-submit">Ingresar</button>
+                                </div>
+                                <div id="messageToSendLogin" class="text-center"></div>
+                            </form>
                         </div>
                     </li>
+
                 </ul>
             </div>
         </div>
