@@ -36,8 +36,8 @@ namespace _21_IF4101_Transactional.Controllers
         public IActionResult Insert([FromBody] Student student)
         {
             //llamada al modelo para insertar el estudiante           
-                int resultToReturn = studentDAO.Insert(student); 
-                return Ok(resultToReturn);        
+            int resultToReturn = studentDAO.Insert(student);
+            return Ok(resultToReturn);
         }
 
         public IActionResult Get()
@@ -45,6 +45,14 @@ namespace _21_IF4101_Transactional.Controllers
             //llamada al modelo para obtener los estudiantes
             studentDAO = new StudentDAO(_configuration);
             return Ok(studentDAO.Get());
+        }
+
+
+        public IActionResult GetProfile(string email)
+        {
+            //llamada al modelo para obtener el perfil de estudiante
+            studentDAO = new StudentDAO(_configuration);
+            return Ok(studentDAO.GetProfile(email));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

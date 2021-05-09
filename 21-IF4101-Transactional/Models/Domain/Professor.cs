@@ -14,12 +14,15 @@ namespace _21_IF4101_Transactional.Models.Domain
         private string emailProfessor;
         private string passwordProfessor;
         private int stateProfessor;
+        private string imageProfessor;
+        private string likesProfessor;
+        private string vocationalTrainingProfessor;
 
         public Professor()
         {
         }
 
-        public Professor(int id, string firstNameProfessor, string lastNameProfessor, string idProfessor, string emailProfessor, string passwordProfessor, int stateProfessor)
+        public Professor(int id, string firstNameProfessor, string lastNameProfessor, string idProfessor, string emailProfessor, string passwordProfessor, int stateProfessor, string imageProfessor, string likesProfessor, string vocationalTrainingProfessor)
         {
             this.Id = id;
             this.FirstNameProfessor = firstNameProfessor;
@@ -28,6 +31,9 @@ namespace _21_IF4101_Transactional.Models.Domain
             this.EmailProfessor = emailProfessor;
             this.PasswordProfessor = passwordProfessor;
             this.StateProfessor = stateProfessor;
+            this.imageProfessor = imageProfessor;
+            this.likesProfessor = likesProfessor;
+            this.vocationalTrainingProfessor = vocationalTrainingProfessor;
         }
 
         public int Id { get => id; set => id = value; }
@@ -37,5 +43,8 @@ namespace _21_IF4101_Transactional.Models.Domain
         public string EmailProfessor { get => emailProfessor; set => emailProfessor = value; }
         public string PasswordProfessor { get => passwordProfessor; set => passwordProfessor = value; }
         public int StateProfessor { get => stateProfessor; set => stateProfessor = value; }
+        public string ImageProfessor { get => imageProfessor; set => imageProfessor = value; }
+        public string LikesProfessor { get => likesProfessor; set => likesProfessor = value; }
+        public string VocationalTrainingProfessor { get => vocationalTrainingProfessor; set => vocationalTrainingProfessor = value; }
     }
 }

@@ -189,8 +189,8 @@ $("#applicantTable tbody").on("click", "#rejectApplicant", function () {
         title: "¿Está seguro de eliminar a este aplicante?",
         showDenyButton: true,
         showCancelButton: false,
-        confirmButtonText: `Confirm`,
-        denyButtonText: `Cancel`,
+        confirmButtonText: `Confirmar`,
+        denyButtonText: `Cancelar`,
     }).then((result) => {
 
         if (result.isConfirmed) {
