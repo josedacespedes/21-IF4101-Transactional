@@ -56,7 +56,7 @@ registerConsultForm.addEventListener("submit", function (e) {
             success: function (result) {
                 if (result == 1) {
                     messageToSend.innerHTML = "<label class='text-success'>Consulta agregada exitosamente</label>";
-                    registerCourseForm.reset();
+                    //registerCourseForm.reset();
                     $('#consultTable').DataTable().ajax.reload();
                 } else if (result == 3) {
                     $('#idCourse').addClass("formInput-error");
@@ -74,50 +74,52 @@ registerConsultForm.addEventListener("submit", function (e) {
     }
 });
 
-function loadCourseList() {
-    tableCourse = $("#courseTable").DataTable({
-        "destroy": true,
-        "autoWidth": false,
-        "ajax": {
-            "url": "/Consult/Get",
-            "tpye": 'GET',
-            "datatype": "json"
-        },
-        lengthMenu: [7, 20, 50, 100],
-        "columns": [
-            { "data": "id" },
-            { "data": "name" },
-            { "data": "credits" },
-            {
-                render: function (data, type, row) {
-                    return row.state == 1 ? 'Disponible' : 'No disponible';
-                }
-            },
-            { defaultContent: "<button id='' name='' type='button' data-bs-toggle='' data-bs-target='' class='btn btn-primary' title='Grupos'><i class='fa fa-link'></i></button>" }
-        ]
-    });
-}
-function GetCourse() {
+//function loadCourseList() {
+//    tableCourse = $("#courseTable").DataTable({
+//        "destroy": true,
+//        "autoWidth": false,
+//        "ajax": {
+//            "url": "/Consult/Get",
+//            "tpye": 'GET',
+//            "datatype": "json"
+//        },
+//        lengthMenu: [7, 20, 50, 100],
+//        "columns": [
+//            { "data": "id" },
+//            { "data": "name" },
+//            { "data": "credits" },
+//            {
+//                render: function (data, type, row) {
+//                    return row.state == 1 ? 'Disponible' : 'No disponible';
+//                }
+//            },
+//            { defaultContent: "<button id='' name='' type='button' data-bs-toggle='' data-bs-target='' class='btn btn-primary' title='Grupos'><i class='fa fa-link'></i></button>" }
+//        ]
+//    });
+//}
 
-    $.ajax({
-        url: "/Consult/GetCourses",
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            //llenar el dropdowns (select)
-            var html = '';
-            $.each(result, function (key, item) {
-                html += '<option value="' + item.id + '">' + item.name + '</option>';
-            });
-            $('#courseConsult').append(html);
-        },
-        error: function (errorMessage) {
-            alert("Error");
-            alert(errorMessage.responseText);
-        }
-    });
-}
+
+//function GetCourse() {
+
+//    $.ajax({
+//        url: "/Consult/GetCourses",
+//        type: "GET",
+//        contentType: "application/json;charset=utf-8",
+//        dataType: "json",
+//        success: function (result) {
+//            //llenar el dropdowns (select)
+//            var html = '';
+//            $.each(result, function (key, item) {
+//                html += '<option value="' + item.id + '">' + item.name + '</option>';
+//            });
+//            $('#courseConsult').append(html);
+//        },
+//        error: function (errorMessage) {
+//            alert("Error");
+//            alert(errorMessage.responseText);
+//        }
+//    });
+//}
 
 //VALIDATIONS
 
@@ -159,6 +161,6 @@ function putErrorInputConsult(Consult) {
 }
 
 //HIDE MSG FORM
-$("#idCourse").click(function () {
-    messageToSend.innerHTML = "";
-});
+//$("#idCourse").click(function () {
+//    messageToSend.innerHTML = "";
+/*});*/
