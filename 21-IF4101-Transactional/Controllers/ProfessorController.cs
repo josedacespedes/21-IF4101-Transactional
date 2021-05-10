@@ -64,6 +64,13 @@ namespace _21_IF4101_Transactional.Controllers
             return Json(new { data = professorDAO.Get() });
         }
 
+        public IActionResult GetProfile(string email)
+        {
+            //llamada al modelo para obtener el perfil de estudiante
+            professorDAO = new ProfessorDAO(_configuration);
+            return Ok(professorDAO.GetProfile(email));
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

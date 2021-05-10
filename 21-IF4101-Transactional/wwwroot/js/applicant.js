@@ -105,6 +105,9 @@ $("#firstNameApplicant").click(function () {
 $("#studentIdApplicant").click(function () {
     alertMessageAddStudent.innerHTML = "";
 });
+$("#emailApplicant").click(function () {
+    alertMessageAddStudent.innerHTML = "";
+});
 
 
 //ACTION ADD
@@ -138,7 +141,7 @@ formApplicant.addEventListener("submit", function (e) {
                     alertMessageAddStudent.innerHTML = `<label class="text-success">Register successfully</label>`;//Msg enter success
                     formApplicant.reset(); //Clean form fields
                     sendEmailStudentWait(applicant.firstNameApplicant, applicant.emailApplicant);
-                    
+                    $('#applicantTable').DataTable().ajax.reload();
                 }
             },
             error: function (errorMessage) {
@@ -186,8 +189,8 @@ $("#applicantTable tbody").on("click", "#rejectApplicant", function () {
         title: "¿Está seguro de eliminar a este aplicante?",
         showDenyButton: true,
         showCancelButton: false,
-        confirmButtonText: `Confirm`,
-        denyButtonText: `Cancel`,
+        confirmButtonText: `Confirmar`,
+        denyButtonText: `Cancelar`,
     }).then((result) => {
 
         if (result.isConfirmed) {
