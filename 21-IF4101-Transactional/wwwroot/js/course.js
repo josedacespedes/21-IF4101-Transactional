@@ -145,39 +145,45 @@ function loadCourseList() {
                     return row.state == 1 ? 'Disponible' : 'No disponible';
                 }
             },
-            { defaultContent: "<button id='' name='' type='button' data-bs-toggle='' data-bs-target='' class='btn btn-primary' title='Grupos'><i class='fa fa-link'></i></button>" }
+            {
+                defaultContent: "<button type='button' id='modalCourseGroup' name='modalCourseGroup' class='btn btn-primary' data-toggle='modal' data-target='#myModal'><i class='fa fa-link'></i></button>"
+            }
         ]
+
     });
 }
 
+function calculateGroupsAmount() {
 
-function prueba() {
+    var groupsAmount = document.getElementById("groupsAmount").value;
+    var associateGroupCourse = document.getElementById("associateGroupCourse").value;
 
-    //
+    var text;
 
-    //var course = {
-    //    id: $('#idPrueba').val(),
-    //    numGroup: list
-    //};
-
-    var list = [parseInt($('#grupo1').val()), parseInt($('#grupo2').val())];
-    var course = {
-        id: parseInt($('#id').val()),
-        numGroup: list
-    };
-
-    $.ajax({
-        url: "/Course/InsertGroup",
-        data: JSON.stringify(course),
-        type: "POST",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            alert("NICE!");
-        },
-        error: function (errorMessage) {
-            alert("Error");
-            alert(errorMessage.responseText);
+    for (i = 0; i < groupsAmount.length; i++) {
+        for (j = associateGroupCourse; j < i.length; j++) {
+            text += text[j] + ",";
         }
+    }
+
+    console.log(text);
+
+
+    var cantidad = document.getElementById("groupsAmount").value;
+
+    var tarifaTotal = new Intl.NumberFormat(["ban", "id"]).format(cantidad * tarifa);
+
+    /* Solo deja ingresar numeros */
+    jQuery('#associateGroupCourse').keypress(function (tecla) {
+        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
+
+    if (associateGroupCourse == "") {
+        document.getElementById("associateGroupCourse").innerHTML = `<span class="input-group-text" id="inputGroupPrepend">₡</span>
+        <input type="text" id="precio" name="precio" value="0" aria-describedby="inputGroupPrepend" class="formulario__input form-control" pattern="[0-9.]+" title="Tarifa total" required disabled>`;
+    } else {
+        document.getElementById("calculatePrice").innerHTML = `<span class="input-group-text" id="inputGroupPrepend">₡</span>
+        <input type="text" id="precio" name="precio" value="${tarifaTotal}" aria-describedby="inputGroupPrepend" class="formulario__input form-control" pattern="[0-9.]+" title="Tarifa total" required disabled>`;
+    }
+
 }
