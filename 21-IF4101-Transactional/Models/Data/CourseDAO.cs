@@ -160,6 +160,42 @@ namespace _21_IF4101_Transactional.Models.Data
         }
 
 
+        public int InsertGroup(Course course)
+        {
+            int resultToReturn = 0;
+            int resultToReturnReference = course.NumGroup.Count;
+
+            SqlConnection connection = null;
+            try
+            {
+                foreach (int group in course.NumGroup)
+                {
+                    using (connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        SqlCommand command = new SqlCommand("InsertCourseGroup", connection);
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@IdCourse", course.Id);
+                        command.Parameters.AddWithValue("@NumGroup", group);
+                        resultToReturn = command.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                    resultToReturn++;
+                }
+
+                return resultToReturn == resultToReturnReference ? 1 : -1;
+            }
+            catch (SqlException ex)
+            {
+                return ex.Number;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+        }
 
     }
 }

@@ -89,7 +89,7 @@ $("#idCourse").click(function () {
 registerCourseForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    var checkStatus =  $("input[name='courseStatus']").is(':checked') ? 1 : 0; //Validate if th input is checked or not
+    var checkStatus = $("input[name='courseStatus']").is(':checked') ? 1 : 0; //Validate if th input is checked or not
 
     var course = {
         name: $('#courseName').val(),
@@ -150,3 +150,34 @@ function loadCourseList() {
     });
 }
 
+
+function prueba() {
+
+    //
+
+    //var course = {
+    //    id: $('#idPrueba').val(),
+    //    numGroup: list
+    //};
+
+    var list = [parseInt($('#grupo1').val()), parseInt($('#grupo2').val())];
+    var course = {
+        id: parseInt($('#id').val()),
+        numGroup: list
+    };
+
+    $.ajax({
+        url: "/Course/InsertGroup",
+        data: JSON.stringify(course),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            alert("NICE!");
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
