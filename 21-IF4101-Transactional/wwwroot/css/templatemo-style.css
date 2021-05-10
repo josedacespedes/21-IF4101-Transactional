@@ -295,6 +295,16 @@ input:checked + .slider:before {
     }
 
 /*---------------------------------------
+       MODAL              
+  -----------------------------------------*/
+#textAreaCourseGroup {
+    padding: 2%;
+    margin-left: 13%;
+    text-align:center;
+    width: 70%;
+}
+
+/*---------------------------------------
        PRE LOADER              
   -----------------------------------------*/
 .preloader {
