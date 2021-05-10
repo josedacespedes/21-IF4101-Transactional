@@ -12,21 +12,21 @@ namespace _21_IF4101_Transactional.Models.Domain
         private int idAuthor;
         private string description;
         private DateTime date;
-        private int idCourse;
+        private Course course;
         private int type; //tipo 0=privadan1=pública
 
         public Consult()
         {
         }
 
-        public Consult(int id, string title, int idAuthor, string description, DateTime date, int idCourse, int type)
+        public Consult(int id, string title, int idAuthor, string description, DateTime date, Course course, int type)
         {
             this.Id = id;
             this.Title = title;
             this.IdAuthor = idAuthor;
             this.Description = description;
             this.Date = date;
-            this.IdCourse = idCourse;
+            this.Course = course;
             this.Type = type;
         }
 
@@ -35,7 +35,7 @@ namespace _21_IF4101_Transactional.Models.Domain
         public int IdAuthor { get => idAuthor; set => idAuthor = value; }
         public string Description { get => description; set => description = value; }
         public DateTime Date { get => date; set => date = value; }
-        public int IdCourse { get => idCourse; set => idCourse = value; }
+        public Course Course { get => course; set => course = value; }
         public int Type { get => type; set => type = value; }
     }
 }

@@ -14,7 +14,8 @@ namespace _21_IF4101_Transactional.Controllers
     {
         private readonly ILogger<ConsultController> _logger;
         private readonly IConfiguration _configuration;
-
+        ConsultDAO consultDAO;
+        CourseDAO courseDAO;
         public ConsultController(ILogger<ConsultController> logger, IConfiguration configuration)
         {
             _logger = logger;
@@ -31,7 +32,7 @@ namespace _21_IF4101_Transactional.Controllers
             return View();
         }
 
-        ConsultDAO consultDAO;
+        
 
         public IActionResult Insert([FromBody] Consult consult)
         {
@@ -41,6 +42,23 @@ namespace _21_IF4101_Transactional.Controllers
                 int resultToReturn = consultDAO.Insert(consult);
                 return Ok(resultToReturn); //retornamos el 1 o el 0 a la vista
             
+        }
+
+        public IActionResult GetCourses()
+        {
+            //llamada al modelo para obtener las carreras
+            courseDAO = new CourseDAO(_configuration);
+            List<Course> courses = new List<Course>();
+            courses = courseDAO.GetToConsult();
+            return Json(courses);
+        }
+
+
+        public IActionResult Get()
+        {
+            //call model to get the courses
+            courseDAO = new CourseDAO(_configuration);
+            return Json(new { data = courseDAO.Get() });
         }
     }
 }

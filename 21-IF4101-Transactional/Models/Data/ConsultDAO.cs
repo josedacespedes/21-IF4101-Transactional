@@ -37,7 +37,7 @@ namespace _21_IF4101_Transactional.Models.Data
                 command.Parameters.AddWithValue("@Title", consult.Title);
                 command.Parameters.AddWithValue("@IdAuthor", consult.IdAuthor);
                 command.Parameters.AddWithValue("@Description", consult.Description);
-                command.Parameters.AddWithValue("@idCourse", consult.IdCourse);
+                command.Parameters.AddWithValue("@idCourse", consult.Course.Id);
                 command.Parameters.AddWithValue("@Type", consult.Type);
                 resultToReturn = command.ExecuteNonQuery(); //esta es la sentencia que ejecuta la inserción en BD y saca un 1 o un 0 dependiendo de si se modificó la tupla o no. Es decir, si se insertó en BD o no.
                 connection.Close(); //cerramos conexión.
