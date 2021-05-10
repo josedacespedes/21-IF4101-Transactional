@@ -339,6 +339,74 @@
         </div>
     </section>
 
+    <!--  REGISTER CONSULT -->
+    <section id="addConsult" class="displayStudent">
+        <div class="container">
+            <div class="row">
+
+                <!-- ADD  -->  <!--pattern="[0-9IF-]+"-->
+                <div class="col-md-6 col-sm-12">
+                    <div class="entry-form">
+                        <form id="registerConsultForm" autocomplete="off">
+                            <h2>Agregar Consulta</h2>
+
+                            <input type="text" name="consultTitle" id="consultTitle" class="form-control" placeholder="Titulo Consulta" required="" minlength="10" maxlength="150" title="Complete este campo con el titulo de consulta">
+
+                            <input type="text" name="consultIdAuthor" id="consultIdAuthor" class="form-control" placeholder="ID Autor" required="" minlength="6" maxlength="10" title="Complete este campo con el ID del Autor">
+
+                            <input type="text" name="consultDescription" id="consultDescription" class="form-control" placeholder="Descripción" required="" minlength="10" maxlength="150" title="Complete este campo con la descripcion de la consulta">
+
+                            <select class="form-control without-margin" required name="courseConsult" id="courseConsult">
+                                <option value="0" selected>Seleccione el curso</option>
+                            </select>
+
+
+                            <label id="consultType">Tipo</label>
+                            <label class="switch">
+                                <input type="checkbox" id="consultTypeCheck" name="consultTypeCheck">
+                                <div class="slider round">
+                                    <!--ADDED HTML -->
+                                    <span class="on">Pública</span>
+                                    <span class="off">Privada</span>
+                                    <!--END-->
+                                </div>
+                            </label>
+
+                            <div id="buttonSubmitAddCourse">
+                                <button type="submit" class="submit-btn form-control">Registrar</button>
+                            </div>
+                            <div id="alertMessageAddConsult"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- LIST  -->
+                <div class="col-md-6 addCourse-info">
+                    <h2 id="consultTittle">Lista de Consultas</h2>
+                    <div class="row sidePadding">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered" id="consultTable">
+                                <thead class="table-primary headTable">
+                                    <tr class="text-center">
+                                        <th>ID</th>
+                                        <th>Titulo</th>
+                                        <th>IDAutor</th>
+                                        <th>Descripción</th>
+                                        <th>Fecha</th>
+                                        <th>Curso</th>
+                                        <th>Tipo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyCourseTable" class="text-center font-weight-bold">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- FOOTER -->
     <footer id="footer" class="displayAll">
@@ -399,6 +467,7 @@
     <script src="js/professor.js"></script>
     <script src="js/course.js"></script>
     <script src="js/display.js"></script>
+    <script src="js/consult.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script> <!-- Mask inputs -->
     <script src="https://smtpjs.com/v3/smtp.js"></script> <!-- Email -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script> <!-- Datatable -->
