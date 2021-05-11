@@ -159,58 +159,63 @@ function calculateGroupsAmount() {
 
     var groupsAmount = document.getElementById("groupsAmount").value;
     var associateGroupCourse = document.getElementById("associateGroupCourse").value;
-   
 
     /* Solo deja ingresar numeros */
     jQuery('#associateGroupCourse').keypress(function (tecla) {
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
 
-    var acumula = [];
+    var groups = [];
     var i;
 
     for (i = 0; i < groupsAmount; i++) {
-        acumula += [associateGroupCourse++ + ","];
+        groups += [associateGroupCourse++ + ","];
     }
-    console.log(acumula);
+    //console.log(acumula);
 
     if (associateGroupCourse == "") {
         document.getElementById("showAssociation").innerHTML = `<textarea class="form-control" rows="5" id="showAssociation" placeholder="Cursos agregados: " disabled></textarea>`;
     } else {
-        document.getElementById("showAssociation").innerHTML = `Cursos agregados: ${acumula}`;
+        document.getElementById("showAssociation").innerHTML = `Cursos agregados: ${groups}`;
     }
+    return groups;
+}
 
+function cleanFieldsModalCourseGroup() {
+    document.getElementById("groupsAmount").value = "";
+    document.getElementById("associateGroupCourse").value = "";
+    document.getElementById("showAssociation").value = "Cursos agregados: ";
 }
 
 
+registerCourseGroup.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    console.log(calculateGroupsAmount());
 
 
+    //var list = [parseInt($('#groupsAmount').val()), parseInt($('#associateGroupCourse').val())];
+    //var course = {
+    //    id: parseInt($('#id').val()),
+    //    numGroup: list
+    //};
 
+    //$.ajax({
+    //    url: "/Course/InsertGroup",
+    //    data: JSON.stringify(course),
+    //    type: "POST",
+    //    contentType: "application/json;charset=utf-8",
+    //    dataType: "json",
+    //    success: function (result) {
+    //        alert("NICE!");
+    //    },
+    //    error: function (errorMessage) {
+    //        alert("Error");
+    //        alert(errorMessage.responseText);
+    //    }
+    //});
 
-function InsertCourseGroup() {
-
-    var list = [parseInt($('#grupo1').val()), parseInt($('#grupo2').val())];
-    var course = {
-        id: parseInt($('#id').val()),
-        numGroup: list
-    };
-
-    $.ajax({
-        url: "/Course/InsertGroup",
-        data: JSON.stringify(course),
-        type: "POST",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            alert("NICE!");
-        },
-        error: function (errorMessage) {
-            alert("Error");
-            alert(errorMessage.responseText);
-        }
-    });
-
-}
+});
 
 
 
