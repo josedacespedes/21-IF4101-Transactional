@@ -302,6 +302,11 @@ input:checked + .slider:before {
     margin-left: 13%;
     text-align: center;
     width: 70%;
+}
+#buttonCloseModal {
+    float: right;
+}
+#showAssociation {
     resize: none;
 }
 #inputAmount, #inputAssociate {
@@ -309,8 +314,7 @@ input:checked + .slider:before {
     margin-left: 13%;
 }
 #courseTitleModal {
-    margin-top: -5%;
-    padding-bottom: 2%; 
+    margin-bottom: 5%;
 }
 #inputAmountPosition {
     margin-left: 2%;

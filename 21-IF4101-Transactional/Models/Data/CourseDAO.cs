@@ -82,7 +82,7 @@ namespace _21_IF4101_Transactional.Models.Data
                 {
                     courses.Add(new Course
                     {
-
+                        Id = Convert.ToInt32(sqlDataReader["Id"]),
                         Code = sqlDataReader["Code"].ToString(),
                         Name = sqlDataReader["Name"].ToString(),
                         Credits = Convert.ToInt32(sqlDataReader["Credits"]),

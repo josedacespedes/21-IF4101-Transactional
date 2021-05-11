@@ -315,32 +315,29 @@
 
 
     <!--  MODAL COURSE-GROUP -->
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade" id="modalCourseGroup" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <div id="closeButtonAction">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cleanFieldsModalCourseGroup()" aria-label="Close">&times;</button>
-                    </div>
-                    @*<button type="button" onclick="limpiarCampos()" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close"><b>x</b></button>*@
+                    <button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" onclick="cleanFieldsModalCourseGroup()" aria-label="Close"><b>X</b></button>
                     <h2 class="modal-title">Asociar Curso-Grupo</h2>
                 </div>
                 <div class="modal-body">
-                    <div id="courseTitleModal"><h3>Curso: </h3></div>
+                    <div id="courseTitleModal"></div>
 
                     <form id="registerCourseGroup" autocomplete="off">
                         <div class="form-group" id="inputAmount">
                             <label for="usr">Cantidad de grupos:</label>
                             <div id="inputAmountPosition">
-                                <input type="number" class="form-control" id="groupsAmount" name="groupsAmount" placeholder="Ingrese solo números" required="" minlength="1" maxlength="2" pattern="[1-9]+" title="Sólo permite números enteros positivos.">
+                                <input type="number" class="form-control" id="groupsAmount" name="groupsAmount" onkeyup="calculateGroupsAmount()" placeholder="Ingrese solo números" onkeydown="javascript: return event.keyCode == 69 ? false : true" required="" min="1" max="99" title="Sólo permite números enteros positivos." />
                             </div>
                         </div>
                         <div class="form-group" id="inputAssociate">
                             <label for="pwd">Primer Grupo:</label>
                             <div id="inputAssociatePosition">
-                                <input type="number" id="associateGroupCourse" name="associateGroupCourse" placeholder="Ingrese solo números" onkeyup="calculateGroupsAmount()" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="form-control" value="" min="1" maxlength="2" pattern="[0-9]+" title="Sólo permite números enteros positivos." required="">
+                                <input type="number" id="associateGroupCourse" name="associateGroupCourse" placeholder="Ingrese solo números" onkeyup="calculateGroupsAmount()" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="form-control" min="1" max="99" title="Sólo permite números enteros positivos." required="" />
                             </div>
                         </div>
                         <div class="form-group" id="textAreaCourseGroup">
@@ -349,15 +346,10 @@
                         </div>
                         <div id="buttonsFormCourseGroup">
                             <button type="submit" id="buttonAddCourseGroup" class="btn btn-success">Aceptar</button>
-                            <button type="button" class="btn btn-danger btn-default" onclick="cleanFieldsModalCourseGroup()" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-danger" onclick="cleanFieldsModalCourseGroup()" data-dismiss="modal">Cerrar</button>
                         </div>
                     </form>
                 </div>
-                @*<div class="modal-footer">
-                    <button type="submit" id="buttonAddCourseGroup" class="submit-btn btn-success">Aceptar</button>
-                    <button type="button" class="btn btn-danger btn-default" onclick="cleanFieldsModalCourseGroup()" data-dismiss="modal">Cerrar</button>
-                </div>*@
-
             </div>
 
         </div>
