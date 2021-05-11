@@ -3,7 +3,7 @@
 var registerCourseForm = document.getElementById("registerCourseForm");
 var messageToSend = document.getElementById("alertMessageAddCourse");
 var tableCourse;
-
+var idCourseGroup; 
 /*--------------------------------------------- ADD COURSE-----------------------------------------------------------*/
 
 //MASK
@@ -148,104 +148,97 @@ function loadCourseList() {
                 }
             },
             {
-                defaultContent: "<button type='button' id='modalCourseGroup' name='modalCourseGroup' class='btn btn-primary' data-toggle='modal' data-target='#myModal'><i class='fa fa-link'></i></button>"
+                defaultContent: "<button type='button' id='buttonModalCourseGroup' name='buttonModalCourseGroup' class='btn btn-primary' data-toggle='modal' data-target='#modalCourseGroup'><i class='fa fa-link'></i></button>"
             }
         ]
 
     });
 }
 
+
+$("#courseTable tbody").on("click", "#buttonModalCourseGroup", function () {
+
+    var dataInfoCourse = tableCourse.row($(this).parents("tr")).data();
+    document.getElementById("courseTitleModal").innerHTML = `<h4>Curso: ${dataInfoCourse.code}  ${dataInfoCourse.name} </h4>`;
+    idCourseGroup = dataInfoCourse.id;
+});
+
 function calculateGroupsAmount() {
 
     var groupsAmount = document.getElementById("groupsAmount").value;
     var associateGroupCourse = document.getElementById("associateGroupCourse").value;
 
-    /* Solo deja ingresar numeros */
-    jQuery('#associateGroupCourse').keypress(function (tecla) {
-        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
+    /*if (associateGroupCourse != 0) {*/
+        /* Solo deja ingresar numeros */
+        jQuery('#groupsAmount').keypress(function (tecla) {
+            if (tecla.charCode < 48 || tecla.charCode > 57) return false;
+        });
 
-    var groups = [];
-    var i;
-
-    for (i = 0; i < groupsAmount; i++) {
-        groups += [associateGroupCourse++ + ","];
+        jQuery('#associateGroupCourse').keypress(function (tecla) {
+            if (tecla.charCode < 48 || tecla.charCode > 57) return false;
+        });
+    if (associateGroupCourse != 0) {
+        var groups = [];
+        var i;
+        for (i = 0; i < groupsAmount; i++) {
+            if (i != groupsAmount - 1) {
+                groups += [associateGroupCourse++ + ","];
+            } else {
+                groups += [associateGroupCourse++];
+            }
+        }
     }
-    //console.log(acumula);
 
-    if (associateGroupCourse == "") {
-        document.getElementById("showAssociation").innerHTML = `<textarea class="form-control" rows="5" id="showAssociation" placeholder="Cursos agregados: " disabled></textarea>`;
-    } else {
-        document.getElementById("showAssociation").innerHTML = `Cursos agregados: ${groups}`;
+    if (associateGroupCourse != 0 && groupsAmount != "") {
+        document.getElementById("showAssociation").value = "Cursos agregados: " + groups;
+    }
+    else {
+        document.getElementById("showAssociation").value = "Cursos agregados: ";
     }
     return groups;
 }
 
+//Clean modal fields
 function cleanFieldsModalCourseGroup() {
-    document.getElementById("groupsAmount").value = "";
-    document.getElementById("associateGroupCourse").value = "";
-    document.getElementById("showAssociation").value = "Cursos agregados: ";
+    registerCourseGroup.reset();
 }
 
 
 registerCourseGroup.addEventListener("submit", function (e) {
     e.preventDefault();
+    var list = saveListCourseGroup(calculateGroupsAmount());
+    var course = {
+        id: idCourseGroup,
+        numGroup: list
+    };
+    console.log(course);
 
-    console.log(calculateGroupsAmount());
-
-
-    //var list = [parseInt($('#groupsAmount').val()), parseInt($('#associateGroupCourse').val())];
-    //var course = {
-    //    id: parseInt($('#id').val()),
-    //    numGroup: list
-    //};
-
-    //$.ajax({
-    //    url: "/Course/InsertGroup",
-    //    data: JSON.stringify(course),
-    //    type: "POST",
-    //    contentType: "application/json;charset=utf-8",
-    //    dataType: "json",
-    //    success: function (result) {
-    //        alert("NICE!");
-    //    },
-    //    error: function (errorMessage) {
-    //        alert("Error");
-    //        alert(errorMessage.responseText);
-    //    }
-    //});
+    $.ajax({
+        url: "/Course/InsertGroup",
+        data: JSON.stringify(course),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $('#modalCourseGroup').modal('hide');
+            Swal.fire({
+                icon: 'success',
+                title: 'Guardado Exitoso',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            cleanFieldsModalCourseGroup();
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
 
 });
 
 
-
-
-//function LoadDataCourse() {
-//    $.ajax({
-//        url: "/Course/Get", //MVC NORMAL
-//        type: "GET",
-//        contentType: "application/json;charset=utf-8",
-//        dataType: "json",
-//        success: function (result) {
-
-//            console.log(result);
-///*            document.getElementById("courseTitleModal").innerHTML = `<h3>Curso:` + result.code + '-' + result.name + `</h3>`;*/
-
-
-//            var html = 'Curso: ';
-//            $.each(result, function (key, item) {
-
-//                //document.getElementById("courseTitleModal").innerHTML = `<h3>Curso:`+ item.code+ '-'+ item.name +`</h3>`;
-
-//                console.log(item);
-//                html += '<h3>' + item.code + '-' + item.name +'</h3>';
-//            });
-//            $('#courseTitleModal').html(html);
-
-//        },
-//        error: function (errorMessage) {
-//            alert(errorMessage.responseText);
-//        }
-//    })
-
-//}
+// Rawlist to List
+function saveListCourseGroup(rawList) {
+    return JSON.parse("[" + rawList + "]"); 
+}

@@ -53,13 +53,6 @@ namespace _21_IF4101_Transactional.Controllers
             }
         }
 
-        //public IActionResult Get()
-        //{
-        //    //llamada al modelo para obtener los estudiantes
-        //    courseDAO = new CourseDAO(_configuration);
-        //    return Ok(courseDAO.Get());
-        //}
-
         public IActionResult Get()
         {
             //call model to get the courses
