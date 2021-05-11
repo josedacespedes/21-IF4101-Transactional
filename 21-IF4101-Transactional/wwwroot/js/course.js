@@ -124,6 +124,8 @@ registerCourseForm.addEventListener("submit", function (e) {
             }
         });
     }
+
+    
 });
 
 function loadCourseList() {
@@ -157,33 +159,88 @@ function calculateGroupsAmount() {
 
     var groupsAmount = document.getElementById("groupsAmount").value;
     var associateGroupCourse = document.getElementById("associateGroupCourse").value;
-
-    var text;
-
-    for (i = 0; i < groupsAmount.length; i++) {
-        for (j = associateGroupCourse; j < i.length; j++) {
-            text += text[j] + ",";
-        }
-    }
-
-    console.log(text);
-
-
-    var cantidad = document.getElementById("groupsAmount").value;
-
-    var tarifaTotal = new Intl.NumberFormat(["ban", "id"]).format(cantidad * tarifa);
+   
 
     /* Solo deja ingresar numeros */
     jQuery('#associateGroupCourse').keypress(function (tecla) {
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
 
+    var acumula = [];
+    var i;
+
+    for (i = 0; i < groupsAmount; i++) {
+        acumula += [associateGroupCourse++ + ","];
+    }
+    console.log(acumula);
+
     if (associateGroupCourse == "") {
-        document.getElementById("associateGroupCourse").innerHTML = `<span class="input-group-text" id="inputGroupPrepend">₡</span>
-        <input type="text" id="precio" name="precio" value="0" aria-describedby="inputGroupPrepend" class="formulario__input form-control" pattern="[0-9.]+" title="Tarifa total" required disabled>`;
+        document.getElementById("showAssociation").innerHTML = `<textarea class="form-control" rows="5" id="showAssociation" placeholder="Cursos agregados: " disabled></textarea>`;
     } else {
-        document.getElementById("calculatePrice").innerHTML = `<span class="input-group-text" id="inputGroupPrepend">₡</span>
-        <input type="text" id="precio" name="precio" value="${tarifaTotal}" aria-describedby="inputGroupPrepend" class="formulario__input form-control" pattern="[0-9.]+" title="Tarifa total" required disabled>`;
+        document.getElementById("showAssociation").innerHTML = `Cursos agregados: ${acumula}`;
     }
 
 }
+
+
+
+
+
+
+function InsertCourseGroup() {
+
+    var list = [parseInt($('#grupo1').val()), parseInt($('#grupo2').val())];
+    var course = {
+        id: parseInt($('#id').val()),
+        numGroup: list
+    };
+
+    $.ajax({
+        url: "/Course/InsertGroup",
+        data: JSON.stringify(course),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            alert("NICE!");
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+
+}
+
+
+
+
+//function LoadDataCourse() {
+//    $.ajax({
+//        url: "/Course/Get", //MVC NORMAL
+//        type: "GET",
+//        contentType: "application/json;charset=utf-8",
+//        dataType: "json",
+//        success: function (result) {
+
+//            console.log(result);
+///*            document.getElementById("courseTitleModal").innerHTML = `<h3>Curso:` + result.code + '-' + result.name + `</h3>`;*/
+
+
+//            var html = 'Curso: ';
+//            $.each(result, function (key, item) {
+
+//                //document.getElementById("courseTitleModal").innerHTML = `<h3>Curso:`+ item.code+ '-'+ item.name +`</h3>`;
+
+//                console.log(item);
+//                html += '<h3>' + item.code + '-' + item.name +'</h3>';
+//            });
+//            $('#courseTitleModal').html(html);
+
+//        },
+//        error: function (errorMessage) {
+//            alert(errorMessage.responseText);
+//        }
+//    })
+
+//}

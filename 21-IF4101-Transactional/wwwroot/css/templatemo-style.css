@@ -300,26 +300,43 @@ input:checked + .slider:before {
 #textAreaCourseGroup {
     padding: 2%;
     margin-left: 13%;
-    text-align:center;
+    text-align: center;
     width: 70%;
+    resize: none;
+}
+#inputAmount, #inputAssociate {
+    display: flex;
+    margin-left: 13%;
+}
+#courseTitleModal {
+    margin-top: -5%;
+    padding-bottom: 2%; 
+}
+#inputAmountPosition {
+    margin-left: 2%;
+    width: 31%;
 }
 
-/*---------------------------------------
-       PRE LOADER              
-  -----------------------------------------*/
-.preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 99999;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center;
-    background: none repeat scroll 0 0 #ffffff;
+#inputAssociatePosition {
+    margin-left: 9%;
+    width: 31%;
 }
+/*---------------------------------------
+    PRE LOADER              
+-----------------------------------------*/
+    .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 99999;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        background: none repeat scroll 0 0 #ffffff;
+    }
 
 .spinner {
     border: 1px solid transparent;
