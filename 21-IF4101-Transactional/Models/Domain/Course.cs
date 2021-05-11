@@ -13,14 +13,16 @@ namespace _21_IF4101_Transactional.Models.Domain
         private string name;
         private int credits;
         private int state;
+        private List<int> numGroup;
 
-        public Course(int id, string code, string name, int credits, int state)
+        public Course(int id, string code, string name, int credits, int state, List<int> numGroup)
         {
             Id = id;
             Code = code;
             Name = name;
             Credits = credits;
             State = state;
+            this.numGroup = numGroup;
         }
 
         public Course()
@@ -33,5 +35,6 @@ namespace _21_IF4101_Transactional.Models.Domain
         public string Name { get => name; set => name = value; }
         public int Credits { get => credits; set => credits = value; }
         public int State { get => state; set => state = value; }
+        public List<int> NumGroup { get => numGroup; set => numGroup = value; }
     }
 }

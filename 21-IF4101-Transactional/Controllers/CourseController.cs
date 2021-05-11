@@ -74,6 +74,13 @@ namespace _21_IF4101_Transactional.Controllers
             return Ok(courseDAO.Update(course));
         }
 
+        public IActionResult InsertGroup([FromBody] Course course) //Recibe id curso y lista de grupos
+        {
+            //llamada al modelo para actualizar al curso
+            courseDAO = new CourseDAO(_configuration);
+            return Ok(courseDAO.InsertGroup(course));
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

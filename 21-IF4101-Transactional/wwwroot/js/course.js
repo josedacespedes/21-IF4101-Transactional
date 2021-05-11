@@ -89,7 +89,7 @@ $("#idCourse").click(function () {
 registerCourseForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    var checkStatus =  $("input[name='courseStatus']").is(':checked') ? 1 : 0; //Validate if th input is checked or not
+    var checkStatus = $("input[name='courseStatus']").is(':checked') ? 1 : 0; //Validate if th input is checked or not
 
     var course = {
         name: $('#courseName').val(),
@@ -146,13 +146,12 @@ function loadCourseList() {
                 }
             },
             {
-                defaultContent: "<button type='button' id='modalCourseGroup' name='modalCourseGroup' class='btn btn-primary' data-toggle='modal' data-target='#myModal'><i class='fa fa-link'></i></button>" 
+                defaultContent: "<button type='button' id='modalCourseGroup' name='modalCourseGroup' class='btn btn-primary' data-toggle='modal' data-target='#myModal'><i class='fa fa-link'></i></button>"
             }
         ]
 
     });
 }
-
 
 function calculateGroupsAmount() {
 
@@ -160,7 +159,7 @@ function calculateGroupsAmount() {
     var associateGroupCourse = document.getElementById("associateGroupCourse").value;
 
     var text;
-    
+
     for (i = 0; i < groupsAmount.length; i++) {
         for (j = associateGroupCourse; j < i.length; j++) {
             text += text[j] + ",";
