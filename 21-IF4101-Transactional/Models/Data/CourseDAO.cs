@@ -138,7 +138,7 @@ namespace _21_IF4101_Transactional.Models.Data
                     SqlCommand command = new SqlCommand("UpdateCourse", connection);
 
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@Id", course.Code);
+                    command.Parameters.AddWithValue("@Id", course.Id);
                     command.Parameters.AddWithValue("@Name", course.Name);
                     command.Parameters.AddWithValue("@Credits", course.Credits);
                     command.Parameters.AddWithValue("@State", course.State);

@@ -4,7 +4,7 @@ var registerConsultForm = document.getElementById("registerConsultForm");
 var messageToSend = document.getElementById("alertMessageAddConsult");
 var tableCourse;
 $(document).ready(function () {
-    GetCourse();
+    /* GetCourse();*/
 });
 
 //ACTION ADD
@@ -12,7 +12,7 @@ registerConsultForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     var checkStatus = $("input[name='consultTypeCheck']").is(':checked') ? 1 : 0; //Validate if th input is checked or not
-    
+
     var Course = {
         id: parseInt($('#courseConsult').val()),
         code: null,
