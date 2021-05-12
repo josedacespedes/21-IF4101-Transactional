@@ -122,7 +122,7 @@ formProfessor.addEventListener("submit", function (e) {
     if (!putErrorInputProfessor(professor)) {
         //AJAX
         $.ajax({
-            url: "/Professor/Insert",
+            url: "/ConsultComment/Insert",
             data: JSON.stringify(professor),
             type: "POST",
             contentType: "application/json;charset=utf-8",
