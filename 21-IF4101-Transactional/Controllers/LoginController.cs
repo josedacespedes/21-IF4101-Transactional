@@ -39,7 +39,7 @@ namespace _21_IF4101_Transactional.Controllers
         public void SaveSessionVariable(String email)
         {
             HttpContext.Session.SetString("sEmail", email);
-            //HttpContext.Session.SetString("sNombre", nombre); //(AGREGAR ACA NOMBRE COMPLETO DE PERSONA)
+            HttpContext.Session.SetString("sNombre", loginDAO.GetNameUserByEmail(email)); //(AGREGAR ACA NOMBRE COMPLETO DE PERSONA)
 
             //var a = HttpContext.Session.GetString("nombreVariable"); //ASI SE OBTIENE
         }

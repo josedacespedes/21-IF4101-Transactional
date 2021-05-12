@@ -35,7 +35,7 @@ namespace _21_IF4101_Transactional.Models.Data
                 command.CommandType = System.Data.CommandType.StoredProcedure; //acá decimos que lo que se ejecutará es un SP
                                                                                //acá abajo le pasamos los parámetros al SP. En @ van los nombres de los parámetros en SP y a la par los valores. No pasamos el Id porque es autoincremental en la tabla, entonces no lo necesitamos:
                 command.Parameters.AddWithValue("@Title", consult.Title);
-                command.Parameters.AddWithValue("@IdAuthor", consult.IdAuthor);
+                command.Parameters.AddWithValue("@Author", consult.Author);//AQUÍ IRÍA EL NOMBRE COMPLETO
                 command.Parameters.AddWithValue("@Description", consult.Description);
                 command.Parameters.AddWithValue("@idCourse", consult.Course.Id);
                 command.Parameters.AddWithValue("@Type", consult.Type);
