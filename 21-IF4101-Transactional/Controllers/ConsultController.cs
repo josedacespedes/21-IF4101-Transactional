@@ -16,6 +16,8 @@ namespace _21_IF4101_Transactional.Controllers
         private readonly IConfiguration _configuration;
         ConsultDAO consultDAO;
         CourseDAO courseDAO;
+      //  int idUser = HttpContext.Session.GetInt32("sId");
+
         public ConsultController(ILogger<ConsultController> logger, IConfiguration configuration)
         {
             _logger = logger;
@@ -44,6 +46,7 @@ namespace _21_IF4101_Transactional.Controllers
             
         }
 
+        //lista de cursos completa
         public IActionResult GetCourses()
         {
             //llamada al modelo para obtener las carreras
@@ -60,5 +63,15 @@ namespace _21_IF4101_Transactional.Controllers
             courseDAO = new CourseDAO(_configuration);
             return Json(new { data = courseDAO.Get() });
         }
+
+        //obtener el id de usuario, si es profesor llama a GetCoursesByProfessor, si es estudiante llama a GetCourses 
+        //public IActionResult GetCoursesByProfessor()
+        //{
+        //    //llamada al modelo para obtener las carreras
+        //    courseDAO = new CourseDAO(_configuration);
+        //    List<Course> courses = new List<Course>();
+        //    courses = courseDAO.GetToConsult();
+        //    return Json(courses);
+        //}
     }
 }
