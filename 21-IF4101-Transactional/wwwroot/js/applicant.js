@@ -6,6 +6,7 @@ var alertMessageAddStudent = document.getElementById("alertMessageAddStudent");
 var tableApplicant;
 
 $(document).ready(function () {
+
     loadListApplicant();
 });
 
@@ -178,6 +179,14 @@ function loadListApplicant() {
         ]
     });
 }
+
+//$("#applicantTable tbody").on("click", "#buttonModalCourseGroup", function () {
+//    var dataInfoCourse = tableApplicant.row($(this).parents("tr")).data();
+//    document.getElementById("courseTitleModal").innerHTML = `<h4>Curso: ${dataInfoCourse.code}  ${dataInfoCourse.name} </h4>`;
+//    idCourseGroup = dataInfoCourse.id;
+//});
+
+
 
 // ELIMINAR APPLICANT
 $("#applicantTable tbody").on("click", "#rejectApplicant", function () {

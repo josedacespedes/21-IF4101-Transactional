@@ -456,6 +456,9 @@ input:checked + .slider:before {
 /*---------------------------------------
         LOGIN            
   -----------------------------------------*/
+#singOut {
+    margin-left: 12%;
+}
 
 .login {
     width: 220px;

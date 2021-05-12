@@ -42,7 +42,7 @@
         </div>
     </section>
 
-    <!-- MENU -->
+    <!-- MENU NO USER -->
     <section class="navbar custom-navbar navbar-fixed-top displayNoUser" role="navigation">
         <div class="container">
 
@@ -70,7 +70,8 @@
                             Iniciar sesión
                         </a>
                         <div class="dropdown-menu login" aria-labelledby="navbarDropdown2">
-                            <form id="loginForm" autocomplete="off">
+                            <form id="loginForm">
+                                @*autocomplete="off"*@
                                 <div class="form-group">
                                     <label for="formGroupExampleInput">Correo Institucional</label>
                                     <input type="email" name="emailLogin" id="emailLogin" autocomplete="off" class="form-control" placeholder="Correo Institucional" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="El correo debe llevar el dominio @@ucr.ac.cr">
@@ -92,6 +93,124 @@
             </div>
         </div>
     </section>
+
+    <!-- MENU ADMIN-->
+    <section class="navbar custom-navbar navbar-fixed-top displayAdmin" role="navigation" hidden>
+        <div class="container">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+                <a href="#top" class="navbar-brand">Informática Empresarial</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-nav-first">
+                    <li><a href="#news" class="smoothScroll">Noticias</a></li>
+                    <li><a href="#addConsult" class="smoothScroll">Consultas</a></li>
+                    <li><a href="#addProfessor" class="smoothScroll">Registros</a></li>
+                    <li><a href="#addCourse" class="smoothScroll">Uniones</a></li>
+                    <li><a href="#applicantList" class="smoothScroll">Estudiantes</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right" id="loginRight">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                            admin@ucr.ac.cr
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="smoothScroll" id="singOut"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                            @*<button class="btn btn-primary" id="form-submit"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>*@
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- MENU STUDENT-->
+    <section class="navbar custom-navbar navbar-fixed-top displayStudent" role="navigation" hidden>
+        <div class="container">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+                <a href="#top" class="navbar-brand">Informática Empresarial</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-nav-first">
+                    <li><a href="#news" class="smoothScroll">Noticias</a></li>
+                    <li><a href="#addConsult" class="smoothScroll">Consultas</a></li>
+                    <li><a href="#addProfessor" class="smoothScroll">Citas</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right" id="loginRight">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-sign-in"></i>
+                            Correo Institucional
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#"> Perfil </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="smoothScroll" id="singOut"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                            @*<button class="submit-btn btn-primary form-control" id="form-submit">Cerrar Sesión</button>*@
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU PROFESSOR-->
+    <section class="navbar custom-navbar navbar-fixed-top displayProfessor" role="navigation" hidden>
+        <div class="container">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+                <a href="#top" class="navbar-brand">Informática Empresarial</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-nav-first">
+                    <li><a href="#news" class="smoothScroll">Noticias</a></li>
+                    <li><a href="#addConsult" class="smoothScroll">Consultas</a></li>
+                    <li><a href="#addProfessor" class="smoothScroll">Citas</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right" id="loginRight">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-sign-in"></i>
+                            Correo Institucional
+                        </a>
+
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#"> Perfil </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="smoothScroll" id="singOut"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                            @*<button class="submit-btn btn-primary form-control" id="form-submit">Cerrar Sesión</button>*@
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
 
     <!-- NEWS -->
     <section id="home" class="displayAll">
@@ -442,7 +561,7 @@
     </section>
 
     <!--  REGISTER CONSULT -->
-    <section id="addConsult" class="displayStudent">
+    <section id="addConsult" class="displayStudent displayAdmin displayProfessor">
         <div class="container">
             <div class="row">
 

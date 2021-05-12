@@ -8,9 +8,9 @@ var alertMessageToSendLogin = document.getElementById("messageToSendLogin");
 // Login
 
 $(document).ready(function () {
-    //$(".displayAdmin").hide();
-    //$(".displayStudent").hide();
-    //$(".displayProfessor").hide();
+    $(".displayAdmin").hide();
+    $(".displayStudent").hide();
+    $(".displayProfessor").hide();
 });
 
 //SHOW/HID PASSWORD
@@ -130,10 +130,12 @@ function showDisplay(usuario) {
             break;
         case "student":
             hiddenAll();
+            $(".displayAll").show();
             $(".displayStudent").show();
             break;
         case "professor":
             hiddenAll();
+            $(".displayAll").show();
             $(".displayProfessor").show();
             break;
         case "noUser":
@@ -142,3 +144,4 @@ function showDisplay(usuario) {
             break;
     }
 }
+
