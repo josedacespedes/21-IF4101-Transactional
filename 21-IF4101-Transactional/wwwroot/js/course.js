@@ -3,7 +3,7 @@
 var registerCourseForm = document.getElementById("registerCourseForm");
 var messageToSend = document.getElementById("alertMessageAddCourse");
 var tableCourse;
-var idCourseGroup; 
+var idCourseGroup;
 /*--------------------------------------------- ADD COURSE-----------------------------------------------------------*/
 
 //MASK
@@ -125,13 +125,16 @@ registerCourseForm.addEventListener("submit", function (e) {
         });
     }
 
-    
+
 });
 
 function loadCourseList() {
     tableCourse = $("#courseTable").DataTable({
         "destroy": true,
         "autoWidth": false,
+        "columnDefs": [
+            { "width": "20%", "targets": [0, 4] }
+        ],
         "ajax": {
             "url": "/Course/Get",
             "tpye": 'GET',
@@ -144,39 +147,44 @@ function loadCourseList() {
             { "data": "credits" },
             {
                 render: function (data, type, row) {
-                    return row.state == 1 ? 'Disponible' : 'No disponible';
+                    return row.state == 1 ? 'Activo' : 'Inactivo';
                 }
             },
             {
-                defaultContent: "<button type='button' id='buttonModalCourseGroup' name='buttonModalCourseGroup' class='btn btn-primary' data-toggle='modal' data-target='#modalCourseGroup'><i class='fa fa-link'></i></button>"
+                defaultContent: "<button type='button' id='buttonModalCourseGroup' name='buttonModalCourseGroup' class='btn btn-primary' data-toggle='modal' data-target='#modalCourseGroup' title='Asociar grupo'><i class='fa fa-link'></i></button> <button type='button' id='buttonModalCourseEdit' name='buttonModalCourseEdit' class='btn btn-warning' data-toggle='modal' data-target='#modalCourseEdit' title='Modificar'><i class='fa fa-pencil'></i></button>"
             }
         ]
 
     });
 }
 
-
+//ASOCIAR GRUPO
 $("#courseTable tbody").on("click", "#buttonModalCourseGroup", function () {
-
     var dataInfoCourse = tableCourse.row($(this).parents("tr")).data();
     document.getElementById("courseTitleModal").innerHTML = `<h4>Curso: ${dataInfoCourse.code}  ${dataInfoCourse.name} </h4>`;
     idCourseGroup = dataInfoCourse.id;
 });
+
+//MODIFICAR MODAL
+$("#courseTable tbody").on("click", "#buttonModalCourseEdit", function () {
+    var dataInfoCourse = tableCourse.row($(this).parents("tr")).data();
+    document.getElementById("courseTitleModalEdit").innerHTML = `<h4>Curso: ${dataInfoCourse.code}  ${dataInfoCourse.name} </h4>`;
+});
+
 
 function calculateGroupsAmount() {
 
     var groupsAmount = document.getElementById("groupsAmount").value;
     var associateGroupCourse = document.getElementById("associateGroupCourse").value;
 
-    /*if (associateGroupCourse != 0) {*/
-        /* Solo deja ingresar numeros */
-        jQuery('#groupsAmount').keypress(function (tecla) {
-            if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-        });
+    /* Solo deja ingresar numeros */
+    jQuery('#groupsAmount').keypress(function (tecla) {
+        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
 
-        jQuery('#associateGroupCourse').keypress(function (tecla) {
-            if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-        });
+    jQuery('#associateGroupCourse').keypress(function (tecla) {
+        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
     if (associateGroupCourse != 0) {
         var groups = [];
         var i;
@@ -201,6 +209,10 @@ function calculateGroupsAmount() {
 //Clean modal fields
 function cleanFieldsModalCourseGroup() {
     registerCourseGroup.reset();
+}
+
+function cleanFieldsModalEdit() {
+    registerCourseEdit.reset();
 }
 
 
@@ -240,5 +252,5 @@ registerCourseGroup.addEventListener("submit", function (e) {
 
 // Rawlist to List
 function saveListCourseGroup(rawList) {
-    return JSON.parse("[" + rawList + "]"); 
+    return JSON.parse("[" + rawList + "]");
 }

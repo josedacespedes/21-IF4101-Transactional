@@ -236,25 +236,17 @@ body {
 
 .switch {
     position: relative;
-    display: inline-block;
-    width: 47px;
-    height: 24px;
 }
 
-    .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
 
 .slider {
     position: absolute;
     cursor: pointer;
     top: 0;
-    left: 0;
+    left: -.3em;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: #d9534f;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -286,13 +278,10 @@ input:checked + .slider:before {
 }
 
 /* Rounded sliders */
-.slider.round {
-    border-radius: 24px;
-}
 
-    .slider.round:before {
-        border-radius: 50%;
-    }
+.slider.round:before {
+    border-radius: 50%;
+}
 
 /*---------------------------------------
        MODAL              
@@ -303,19 +292,24 @@ input:checked + .slider:before {
     text-align: center;
     width: 70%;
 }
-#buttonCloseModal {
+
+#buttonCloseModal, #buttonCloseModalEdit {
     float: right;
 }
+
 #showAssociation {
     resize: none;
 }
+
 #inputAmount, #inputAssociate {
     display: flex;
     margin-left: 13%;
 }
-#courseTitleModal {
+
+#courseTitleModal, #courseTitleModalEdit {
     margin-bottom: 5%;
 }
+
 #inputAmountPosition {
     margin-left: 2%;
     width: 36%;
@@ -326,12 +320,6 @@ input:checked + .slider:before {
     width: 36%;
 }
 
-#closeButtonAction {
-    margin-left: 95%;
-}
-#buttonsFormCourseGroup {
-    margin-left: 74%;
-}
 /*---------------------------------------
     PRE LOADER              
 -----------------------------------------*/
@@ -642,13 +630,19 @@ input:checked + .slider:before {
     color: white;
 }
 
-#statusSwitch {
-    display:flex;
+.switchFlex {
+    display: flex;
 }
 
-#courseStatusLabelOne {
-    margin-right: 15px;
-    margin-left: 15px;
+#courseStatusLabelOne, #consultType {
+    margin-right: 2em;
+    margin-left: 1em;
+    margin-top: .4em;
+}
+
+#courseStatusLabelOneEdit {
+    margin-right: 2em;
+    margin-top: .4em;
 }
 
 #courseTitle {
@@ -666,7 +660,13 @@ table th {
     text-align: center;
 }
 
+#inputCourseNameEdit, #inputCreditsNumberEdit {
+    display: flex;
+}
 
+#inputCourseNameEditPosition, #inputCreditsNumberEditPosition {
+    margin-left: 1.2em;
+}
 /*---------------------------------------
      FOOTER              
   -----------------------------------------*/
@@ -951,28 +951,8 @@ footer {
         height: inherit;
     }
 }
-.switch {
-    margin-left: 240px;
-    display: inline-block;
-    width: 90px;
-    height: 34px;
-    margin-top: 2px;
-}
-
-    .switch input {
-        display: none;
-    }
 
 .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: red;
-    -webkit-transition: .4s;
-    transition: .4s;
 }
 
     .slider:before {
@@ -1025,8 +1005,9 @@ input:checked + .slider .off {
 
 /* Rounded sliders */
 .slider.round {
-    border-radius: 34px;
-    width: 110px;
+    border-radius: 10em;
+    width: 7.9em;
+    height: 2.3em;
 }
 
     .slider.round:before {
