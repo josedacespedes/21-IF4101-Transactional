@@ -25,10 +25,10 @@ namespace _21_IF4101_Transactional.Models.Data
         {
 
         }
-       
+
         public int CheckPasswordEmail(string Email, string Password)
         {
-            
+
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -46,31 +46,33 @@ namespace _21_IF4101_Transactional.Models.Data
 
                 return result;
             }
-            
-            
+
+
 
         }
 
         //método para obtener el nombre completo del usuario
         public string GetNameUserByEmail(string email)
         {
-            string name = "", lastName ="";
+            string name = "", lastName = "";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open(); //abrimos conexión
                 SqlCommand command = new SqlCommand("SelectNameUserByEmail", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo.
                 command.CommandType = System.Data.CommandType.StoredProcedure; //acá decimos que lo que se ejecutará es un SP                                                             //logica del get/select
+
+                command.Parameters.AddWithValue("@Email", email);
                 SqlDataReader sqlDataReader = command.ExecuteReader();
                 //leemos todas las filas provenientes de BD
-                while (sqlDataReader.Read())
+                if (sqlDataReader.Read())
                 {
                     name = sqlDataReader["FirstName"].ToString();
                     lastName = sqlDataReader["LastName"].ToString();
                 }
                 connection.Close(); //cerramos conexión.
             }
-            return name+" "+lastName; //retornamos resultado al Controller.
+            return name + " " + lastName; //retornamos resultado al Controller.
         }
 
         public int GetIdUserByEmail(string email)
