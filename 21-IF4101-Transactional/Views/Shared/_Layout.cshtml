@@ -269,13 +269,18 @@
 
                             <input type="text" name="idCourse" id="idCourse" class="form-control" placeholder="Código" required="" minlength="4" maxlength="4" pattern="[0-9IF-]+" title="Complete este campo con 4 números">
 
-                            <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Créditos" required="" minlength="1" maxlength="1" pattern="[1-4]+" title="Complete esta campo con un número en el rango de 2 a 6">
+                            <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Créditos" required="" minlength="1" maxlength="1" pattern="[1-4]+" title="Complete esta campo con un número en el rango de 1 a 4">
 
-                            <div id="statusSwitch">
+                            <div class="switchFlex">
                                 <label id="courseStatusLabelOne">Estado</label>
                                 <label class="switch" id="courseStatusLabelTwo">
                                     <input type="checkbox" name="courseStatus" id="courseStatus" title="Escoja si el Curso esta activo o no">
-                                    <span class="slider round"></span>
+                                    <span class="slider round">
+                                        <!--ADDED HTML -->
+                                        <span class="on">Activo</span>
+                                        <span class="off">Inactivo</span>
+                                        <!--END-->
+                                    </span>
                                 </label>
                             </div>
 
@@ -295,11 +300,11 @@
                             <table class="table table-striped table-bordered" id="courseTable">
                                 <thead class="table-primary headTable">
                                     <tr class="text-center">
-                                        <th>Código</th>
+                                        <th>Id</th>
                                         <th>Nombre</th>
                                         <th>Créditos</th>
                                         <th>Estado</th>
-                                        <th>Grupo-Curso</th>
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody id="bodyCourseTable" class="text-center font-weight-bold">
@@ -344,9 +349,64 @@
                             <label for="comment">Lista</label>
                             <textarea class="form-control" rows="5" id="showAssociation" placeholder="Cursos agregados: " disabled></textarea>
                         </div>
-                        <div id="buttonsFormCourseGroup">
-                            <button type="submit" id="buttonAddCourseGroup" class="btn btn-success">Aceptar</button>
-                            <button type="button" class="btn btn-danger" onclick="cleanFieldsModalCourseGroup()" data-dismiss="modal">Cerrar</button>
+
+                        <div class="modal-footer mt-4">
+                            <div class="col-12">
+                                <button type="submit" id="buttonAddCourseGroup" class="btn btn-success">Aceptar</button>
+                                <button type="button" class="btn btn-danger" onclick="cleanFieldsModalCourseGroup()" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--  MODAL COURSE EDIT -->
+    <div class="modal fade" id="modalCourseEdit" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="buttonCloseModalEdit" class="btn btn-danger" data-dismiss="modal" onclick="cleanFieldsModalEdit()" aria-label="Close"><b>X</b></button>
+                    <h2 class="modal-title">Modificar Curso</h2>
+                </div>
+                <div class="modal-body">
+                    <div id="courseTitleModalEdit"></div>
+
+                    <form id="registerCourseEdit" autocomplete="off">
+                        <div class="form-group" id="inputCourseNameEdit">
+                            <label>Nombre:</label>
+                            <div id="inputCourseNameEditPosition">
+                                <input type="text" name="courseNameEdit" id="courseNameEdit" class="form-control" placeholder="Nombre" required="" minlength="10" maxlength="150" title="Complete este campo con el nombre del curso">
+                            </div>
+                        </div>
+                        <div class="form-group" id="inputCreditsNumberEdit">
+                            <label>Creditos:</label>
+                            <div id="inputCreditsNumberEditPosition">
+                                <input type="text" name="creditsNumberEdit" id="creditsNumberEdit" class="form-control" placeholder="Créditos" required="" minlength="1" maxlength="1" pattern="[1-4]+" title="Complete esta campo con un número en el rango de 1 a 4">
+                            </div>
+                        </div>
+
+                        <div class="form-group switchFlex">
+                            <label id="courseStatusLabelOneEdit">Estado</label>
+                            <label class="switch" id="courseStatusLabelTwo">
+                                <input type="checkbox" name="courseStatusEdit" id="courseStatusEdit" title="Escoja si el Curso esta activo o no">
+                                <span class="slider round">
+                                    <!--ADDED HTML -->
+                                    <span class="on">Activo</span>
+                                    <span class="off">Inactivo</span>
+                                    <!--END-->
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="modal-footer mt-4">
+                            <div class="col-12">
+                                <button type="submit" id="buttonEditCourse" class="btn btn-warning">Modificar</button>
+                                <button type="button" class="btn btn-danger" onclick="cleanFieldsModalEdit()" data-dismiss="modal">Cerrar</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -402,18 +462,19 @@
                                 <option value="0" selected>Seleccione el curso</option>
                             </select>
 
+                            <div class="switchFlex">
 
-                            <label id="consultType">Tipo</label>
-                            <label class="switch">
-                                <input type="checkbox" id="consultTypeCheck" name="consultTypeCheck">
-                                <div class="slider round">
-                                    <!--ADDED HTML -->
-                                    <span class="on">Pública</span>
-                                    <span class="off">Privada</span>
-                                    <!--END-->
-                                </div>
-                            </label>
-
+                                <label id="consultType">Tipo</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="consultTypeCheck" name="consultTypeCheck">
+                                    <span class="slider round">
+                                        <!--ADDED HTML -->
+                                        <span class="on">Pública</span>
+                                        <span class="off">Privada</span>
+                                        <!--END-->
+                                    </span>
+                                </label>
+                            </div>
                             <div id="buttonSubmitAddCourse">
                                 <button type="submit" class="submit-btn form-control">Registrar</button>
                             </div>
