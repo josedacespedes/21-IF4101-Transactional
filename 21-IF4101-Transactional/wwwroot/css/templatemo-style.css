@@ -295,8 +295,46 @@ input:checked + .slider:before {
     }
 
 /*---------------------------------------
-       PRE LOADER              
+       MODAL              
   -----------------------------------------*/
+#textAreaCourseGroup {
+    padding: 2%;
+    margin-left: 13%;
+    text-align: center;
+    width: 70%;
+}
+#buttonCloseModal {
+    float: right;
+}
+#showAssociation {
+    resize: none;
+}
+#inputAmount, #inputAssociate {
+    display: flex;
+    margin-left: 13%;
+}
+#courseTitleModal {
+    margin-bottom: 5%;
+}
+#inputAmountPosition {
+    margin-left: 2%;
+    width: 36%;
+}
+
+#inputAssociatePosition {
+    margin-left: 10%;
+    width: 36%;
+}
+
+#closeButtonAction {
+    margin-left: 95%;
+}
+#buttonsFormCourseGroup {
+    margin-left: 74%;
+}
+/*---------------------------------------
+    PRE LOADER              
+-----------------------------------------*/
 .preloader {
     position: fixed;
     top: 0;

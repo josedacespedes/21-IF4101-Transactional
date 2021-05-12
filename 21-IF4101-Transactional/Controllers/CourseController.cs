@@ -1,6 +1,7 @@
 ﻿using _21_IF4101_Transactional.Models;
 using _21_IF4101_Transactional.Models.Data;
 using _21_IF4101_Transactional.Models.Domain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -53,13 +54,6 @@ namespace _21_IF4101_Transactional.Controllers
             }
         }
 
-        //public IActionResult Get()
-        //{
-        //    //llamada al modelo para obtener los estudiantes
-        //    courseDAO = new CourseDAO(_configuration);
-        //    return Ok(courseDAO.Get());
-        //}
-
         public IActionResult Get()
         {
             //call model to get the courses
@@ -73,6 +67,24 @@ namespace _21_IF4101_Transactional.Controllers
             courseDAO = new CourseDAO(_configuration);
             return Ok(courseDAO.Update(course));
         }
+
+        public IActionResult InsertGroup([FromBody] Course course) //Recibe id curso y lista de grupos
+        {
+            //llamada al modelo para actualizar al curso
+            courseDAO = new CourseDAO(_configuration);
+            return Ok(courseDAO.InsertGroup(course));
+        }
+
+        public IActionResult GetSessionVariables() //Obtener variables de sesion
+        {
+            List<string> Sessionvaribles = new List<string>();
+            var sEmail = HttpContext.Session.GetString("sEmail");
+            Sessionvaribles.Add(sEmail);
+
+            return Ok(Sessionvaribles);
+        }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

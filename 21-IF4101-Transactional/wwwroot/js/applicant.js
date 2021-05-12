@@ -173,7 +173,7 @@ function loadListApplicant() {
             },
             { "data": "emailApplicant" },
             {
-                defaultContent: "<button id='acceptApplicant' name='acceptApplicant' type='button' oncli class='btn btn-success' title='Accept'><i class='fa fa-check'></i></button> <button id='rejectApplicant' name='rejectApplicant' type='button' class='btn btn-danger' title='Reject'><i class='fa fa-trash'></i></button>"
+                defaultContent: "<button id='acceptApplicant' name='acceptApplicant' type='button' class='btn btn-success' title='Accept'><i class='fa fa-check'></i></button> <button id='rejectApplicant' name='rejectApplicant' type='button' class='btn btn-danger' title='Reject'><i class='fa fa-trash'></i></button>"
             }
         ]
     });
@@ -186,7 +186,7 @@ $("#applicantTable tbody").on("click", "#rejectApplicant", function () {
     var rowToRemove = $(this).parents('tr');
 
     Swal.fire({
-        title: "¿Está seguro de eliminar a este aplicante?",
+        title: "Esta seguro de eliminar a este aplicante?",
         showDenyButton: true,
         showCancelButton: false,
         confirmButtonText: `Confirmar`,

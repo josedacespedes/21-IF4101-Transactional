@@ -3,7 +3,7 @@
 var registerCourseForm = document.getElementById("registerCourseForm");
 var messageToSend = document.getElementById("alertMessageAddCourse");
 var tableCourse;
-
+var idCourseGroup; 
 /*--------------------------------------------- ADD COURSE-----------------------------------------------------------*/
 
 //MASK
@@ -89,7 +89,7 @@ $("#idCourse").click(function () {
 registerCourseForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    var checkStatus =  $("input[name='courseStatus']").is(':checked') ? 1 : 0; //Validate if th input is checked or not
+    var checkStatus = $("input[name='courseStatus']").is(':checked') ? 1 : 0; //Validate if th input is checked or not
 
     var course = {
         name: $('#courseName').val(),
@@ -124,6 +124,8 @@ registerCourseForm.addEventListener("submit", function (e) {
             }
         });
     }
+
+    
 });
 
 function loadCourseList() {
@@ -145,8 +147,98 @@ function loadCourseList() {
                     return row.state == 1 ? 'Disponible' : 'No disponible';
                 }
             },
-            { defaultContent: "<button id='' name='' type='button' data-bs-toggle='' data-bs-target='' class='btn btn-primary' title='Grupos'><i class='fa fa-link'></i></button>" }
+            {
+                defaultContent: "<button type='button' id='buttonModalCourseGroup' name='buttonModalCourseGroup' class='btn btn-primary' data-toggle='modal' data-target='#modalCourseGroup'><i class='fa fa-link'></i></button>"
+            }
         ]
+
     });
 }
 
+
+$("#courseTable tbody").on("click", "#buttonModalCourseGroup", function () {
+
+    var dataInfoCourse = tableCourse.row($(this).parents("tr")).data();
+    document.getElementById("courseTitleModal").innerHTML = `<h4>Curso: ${dataInfoCourse.code}  ${dataInfoCourse.name} </h4>`;
+    idCourseGroup = dataInfoCourse.id;
+});
+
+function calculateGroupsAmount() {
+
+    var groupsAmount = document.getElementById("groupsAmount").value;
+    var associateGroupCourse = document.getElementById("associateGroupCourse").value;
+
+    /*if (associateGroupCourse != 0) {*/
+        /* Solo deja ingresar numeros */
+        jQuery('#groupsAmount').keypress(function (tecla) {
+            if (tecla.charCode < 48 || tecla.charCode > 57) return false;
+        });
+
+        jQuery('#associateGroupCourse').keypress(function (tecla) {
+            if (tecla.charCode < 48 || tecla.charCode > 57) return false;
+        });
+    if (associateGroupCourse != 0) {
+        var groups = [];
+        var i;
+        for (i = 0; i < groupsAmount; i++) {
+            if (i != groupsAmount - 1) {
+                groups += [associateGroupCourse++ + ","];
+            } else {
+                groups += [associateGroupCourse++];
+            }
+        }
+    }
+
+    if (associateGroupCourse != 0 && groupsAmount != "") {
+        document.getElementById("showAssociation").value = "Cursos agregados: " + groups;
+    }
+    else {
+        document.getElementById("showAssociation").value = "Cursos agregados: ";
+    }
+    return groups;
+}
+
+//Clean modal fields
+function cleanFieldsModalCourseGroup() {
+    registerCourseGroup.reset();
+}
+
+
+registerCourseGroup.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var list = saveListCourseGroup(calculateGroupsAmount());
+    var course = {
+        id: idCourseGroup,
+        numGroup: list
+    };
+    console.log(course);
+
+    $.ajax({
+        url: "/Course/InsertGroup",
+        data: JSON.stringify(course),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $('#modalCourseGroup').modal('hide');
+            Swal.fire({
+                icon: 'success',
+                title: 'Guardado Exitoso',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            cleanFieldsModalCourseGroup();
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+
+});
+
+
+// Rawlist to List
+function saveListCourseGroup(rawList) {
+    return JSON.parse("[" + rawList + "]"); 
+}
