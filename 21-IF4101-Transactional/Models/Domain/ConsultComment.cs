@@ -13,7 +13,9 @@ namespace _21_IF4101_Transactional.Models.Domain
         private string comment;
         private int idConsult;
 
-
+        public ConsultComment()
+        {
+        }
 
         public ConsultComment(int id, string author, DateTime date, string comment, int idConsult)
         {
