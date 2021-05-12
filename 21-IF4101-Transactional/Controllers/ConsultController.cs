@@ -65,13 +65,13 @@ namespace _21_IF4101_Transactional.Controllers
         }
 
         //obtener el id de usuario, si es profesor llama a GetCoursesByProfessor, si es estudiante llama a GetCourses 
-        public IActionResult GetCoursesByProfessor()
-        {
-            //llamada al modelo para obtener las carreras
-            courseDAO = new CourseDAO(_configuration);
-            List<Course> courses = new List<Course>();
-            courses = courseDAO.GetToConsult();
-            return Json(courses);
-        }
+        //public IActionResult GetCoursesByProfessor()
+        //{
+        //    //llamada al modelo para obtener las carreras
+        //    courseDAO = new CourseDAO(_configuration);
+        //    List<Course> courses = new List<Course>();
+        //    courses = courseDAO.GetToConsult();
+        //    return Json(courses);
+        //}
     }
 }
