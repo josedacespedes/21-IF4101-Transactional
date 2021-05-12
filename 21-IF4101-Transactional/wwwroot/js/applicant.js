@@ -153,7 +153,7 @@ formApplicant.addEventListener("submit", function (e) {
 
 });
 
-/*--------------------------------------------- LIST PROFESSOR-----------------------------------------------------------*/
+/*--------------------------------------------- LIST APPLICANT-----------------------------------------------------------*/
 function loadListApplicant() {
     tableApplicant = $("#applicantTable").DataTable({
         "destroy": true,
@@ -179,7 +179,8 @@ function loadListApplicant() {
     });
 }
 
-// ELIMINAR APPLICANT
+/*--------------------------------------------- DELETE APPLICANT-----------------------------------------------------------*/
+
 $("#applicantTable tbody").on("click", "#rejectApplicant", function () {
 
     var data = tableApplicant.row($(this).parents("tr")).data();
