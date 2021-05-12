@@ -154,7 +154,7 @@ formApplicant.addEventListener("submit", function (e) {
 
 });
 
-/*--------------------------------------------- LIST PROFESSOR-----------------------------------------------------------*/
+/*--------------------------------------------- LIST APPLICANT-----------------------------------------------------------*/
 function loadListApplicant() {
     tableApplicant = $("#applicantTable").DataTable({
         "destroy": true,
@@ -180,6 +180,7 @@ function loadListApplicant() {
     });
 }
 
+<<<<<<< HEAD
 //$("#applicantTable tbody").on("click", "#buttonModalCourseGroup", function () {
 //    var dataInfoCourse = tableApplicant.row($(this).parents("tr")).data();
 //    document.getElementById("courseTitleModal").innerHTML = `<h4>Curso: ${dataInfoCourse.code}  ${dataInfoCourse.name} </h4>`;
@@ -189,6 +190,10 @@ function loadListApplicant() {
 
 
 // ELIMINAR APPLICANT
+=======
+/*--------------------------------------------- DELETE APPLICANT-----------------------------------------------------------*/
+
+>>>>>>> 17185560350e6022a24aadf2300e19fae9b30590
 $("#applicantTable tbody").on("click", "#rejectApplicant", function () {
 
     var data = tableApplicant.row($(this).parents("tr")).data();

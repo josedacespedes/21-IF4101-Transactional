@@ -1,9 +1,12 @@
 ﻿"use strict";
 
 var registerCourseForm = document.getElementById("registerCourseForm");
+var registerCourseEdit = document.getElementById("registerCourseEdit");
 var messageToSend = document.getElementById("alertMessageAddCourse");
 var tableCourse;
 var idCourseGroup;
+var idCourseEdit;
+
 /*--------------------------------------------- ADD COURSE-----------------------------------------------------------*/
 
 //MASK
@@ -34,7 +37,7 @@ function checkCourseCode(courseCode) {
 
 function checkCourseCreditsNumber(courseCreditsNumber) {
 
-    if ((courseCreditsNumber < 1 || courseCreditsNumber > 6)) {
+    if ((courseCreditsNumber < 1 || courseCreditsNumber > 5)) {
         return false;
     } else {
         return true;
@@ -85,7 +88,7 @@ $("#idCourse").click(function () {
 });
 
 
-//ACTION ADD
+/*--------------------------------------------- ADD COURSE-----------------------------------------------------------*/
 registerCourseForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -128,6 +131,7 @@ registerCourseForm.addEventListener("submit", function (e) {
 
 });
 
+/*--------------------------------------------- LIST COURSE-----------------------------------------------------------*/
 function loadCourseList() {
     tableCourse = $("#courseTable").DataTable({
         "destroy": true,
@@ -158,17 +162,12 @@ function loadCourseList() {
     });
 }
 
+/*--------------------------------------------- LINK COURSE GROUP COURSE-----------------------------------------------------------*/
 //ASOCIAR GRUPO
 $("#courseTable tbody").on("click", "#buttonModalCourseGroup", function () {
     var dataInfoCourse = tableCourse.row($(this).parents("tr")).data();
     document.getElementById("courseTitleModal").innerHTML = `<h4>Curso: ${dataInfoCourse.code}  ${dataInfoCourse.name} </h4>`;
     idCourseGroup = dataInfoCourse.id;
-});
-
-//MODIFICAR MODAL
-$("#courseTable tbody").on("click", "#buttonModalCourseEdit", function () {
-    var dataInfoCourse = tableCourse.row($(this).parents("tr")).data();
-    document.getElementById("courseTitleModalEdit").innerHTML = `<h4>Curso: ${dataInfoCourse.code}  ${dataInfoCourse.name} </h4>`;
 });
 
 
@@ -211,11 +210,6 @@ function cleanFieldsModalCourseGroup() {
     registerCourseGroup.reset();
 }
 
-function cleanFieldsModalEdit() {
-    registerCourseEdit.reset();
-}
-
-
 registerCourseGroup.addEventListener("submit", function (e) {
     e.preventDefault();
     var list = saveListCourseGroup(calculateGroupsAmount());
@@ -253,4 +247,119 @@ registerCourseGroup.addEventListener("submit", function (e) {
 // Rawlist to List
 function saveListCourseGroup(rawList) {
     return JSON.parse("[" + rawList + "]");
+}
+
+
+/*--------------------------------------------- EDIT COURSE-----------------------------------------------------------*/
+
+//ACTION OPEN MODAL
+$("#courseTable tbody").on("click", "#buttonModalCourseEdit", function () {
+    var dataInfoCourse = tableCourse.row($(this).parents("tr")).data();
+    document.getElementById("courseTitleModalEdit").innerHTML = `<h4>Curso: ${dataInfoCourse.code}  ${dataInfoCourse.name} </h4>`;
+    idCourseEdit = dataInfoCourse.id;
+
+    $('#courseNameEdit').val(dataInfoCourse.name);
+    $('#creditsNumberEdit').val(dataInfoCourse.credits);
+
+    if (dataInfoCourse.state == 1) {
+        $("#courseStatusEdit").prop('checked', true);
+    } else {
+        $("#courseStatusEdit").prop('checked', false);
+    }
+
+});
+
+
+//VALIDATIONS
+function checkCourseNameEdit(course) {
+    if ((course.length < 10 || course.length > 150) || !(/^[a-zA-Z \u00E0-\u00FC\u00f1\u00d1]+$/.test(course)) || !course) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function checkCourseCreditsNumberEdit(courseCreditsNumber) {
+
+    if ((courseCreditsNumber < 1 || courseCreditsNumber > 5)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function cleanErrorInputCourseEdit() {
+    $('#courseNameEdit').removeClass("formInput-error");
+    $('#creditsNumberEdit').removeClass("formInput-error");
+}
+
+function putErrorInputCourse(Course) {
+    cleanErrorInputCourseEdit();
+    var validate = false;
+
+    if (!checkCourseCreditsNumberEdit(Course.name)) {
+        $('#courseNameEdit').addClass("formInput-error");
+        validate = true;
+    }
+    if (!checkCourseCreditsNumber(Course.credits)) {
+        $('#creditsNumberEdit').addClass("formInput-error");
+        validate = true;
+    }
+    return validate;
+}
+
+//ACTION UPDATE
+registerCourseEdit.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    var checkStatusEdit = $("input[name='courseStatusEdit']").is(':checked') ? 1 : 0; //Validate if th input is checked or not
+
+    var course = {
+        id: idCourseEdit,
+        name: $('#courseNameEdit').val(),
+        credits: parseInt($('#creditsNumberEdit').val()),
+        state: checkStatusEdit
+    };
+
+    if (!putErrorInputCourse(course)) {
+        Swal.fire({
+            title: "Esta seguro que desea modificar este curso?",
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: `Confirmar`,
+            denyButtonText: `Cancelar`,
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "/Course/Update",
+                    data: JSON.stringify(course),
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        $('#modalCourseEdit').modal('hide');
+                        $('#courseTable').DataTable().ajax.reload();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Modificado Exitoso',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        cleanFieldsModalEdit();
+                    },
+                    error: function (errorMessage) {
+                        alert("Error");
+                        alert(errorMessage.responseText);
+                    }
+                });
+
+            }
+        });
+    }
+
+});
+
+function cleanFieldsModalEdit() {
+    registerCourseEdit.reset();
 }
