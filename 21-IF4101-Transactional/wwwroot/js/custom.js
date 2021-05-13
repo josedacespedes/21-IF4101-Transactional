@@ -9,7 +9,7 @@
 
 
     // MENU
-    $('.navbar-collapse a').on('click', function () {
+    $('.navbar-nav-first a').on('click', function () {
         $(".navbar-collapse").collapse('hide');
     });
 
@@ -75,15 +75,13 @@
 
     // SMOOTHSCROLL
     $(function () {
-        $('.custom-navbar a, #home a').on('click', function (event) {
+        $('.navbar-nav-first a').on('click', function (event) {
             var $anchor = $(this);
             $('html, body').stop().animate({
-                scrollTop: $($anchor.attr('href')).offset().top - 49
+                scrollTop: $($anchor.attr('href')).offset().top - 40
             }, 1000);
             event.preventDefault();
         });
-    });  
-
-
+    });
 
 })(jQuery);

@@ -1,6 +1,7 @@
 ﻿using _21_IF4101_Transactional.Models;
 using _21_IF4101_Transactional.Models.Data;
 using _21_IF4101_Transactional.Models.Domain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -34,17 +35,27 @@ namespace _21_IF4101_Transactional.Controllers
             return View();
         }
 
+        [HttpPost]
+        public void SaveSessionVariable(String email)
+        {
+            HttpContext.Session.SetString("sEmail", email);
+            HttpContext.Session.SetString("sNombre", loginDAO.GetNameUserByEmail(email)); //(AGREGAR ACA NOMBRE COMPLETO DE PERSONA)
+            HttpContext.Session.SetInt32("sId", loginDAO.GetIdUserByEmail(email));
+           
+            //var a = HttpContext.Session.GetString("nombreVariable"); //ASI SE OBTIENE
+        }
+
         public IActionResult Login([FromBody] Login login)
         {
             loginDAO = new LoginDAO(_configuration);
             if (login.Email.Equals("admin@ucr.ac.cr") && login.Password.Equals("Admin12."))
             {
-
+                SaveSessionVariable(login.Email);
                 return Ok(1);
             }
             else if (loginDAO.CheckPasswordEmail(login.Email, login.Password) != 0)
             {
-
+                SaveSessionVariable(login.Email);
 
                 //success
                 return Ok(loginDAO.CheckPasswordEmail(login.Email, login.Password));

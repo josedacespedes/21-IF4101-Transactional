@@ -130,12 +130,12 @@ formProfessor.addEventListener("submit", function (e) {
             success: function (result) {
                 if (result == -1) {
                     $('#idProfessor').addClass("formInput-error");
-                    alertMessageAddProfessor.innerHTML = `<label class="text-danger">Professor is already exist</label>`;//Msg  existence
+                    alertMessageAddProfessor.innerHTML = `<label class="text-danger">Profesor ya existe</label>`;//Msg  existence
                 } else if (result == -2) {
                     $('#emailProfessor').addClass("formInput-error");
-                    alertMessageAddProfessor.innerHTML = `<label class="text-danger">Email is already exist</label>`;//Msg  existence
+                    alertMessageAddProfessor.innerHTML = `<label class="text-danger">El Correo Institucional ya existe</label>`;//Msg  existence
                 } else {
-                    alertMessageAddProfessor.innerHTML = `<label class="text-success">Register successfully</label>`;//Msg enter success
+                    alertMessageAddProfessor.innerHTML = `<label class="text-success">Registro exitoso</label>`;//Msg enter success
                     formProfessor.reset(); //Clean form fields
                     sendEmailProfessor(professor.firstNameProfessor, professor.emailProfessor, professor.passwordProfessor); //Send email
                     $('#professorTable').DataTable().ajax.reload();

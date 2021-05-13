@@ -6,6 +6,7 @@ var alertMessageAddStudent = document.getElementById("alertMessageAddStudent");
 var tableApplicant;
 
 $(document).ready(function () {
+
     loadListApplicant();
 });
 
@@ -105,6 +106,9 @@ $("#firstNameApplicant").click(function () {
 $("#studentIdApplicant").click(function () {
     alertMessageAddStudent.innerHTML = "";
 });
+$("#emailApplicant").click(function () {
+    alertMessageAddStudent.innerHTML = "";
+});
 
 
 //ACTION ADD
@@ -138,7 +142,7 @@ formApplicant.addEventListener("submit", function (e) {
                     alertMessageAddStudent.innerHTML = `<label class="text-success">Register successfully</label>`;//Msg enter success
                     formApplicant.reset(); //Clean form fields
                     sendEmailStudentWait(applicant.firstNameApplicant, applicant.emailApplicant);
-                    
+                    $('#applicantTable').DataTable().ajax.reload();
                 }
             },
             error: function (errorMessage) {
@@ -150,7 +154,7 @@ formApplicant.addEventListener("submit", function (e) {
 
 });
 
-/*--------------------------------------------- LIST PROFESSOR-----------------------------------------------------------*/
+/*--------------------------------------------- LIST APPLICANT-----------------------------------------------------------*/
 function loadListApplicant() {
     tableApplicant = $("#applicantTable").DataTable({
         "destroy": true,
@@ -170,24 +174,25 @@ function loadListApplicant() {
             },
             { "data": "emailApplicant" },
             {
-                defaultContent: "<button id='acceptApplicant' name='acceptApplicant' type='button' oncli class='btn btn-success' title='Accept'><i class='fa fa-check'></i></button> <button id='rejectApplicant' name='rejectApplicant' type='button' class='btn btn-danger' title='Reject'><i class='fa fa-trash'></i></button>"
+                defaultContent: "<button id='acceptApplicant' name='acceptApplicant' type='button' class='btn btn-success' title='Accept'><i class='fa fa-check'></i></button> <button id='rejectApplicant' name='rejectApplicant' type='button' class='btn btn-danger' title='Reject'><i class='fa fa-trash'></i></button>"
             }
         ]
     });
 }
 
-// ELIMINAR APPLICANT
+/*--------------------------------------------- DELETE APPLICANT-----------------------------------------------------------*/
+
 $("#applicantTable tbody").on("click", "#rejectApplicant", function () {
 
     var data = tableApplicant.row($(this).parents("tr")).data();
     var rowToRemove = $(this).parents('tr');
 
     Swal.fire({
-        title: "Are you sure about delete this applicant?",
+        title: "Esta seguro de eliminar a este aplicante?",
         showDenyButton: true,
         showCancelButton: false,
-        confirmButtonText: `Confirm`,
-        denyButtonText: `Cancel`,
+        confirmButtonText: `Confirmar`,
+        denyButtonText: `Cancelar`,
     }).then((result) => {
 
         if (result.isConfirmed) {

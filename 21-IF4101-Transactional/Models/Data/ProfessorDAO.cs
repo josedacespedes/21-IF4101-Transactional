@@ -165,5 +165,49 @@ namespace _21_IF4101_Transactional.Models.Data
             return applicants; //retornamos resultado al Controller.  
 
         }
+
+
+        public Professor GetProfile(string email)
+        {
+            SqlConnection connection = null;
+            Professor professor = null;
+            try
+            {
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("SelectProfessorPerfilByEmail", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+                    professor = new Professor();
+                    if (sqlDataReader.Read())
+                    {
+                        professor.Id = Convert.ToInt32(sqlDataReader["Id"]);
+                        professor.FirstNameProfessor = sqlDataReader["FirstNameProfessor"].ToString();
+                        professor.LastNameProfessor = sqlDataReader["LastnameProfessor"].ToString();
+                        professor.IdProfessor = sqlDataReader["IdProfessor"].ToString();
+                        professor.EmailProfessor = sqlDataReader["EmailProfessor"].ToString();
+                        professor.ImageProfessor = sqlDataReader["Image"].ToString();
+                        professor.LikesProfessor = sqlDataReader["Likes"].ToString();
+                        professor.VocationalTrainingProfessor = sqlDataReader["VocationalTraining"].ToString();
+                        professor.LinksProfessor = sqlDataReader["Links"].ToString();
+                    }
+                    connection.Close();
+                }
+                return professor;
+            }
+            catch (SqlException)
+            {
+                return null;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+
+        }
     }
 }

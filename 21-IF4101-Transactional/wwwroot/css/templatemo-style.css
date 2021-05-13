@@ -72,6 +72,10 @@ a {
     text-decoration: none !important;
 }
 
+#main_title {
+    color: black;
+}
+
 a,
 input, button,
 .form-control {
@@ -159,35 +163,35 @@ input, button,
             color: #ffffff;
         }
 
-        section {
-            position: relative;
-            padding: 100px 0;
-        }
+section {
+    position: relative;
+    padding: 100px 0;
+}
 
-        #team,
-        #testimonial {
-            background: #f9f9f9;
-        }
+#team,
+#testimonial {
+    background: #f9f9f9;
+}
 
-        #team,
-        #testimonial {
-            text-align: center;
-        }
+#team,
+#testimonial {
+    text-align: center;
+}
 
-        #google-map iframe {
-            border: 0;
-            width: 100%;
-            height: 390px;
-        }
+#google-map iframe {
+    border: 0;
+    width: 100%;
+    height: 390px;
+}
 
-        .formInput-error {
-            border-bottom: 1px solid red !important;
-        }
+.formInput-error {
+    border-bottom: 1px solid red !important;
+}
 
-        .headTable {
-            background: #41ADE7;
-            color: white;
-        }
+.headTable {
+    background: #41ADE7;
+    color: white;
+}
 
 /*---------------------------------------
      BUTTONS               
@@ -209,25 +213,152 @@ input, button,
         border-color: transparent;
     }
 
-    .sidePadding {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
+.sidePadding {
+    padding-left: 15px;
+    padding-right: 15px;
+}
 
-    #buttonSubmitAddCourse {
-        margin-top: 50px;
-    }
+#buttonSubmitAddCourse {
+    margin-top: 50px;
+}
 
-    #buttonLogin {
-        margin-top: -15px;
-    }
+#buttonLogin {
+    margin-top: -15px;
+}
 
 body {
     background-color: #e3f2fd;
 }
+
 /*---------------------------------------
-       PRE LOADER              
+       SWITCH              
   -----------------------------------------*/
+
+.switch {
+    position: relative;
+}
+
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: -.3em;
+    right: 0;
+    bottom: 0;
+    background-color: #d9534f;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/*---------------------------------------
+       MODAL              
+  -----------------------------------------*/
+#buttonCloseProfile {
+    margin-right: 1em;
+}
+
+.pHeadProfile {
+    padding-top: 1em;
+}
+
+.withoutBorder {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid;
+    border-radius: 0;
+    box-shadow: none !important;
+    border-color: white;
+    color:white;
+}
+
+#registerProfileProfessor textarea, #registerProfileStudent textarea {
+    resize: none;
+    height: 4em;
+}
+
+
+    #registerProfileProfessor textarea ::-webkit-input-placeholder, #registerProfileStudent textarea ::-webkit-input-placeholder {
+        text-align: center;
+    }
+
+.colorLabelProfile {
+    color:gray;
+}
+
+#modalProfileProfessor, #modalProfileStudent {
+    background-color: #252020;
+}
+
+#textAreaCourseGroup {
+    padding: 2%;
+    margin-left: 13%;
+    text-align: center;
+    width: 70%;
+}
+
+#buttonCloseModal, #buttonCloseModalEdit {
+    float: right;
+}
+
+#showAssociation {
+    resize: none;
+}
+
+#inputAmount, #inputAssociate {
+    display: flex;
+    margin-left: 13%;
+}
+
+#courseTitleModal, #courseTitleModalEdit {
+    margin-bottom: 5%;
+}
+
+#inputAmountPosition {
+    margin-left: 2%;
+    width: 36%;
+}
+
+#inputAssociatePosition {
+    margin-left: 10%;
+    width: 36%;
+}
+
+/*---------------------------------------
+    PRE LOADER              
+-----------------------------------------*/
 .preloader {
     position: fixed;
     top: 0;
@@ -361,12 +492,25 @@ body {
 /*---------------------------------------
         LOGIN            
   -----------------------------------------*/
+.li-101, .singOut {
+    width: 109%;
+}
+
+.li-100, .singOut {
+    width: 100%;
+}
+
+#dropMenu {
+    padding: 0px 0 !important;
+}
 
 .login {
     width: 220px;
     height: 240px;
-    background-color: aliceblue;
+    border-radius: 2% !important;
+    background-color: aliceblue !important;
     padding: 10px;
+    margin-top: 0.2em !important;
 }
 
 .btn-login {
@@ -378,11 +522,14 @@ body {
 }
 
 #showPasswordLogin {
-    border-radius: 70px;
-    color: black;
+    color: grey;
     position: relative;
-    bottom: 28px;
-    left: 170px;
+    bottom: 1.7em;
+    left: 87%;
+}
+
+#messageToSendLogin {
+    margin-top: 0.2em;
 }
 
 /*---------------------------------------
@@ -455,6 +602,12 @@ body {
       ADD STUDENT              
   -----------------------------------------*/
 
+#firstNameApplicant, #lastNameApplicant,
+#studentIdApplicant, #emailApplicant,
+#passwordApplicant {
+    color: white;
+}
+
 #addApplicant figure {
     display: inline-block;
     vertical-align: top;
@@ -496,9 +649,15 @@ body {
 }
 
 
+
 /*---------------------------------------
       ADD PROFESSOR              
   -----------------------------------------*/
+#firstNameProfessor, #lastNameProfessor, #idProfessor, #emailProfessor,
+#passwordProfessor {
+    color: white;
+}
+
 #iconPasswordProfessor {
     font-size: 20px;
 }
@@ -513,6 +672,25 @@ body {
 /*---------------------------------------
      COURSE LIST              
   -----------------------------------------*/
+
+#courseName, #idCourse, #creditsNumber, #courseStatus, #checkboxStatus, #courseStatusLabelOne {
+    color: white;
+}
+
+.switchFlex {
+    display: flex;
+}
+
+#courseStatusLabelOne, #consultType {
+    margin-right: 2em;
+    margin-left: 1em;
+    margin-top: .4em;
+}
+
+#courseStatusLabelOneEdit {
+    margin-right: 2em;
+    margin-top: .4em;
+}
 
 #courseTitle {
     text-align: center;
@@ -529,7 +707,13 @@ table th {
     text-align: center;
 }
 
+#inputCourseNameEdit, #inputCreditsNumberEdit {
+    display: flex;
+}
 
+#inputCourseNameEditPosition, #inputCreditsNumberEditPosition {
+    margin-left: 1.2em;
+}
 /*---------------------------------------
      FOOTER              
   -----------------------------------------*/
@@ -655,8 +839,12 @@ footer {
             color: #4064AC;
         }
 
-        .social-icon li .fa-twitter {
-            color: #00B0E9;
+        .social-icon li .fa-linkedin-square {
+            color: #0A66C2;
+        }
+
+        .social-icon li .fa-github-square {
+            color: white ;
         }
 
         .social-icon li .fa-instagram {
@@ -756,9 +944,7 @@ footer {
             color: #575757;
         }
 
-        .custom-navbar .navbar-nav.navbar-right li {
-            display: inline-block;
-        }
+
 
     .footer-info {
         margin-right: 0;
@@ -815,4 +1001,127 @@ footer {
         width: inherit;
         height: inherit;
     }
+}
+/*-----------CONSULT-------*/
+
+#consultTitle, #consultDescription, #consultType, #courseConsult {
+    color: white;
+}
+
+.slider {
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(55px);
+    -ms-transform: translateX(55px);
+    transform: translateX(75px);
+}
+
+/*------ ADDED CSS ---------*/
+.on {
+    display: none;
+}
+
+.on, .off {
+    color: white;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    font-size: 10px;
+    font-family: Verdana, sans-serif;
+}
+
+input:checked + .slider .on {
+    display: block;
+}
+
+input:checked + .slider .off {
+    display: none;
+}
+
+
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 10em;
+    width: 7.9em;
+    height: 2.3em;
+}
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+.entry-formConsult {
+    background: #252020;
+    text-align: center;
+    padding: 6em;
+    width: 900px;
+    height: 550px;
+}
+
+    .entry-formConsult h2 {
+        color: #ffffff;
+        margin: 0;
+    }
+
+    .entry-formConsult .form-control {
+        background: transparent;
+        border: 0;
+        border-bottom: 1px solid;
+        border-radius: 0;
+        box-shadow: none;
+        height: 45px;
+        margin: 10px 0;
+    }
+
+    .entry-formConsult .submit-btn {
+        background: #ffffff;
+        border-radius: 50px;
+        border: 0;
+        color: #252020;
+        width: 50%;
+        height: 50px;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+
+        .entry-formConsult .submit-btn:hover {
+            background: #3f51b5;
+            color: #ffffff;
+        }
+
+#consultDescription {
+    height: 150px;
+}
+
+#consultTitle, #courseConsult {
+    width: 350px;
+}
+
+#typeConsult {
+    margin-top: -50px;
+    margin-left: 570px;
+}
+
+#addConsult, #listConsult {
+    height: 600px;
 }
