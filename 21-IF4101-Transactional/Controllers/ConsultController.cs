@@ -1,5 +1,6 @@
 ﻿using _21_IF4101_Transactional.Models.Data;
 using _21_IF4101_Transactional.Models.Domain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -41,7 +42,7 @@ namespace _21_IF4101_Transactional.Controllers
             //llamada al modelo para insertar el estudiante aplicante
             consultDAO = new ConsultDAO(_configuration);
            
-                int resultToReturn = consultDAO.Insert(consult);
+                int resultToReturn = consultDAO.Insert(consult, HttpContext.Session.GetString("sNombre"));
                 return Ok(resultToReturn); //retornamos el 1 o el 0 a la vista
             
         }
@@ -60,18 +61,17 @@ namespace _21_IF4101_Transactional.Controllers
         public IActionResult Get()
         {
             //call model to get the courses
-            courseDAO = new CourseDAO(_configuration);
-            return Json(new { data = courseDAO.Get() });
+            consultDAO = new ConsultDAO(_configuration);
+            return Json(new { data = consultDAO.Get() });
         }
 
-        //obtener el id de usuario, si es profesor llama a GetCoursesByProfessor, si es estudiante llama a GetCourses 
-        //public IActionResult GetCoursesByProfessor()
-        //{
-        //    //llamada al modelo para obtener las carreras
-        //    courseDAO = new CourseDAO(_configuration);
-        //    List<Course> courses = new List<Course>();
-        //    courses = courseDAO.GetToConsult();
-        //    return Json(courses);
-        //}
+        public IActionResult GetById(int id)
+        {
+
+            //llamada al modelo para obtener el estudiante
+            consultDAO = new ConsultDAO(_configuration);
+            return Ok(consultDAO.Get(id));
+
+        }
     }
 }
