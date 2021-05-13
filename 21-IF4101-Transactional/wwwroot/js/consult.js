@@ -1,11 +1,12 @@
 ﻿"use strict";
 
 var registerConsultForm = document.getElementById("registerConsultForm");
-var messageToSend = document.getElementById("alertMessageAddConsult");
-var tableCourse;
+var messageToSendConsult = document.getElementById("alertMessageAddConsult");
+var message = document.getElementById("alertAddComment");
+var tableConsult;
 $(document).ready(function () {
     GetCourseConsult();
-    loadConsultList();
+    //setTimeout(loadConsultList, 20000);
 });
 
 //ACTION ADD
@@ -45,18 +46,18 @@ registerConsultForm.addEventListener("submit", function (e) {
             dataType: "json",
             success: function (result) {
                 if (result == 1) {
-                    messageToSend.innerHTML = "<label class='text-success'>Consulta agregada exitosamente</label>";
-                    
+                    messageToSendConsult.innerHTML = "<label class='text-success'>Consulta agregada exitosamente</label>";
+
                     $('#consultTable').DataTable().ajax.reload();
                     $('#consultTitle').val("");
                     $('#consultDescription').val("");
                     $('#courseConsult').val(0);
                 } else if (result == 3) {
                     $('#idCourse').addClass("formInput-error");
-                    messageToSend.innerHTML = "<label class='text-danger'>Esta consulta ya existe</label>";
+                    messageToSendConsult.innerHTML = "<label class='text-danger'>Esta consulta ya existe</label>";
                 }
                 else {
-                    messageToSend.innerHTML = "<label class='text-danger'>Error al ingresar consulta</label>";
+                    messageToSendConsult.innerHTML = "<label class='text-danger'>Error al ingresar consulta</label>";
                 }
             },
             error: function (errorMessage) {
@@ -67,10 +68,40 @@ registerConsultForm.addEventListener("submit", function (e) {
     }
 });
 
+function addComment(id) {
+    var consultComment = {
+        idConsult: parseInt(id),
+        comment: $('#dConsultComment').val()
+    };
+    if (consultComment.comment != "") {
+        $.ajax({
+            url: "/ConsultComment/Insert",
+            data: JSON.stringify(consultComment),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $('#dConsultComment').val("");
+                message.innerHTML = "<label class='text-success'>Comentario agregado exitosamente</label>";
+            },
+            error: function (errorMessage) {
+        //        alert("Error");
+                //alert(errorMessage.responseText);
+                message.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
+            }
+        });
+    } else {
+        message.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
+    }
+}
+
 function loadConsultList() {
     tableConsult = $("#consultTable").DataTable({
         "destroy": true,
         "autoWidth": false,
+        "columnDefs": [
+            { "width": "20%", "targets": [0, 4] }
+        ],
         "ajax": {
             "url": "/Consult/Get",
             "tpye": 'GET',
@@ -87,9 +118,10 @@ function loadConsultList() {
                 },
 
             },
-            { defaultContent: "<button id='btnModalDetails' name='btnModalDetails' type='button' data-toggle='modal' class='btn btn-primary' data-target='#consultModal' title='Detalles'><i class='fa fa-file-text'></i></button><button id='' name='' type='button' data-bs-toggle='' data-bs-target='' class='btn btn-info' title='Comentarios'><i class='fa fa-comments'></i></button>" }
+            { defaultContent: "<button id='btnModalDetails' name='btnModalDetails' type='button' data-toggle='modal' class='btn btn-primary' data-target='#consultModal' title='Detalles'><i class='fa fa-file-text'></i></button><button id='btnModalComments' name='btnModalComments' type='button' data-toggle='modal' data-target='#consultModalComments' class='btn btn-info' title='Comentarios'><i class='fa fa-comments'></i></button>" }
         ]
     });
+    
 }
 
 
@@ -117,71 +149,120 @@ function GetCourseConsult() {
 
 // Get the modal
 var modalConsult = document.getElementById("consultModal");
+var modalConsultComments = document.getElementById("consultModalComments");
 
-
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-    modalConsult.style.display = "none";
-}
 function closeDetails() {
     modalConsult.style.display = "none";
 }
-
+function closeComments() {
+    modalConsultComments.style.display = "none";
+}
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
     if (event.target == modalConsult) {
         modalConsult.style.display = "none";
     }
 }
+window.onclick = function (event) {
+    if (event.target == modalConsultComments) {
+        modalConsultComments.style.display = "none";
+    }
+}
 
 $("#consultTable tbody").on("click", "#btnModalDetails", function () {
     modalConsult.style.display = "block";
-    var dataInfoCourse = tableConsult.row($(this).parents("tr")).data();
+    var dataInfoConsult = tableConsult.row($(this).parents("tr")).data();
+    /*console.log(dataInfoConsult);*/
+    message.innerHTML = "";
+    var html = '';
+    
+    html += '<div class="modal-header">';
+    html += '<button type="button" id="btnCloseModalConsult" class="btn btn-danger" data-dismiss="modal" onclick="return closeDetails()" aria-label="Close"><b>X</b></button>';
+    html += '<h2 class="modal-title">Detalles de Consulta</h2>';
+    html += '</div>';
+    html += '<div class="modal-body">';
+    html += '<div ></div>';
+    html += '<form autocomplete="off">';
+    html += '<div class="form-group">';
+    html += '<label>Titulo:</label>';
+    html += '<div>';
+    html += '<input id="dConsultTitle" type="text" disabled value="' + dataInfoConsult.title + '">';
+    html += '</div>';
+    html += '</div>';
+    html += '<div id="DetailsId" class="form-group">';
+    html += '<label>ID:</label>';
+    html += '<div>';
+    html += '<input id="dConsultId" type="text" diabled="true" value="' + dataInfoConsult.id + '">';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="form-group">';
+    html += '<label>Autor:</label>';
+    html += '<div>';
+    html += '<input id="dConsultAuthor" type="text" disabled value="' + dataInfoConsult.author + '">';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="form-group">';
+    html += '<label>Curso:</label>';
+    html += '<div>';
+    html += '<input id="dConsultCourse" type="text" disable value="' + dataInfoConsult.course + '">';
+    html += '</div>';
+    html += '</div>';
+    html += '<div id="DetailsDate" class="form-group">';
+    html += '<label>Fecha:</label>';
+    html += '<div>';
+    html += '<input id="dConsultDate" type="text" disable value="' + dataInfoConsult.date + '">';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="form-group">';
+    html += '<label>Descripción:</label>';
+    html += '<div>';
+    html += '<textarea rows="4" cols="50" type="text" name="dConsultDescription" id="dConsultDescription" class="form-control" placeholder="Descripción" disabled>' + dataInfoConsult.description + '</textarea>';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="modal-footer mt-4">';
+    html += '<div class="col-12">';
+    html += '<textarea rows="4" cols="50" type="text" name="dConsultComment" id="dConsultComment" required="" class="form-control" placeholder="Comentario"></textarea>';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="modal-footer mt-4">';
+    html += '<div class="col-12">';
+    html += '<button type="button" class="btn btn-success" onclick="return addComment(' + dataInfoConsult.id+ ')">Comentar</button>';
+    html += '</div>';
+    html += '</div>';
+    html += '</form>';
+    html += '</div>';
+   
+    $('.modal-contentConsult').html(html);
+    document.getElementById("dConsultId").disabled = true;
+    document.getElementById("dConsultCourse").disabled = true;
+    document.getElementById("dConsultDate").disabled = true;
+
+});
+
+$("#consultTable tbody").on("click", "#btnModalComments", function () {
+    modalConsultComments.style.display = "block";
+    var dataInfoConsult = tableConsult.row($(this).parents("tr")).data();
+    
+
+    var html = '';
     $.ajax({
-        url: "/Consult/GetById", //MVC NORMAL
+        url: "/ConsultComment/GetComments", 
         type: "GET",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
-        data: { "id": idConsult },
+        data: { "idConsult": parseInt(dataInfoConsult.id) },
         success: function (result) {
-
+            console.log(result);
             var html = '';
+            $.each(result, function (key, item) {
+                console.log(item);
+                html += '<tr>';
+                html += '<td>' + item.author + '</td>';
+                html += '<td>' + item.comment + '</td>';
+                html += '<td>' + item.date + '</td>';
+            });
+            $('.tbody').html(html);
 
-            //console.log(result);
-
-            html += '<br/>';
-            html += '<label id="lstudentIdUpdate">ID</label>';
-            html += '<input  id="studentIdUpdate" type="text" disabled value="' + result.studentId + '">';
-            html += '<br/>';
-            html += '<label id="lnameUpdate">Name</label>';
-            html += '<input id="nameUpdate" type="text" value="' + result.name + '">';
-            html += '<br/>';
-            html += '<label id="lemailUpdate">Email</label>';
-            html += '<input id="emailUpdate" type="text" value="' + result.email + '">';
-            html += '<br/>';
-            html += '<label id="lmajorUpdate">Major</label>';
-            html += '<select class="form-control without-margin" name="majorUpdate" id="majorUpdate"><option value="0" >Select your major</option></select > ';
-            html += '<br/>';
-            html += '<label id="lnationalityUpdate">Nationality</label>';
-            html += '<select class="form-control without-margin" required name="nationalityUpdate" id="nationalityUpdate"><option value="0" selected>Select your nationality</option></select>';
-            //html += '<input id="nationalityUpdate" type="text" value="' + result.nationality.name + '">';
-            html += '<br/>';
-            html += '<label id="lpasswordUpdate">Password</label>';
-            html += '<input id="passwordUpdate" type="text" value="' + result.password + '">';
-            html += '<br/>';
-            html += '<br/>';
-            html += '<button id="AcceptUpdate" onclick="return closeDetails()">Aceptar</button>';
-            html += '<button id="CancelUpdate" onclick="return closeDetails()">Cancelar</button>';
-
-
-            $('.modal-contentConsult').html(html);
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);

@@ -82,15 +82,18 @@ loginForm.addEventListener("submit", function (e) {
                 if (result == 1) {
                     loginForm.reset(); //Clean form fields
                     showDisplay("admin");
+                    loadConsultList();
                 }
                 else if (result == 2) {
                     loginForm.reset(); //Clean form fields
                     showDisplay("student");
                     setNameStudent();
+                    loadConsultList();
                 } else if (result == 3) {
                     loginForm.reset(); //Clean form fields
                     showDisplay("professor");
                     setNameProfessor();
+                    loadConsultList();
                 } else if (result == 0) {
                     alertMessageToSendLogin.innerHTML = `<label class="text-danger">Email o contraseña incorrecta</label>`;
                 }

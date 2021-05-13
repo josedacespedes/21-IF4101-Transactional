@@ -21,7 +21,7 @@ namespace _21_IF4101_Transactional.Models.Data
         }
 
 
-        public int Insert(ConsultComment consultComment)
+        public int Insert(ConsultComment consultComment, string name)
         {
             int resultToReturn;
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -30,7 +30,7 @@ namespace _21_IF4101_Transactional.Models.Data
                 SqlCommand command = new SqlCommand("InsertConsultComment", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo.
                 command.CommandType = System.Data.CommandType.StoredProcedure; //acá decimos que lo que se ejecutará es un SP
 
-                command.Parameters.AddWithValue("@Author", consultComment.Author);//AQUÍ IRÍA EL NOMBRE COMPLETO
+                command.Parameters.AddWithValue("@Author", name);//AQUÍ IRÍA EL NOMBRE COMPLETO
                 command.Parameters.AddWithValue("@Comment", consultComment.Comment);
                 command.Parameters.AddWithValue("@IdConsult", consultComment.IdConsult);
                 resultToReturn = command.ExecuteNonQuery(); //esta es la sentencia que ejecuta la inserción en BD y saca un 1 o un 0 dependiendo de si se modificó la tupla o no. Es decir, si se insertó en BD o no.

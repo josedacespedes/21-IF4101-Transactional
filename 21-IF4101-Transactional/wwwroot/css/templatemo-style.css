@@ -1073,9 +1073,9 @@ input:checked + .slider .off {
 .entry-formConsult {
     background: #252020;
     text-align: center;
-    padding: 6em;
-    width: 900px;
-    height: 550px;
+    padding: 3em;
+    width: 550px;
+    height: 500px;
 }
 
     .entry-formConsult h2 {
@@ -1109,8 +1109,9 @@ input:checked + .slider .off {
             color: #ffffff;
         }
 
-#consultDescription {
+#consultDescription, #dConsultDescription, #dConsultAnswer, #dConsultComment {
     height: 150px;
+    resize: none;
 }
 
 #consultTitle, #courseConsult {
@@ -1119,9 +1120,92 @@ input:checked + .slider .off {
 
 #typeConsult {
     margin-top: -50px;
-    margin-left: 570px;
+    margin-left: 320px;
 }
 
-#addConsult, #listConsult {
-    height: 600px;
+/*-------Modal--------*/
+.modalConsult {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-contentConsult {
+    background-color: aliceblue;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70%; /* Could be more or less, depending on screen size */
+    height: 70%;
+}
+
+.modalConsultCommets {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-contentConsultComments {
+    background-color: aliceblue;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70%; /* Could be more or less, depending on screen size */
+    height: 70%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+#dConsultTitle, #dConsultAuthor, #dConsultCourse, #dConsultDate, #dConsultId {
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+}
+#btnCloseModalConsult {
+    margin-left: 850px;
+}
+
+#DetailsId, #DetailsDate {
+    margin-top: -74px;
+    margin-left: 450px;
+}
+#table {
+    width: 800px;
+    background-color: white;
+}
+
+#thAuthor, #thComment, #thDate {
+    background-color: burlywood;
+}
+#alertAddComment {
+    margin-left: 250px;
+    margin-top: -150px;
 }
