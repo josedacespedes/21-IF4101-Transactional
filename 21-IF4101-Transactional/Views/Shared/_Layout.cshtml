@@ -42,7 +42,7 @@
         </div>
     </section>
 
-    <!-- MENU -->
+    <!-- MENU NO USER -->
     <section class="navbar custom-navbar navbar-fixed-top displayNoUser" role="navigation">
         <div class="container">
 
@@ -92,6 +92,142 @@
             </div>
         </div>
     </section>
+
+    <!-- MENU ADMIN-->
+    <section class="navbar custom-navbar navbar-fixed-top displayAdmin" role="navigation" hidden>
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+                <a href="#top" class="navbar-brand">Informática Empresarial</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-nav-first">
+                    <li><a href="#news" class="smoothScroll">Noticias</a></li>
+                    <li><a href="#addConsult" class="smoothScroll">Consultas</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Registros
+                        </a>
+                        <div class="dropdown-menu" id="dropMenu">
+                            <ul class="nav navbar-nav">
+                                <li class="li-100"><a href="#addProfessor" class="dropdown-item smoothScroll signOut">Docente</a></li>
+                                <li class="li-100"><a href="#addCourse" class="dropdown-item smoothScroll signOut">Curso</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Estudiantes
+                        </a>
+                        <div class="dropdown-menu" id="dropMenu">
+                            <ul class="nav navbar-nav">
+                                <li class="li-100"><a href="#applicantList" class="dropdown-item smoothScroll signOut">Solicitudes</a></li>
+                                <li class="li-100"><a href="#applicantList" class="dropdown-item smoothScroll signOut">Asignar Presidente</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right" id="loginRight">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Administrador
+                        </a>
+                        <div class="dropdown-menu" id="dropMenu">
+                            <ul class="nav navbar-nav">
+                                <li class="li-101"><a href="#" class="dropdown-item signOut" onclick="logOut()"><i class="fa fa-power-off"></i> Cerrar Sesión</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- MENU STUDENT-->
+    <section class="navbar custom-navbar navbar-fixed-top displayStudent" role="navigation" hidden>
+        <div class="container">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+                <a href="#top" class="navbar-brand">Informática Empresarial</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-nav-first">
+                    <li><a href="#news" class="smoothScroll">Noticias</a></li>
+                    <li><a href="#addConsult" class="smoothScroll">Consultas</a></li>
+                    <li><a href="#addProfessor" class="smoothScroll">Citas</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right" id="loginRight">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" name="profileNameStudent" id="profileNameStudent" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                        </a>
+                        <div class="dropdown-menu" id="dropMenu">
+                            <ul class="nav navbar-nav">
+                                <li class="li-100"><a class="dropdown-item signOut" href="#" id="showModalStudentProfile" data-toggle='modal' data-target='#modalStudentProfile'><i class="fa fa-user-o"></i> Perfil </a></li>
+                                <li class="li-100"><a href="#" class="dropdown-item signOut"><i class="fa fa-trash"></i> Eliminar Perfil</a></li>
+                                <li class="li-100"><a href="#" class="dropdown-item signOut" onclick="logOut()"><i class="fa fa-power-off"></i> Cerrar Sesión</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU PROFESSOR-->
+    <section class="navbar custom-navbar navbar-fixed-top displayProfessor" role="navigation" hidden>
+        <div class="container">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+                <a href="#top" class="navbar-brand">Informática Empresarial</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-nav-first">
+                    <li><a href="#news" class="smoothScroll">Noticias</a></li>
+                    <li><a href="#addConsult" class="smoothScroll">Consultas</a></li>
+                    <li><a href="#addProfessor" class="smoothScroll">Citas</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right" id="loginRight">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" name="profileNameProfessor" id="profileNameProfessor" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                        </a>
+
+                        <div class="dropdown-menu" id="dropMenu">
+                            <ul class="nav navbar-nav">
+                                <li class="li-100"><a class="dropdown-item signOut" id="showModalProfessorProfile" href="#" data-toggle='modal' data-target='#modalProfessorProfile'><i class="fa fa-user-o"></i> Perfil</a></li>
+                                <li class="li-100"><a href="#" class="dropdown-item signOut"><i class="fa fa-trash"></i> Eliminar Perfil</a></li>
+                                <li class="li-100"><a href="#" class="dropdown-item signOut" onclick="logOut()"><i class="fa fa-power-off"></i> Cerrar Sesión</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
 
     <!-- NEWS -->
     <section id="home" class="displayAll">
@@ -359,7 +495,6 @@
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -415,6 +550,121 @@
         </div>
     </div>
 
+    <!-- MODAL PERFIL STUDENT-->
+    <div class="modal" id="modalStudentProfile">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div class="row">
+                        <button type="button" id="buttonCloseProfile" class="btn btn-danger pull-right" data-dismiss="modal" aria-label="Close"><b>X</b></button>
+                    </div>
+                    <div id="profileStudentImage"></div>
+
+                    <div class="text-center">
+                        <div class="row pHeadProfile" id="profileStudentName">
+                            <h2 class="modal-title" id="hProfileNameStudent"></h2>
+                        </div>
+                        <div class="row pHeadProfile" id="profileStudentEmail">
+                            <h3 class="modal-title" id="hProfileEmailStudent"></h3>
+                        </div>
+                        <div class="row pHeadProfile" id="profileStudentCarnet">
+                            <h3 class="modal-title" id="hProfileCarnetStudent"></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body" id="modalProfileStudent">
+                    <form id="registerProfileStudent" autocomplete="off">
+                        <div class="form-group" id="divStudentHobbies">
+                            <label class="colorLabelProfile">Intereses</label>
+                            <div id="divStudentHobbies">
+                                <textarea class="form-control withoutBorder" rows="3" id="inputStudentHobbies" placeholder="Intereses" minlenght="10" maxlength="200" title="Ingrese sus intereses y pasatiempos"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- MODAL PERFIL PROFESSOR-->
+    <div class="modal" id="modalProfessorProfile">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div class="row">
+                        <button type="button" id="buttonCloseProfile" class="btn btn-danger pull-right" data-dismiss="modal" aria-label="Close"><b>X</b></button>
+                    </div>
+                    <div id="profileProfessorImage">
+
+                    </div>
+                    <div class="text-center">
+                        <div class="row pHeadProfile" id="profileProfessorName">
+                            <h2 class="modal-title" id="hProfileNameProfessor"></h2>
+                        </div>
+                        <div class="row pHeadProfile" id="profileProfessorEmail">
+                            <h3 class="modal-title" id="hProfileEmailProfessor"></h3>
+                        </div>
+                        <div class="row pHeadProfile" id="profileProfessorCode">
+                            <h3 class="modal-title" id="hProfileCodeProfessor"></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body" id="modalProfileProfessor">
+                    <form id="registerProfileProfessor" autocomplete="off">
+                        <div class="form-group" id="divprofesionalTraining">
+                            <label class="colorLabelProfile">Formación Profesional</label>
+                            <div id="inputprofesionalTraining">
+                                <textarea class="form-control withoutBorder" rows="3" id="inputProfessorTraining" placeholder="Formación profesional" minlenght="10" maxlength="200" title="Ingrese su formación academica"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group" id="divHobbies">
+                            <label class="colorLabelProfile">Intereses</label>
+                            <div id="inputHobbies">
+                                <textarea class="form-control withoutBorder" rows="3" id="inputProfessorHobbies" placeholder="Intereses" minlenght="10" maxlength="200" title="Ingrese sus intereses y pasatiempos"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group" id="divFacebook">
+                            <label class="colorLabelProfile">URL Facebook</label>
+                            <div id="inputFacebook">
+                                <input type="url" id="inputFacebookProfessor" placeholder="Facebook" class="form-control withoutBorder" minlenght="10" maxlength="100" pattern="https://.*" title="Ingrese Facebook" />
+                            </div>
+                        </div>
+                        <div class="form-group" id="divLinkedIn">
+                            <label class="colorLabelProfile">URL LinkedIn</label>
+                            <div id="inputLinkedIn">
+                                <input type="url" id="inputProfessorLinkedIn" placeholder="LinkedIn" class="form-control withoutBorder" minlenght="10" maxlength="100" pattern="https://.*" title="Ingrese LinkedIn" />
+                            </div>
+                        </div>
+                        <div class="form-group" id="divGithub">
+                            <label class="colorLabelProfile">URL GitHub</label>
+                            <div id="inputGithub">
+                                <input type="url" id="inputProfessorGithub" placeholder="GitHub" class="form-control withoutBorder" minlenght="10" maxlength="100" pattern="https://.*" title="Ingrese GitHub" />
+                            </div>
+                        </div>
+                        <div>
+                            <ul class="social-icon">
+                                <li><a href="#" id="facebookProfileProfessor" target="_blank" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                <li><a href="#" id="linkedinProfileProfessor" target="_blank" class="fa fa-linkedin-square"></a></li>
+                                <li><a href="#" id="githubProfileProfessor" target="_blank" class="fa fa-github-square"></a></li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- APPLICANT LIST -->
     <section id="applicantList" class="displayAdmin">
@@ -442,7 +692,7 @@
     </section>
 
     <!--  REGISTER CONSULT -->
-    <section id="addConsult" class="displayStudent">
+    <section id="addConsult" class="displayStudent displayAdmin displayProfessor">
         <div class="container">
             <div class="row">
 
@@ -578,7 +828,6 @@
     <script src="/js/applicant.js"></script>
     <script src="js/professor.js"></script>
     <script src="js/course.js"></script>
-    <script src="js/display.js"></script>
     <script src="js/consult.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script> <!-- Mask inputs -->
     <script src="https://smtpjs.com/v3/smtp.js"></script> <!-- Email -->

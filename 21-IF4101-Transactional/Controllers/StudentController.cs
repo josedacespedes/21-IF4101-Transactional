@@ -1,4 +1,5 @@
 ﻿using _21_IF4101_Transactional.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -48,11 +49,18 @@ namespace _21_IF4101_Transactional.Controllers
         }
 
 
-        public IActionResult GetProfile(string email)
+        public IActionResult GetProfile()
         {
+            string email = HttpContext.Session.GetString("sEmail");
             //llamada al modelo para obtener el perfil de estudiante
             studentDAO = new StudentDAO(_configuration);
             return Ok(studentDAO.GetProfile(email));
+        }
+
+        public IActionResult GetSessionVariables() //Obtener variables de sesion
+        {
+            string sNombre = HttpContext.Session.GetString("sNombre");
+            return Ok(sNombre);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

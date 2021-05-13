@@ -1,6 +1,7 @@
 ﻿using _21_IF4101_Transactional.Models;
 using _21_IF4101_Transactional.Models.Data;
 using _21_IF4101_Transactional.Models.Domain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -64,13 +65,19 @@ namespace _21_IF4101_Transactional.Controllers
             return Json(new { data = professorDAO.Get() });
         }
 
-        public IActionResult GetProfile(string email)
+        public IActionResult GetProfile()
         {
+            string email = HttpContext.Session.GetString("sEmail");
             //llamada al modelo para obtener el perfil de estudiante
             professorDAO = new ProfessorDAO(_configuration);
             return Ok(professorDAO.GetProfile(email));
         }
 
+        public IActionResult GetSessionVariables() //Obtener variables de sesion
+        {
+            string sNombre = HttpContext.Session.GetString("sNombre");
+            return Ok(sNombre);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

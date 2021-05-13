@@ -6,6 +6,7 @@ var alertMessageAddStudent = document.getElementById("alertMessageAddStudent");
 var tableApplicant;
 
 $(document).ready(function () {
+
     loadListApplicant();
 });
 

@@ -286,6 +286,42 @@ input:checked + .slider:before {
 /*---------------------------------------
        MODAL              
   -----------------------------------------*/
+#buttonCloseProfile {
+    margin-right: 1em;
+}
+
+.pHeadProfile {
+    padding-top: 1em;
+}
+
+.withoutBorder {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid;
+    border-radius: 0;
+    box-shadow: none !important;
+    border-color: white;
+    color:white;
+}
+
+#registerProfileProfessor textarea, #registerProfileStudent textarea {
+    resize: none;
+    height: 4em;
+}
+
+
+    #registerProfileProfessor textarea ::-webkit-input-placeholder, #registerProfileStudent textarea ::-webkit-input-placeholder {
+        text-align: center;
+    }
+
+.colorLabelProfile {
+    color:gray;
+}
+
+#modalProfileProfessor, #modalProfileStudent {
+    background-color: #252020;
+}
+
 #textAreaCourseGroup {
     padding: 2%;
     margin-left: 13%;
@@ -456,6 +492,17 @@ input:checked + .slider:before {
 /*---------------------------------------
         LOGIN            
   -----------------------------------------*/
+.li-101, .singOut {
+    width: 109%;
+}
+
+.li-100, .singOut {
+    width: 100%;
+}
+
+#dropMenu {
+    padding: 0px 0 !important;
+}
 
 .login {
     width: 220px;
@@ -792,8 +839,12 @@ footer {
             color: #4064AC;
         }
 
-        .social-icon li .fa-twitter {
-            color: #00B0E9;
+        .social-icon li .fa-linkedin-square {
+            color: #0A66C2;
+        }
+
+        .social-icon li .fa-github-square {
+            color: white ;
         }
 
         .social-icon li .fa-instagram {

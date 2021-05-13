@@ -25,10 +25,6 @@ namespace _21_IF4101_Transactional.Controllers
             _configuration = configuration;
         }
 
-        public LoginController()
-        {
-        }
-
         public IActionResult Index()
         {
             return View();
