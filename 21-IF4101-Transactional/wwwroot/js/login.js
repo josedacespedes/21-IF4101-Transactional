@@ -1,7 +1,5 @@
 ﻿"use strict";
 
-/*const { error } = require("jquery");*/
-
 var loginForm = document.getElementById("loginForm");
 var alertMessageToSendLogin = document.getElementById("messageToSendLogin");
 
@@ -88,9 +86,11 @@ loginForm.addEventListener("submit", function (e) {
                 else if (result == 2) {
                     loginForm.reset(); //Clean form fields
                     showDisplay("student");
+                    setNameStudent();
                 } else if (result == 3) {
                     loginForm.reset(); //Clean form fields
                     showDisplay("professor");
+                    setNameProfessor();
                 } else if (result == 0) {
                     alertMessageToSendLogin.innerHTML = `<label class="text-danger">Email o contraseña incorrecta</label>`;
                 }
@@ -150,3 +150,52 @@ function logOut() {
     $(".displayNoUser").show();
 }
 
+/*--------------------------------------------- PROFILE STUDENT -----------------------------------------------------------*/
+function setNameStudent() {
+
+    $.ajax({
+        url: "/Student/GetSessionVariables",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        success: function (result) {
+            document.getElementById('profileNameStudent').innerHTML= result;
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+/*--------------------------------------------- PROFILE PROFESSOR -----------------------------------------------------------*/
+function setNameProfessor() {
+
+    $.ajax({
+        url: "/Professor/GetSessionVariables",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        success: function (result) {
+            document.getElementById('profileNameProfessor').innerHTML = result;
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+
+$("#showModalProfessorProfile").click(function () {
+    $.ajax({
+        url: "/Professor/GetProfile",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        success: function (result) {
+            document.getElementById('hProfileNameProfessor').innerHTML = result.firstNameProfessor +' '+ result.lastNameProfessor;
+            document.getElementById('hProfileEmailProfessor').innerHTML = result.email;
+            document.getElementById('hProfileCodeProfessor').innerHTML = result.code;
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+
+});

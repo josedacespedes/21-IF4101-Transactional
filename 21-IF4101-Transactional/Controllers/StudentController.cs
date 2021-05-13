@@ -49,8 +49,9 @@ namespace _21_IF4101_Transactional.Controllers
         }
 
 
-        public IActionResult GetProfile(string email)
+        public IActionResult GetProfile()
         {
+            string email = HttpContext.Session.GetString("sEmail");
             //llamada al modelo para obtener el perfil de estudiante
             studentDAO = new StudentDAO(_configuration);
             return Ok(studentDAO.GetProfile(email));
@@ -58,10 +59,8 @@ namespace _21_IF4101_Transactional.Controllers
 
         public IActionResult GetSessionVariables() //Obtener variables de sesion
         {
-            List<string> Sessionvaribles = new List<string>();
-            var sEmail = HttpContext.Session.GetString("sEmail");
-            Sessionvaribles.Add(sEmail);
-            return Ok(Sessionvaribles);
+            string sNombre = HttpContext.Session.GetString("sNombre");
+            return Ok(sNombre);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
