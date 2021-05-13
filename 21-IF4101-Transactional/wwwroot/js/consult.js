@@ -68,7 +68,7 @@ registerConsultForm.addEventListener("submit", function (e) {
 });
 
 function loadConsultList() {
-    tableCourse = $("#consultTable").DataTable({
+    tableConsult = $("#consultTable").DataTable({
         "destroy": true,
         "autoWidth": false,
         "ajax": {
@@ -140,66 +140,52 @@ window.onclick = function (event) {
         modalConsult.style.display = "none";
     }
 }
-//$("#courseTable tbody").on("click", "#buttonModalCourseEdit", function () {
-//    var dataInfoCourse = tableCourse.row($(this).parents("tr")).data();
-//    document.getElementById("courseTitleModalEdit").innerHTML = `<h4>Curso: ${dataInfoCourse.code}  ${dataInfoCourse.name} </h4>`;
-//    idCourseEdit = dataInfoCourse.id;
 
-//    $('#courseNameEdit').val(dataInfoCourse.name);
-//    $('#creditsNumberEdit').val(dataInfoCourse.credits);
-
-//    if (dataInfoCourse.state == 1) {
-//        $("#courseStatusEdit").prop('checked', true);
-//    } else {
-//        $("#courseStatusEdit").prop('checked', false);
-//    }
-
-//});
 $("#consultTable tbody").on("click", "#btnModalDetails", function () {
     modalConsult.style.display = "block";
-    console.log(idConsult);
-    //$.ajax({
-    //    url: "/Consult/GetById", //MVC NORMAL
-    //    type: "GET",
-    //    contentType: "application/json;charset=utf-8",
-    //    dataType: "json",
-    //    data: { "id": idConsult },
-    //    success: function (result) {
+    var dataInfoCourse = tableConsult.row($(this).parents("tr")).data();
+    $.ajax({
+        url: "/Consult/GetById", //MVC NORMAL
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        data: { "id": idConsult },
+        success: function (result) {
 
-    //        var html = '';
+            var html = '';
 
-    //        //console.log(result);
+            //console.log(result);
 
-    //        html += '<br/>';
-    //        html += '<label id="lstudentIdUpdate">ID</label>';
-    //        html += '<input  id="studentIdUpdate" type="text" disabled value="' + result.studentId + '">';
-    //        html += '<br/>';
-    //        html += '<label id="lnameUpdate">Name</label>';
-    //        html += '<input id="nameUpdate" type="text" value="' + result.name + '">';
-    //        html += '<br/>';
-    //        html += '<label id="lemailUpdate">Email</label>';
-    //        html += '<input id="emailUpdate" type="text" value="' + result.email + '">';
-    //        html += '<br/>';
-    //        html += '<label id="lmajorUpdate">Major</label>';
-    //        html += '<select class="form-control without-margin" name="majorUpdate" id="majorUpdate"><option value="0" >Select your major</option></select > ';
-    //        html += '<br/>';
-    //        html += '<label id="lnationalityUpdate">Nationality</label>';
-    //        html += '<select class="form-control without-margin" required name="nationalityUpdate" id="nationalityUpdate"><option value="0" selected>Select your nationality</option></select>';
-    //        //html += '<input id="nationalityUpdate" type="text" value="' + result.nationality.name + '">';
-    //        html += '<br/>';
-    //        html += '<label id="lpasswordUpdate">Password</label>';
-    //        html += '<input id="passwordUpdate" type="text" value="' + result.password + '">';
-    //        html += '<br/>';
-    //        html += '<br/>';
-    //        html += '<button id="AcceptUpdate" onclick="return closeDetails()">Aceptar</button>';
-    //        html += '<button id="CancelUpdate" onclick="return closeDetails()">Cancelar</button>';
+            html += '<br/>';
+            html += '<label id="lstudentIdUpdate">ID</label>';
+            html += '<input  id="studentIdUpdate" type="text" disabled value="' + result.studentId + '">';
+            html += '<br/>';
+            html += '<label id="lnameUpdate">Name</label>';
+            html += '<input id="nameUpdate" type="text" value="' + result.name + '">';
+            html += '<br/>';
+            html += '<label id="lemailUpdate">Email</label>';
+            html += '<input id="emailUpdate" type="text" value="' + result.email + '">';
+            html += '<br/>';
+            html += '<label id="lmajorUpdate">Major</label>';
+            html += '<select class="form-control without-margin" name="majorUpdate" id="majorUpdate"><option value="0" >Select your major</option></select > ';
+            html += '<br/>';
+            html += '<label id="lnationalityUpdate">Nationality</label>';
+            html += '<select class="form-control without-margin" required name="nationalityUpdate" id="nationalityUpdate"><option value="0" selected>Select your nationality</option></select>';
+            //html += '<input id="nationalityUpdate" type="text" value="' + result.nationality.name + '">';
+            html += '<br/>';
+            html += '<label id="lpasswordUpdate">Password</label>';
+            html += '<input id="passwordUpdate" type="text" value="' + result.password + '">';
+            html += '<br/>';
+            html += '<br/>';
+            html += '<button id="AcceptUpdate" onclick="return closeDetails()">Aceptar</button>';
+            html += '<button id="CancelUpdate" onclick="return closeDetails()">Cancelar</button>';
 
 
-    //        $('.modal-contentConsult').html(html);
-    //    },
-    //    error: function (errorMessage) {
-    //        alert(errorMessage.responseText);
-    //    }
-    //})
+            $('.modal-contentConsult').html(html);
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    })
 
 });
