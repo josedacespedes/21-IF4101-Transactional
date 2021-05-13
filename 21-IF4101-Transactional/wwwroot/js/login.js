@@ -1,7 +1,5 @@
 ﻿"use strict";
 
-/*const { error } = require("jquery");*/
-
 var loginForm = document.getElementById("loginForm");
 var alertMessageToSendLogin = document.getElementById("messageToSendLogin");
 
@@ -88,9 +86,11 @@ loginForm.addEventListener("submit", function (e) {
                 else if (result == 2) {
                     loginForm.reset(); //Clean form fields
                     showDisplay("student");
+                    setNameStudent();
                 } else if (result == 3) {
                     loginForm.reset(); //Clean form fields
                     showDisplay("professor");
+                    setNameProfessor();
                 } else if (result == 0) {
                     alertMessageToSendLogin.innerHTML = `<label class="text-danger">Email o contraseña incorrecta</label>`;
                 }
@@ -150,3 +150,90 @@ function logOut() {
     $(".displayNoUser").show();
 }
 
+/*--------------------------------------------- PROFILE STUDENT -----------------------------------------------------------*/
+function setNameStudent() {
+
+    $.ajax({
+        url: "/Student/GetSessionVariables",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        success: function (result) {
+            document.getElementById('profileNameStudent').innerHTML = result;
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+$("#showModalStudentProfile").click(function () {
+    $.ajax({
+        url: "/Student/GetProfile",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        success: function (result) {
+            document.getElementById('profileStudentImage').innerHTML = `<img src=` + result.image + ` class="img-responsive center-block img-circle" alt="Imagen de Perfil" width="150" height="150">`;
+            document.getElementById('hProfileNameStudent').innerHTML = result.firstName + ' ' + result.lastName;
+            document.getElementById('hProfileEmailStudent').innerHTML = result.email;
+            document.getElementById('hProfileCarnetStudent').innerHTML = result.studentId;
+            document.getElementById('inputStudentHobbies').value = result.likes;
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+
+});
+
+/*--------------------------------------------- PROFILE PROFESSOR -----------------------------------------------------------*/
+function setNameProfessor() {
+
+    $.ajax({
+        url: "/Professor/GetSessionVariables",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        success: function (result) {
+            document.getElementById('profileNameProfessor').innerHTML = result;
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+
+$("#showModalProfessorProfile").click(function () {
+    $.ajax({
+        url: "/Professor/GetProfile",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        success: function (result) {
+            document.getElementById('profileProfessorImage').innerHTML = `<img src=` + result.imageProfessor + ` class="img-responsive center-block img-circle" alt="Imagen de Perfil" width="150" height="150">`;
+            document.getElementById('hProfileNameProfessor').innerHTML = result.firstNameProfessor + ' ' + result.lastNameProfessor;
+            document.getElementById('hProfileEmailProfessor').innerHTML = result.emailProfessor;
+            document.getElementById('hProfileCodeProfessor').innerHTML = result.idProfessor;
+            document.getElementById('inputProfessorTraining').value = result.vocationalTrainingProfessor;
+            document.getElementById('inputProfessorHobbies').value = result.likesProfessor;
+
+            var links = getLinksProfessor(result.linksProfessor);
+            document.getElementById('inputFacebookProfessor').value = links[0];
+            document.getElementById('inputProfessorLinkedIn').value = links[1];
+            document.getElementById('inputProfessorGithub').value = links[2];
+
+            document.getElementById('facebookProfileProfessor').href = links[0];
+            document.getElementById('linkedinProfileProfessor').href = links[1];
+            document.getElementById('githubProfileProfessor').href = links[2];
+
+        },
+        error: function (errorMessage) {
+            alert(errorMessage.responseText);
+        }
+    });
+
+});
+
+
+function getLinksProfessor(rawList) {
+    var array = rawList.split(",");
+    return array;
+}

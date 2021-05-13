@@ -192,6 +192,7 @@ namespace _21_IF4101_Transactional.Models.Data
                         professor.ImageProfessor = sqlDataReader["Image"].ToString();
                         professor.LikesProfessor = sqlDataReader["Likes"].ToString();
                         professor.VocationalTrainingProfessor = sqlDataReader["VocationalTraining"].ToString();
+                        professor.LinksProfessor = sqlDataReader["Links"].ToString();
                     }
                     connection.Close();
                 }
