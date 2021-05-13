@@ -41,7 +41,7 @@ namespace _21_IF4101_Transactional.Controllers
             HttpContext.Session.SetString("sEmail", email);
             HttpContext.Session.SetString("sNombre", loginDAO.GetNameUserByEmail(email)); //(AGREGAR ACA NOMBRE COMPLETO DE PERSONA)
             HttpContext.Session.SetInt32("sId", loginDAO.GetIdUserByEmail(email));
-           
+
             //var a = HttpContext.Session.GetString("nombreVariable"); //ASI SE OBTIENE
         }
 

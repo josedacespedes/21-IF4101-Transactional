@@ -48,34 +48,9 @@ namespace _21_IF4101_Transactional.Models.Data
             return resultToReturn; //retornamos resultado al Controller.
         }
 
-        //public List<Course> GetCoursesByProfessor(int idProfessor)
-        //{
-        //    List<Course> courses = new List<Course>();
+        
 
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        connection.Open(); //abrimos conexión
-        //        SqlCommand command = new SqlCommand("SelectCourseByProfessor", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo.
-        //        command.CommandType = System.Data.CommandType.StoredProcedure; //acá decimos que lo que se ejecutará es un SP                                                             //logica del get/select
-        //        SqlDataReader sqlDataReader = command.ExecuteReader();
-        //        //leemos todas las filas provenientes de BD
-        //        while (sqlDataReader.Read())
-        //        {
-        //            courses.Add(new Course
-        //            {
-        //                Id = Convert.ToInt32(sqlDataReader["Id"]),
-        //                Code = sqlDataReader["Code"].ToString(),
-        //                Name = sqlDataReader["Name"].ToString(),
-        //                Credits = 0,
-        //                State = 0
-        //            });
-        //        }
-        //        connection.Close(); //cerramos conexión.
-        //    }
-        //    return courses; //retornamos resultado al Controller.
-        //}
-
-        public List<Consult> Get()
+        public List<Consult> Get(string email)
         {
             List<Consult> consults = new List<Consult>();
 
@@ -83,7 +58,9 @@ namespace _21_IF4101_Transactional.Models.Data
             {
                 connection.Open(); //abrimos conexión
                 SqlCommand command = new SqlCommand("SelectConsult", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo.
-                command.CommandType = System.Data.CommandType.StoredProcedure; //acá decimos que lo que se ejecutará es un SP                                                                               //logica del get/select
+                command.CommandType = System.Data.CommandType.StoredProcedure; //acá decimos que lo que se ejecutará es un SP      
+                command.Parameters.AddWithValue("@Email", email);
+                //logica del get/select
                 SqlDataReader sqlDataReader = command.ExecuteReader();
                 //leemos todas las filas provenientes de BD
 
@@ -104,7 +81,7 @@ namespace _21_IF4101_Transactional.Models.Data
             }
             return consults; //retornamos resultado al Controller.
         }
-
+        
         public Consult Get(int idConsult)
         {
             Consult consult = null;
