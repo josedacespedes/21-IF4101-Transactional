@@ -126,6 +126,7 @@ function showDisplay(usuario) {
             break;
         case "admin":
             hiddenAll();
+            $(".displayAll").show();
             $(".displayAdmin").show();
             break;
         case "student":
@@ -138,10 +139,14 @@ function showDisplay(usuario) {
             $(".displayAll").show();
             $(".displayProfessor").show();
             break;
-        case "noUser":
-            hiddenAll();
-            $(".displayNoUser").show();
-            break;
     }
+}
+
+function logOut() {
+    $(".displayAdmin").hide();
+    $(".displayStudent").hide();
+    $(".displayProfessor").hide();
+    $(".displayAll").show();
+    $(".displayNoUser").show();
 }
 
