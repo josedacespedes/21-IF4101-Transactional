@@ -244,5 +244,38 @@ namespace _21_IF4101_Transactional.Models.Data
             }
 
         }
+
+        public int InsertProfessorGroup(int idGroup, int idProfessor, string consultationHours)
+        {
+            int resultToReturn = 0;
+
+            SqlConnection connection = null;
+            try
+            {
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("InsertProfessorGroup", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@IdGroup", idGroup);
+                    command.Parameters.AddWithValue("@IdProfessor", idProfessor);
+                    command.Parameters.AddWithValue("@ConsultationHours", consultationHours);
+                    resultToReturn = command.ExecuteNonQuery();
+                    connection.Close();
+                }
+
+                return resultToReturn;
+            }
+            catch (SqlException ex)
+            {
+                return ex.Number;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+        }
     }
 }

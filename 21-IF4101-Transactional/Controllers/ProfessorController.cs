@@ -80,6 +80,13 @@ namespace _21_IF4101_Transactional.Controllers
             return Ok(professorDAO.UpdateProfile(professor));
         }
 
+        public IActionResult InsertProfessorGroup(int idGroup, int idProfessor, string consultationHours)
+        {
+            //llamada al modelo para agregar al profesor-grupo
+            professorDAO = new ProfessorDAO(_configuration);
+            return Ok(professorDAO.InsertProfessorGroup(idGroup, idProfessor, consultationHours));
+        }
+
         public IActionResult GetSessionVariables() //Obtener variables de sesion
         {
             string sNombre = HttpContext.Session.GetString("sNombre");
