@@ -277,5 +277,36 @@ namespace _21_IF4101_Transactional.Models.Data
                     connection.Close();
             }
         }
+
+        public List<String> GetWeekDays()
+        {
+
+            List<String> weekDays = new List<String>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("SelectWeekDays", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+                if (sqlDataReader.Read())
+                {
+                    weekDays.Add(sqlDataReader["Lunes"].ToString());
+                    weekDays.Add(sqlDataReader["Martes"].ToString());
+                    weekDays.Add(sqlDataReader["Miercoles"].ToString());
+                    weekDays.Add(sqlDataReader["Jueves"].ToString());
+                    weekDays.Add(sqlDataReader["Viernes"].ToString());
+                    weekDays.Add(sqlDataReader["Sabado"].ToString());
+
+                }
+
+                connection.Close();
+            }
+
+
+            return weekDays;
+
+        }
     }
 }

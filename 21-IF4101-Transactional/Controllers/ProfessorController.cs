@@ -87,6 +87,13 @@ namespace _21_IF4101_Transactional.Controllers
             return Ok(professorDAO.InsertProfessorGroup(idGroup, idProfessor, consultationHours));
         }
 
+        public IActionResult GetWeekDays()
+        {
+            //llamada al modelo para obtener dias de semana
+            professorDAO = new ProfessorDAO(_configuration);
+            return Ok(professorDAO.GetWeekDays());
+        }
+
         public IActionResult GetSessionVariables() //Obtener variables de sesion
         {
             string sNombre = HttpContext.Session.GetString("sNombre");
