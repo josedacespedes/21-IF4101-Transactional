@@ -209,5 +209,40 @@ namespace _21_IF4101_Transactional.Models.Data
             }
 
         }
+
+        public int UpdateProfile(Professor professor)
+        {
+            int resultToReturn;
+            SqlConnection connection = null;
+            try
+            {
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open(); //abrimos conexión
+                    SqlCommand command = new SqlCommand("UpdateProfessorPerfilByEmail", connection);
+
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Email", professor.EmailProfessor);
+                    command.Parameters.AddWithValue("@Image", professor.ImageProfessor);
+                    command.Parameters.AddWithValue("@Likes", professor.LikesProfessor);
+                    command.Parameters.AddWithValue("@VocationalTraining", professor.VocationalTrainingProfessor);
+                    command.Parameters.AddWithValue("@Links", professor.LinksProfessor);
+
+                    resultToReturn = command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                return resultToReturn;
+            }
+            catch (SqlException ex)
+            {
+                return ex.Number;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+
+        }
     }
 }

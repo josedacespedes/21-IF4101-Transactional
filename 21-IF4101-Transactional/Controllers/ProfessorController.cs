@@ -73,6 +73,13 @@ namespace _21_IF4101_Transactional.Controllers
             return Ok(professorDAO.GetProfile(email));
         }
 
+        public IActionResult UpdateProfile([FromBody] Professor professor)
+        {
+            //llamada al modelo para actualizar al perfil
+            professorDAO = new ProfessorDAO(_configuration);
+            return Ok(professorDAO.UpdateProfile(professor));
+        }
+
         public IActionResult GetSessionVariables() //Obtener variables de sesion
         {
             string sNombre = HttpContext.Session.GetString("sNombre");
