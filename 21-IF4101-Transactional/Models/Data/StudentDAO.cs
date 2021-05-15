@@ -83,18 +83,16 @@ namespace _21_IF4101_Transactional.Models
                         FirstName = sqlDataReader["FirstName"].ToString(),
                         LastName = sqlDataReader["LastName"].ToString(),
                         StudentId = sqlDataReader["StudentId"].ToString(),
-                        Email = sqlDataReader["Email"].ToString(),
-                        Password = sqlDataReader["Password"].ToString(),
-                        State = Convert.ToInt32(sqlDataReader["State"])
+                        Email = sqlDataReader["Email"].ToString()
                     });
 
                 }
 
-                connection.Close(); //cerramos conexión. 
+                connection.Close();
             }
 
 
-            return students; //retornamos resultado al Controller.  
+            return students;
 
         }
 
