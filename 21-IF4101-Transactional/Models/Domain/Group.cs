@@ -8,21 +8,19 @@ namespace _21_IF4101_Transactional.Models.Domain
     public class Group
     {
         private int idGroup;
-        private List<int> numGroup;
+        private int numGroup;
 
-        public Group(int idGroup, List<int> numGroup)
+        public Group(int idGroup, int numGroup)
         {
             this.idGroup = idGroup;
-            this.numGroup = new List<int>();
+            this.numGroup = numGroup;
         }
 
         public Group()
         {
-
         }
 
         public int IdGroup { get => idGroup; set => idGroup = value; }
-        public List<int> NumGroup { get => numGroup; set => numGroup = value; }
-
+        public int NumGroup { get => numGroup; set => numGroup = value; }
     }
 }

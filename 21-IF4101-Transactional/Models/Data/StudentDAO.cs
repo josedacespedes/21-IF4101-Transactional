@@ -83,18 +83,16 @@ namespace _21_IF4101_Transactional.Models
                         FirstName = sqlDataReader["FirstName"].ToString(),
                         LastName = sqlDataReader["LastName"].ToString(),
                         StudentId = sqlDataReader["StudentId"].ToString(),
-                        Email = sqlDataReader["Email"].ToString(),
-                        Password = sqlDataReader["Password"].ToString(),
-                        State = Convert.ToInt32(sqlDataReader["State"])
+                        Email = sqlDataReader["Email"].ToString()
                     });
 
                 }
 
-                connection.Close(); //cerramos conexión. 
+                connection.Close();
             }
 
 
-            return students; //retornamos resultado al Controller.  
+            return students;
 
         }
 
@@ -130,6 +128,41 @@ namespace _21_IF4101_Transactional.Models
             catch (SqlException)
             {
                 return null;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+
+        }
+
+
+
+        public int UpdateProfile(Student student)
+        {
+            int resultToReturn;
+            SqlConnection connection = null;
+            try
+            {
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open(); //abrimos conexión
+                    SqlCommand command = new SqlCommand("UpdateStudentPerfilByEmail", connection);
+
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Email", student.Email);
+                    command.Parameters.AddWithValue("@Image", student.Image);
+                    command.Parameters.AddWithValue("@Likes", student.Likes);
+
+                    resultToReturn = command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                return resultToReturn;
+            }
+            catch (SqlException ex)
+            {
+                return ex.Number;
             }
             finally
             {

@@ -73,6 +73,27 @@ namespace _21_IF4101_Transactional.Controllers
             return Ok(professorDAO.GetProfile(email));
         }
 
+        public IActionResult UpdateProfile([FromBody] Professor professor)
+        {
+            //llamada al modelo para actualizar al perfil
+            professorDAO = new ProfessorDAO(_configuration);
+            return Ok(professorDAO.UpdateProfile(professor));
+        }
+
+        public IActionResult InsertProfessorGroup(int idGroup, int idProfessor, string consultationHours)
+        {
+            //llamada al modelo para agregar al profesor-grupo
+            professorDAO = new ProfessorDAO(_configuration);
+            return Ok(professorDAO.InsertProfessorGroup(idGroup, idProfessor, consultationHours));
+        }
+
+        public IActionResult GetWeekDays()
+        {
+            //llamada al modelo para obtener dias de semana
+            professorDAO = new ProfessorDAO(_configuration);
+            return Ok(professorDAO.GetWeekDays());
+        }
+
         public IActionResult GetSessionVariables() //Obtener variables de sesion
         {
             string sNombre = HttpContext.Session.GetString("sNombre");
