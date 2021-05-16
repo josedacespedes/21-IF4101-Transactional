@@ -1074,8 +1074,11 @@ input:checked + .slider .off {
     background: #252020;
     text-align: center;
     padding: 3em;
-    width: 550px;
-    height: 500px;
+    width: 70em;
+    height: 35em;
+    position: relative;
+    max-width: 109%;
+    max-height: 100%;
 }
 
     .entry-formConsult h2 {
@@ -1110,12 +1113,12 @@ input:checked + .slider .off {
         }
 
 #consultDescription, #dConsultDescription, #dConsultAnswer, #dConsultComment {
-    height: 150px;
+    height: 150%;
     resize: none;
 }
 
 #consultTitle, #courseConsult {
-    width: 350px;
+    width: auto;
 }
 
 #typeConsult {
