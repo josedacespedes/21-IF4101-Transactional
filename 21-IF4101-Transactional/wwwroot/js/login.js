@@ -1,5 +1,6 @@
 ﻿"use strict";
-
+var studentHobbies = "";
+var studentProfileImage = "";
 var loginForm = document.getElementById("loginForm");
 var alertMessageToSendLogin = document.getElementById("messageToSendLogin");
 
@@ -154,6 +155,10 @@ function logOut() {
 }
 
 /*--------------------------------------------- PROFILE STUDENT -----------------------------------------------------------*/
+
+var profileStudentHobbies, studentEmail, studentImage= null;
+
+
 function setNameStudent() {
 
     $.ajax({
@@ -180,6 +185,10 @@ $("#showModalStudentProfile").click(function () {
             document.getElementById('hProfileEmailStudent').innerHTML = result.email;
             document.getElementById('hProfileCarnetStudent').innerHTML = result.studentId;
             document.getElementById('inputStudentHobbies').value = result.likes;
+
+            profileStudentHobbies = result.likes;
+            studentEmail = result.email;
+            studentImage = result.image;
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);
@@ -188,7 +197,95 @@ $("#showModalStudentProfile").click(function () {
 
 });
 
+
+//VALIDATIONS
+function checkInputValue(value) {
+
+    if ((value.length < 10 || value.length > 255)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function putErrorInputStudentProfile(Student) {
+
+    var validate = false;
+
+    if (!checkInputValue(Student.likes)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo salió mal...',
+            footer: '<a href>El espacio de intereses debe ser más extenso, no se guardarán sus cambios.</a>'
+        });
+
+        validate = true;
+    }
+
+    return validate;
+}
+
+
+/*--------------------------------------------- MODIFY PROFILE STUDENT -----------------------------------------------------------*/
+
+$("#modalStudentProfile").on("click", "#buttonCloseProfile", function () {
+
+
+    if (profileStudentHobbies != $('#inputStudentHobbies').val()) {
+
+        var student = {
+            email: studentEmail,
+            image: studentImage,
+            likes: $('#inputStudentHobbies').val()
+        }
+
+
+        if (!putErrorInputStudentProfile(student)) {
+            Swal.fire({
+                title: "¿Desea guardar los cambios?",
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: `Confirmar`,
+                denyButtonText: `Cancelar`,
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "/Student/UpdateProfile",
+                        data: JSON.stringify(student),
+                        type: "POST",
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+
+                        success: function (result) {
+
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Modificado Exitoso',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        },
+
+                        error: function (errorMessage) {
+                            alert("Error");
+                            alert(errorMessage.responseText);
+                        }
+                    });
+
+                }
+            });
+        }
+
+    }
+
+});
+
 /*--------------------------------------------- PROFILE PROFESSOR -----------------------------------------------------------*/
+var profileProfessorHobbies, profileProfessorVocationalTraining, profileProfessorFacebook, profileProfessorLinkedIn, profileProfessorGithub, linksProfessor, professorEmail, profileProfessorImg = null;
+var newImageProfessor, newProfessorHobbies, newVocational, newFacebook, newLinkedIn, newGithub = null;
+
 function setNameProfessor() {
 
     $.ajax({
@@ -223,10 +320,28 @@ $("#showModalProfessorProfile").click(function () {
             document.getElementById('inputProfessorLinkedIn').value = links[1];
             document.getElementById('inputProfessorGithub').value = links[2];
 
+
             document.getElementById('facebookProfileProfessor').href = links[0];
             document.getElementById('linkedinProfileProfessor').href = links[1];
             document.getElementById('githubProfileProfessor').href = links[2];
 
+
+            //VARIABLES ANTIGUAS PARA MOIFICAR
+            profileProfessorImg = result.imageProfessor;
+            profileProfessorHobbies = result.likesProfessor;
+            profileProfessorVocationalTraining = result.vocationalTrainingProfessor;
+            profileProfessorFacebook = links[0];
+            profileProfessorLinkedIn = links[1];
+            profileProfessorGithub = links[2];
+
+            //VARIABLES NUEVAS PARA MODIFICAR
+            newProfessorHobbies = $('#inputProfessorHobbies').val();
+            newVocational = $('#inputProfessorTraining').val();
+            newFacebook = $('#inputFacebookProfessor').val();
+            newLinkedIn = $('#inputProfessorLinkedIn').val();
+            newGithub = $('#inputProfessorGithub').val();
+            professorEmail = result.emailProfessor;
+            newImageProfessor = result.imageProfessor;
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);
@@ -240,3 +355,114 @@ function getLinksProfessor(rawList) {
     var array = rawList.split(",");
     return array;
 }
+
+
+function putErrorInputProfessorProfile(Professor) {
+
+    var validate = false;
+
+    if (!checkInputValue(Professor.likesProfessor)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo salió mal...',
+            footer: '<a href>El espacio de intereses debe ser más extenso, no se guardarán sus cambios.</a>'
+        });
+
+        validate = true;
+    }
+
+
+    if (!checkInputValue(Professor.vocationalTrainingProfessor)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo salió mal...',
+            footer: '<a href>El espacio de formación profesional debe ser más extenso, no se guardarán sus cambios.</a>'
+        });
+
+        validate = true;
+    }
+
+    return validate;
+}
+
+function validateChanges(profileProfessorHobbies, profileProfessorVocationalTraining, profileProfessorFacebook, profileProfessorLinkedIn, profileProfessorGithub) {
+    var validate = false;
+
+
+    if (profileProfessorVocationalTraining != newVocational) {
+        validate = true;
+    }else
+        if (profileProfessorHobbies != newProfessorHobbies) {
+        validate = true;
+    }else
+    if (profileProfessorFacebook != newFacebook) {
+        validate = true;
+    }else
+    if (profileProfessorLinkedIn != newLinkedIn) {
+        validate = true;
+    }else
+    if (profileProfessorGithub != newGithub) {
+        validate = true;
+    }
+
+    return validate;
+}
+
+/*--------------------------------------------- MODIFY PROFILE PROFESSOR -----------------------------------------------------------*/
+
+$("#modalProfessorProfile").on("click", "#buttonCloseProfile", function () {
+
+
+    if (validateChanges(profileProfessorHobbies, profileProfessorVocationalTraining, profileProfessorFacebook, profileProfessorLinkedIn, profileProfessorGithub)) {
+
+        var professor = {
+            emailProfessor: professorEmail,
+            imageProfessor: newImageProfessor,
+            likesProfessor: newProfessorHobbies,
+            vocationalTrainingProfessor: newVocational,
+            linksProfessor: newFacebook + "," + newLinkedIn + "," + newGithub
+        }
+
+        if (!putErrorInputProfessorProfile(professor)) {
+            Swal.fire({
+                title: "¿Desea guardar los cambios?",
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: `Confirmar`,
+                denyButtonText: `Cancelar`,
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "/Professor/UpdateProfile",
+                        data: JSON.stringify(professor),
+                        type: "POST",
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+
+                        success: function (result) {
+
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Modificado Exitoso',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        },
+
+                        error: function (errorMessage) {
+                            alert("Error");
+                            alert(errorMessage.responseText);
+                        }
+                    });
+
+                }
+            });
+        }
+
+    }
+
+});
+
