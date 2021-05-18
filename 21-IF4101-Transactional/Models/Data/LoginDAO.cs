@@ -119,5 +119,24 @@ namespace _21_IF4101_Transactional.Models.Data
             return role; //retornamos resultado al Controller.
         }
 
+        public int Delete(int Id)
+        {
+            int resultToReturn; //declaramos variable que guardará un 1 o un 0 de acuerdo a si se eliminó o no el APPLICANT
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("DeleteUser", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Id", Id);
+                resultToReturn = command.ExecuteNonQuery();
+                connection.Close(); //cerramos conexión. 
+            }
+
+            return resultToReturn; //retornamos resultado al Controller.  
+
+
+        }
+
     }
 }
