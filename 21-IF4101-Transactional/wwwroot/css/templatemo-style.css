@@ -1045,7 +1045,7 @@ input:focus + .slider {
 input:checked + .slider:before {
     -webkit-transform: translateX(55px);
     -ms-transform: translateX(55px);
-    transform: translateX(75px);
+    transform: translateX(78px);
 }
 
 /*------ ADDED CSS ---------*/
@@ -1088,8 +1088,11 @@ input:checked + .slider .off {
     background: #252020;
     text-align: center;
     padding: 3em;
-    width: 550px;
-    height: 500px;
+    width: 70em;
+    height: 35em;
+    position: relative;
+    max-width: 109%;
+    max-height: 100%;
 }
 
     .entry-formConsult h2 {
@@ -1124,17 +1127,17 @@ input:checked + .slider .off {
         }
 
 #consultDescription, #dConsultDescription, #dConsultAnswer, #dConsultComment {
-    height: 150px;
+    height: 150%;
     resize: none;
 }
 
 #consultTitle, #courseConsult {
-    width: 350px;
+    width: auto;
 }
 
 #typeConsult {
-    margin-top: -50px;
-    margin-left: 320px;
+    /*margin-top: -3em;
+    margin-left: 10em;*/
 }
 
 /*-------Modal--------*/
@@ -1142,8 +1145,10 @@ input:checked + .slider .off {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    left: 0;
     top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
@@ -1157,16 +1162,18 @@ input:checked + .slider .off {
     margin: 5% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 70%; /* Could be more or less, depending on screen size */
-    height: 70%;
+    width: 82%;
+    height: 50%;
 }
 
 .modalConsultCommets {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    left: 0;
     top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
@@ -1180,8 +1187,8 @@ input:checked + .slider .off {
     margin: 5% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 70%; /* Could be more or less, depending on screen size */
-    height: 70%;
+    width: 45em;
+    height: 50%;
 }
 
 /* The Close Button */
@@ -1199,17 +1206,17 @@ input:checked + .slider .off {
         cursor: pointer;
     }
 #dConsultTitle, #dConsultAuthor, #dConsultCourse, #dConsultDate, #dConsultId {
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    padding: 6px 12px;
+    /*border-radius: 4px;
+    border: 1px solid #ccc;*/
+    padding: 1em 0em;
 }
 #btnCloseModalConsult {
-    margin-left: 850px;
+    /*margin-left: 60em;*/
 }
 
 #DetailsId, #DetailsDate {
-    margin-top: -74px;
-    margin-left: 450px;
+/*    margin-top: -7em;
+    margin-left: 8em;*/
 }
 #table {
     width: 800px;

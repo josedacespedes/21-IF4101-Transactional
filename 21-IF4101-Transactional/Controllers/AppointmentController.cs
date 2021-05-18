@@ -16,6 +16,7 @@ namespace _21_IF4101_Transactional.Controllers
         private readonly ILogger<AppointmentController> _logger;
         private readonly IConfiguration _configuration;
         AppointmentDAO appointmentDAO;
+        ProfessorDAO professorDAO;
 
         public IActionResult Index()
         {
@@ -41,7 +42,14 @@ namespace _21_IF4101_Transactional.Controllers
             //call model to get the appointments
             appointmentDAO = new AppointmentDAO(_configuration);
             return Json(new { data = appointmentDAO.Get(HttpContext.Session.GetString("sId")) });
-        } 
-        
+        }
+
+        public IActionResult GetProfessors()
+        {
+            //llamada al modelo para obtener los profesores
+            professorDAO = new ProfessorDAO(_configuration);
+            return Json(new { data = professorDAO.GetToAppointment() });
+        }
+
     }
 }
