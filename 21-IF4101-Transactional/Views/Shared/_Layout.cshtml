@@ -321,6 +321,7 @@
             </div>
         </div>
     </form>
+
     <!--  REGISTER CONSULT -->
     <section id="addConsult" class="displayStudent">
         <div class="container">
@@ -359,7 +360,7 @@
 
                 <!--Image-->
                 <div class="col-md-6 col-sm-12">
-                    <div id="consultImage" >
+                    <div id="consultImage">
                         <img id="imageUCRStudent" src="~/images/UCR1.jpg" alt="ImagenUCR" />
                     </div>
                 </div>
@@ -510,6 +511,39 @@
             </div>
         </div>
     </section>
+
+
+    <!--  MODAL PROFESSOR-GROUP -->
+    <div class="modal fade" id="modalProfessorGroup" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" onclick="" aria-label="Close"><b>X</b></button>
+                    <h2 class="modal-title">Asociar Profesor-Grupo</h2>
+                </div>
+                <div class="modal-body">
+                    <div id="professorTitleModal"></div>
+                    <select class="form-control without-margin" required="" name="professorgroup" id="professorgroup">
+                        <option value="0" selected="">seleccione el curso</option>
+                    </select>
+                    <table class="table table-striped table-bordered" id="professorGroupTable">
+                        <thead class="table-primary headTable">
+                            <tr class="text-center">
+                                <th>Id</th>
+                                <th>Grupo</th>
+                                <th>Asociar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyprofessorgrouptable" class="text-center font-weight-bold">
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <!--  REGISTER COURSE -->
     <section id="addCourse" class="displayAdmin">

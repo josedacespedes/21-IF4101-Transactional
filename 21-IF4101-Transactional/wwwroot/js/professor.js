@@ -1,9 +1,11 @@
-"use strict";
+﻿"use strict";
 
 var formProfessor = document.getElementById("registerProfessorForm");
 var professor;
 var alertMessageAddProfessor = document.getElementById("alertMessageAddProfessor");
 var tableProfessor;
+var tableGroup;
+var idCourse;
 
 //MASK
 $(document).ready(function () {
@@ -186,8 +188,34 @@ function loadListProfessor() {
                 }
             },
             { "data": "emailProfessor" },
-            { defaultContent: "<button id='' name='' type='button' data-bs-toggle='' data-bs-target='' class='btn btn-primary' title='Grupos'><i class='fa fa-link'></i></button>" }
+            { defaultContent: "<button id='professorGroupModal' name='professorGroupModal' type='button' data-toggle='modal' data-target='#modalProfessorGroup' class='btn btn-primary' title='Asociar'><i class='fa fa-users'></i></button>" }
         ]
     });
 }
 
+/*--------------------------------------------- LIST GROUP-----------------------------------------------------------*/
+function loadListGroup() {
+    tableGroup = $("#professorGroupTable").DataTable({
+        "destroy": true,
+        "autoWidth": false,
+        "ajax": {
+            "url": "/Course/GetGroupByIdCourse",
+            "tpye": 'GET',
+            "datatype": "json",
+
+        },
+        lengthMenu: [7, 20, 50, 100],
+        "columns": [
+            { "data": "idGroup" },
+            { "data": "numGroup" },
+            { defaultContent: "<button id='groupModal' name='groupModal' type='button' data-toggle='modal' data-target='#modalGroup' class='btn btn-primary' title='Horas consulta'><i class='fa fa-calendar'></i></button>" }
+        ]
+    });
+}
+
+$("#professorTable tbody").on("click", "#professorGroupModal", function () {
+    var dataInfoGroup = tableProfessor.row($(this).parents("tr")).data();
+    document.getElementById("professorTitleModal").innerHTML = `<h4>Profesor: ${dataInfoGroup.firstNameProfessor}  ${dataInfoGroup.lastNameProfessor} </h4>`;
+    idCourse = dataInfoGroup.id;
+    loadListGroup();
+});

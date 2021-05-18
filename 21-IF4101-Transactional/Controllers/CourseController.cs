@@ -75,11 +75,11 @@ namespace _21_IF4101_Transactional.Controllers
             return Ok(courseDAO.InsertGroup(course));
         }
 
-        public IActionResult GetGroupByIdCourse(int id)
+        public IActionResult GetGroupByIdCourse()
         {
             //call model to get the courses
             courseDAO = new CourseDAO(_configuration);
-            return Json(new { data = courseDAO.GetGroupByIdCourse(id) });
+            return Json(new { data = courseDAO.GetGroupByIdCourse(1) });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
