@@ -1,6 +1,6 @@
 ﻿"use strict";
 $(document).ready(function () {
-    GetProfessorAppointment();
+    //GetProfessorAppointment();
 });
 
 function GetProfessorAppointment() {
