@@ -156,7 +156,7 @@ function logOut() {
 
 /*--------------------------------------------- PROFILE STUDENT -----------------------------------------------------------*/
 
-var profileStudentHobbies, studentEmail, studentImage= null;
+var profileStudentHobbies, studentEmail, studentImage, newImageStudent, filePathStudentImage= null;
 
 
 function setNameStudent() {
@@ -180,7 +180,12 @@ $("#showModalStudentProfile").click(function () {
         type: "GET",
         contentType: "application/json;charset=utf-8",
         success: function (result) {
-            document.getElementById('profileStudentImage').innerHTML = `<img src=` + result.image + ` class="img-responsive center-block img-circle" alt="Imagen de Perfil" width="150" height="150">`;
+            if (result.image != "") {
+                document.getElementById('profileStudentImage').innerHTML = `<img src=` + result.image + ` id="imgStudentProfile" class="center-block img-circle" alt="Imagen de Perfil" width="150" height="150">`;
+            } else {
+                document.getElementById('profileStudentImage').innerHTML = `<img src="images/userDefault.png" id="imgStudentProfile" class="center-block img-circle" alt="Imagen de Perfil" width="150" height="150">`;
+            }
+           
             document.getElementById('hProfileNameStudent').innerHTML = result.firstName + ' ' + result.lastName;
             document.getElementById('hProfileEmailStudent').innerHTML = result.email;
             document.getElementById('hProfileCarnetStudent').innerHTML = result.studentId;
@@ -189,6 +194,11 @@ $("#showModalStudentProfile").click(function () {
             profileStudentHobbies = result.likes;
             studentEmail = result.email;
             studentImage = result.image;
+
+            $('#imgStudentProfile').on("click", function () {
+                $('#imgFileProfileStudent').click();
+            });
+                    
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);
@@ -231,12 +241,18 @@ function putErrorInputStudentProfile(Student) {
 
 $("#modalStudentProfile").on("click", "#buttonCloseProfile", function () {
 
-
-    if (profileStudentHobbies != $('#inputStudentHobbies').val()) {
+    if ($('#imgFileProfileStudent').get(0).files.length === 0) {
+        newImageStudent = studentImage;
+    } else {
+        
+        newImageStudent = 'images/' + document.getElementById("imgFileProfileStudent").files[0].name;
+    }   
+   
+    if (profileStudentHobbies != $('#inputStudentHobbies').val() || studentImage != newImageStudent) {
 
         var student = {
             email: studentEmail,
-            image: studentImage,
+            image: newImageStudent,
             likes: $('#inputStudentHobbies').val()
         }
 
@@ -251,6 +267,10 @@ $("#modalStudentProfile").on("click", "#buttonCloseProfile", function () {
             }).then((result) => {
 
                 if (result.isConfirmed) {
+                    if (studentImage != newImageStudent) {
+                        saveStudentProfileImage();
+                    }
+                    
                     $.ajax({
                         url: "/Student/UpdateProfile",
                         data: JSON.stringify(student),
@@ -282,8 +302,32 @@ $("#modalStudentProfile").on("click", "#buttonCloseProfile", function () {
 
 });
 
+function saveStudentProfileImage() {
+   
+    var imgFileProfileStudent =  document.getElementById("imgFileProfileStudent").files[0];
+    var formData = new FormData();
+    formData.append("files", imgFileProfileStudent);
+
+    $.ajax({
+        url: "/Student/SaveImageProfile",
+        data: formData,
+        type: "POST",
+        contentType: false,
+        processData: false,
+
+        success: function (result) {
+        },
+
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+
 /*--------------------------------------------- PROFILE PROFESSOR -----------------------------------------------------------*/
-var profileProfessorHobbies, profileProfessorVocationalTraining, profileProfessorFacebook, profileProfessorLinkedIn, profileProfessorGithub, linksProfessor, professorEmail, profileProfessorImg = null;
+var profileProfessorHobbies, profileProfessorVocationalTraining, profileProfessorFacebook, profileProfessorLinkedIn, profileProfessorGithub, professorEmail, profileProfessorImg = null;
 var newImageProfessor, newProfessorHobbies, newVocational, newFacebook, newLinkedIn, newGithub = null;
 
 function setNameProfessor() {
@@ -308,7 +352,12 @@ $("#showModalProfessorProfile").click(function () {
         type: "GET",
         contentType: "application/json;charset=utf-8",
         success: function (result) {
-            document.getElementById('profileProfessorImage').innerHTML = `<img src=` + result.imageProfessor + ` class="img-responsive center-block img-circle" alt="Imagen de Perfil" width="150" height="150">`;
+            if (result.image != "") {
+                document.getElementById('profileProfessorImage').innerHTML = `<img src=` + result.imageProfessor + `  id="imgProfessorProfile" class="center-block img-circle" alt="Imagen de Perfil" width="150" height="150">`;
+            } else {
+                document.getElementById('profileProfessorImage').innerHTML = `<img src="images/userDefault.png" id="imgProfessorProfile" class="center-block img-circle" alt="Imagen de Perfil" width="150" height="150">`;
+            }
+            
             document.getElementById('hProfileNameProfessor').innerHTML = result.firstNameProfessor + ' ' + result.lastNameProfessor;
             document.getElementById('hProfileEmailProfessor').innerHTML = result.emailProfessor;
             document.getElementById('hProfileCodeProfessor').innerHTML = result.idProfessor;
@@ -335,13 +384,15 @@ $("#showModalProfessorProfile").click(function () {
             profileProfessorGithub = links[2];
 
             //VARIABLES NUEVAS PARA MODIFICAR
-            newProfessorHobbies = $('#inputProfessorHobbies').val();
-            newVocational = $('#inputProfessorTraining').val();
-            newFacebook = $('#inputFacebookProfessor').val();
-            newLinkedIn = $('#inputProfessorLinkedIn').val();
-            newGithub = $('#inputProfessorGithub').val();
+           
+
             professorEmail = result.emailProfessor;
             newImageProfessor = result.imageProfessor;
+
+          
+            $('#imgProfessorProfile').on("click", function () {
+                $('#imgFileProfileProfessor').click();
+            });
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);
@@ -387,26 +438,29 @@ function putErrorInputProfessorProfile(Professor) {
     return validate;
 }
 
-function validateChanges(profileProfessorHobbies, profileProfessorVocationalTraining, profileProfessorFacebook, profileProfessorLinkedIn, profileProfessorGithub) {
+function validateChanges(profileProfessorHobbies, profileProfessorVocationalTraining, profileProfessorFacebook, profileProfessorLinkedIn, profileProfessorGithub, profileProfessorImg) {
     var validate = false;
 
-
+      
     if (profileProfessorVocationalTraining != newVocational) {
         validate = true;
     }else
-        if (profileProfessorHobbies != newProfessorHobbies) {
+    if (profileProfessorHobbies != newProfessorHobbies) {
         validate = true;
-    }else
+    } else
     if (profileProfessorFacebook != newFacebook) {
         validate = true;
-    }else
+    } else
     if (profileProfessorLinkedIn != newLinkedIn) {
         validate = true;
-    }else
+    } else
     if (profileProfessorGithub != newGithub) {
         validate = true;
+    } else
+    if (profileProfessorImg != newImageProfessor) {
+        validate = true;
     }
-
+    
     return validate;
 }
 
@@ -414,8 +468,19 @@ function validateChanges(profileProfessorHobbies, profileProfessorVocationalTrai
 
 $("#modalProfessorProfile").on("click", "#buttonCloseProfile", function () {
 
+    newProfessorHobbies = $('#inputProfessorHobbies').val();
+    newVocational = $('#inputProfessorTraining').val();
+    newFacebook = $('#inputFacebookProfessor').val();
+    newLinkedIn = $('#inputProfessorLinkedIn').val();
+    newGithub = $('#inputProfessorGithub').val();
 
-    if (validateChanges(profileProfessorHobbies, profileProfessorVocationalTraining, profileProfessorFacebook, profileProfessorLinkedIn, profileProfessorGithub)) {
+    if ($('#imgFileProfileProfessor').get(0).files.length === 0) {
+        newImageProfessor = profileProfessorImg;
+    } else {
+        newImageProfessor = 'images/' + document.getElementById("imgFileProfileProfessor").files[0].name;
+    } 
+
+    if (validateChanges(profileProfessorHobbies, profileProfessorVocationalTraining, profileProfessorFacebook, profileProfessorLinkedIn, profileProfessorGithub, profileProfessorImg)) {
 
         var professor = {
             emailProfessor: professorEmail,
@@ -435,6 +500,10 @@ $("#modalProfessorProfile").on("click", "#buttonCloseProfile", function () {
             }).then((result) => {
 
                 if (result.isConfirmed) {
+                    if (profileProfessorImg != newImageProfessor) {
+                        saveProfessorProfileImage();
+                    }
+
                     $.ajax({
                         url: "/Professor/UpdateProfile",
                         data: JSON.stringify(professor),
@@ -462,7 +531,67 @@ $("#modalProfessorProfile").on("click", "#buttonCloseProfile", function () {
             });
         }
 
+       
+
     }
 
 });
 
+function saveProfessorProfileImage() {
+
+    var imgFileProfileProfessor = document.getElementById("imgFileProfileProfessor").files[0];
+    var formData = new FormData();
+    formData.append("files", imgFileProfileProfessor);
+
+    $.ajax({
+        url: "/Professor/SaveImageProfile",
+        data: formData,
+        type: "POST",
+        contentType: false,
+        processData: false,
+
+        success: function (result) {
+        },
+
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function init() {
+
+    var inputFile = document.getElementById('imgFileProfileStudent');
+
+    inputFile.addEventListener('change', showImageStudent, false);
+}
+
+function showImageStudent(event) {
+    var file = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        var img = document.getElementById('imgStudentProfile');
+        img.src = event.target.result;
+    }
+    reader.readAsDataURL(file);
+}
+
+window.addEventListener('load', init, false);
+
+function initProfessor() {
+    var inputFile = document.getElementById('imgFileProfileProfessor');
+    inputFile.addEventListener('change', showImageProfessor, false);
+}
+
+function showImageProfessor(event) {
+    var file = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        var img = document.getElementById('imgProfessorProfile');
+        img.src = event.target.result;
+    }
+    reader.readAsDataURL(file);
+}
+
+window.addEventListener('load', initProfessor, false);

@@ -8,7 +8,9 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace _21_IF4101_Transactional.Controllers
@@ -99,6 +101,24 @@ namespace _21_IF4101_Transactional.Controllers
             string sNombre = HttpContext.Session.GetString("sNombre");
             return Ok(sNombre);
         }
+
+        [HttpPost]
+        public IActionResult SaveImageProfile(IFormFile files)
+        {
+            //Set Key Name
+            string ImageName = ContentDispositionHeaderValue.Parse(files.ContentDisposition).FileName.Trim('"');
+
+            //Get url To Save
+            string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", ImageName);
+
+            using (var stream = new FileStream(SavePath, FileMode.Create))
+            {
+                files.CopyTo(stream);
+            }
+
+            return Ok();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
