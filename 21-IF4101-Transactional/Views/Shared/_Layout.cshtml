@@ -289,6 +289,7 @@
             </div>
         </div>
     </form>
+
     <!-- The Modal Consult Comments -->
     <form>
         <div class="modal fade" id="consultModalComments" role="dialog">
@@ -321,51 +322,51 @@
         </div>
     </form>
     <!--  REGISTER CONSULT -->
-    <section class="displayStudent">
+    <section id="addConsult" class="displayStudent">
         <div class="container">
             <div class="row">
+                <!-- ADD  -->
+                <div class="col-md-6 col-sm-12">
+                    <div id="consultEntry" class="entry-formConsult">
+                        <form id="registerConsultForm" autocomplete="off">
+                            <h2>Agregar Consulta</h2>
 
-               <!-- ADD  -->
-                    <div id="addConsult" class="col-md-6 col-sm-12">
-                        <div id="consultEntry" class="entry-formConsult">
-                            <form id="registerConsultForm" autocomplete="off">
-                                <h2>Agregar Consulta</h2>
+                            <input type="text" name="consultTitle" id="consultTitle" class="form-control" placeholder="Titulo Consulta" required="" minlength="10" maxlength="150" title="Complete este campo con el titulo de consulta">
+                            <div id="typeConsult" class="switchFlex">
+                                <label id="consultType">Tipo</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="consultTypeCheck" name="consultTypeCheck">
+                                    <span class="slider round">
+                                        <!--ADDED HTML -->
+                                        <span class="on">Pública</span>
+                                        <span class="off">Privada</span>
+                                        <!--END-->
+                                    </span>
+                                </label>
+                            </div>
+                            <select class="form-control without-margin" required="" name="courseConsult" id="courseConsult">
+                                <option value="0" selected="">Seleccione el curso</option>
+                            </select>
+                            <textarea rows="4" cols="50" type="text" name="consultDescription" id="consultDescription" class="form-control" placeholder="Descripción" required="" minlength="10" title="Complete este campo con la descripcion de la consulta"></textarea>
 
-                                <input type="text" name="consultTitle" id="consultTitle" class="form-control" placeholder="Titulo Consulta" required="" minlength="10" maxlength="150" title="Complete este campo con el titulo de consulta">
-                                <div id="typeConsult" class="switchFlex">
-
-                                    <label id="consultType">Tipo</label>
-                                    <label class="switch">
-                                        <input type="checkbox" id="consultTypeCheck" name="consultTypeCheck">
-                                        <span class="slider round">
-                                            <!--ADDED HTML -->
-                                            <span class="on">Pública</span>
-                                            <span class="off">Privada</span>
-                                            <!--END-->
-                                        </span>
-                                    </label>
-                                </div>
-                                <select class="form-control without-margin" required="" name="courseConsult" id="courseConsult">
-                                    <option value="0" selected="">Seleccione el curso</option>
-                                </select>
-                                <textarea rows="4" cols="50" type="text" name="consultDescription" id="consultDescription" class="form-control" placeholder="Descripción" required="" minlength="10" title="Complete este campo con la descripcion de la consulta"></textarea>
-
-                                <div id="buttonSubmitAddCourse">
-                                    <button type="submit" class="submit-btn form-control">Registrar</button>
-                                </div>
-                                <div id="alertMessageAddConsult"></div>
-                            </form>
-                        </div>
+                            <div id="buttonSubmitAddCourse">
+                                <button type="submit" class="submit-btn form-control">Registrar</button>
+                            </div>
+                            <div id="alertMessageAddConsult"></div>
+                        </form>
                     </div>
+                </div>
 
                 <!--Image-->
-
-                <div id="consultImage" class="col-md-6 col-sm-12">
-                    <img src="~/images/UCR1.jpg" />
-                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div id="consultImage" >
+                        <img id="imageUCRStudent" src="~/images/UCR1.jpg" alt="ImagenUCR" />
+                    </div>
                 </div>
             </div>
+        </div>
     </section>
+
 
     <!--LIST CONSULT-->
     <section id="listConsult" class="displayStudent displayAdmin displayProfessor">
@@ -577,7 +578,7 @@
         <div class="container">
             <div class="row">
 
-               <!-- ADD  -->
+                <!-- ADD  -->
                 <div class="col-md-6 col-sm-12">
                     <div class="entry-form">
                         <form id="registerAppintmentForm" autocomplete="off">
@@ -717,9 +718,9 @@
                     </div>
 
                     <div id="profileStudentImage"></div>
-                
+
                     <form name="form" action="/Student/SaveImageProfile" enctype="multipart/form-data" method="post">
-                      <input id="imgFileProfileStudent" type="file" required name="imgFileProfileStudent" accept="image/png, .jpg" hidden>
+                        <input id="imgFileProfileStudent" type="file" required name="imgFileProfileStudent" accept="image/png, .jpg" hidden>
                     </form>
 
                     <div class="text-center">
@@ -749,10 +750,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 
     <!-- MODAL PERFIL PROFESSOR-->
     <div class="modal" id="modalProfessorProfile">
