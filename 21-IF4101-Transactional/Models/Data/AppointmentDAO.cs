@@ -36,8 +36,8 @@ namespace _21_IF4101_Transactional.Models.Data
                                                                                //acá abajo le pasamos los parámetros al SP. En @ van los nombres de los parámetros en SP y a la par los valores. No pasamos el Id porque es autoincremental en la tabla, entonces no lo necesitamos:
                 command.Parameters.AddWithValue("@Student_FullName", name);//AQUÍ IRÍA EL NOMBRE COMPLETO
                 command.Parameters.AddWithValue("@Type", appointment.Type);
-                command.Parameters.AddWithValue("@Date", appointment.Date);
-                command.Parameters.AddWithValue("@Hour", appointment.Hour);
+                command.Parameters.AddWithValue("@ProfessorName", appointment.Professor_fullname);
+                command.Parameters.AddWithValue("@AppointmentDate", appointment.Appointment_date);
                 resultToReturn = command.ExecuteNonQuery(); //esta es la sentencia que ejecuta la inserción en BD y saca un 1 o un 0 dependiendo de si se modificó la tupla o no. Es decir, si se insertó en BD o no.
                 connection.Close(); //cerramos conexión.
             }
@@ -46,7 +46,7 @@ namespace _21_IF4101_Transactional.Models.Data
 
 
 
-        public List<Appointment> Get(string id)
+        public List<Appointment> Get(String name)
         {
             List<Appointment> appointment = new List<Appointment>();
 
@@ -55,7 +55,7 @@ namespace _21_IF4101_Transactional.Models.Data
                 connection.Open(); //abrimos conexión
                 SqlCommand command = new SqlCommand("SelectAppointment", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo.
                 command.CommandType = System.Data.CommandType.StoredProcedure; //acá decimos que lo que se ejecutará es un SP      
-                command.Parameters.AddWithValue("@Id", id);
+                command.Parameters.AddWithValue("@ProfessorName", name);
                 //logica del get/select
                 SqlDataReader sqlDataReader = command.ExecuteReader();
                 //leemos todas las filas provenientes de BD
@@ -64,11 +64,11 @@ namespace _21_IF4101_Transactional.Models.Data
                 {
                     appointment.Add(new Appointment
                     {
-                        Id =   Convert.ToInt32(sqlDataReader["id"]),
-                        Student_FullName = sqlDataReader["student_fullname"].ToString(),
-                        Type = Convert.ToInt32(sqlDataReader["type"]),
-                        Date = Convert.ToDateTime(sqlDataReader["date"]),
-                        Hour = Convert.ToDateTime(sqlDataReader["hour"])
+                        Id = Convert.ToInt32(sqlDataReader["Id"]),
+                        Student_FullName = sqlDataReader["Student_FullName"].ToString(),
+                        Type = Convert.ToInt32(sqlDataReader["Type"]),
+                        Professor_fullname = sqlDataReader["ProfessorName"].ToString(),
+                        Appointment_date = sqlDataReader["AppointmentDate"].ToString()
                     });
                 }
                 connection.Close(); //cerramos conexión.
