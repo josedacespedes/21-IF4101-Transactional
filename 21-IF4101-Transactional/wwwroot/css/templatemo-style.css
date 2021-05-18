@@ -532,10 +532,24 @@ input:checked + .slider:before {
     margin-top: 0.2em;
 }
 
+#imgStudentProfile, #imgProfessorProfile {
+    cursor: pointer;
+
+}
+
+#imgFileProfileProfessor, #imgFileProfileStudent{
+    display: contents;
+
+}
+
+#imgStudentProfile:hover, #imgProfessorProfile:hover {
+    opacity: 0.5;
+    border: 1.5px solid gray;
+}
+
 /*---------------------------------------
       HOME  & SLIDER            
   -----------------------------------------*/
-
 #home {
     padding: 0;
 }
