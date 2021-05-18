@@ -39,9 +39,9 @@ namespace _21_IF4101_Transactional.Models.Data
                 command.Parameters.AddWithValue("@ProfessorName", appointment.Professor_fullname);
                 command.Parameters.AddWithValue("@AppointmentDate", appointment.Appointment_date);
                 resultToReturn = command.ExecuteNonQuery(); //esta es la sentencia que ejecuta la inserción en BD y saca un 1 o un 0 dependiendo de si se modificó la tupla o no. Es decir, si se insertó en BD o no.
-                connection.Close(); //cerramos conexión.
+                connection.Close(); 
             }
-            return resultToReturn; //retornamos resultado al Controller.
+            return resultToReturn; 
         }
 
 
