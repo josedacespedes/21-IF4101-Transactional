@@ -683,7 +683,12 @@
                     <div class="row">
                         <button type="button" id="buttonCloseProfile" class="btn btn-danger pull-right" data-dismiss="modal" aria-label="Close"><b>X</b></button>
                     </div>
+
                     <div id="profileStudentImage"></div>
+                
+                    <form name="form" action="/Student/SaveImageProfile" enctype="multipart/form-data" method="post">
+                      <input id="imgFileProfileStudent" type="file" required name="imgFileProfileStudent" accept="image/png, .jpg" hidden>
+                    </form>
 
                     <div class="text-center">
                         <div class="row pHeadProfile" id="profileStudentName">
@@ -727,9 +732,13 @@
                     <div class="row">
                         <button type="button" id="buttonCloseProfile" class="btn btn-danger pull-right" data-dismiss="modal" aria-label="Close"><b>X</b></button>
                     </div>
-                    <div id="profileProfessorImage">
+                    <div id="profileProfessorImage"></div>
 
-                    </div>
+                    <form name="form" action="/Professor/SaveImageProfile" enctype="multipart/form-data" method="post">
+                        <input id="imgFileProfileProfessor" type="file" required name="imgFileProfileProfessor" accept="image/png, .jpg" hidden>
+                    </form>
+
+
                     <div class="text-center">
                         <div class="row pHeadProfile" id="profileProfessorName">
                             <h2 class="modal-title" id="hProfileNameProfessor"></h2>
