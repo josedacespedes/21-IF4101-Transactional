@@ -13,8 +13,10 @@ function GetProfessorAppointment() {
         success: function (result) {
             //llenar el dropdowns (select)
             var html = '';
+            //console.log(result);
             $.each(result, function (key, item) {
-                html += '<option value="' + item.id + '">' + item.name + '</option>';
+                //console.log(item);
+                //html += '<option value="' + item.id + '">' + item.firstNameProfessor + ' ' + item.lastNameProfessor+ '</option>';
             });
             $('#professorAppointment').append(html);
         },
