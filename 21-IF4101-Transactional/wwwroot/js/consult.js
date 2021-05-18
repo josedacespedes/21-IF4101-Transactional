@@ -4,8 +4,10 @@ var registerConsultForm = document.getElementById("registerConsultForm");
 var messageToSendConsult = document.getElementById("alertMessageAddConsult");
 var message = document.getElementById("alertAddComment");
 var tableConsult;
+var tableComments;
 $(document).ready(function () {
     GetCourseConsult();
+    loadConsultListComments(0);
     //setTimeout(loadConsultList, 20000);
 });
 
@@ -125,6 +127,31 @@ function loadConsultList() {
 }
 
 
+function loadConsultListComments(id) {
+    tableComments = $("#commentTable").DataTable({
+        "destroy": true,
+        "autoWidth": false,
+        "columnDefs": [
+            { "width": "20%", "targets": [0, 4] }
+        ],
+        "ajax": {
+            "url": "/ConsultComment/GetComments/"+id,
+            "tpye": 'GET',
+            "datatype": "json"
+            //"data": { "idConsult" : id }
+        },
+        lengthMenu: [7, 20, 50, 100],
+        "columns": [
+            { "data": "author" },
+            { "data": "comment" },
+            { "data": "date" }
+        ],
+        
+    });
+    
+}
+
+
 function GetCourseConsult() {
 
     $.ajax({
@@ -172,7 +199,7 @@ window.onclick = function (event) {
 $("#consultTable tbody").on("click", "#btnModalDetails", function () {
     modalConsult.style.display = "block";
     var dataInfoConsult = tableConsult.row($(this).parents("tr")).data();
-    /*console.log(dataInfoConsult);*/
+    //console.log(dataInfoConsult);
     message.innerHTML = "";
     var html = '';
     
@@ -186,31 +213,31 @@ $("#consultTable tbody").on("click", "#btnModalDetails", function () {
     html += '<div class="form-group">';
     html += '<label>Titulo:</label>';
     html += '<div>';
-    html += '<input id="dConsultTitle" type="text" disabled value="' + dataInfoConsult.title + '">';
+    html += '<label id="dConsultTitle" type="text"> ' + dataInfoConsult.title + '</label>';
     html += '</div>';
     html += '</div>';
     html += '<div id="DetailsId" class="form-group">';
     html += '<label>ID:</label>';
     html += '<div>';
-    html += '<input id="dConsultId" type="text" diabled="true" value="' + dataInfoConsult.id + '">';
+    html += '<label id="dConsultId" type="text">' + dataInfoConsult.id + '</label>';
     html += '</div>';
     html += '</div>';
     html += '<div class="form-group">';
     html += '<label>Autor:</label>';
     html += '<div>';
-    html += '<input id="dConsultAuthor" type="text" disabled value="' + dataInfoConsult.author + '">';
+    html += '<label id="dConsultAuthor" type="text">' + dataInfoConsult.author + '</label>';
     html += '</div>';
     html += '</div>';
     html += '<div class="form-group">';
     html += '<label>Curso:</label>';
     html += '<div>';
-    html += '<input id="dConsultCourse" type="text" disable value="' + dataInfoConsult.course + '">';
+    html += '<label id="dConsultCourse" type="text">' + dataInfoConsult.course + '</label>';
     html += '</div>';
     html += '</div>';
     html += '<div id="DetailsDate" class="form-group">';
     html += '<label>Fecha:</label>';
     html += '<div>';
-    html += '<input id="dConsultDate" type="text" disable value="' + dataInfoConsult.date + '">';
+    html += '<label id="dConsultDate" type="text">' + dataInfoConsult.date + '</label>';
     html += '</div>';
     html += '</div>';
     html += '<div class="form-group">';
@@ -241,32 +268,10 @@ $("#consultTable tbody").on("click", "#btnModalDetails", function () {
 
 $("#consultTable tbody").on("click", "#btnModalComments", function () {
     modalConsultComments.style.display = "block";
+
     var dataInfoConsult = tableConsult.row($(this).parents("tr")).data();
     
-
-    var html = '';
-    $.ajax({
-        url: "/ConsultComment/GetComments", 
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        data: { "idConsult": parseInt(dataInfoConsult.id) },
-        success: function (result) {
-            console.log(result);
-            var html = '';
-            $.each(result, function (key, item) {
-                console.log(item);
-                html += '<tr>';
-                html += '<td>' + item.author + '</td>';
-                html += '<td>' + item.comment + '</td>';
-                html += '<td>' + item.date + '</td>';
-            });
-            $('.tbody').html(html);
-
-        },
-        error: function (errorMessage) {
-            alert(errorMessage.responseText);
-        }
-    })
+    loadConsultListComments(dataInfoConsult.id);
+    
 
 });

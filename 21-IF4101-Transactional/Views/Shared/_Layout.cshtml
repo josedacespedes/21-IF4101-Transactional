@@ -108,7 +108,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
                     <li><a href="#news" class="smoothScroll">Noticias</a></li>
-                    <li><a href="#addConsult" class="smoothScroll">Consultas</a></li>
+                    <li><a href="#listConsult" class="smoothScroll">Consultas</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Registros
@@ -168,7 +168,7 @@
                 <ul class="nav navbar-nav navbar-nav-first">
                     <li><a href="#news" class="smoothScroll">Noticias</a></li>
                     <li><a href="#addConsult" class="smoothScroll">Consultas</a></li>
-                    <li><a href="#addProfessor" class="smoothScroll">Citas</a></li>
+                    <li><a href="#addAppointment" class="smoothScroll">Citas</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right" id="loginRight">
@@ -205,8 +205,8 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
                     <li><a href="#news" class="smoothScroll">Noticias</a></li>
-                    <li><a href="#addConsult" class="smoothScroll">Consultas</a></li>
-                    <li><a href="#addProfessor" class="smoothScroll">Citas</a></li>
+                    <li><a href="#listConsult" class="smoothScroll">Consultas</a></li>
+                    <li><a href="#listAppointment" class="smoothScroll">Citas</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right" id="loginRight">
@@ -292,42 +292,28 @@
     <!-- The Modal Consult Comments -->
     <form>
         <div class="modal fade" id="consultModalComments" role="dialog">
-            <div>
-                <!-- Modal content-->
-                <div class="modal-contentConsultComments">
-                    <div class="container">
-                        <div class="row">
-                            <div class="section-title">
-                                <h2>Comentarios</h2>
-                                <button type="button" id="btnCloseModalConsult" class="btn btn-danger" data-dismiss="modal" onclick="return closeComments()" aria-label="Close"><b>X</b></button>
-                            </div>
-                            <div class="col-md-12 col-sm-12">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover" id="table">
+            <div class="modal-contentConsultComments">
+                <div class="container">
+                    <div class="row">
 
-                                        <thead>
-                                            <tr>
-                                                <th id="thAuthor">
-                                                    Autor
-                                                </th>
-                                                <th id="thComment">
-                                                    Comentario
-                                                </th>
-                                                <th id="thDate">
-                                                    Fecha
-                                                </th>
+                        <div class="col-md-6 addCourse-info">
+                            <h2 id="consultTittle">Lista de Comentarios</h2>
+                            <div class="row sidePadding">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered" id="commentTable">
+                                        <thead class="table-primary headTable">
+                                            <tr class="text-center">
+                                                <th>Autor</th>
+                                                <th>Comentario</th>
+                                                <th>Fecha</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="tbody">
+                                        <tbody id="bodyCommentsTable" class="text-center font-weight-bold">
                                         </tbody>
                                     </table>
-
                                 </div>
                             </div>
-
-
                         </div>
-
                     </div>
                 </div>
 
@@ -338,44 +324,44 @@
     <section class="displayStudent">
         <div class="container">
 
-                <!-- ADD  -->  <!--pattern="[0-9IF-]+"-->
-                <div id="addConsult" class="col-md-6 col-sm-12">
-                    <div id="consultEntry" class="entry-formConsult">
-                        <form id="registerConsultForm" autocomplete="off">
-                            <h2>Agregar Consulta</h2>
+            <!-- ADD  -->  <!--pattern="[0-9IF-]+"-->
+            <div id="addConsult" class="col-md-6 col-sm-12">
+                <div id="consultEntry" class="entry-formConsult">
+                    <form id="registerConsultForm" autocomplete="off">
+                        <h2>Agregar Consulta</h2>
 
-                            <input type="text" name="consultTitle" id="consultTitle" class="form-control" placeholder="Titulo Consulta" required="" minlength="10" maxlength="150" title="Complete este campo con el titulo de consulta">
-                            <div id="typeConsult" class="switchFlex">
+                        <input type="text" name="consultTitle" id="consultTitle" class="form-control" placeholder="Titulo Consulta" required="" minlength="10" maxlength="150" title="Complete este campo con el titulo de consulta">
+                        <div id="typeConsult" class="switchFlex">
 
-                                <label id="consultType">Tipo</label>
-                                <label class="switch">
-                                    <input type="checkbox" id="consultTypeCheck" name="consultTypeCheck">
-                                    <span class="slider round">
-                                        <!--ADDED HTML -->
-                                        <span class="on">Pública</span>
-                                        <span class="off">Privada</span>
-                                        <!--END-->
-                                    </span>
-                                </label>
-                            </div>
-                            <select class="form-control without-margin" required="" name="courseConsult" id="courseConsult">
-                                <option value="0" selected="">Seleccione el curso</option>
-                            </select>
-                            <textarea rows="4" cols="50" type="text" name="consultDescription" id="consultDescription" class="form-control" placeholder="Descripción" required="" minlength="10" title="Complete este campo con la descripcion de la consulta"></textarea>
+                            <label id="consultType">Tipo</label>
+                            <label class="switch">
+                                <input type="checkbox" id="consultTypeCheck" name="consultTypeCheck">
+                                <span class="slider round">
+                                    <!--ADDED HTML -->
+                                    <span class="on">Pública</span>
+                                    <span class="off">Privada</span>
+                                    <!--END-->
+                                </span>
+                            </label>
+                        </div>
+                        <select class="form-control without-margin" required="" name="courseConsult" id="courseConsult">
+                            <option value="0" selected="">Seleccione el curso</option>
+                        </select>
+                        <textarea rows="4" cols="50" type="text" name="consultDescription" id="consultDescription" class="form-control" placeholder="Descripción" required="" minlength="10" title="Complete este campo con la descripcion de la consulta"></textarea>
 
-                            <div id="buttonSubmitAddCourse">
-                                <button type="submit" class="submit-btn form-control">Registrar</button>
-                            </div>
-                            <div id="alertMessageAddConsult"></div>
-                        </form>
-                    </div>
+                        <div id="buttonSubmitAddCourse">
+                            <button type="submit" class="submit-btn form-control">Registrar</button>
+                        </div>
+                        <div id="alertMessageAddConsult"></div>
+                    </form>
                 </div>
-            
+            </div>
+
         </div>
     </section>
 
     <!--LIST CONSULT-->
-    <section class ="displayStudent displayAdmin displayProfessor">
+    <section id="listConsult" class="displayStudent displayAdmin displayProfessor">
         <div class="container">
             <div class="row">
 
@@ -401,259 +387,142 @@
                 </div>
             </div>
         </div>
-        </section>
+    </section>
 
-        <!-- REGISTER APPLICANT -->
-        <section id="addApplicant" class="displayNoUser">
-            <div class="container">
-                <div class="row">
+    <!-- REGISTER APPLICANT -->
+    <section id="addApplicant" class="displayNoUser">
+        <div class="container">
+            <div class="row">
 
-                    <div class="col-md-6 col-sm-12">
-                        <div class="addApplicant-info">
-                            <h2>Únase a la comunidad de informática empresarial</h2>
-                            <figure>
-                                <span><i class="fa fa-newspaper-o"></i></span>
-                                <figcaption>
-                                    <h3>Nuevas noticias</h3>
-                                    <p>Conozca y comenta las novedades de Informática Empresarial.</p>
-                                </figcaption>
-                            </figure>
+                <div class="col-md-6 col-sm-12">
+                    <div class="addApplicant-info">
+                        <h2>Únase a la comunidad de informática empresarial</h2>
+                        <figure>
+                            <span><i class="fa fa-newspaper-o"></i></span>
+                            <figcaption>
+                                <h3>Nuevas noticias</h3>
+                                <p>Conozca y comenta las novedades de Informática Empresarial.</p>
+                            </figcaption>
+                        </figure>
 
-                            <figure>
-                                <span><i class="fa fa-question"></i></span>
-                                <figcaption>
-                                    <h3>Consultas a la comunidad</h3>
-                                    <p>Haga y responda preguntas a los estudiantes de la comunidad.</p>
-                                </figcaption>
-                            </figure>
+                        <figure>
+                            <span><i class="fa fa-question"></i></span>
+                            <figcaption>
+                                <h3>Consultas a la comunidad</h3>
+                                <p>Haga y responda preguntas a los estudiantes de la comunidad.</p>
+                            </figcaption>
+                        </figure>
 
-                            <figure>
-                                <span><i class="fa fa-calendar"></i></span>
-                                <figcaption>
-                                    <h3>Solicitar cita</h3>
-                                    <p>Solicite su cita con un profesor de la comunidad.</p>
-                                </figcaption>
-                            </figure>
+                        <figure>
+                            <span><i class="fa fa-calendar"></i></span>
+                            <figcaption>
+                                <h3>Solicitar cita</h3>
+                                <p>Solicite su cita con un profesor de la comunidad.</p>
+                            </figcaption>
+                        </figure>
 
-                        </div>
                     </div>
-
-                    <div class="col-md-4 col-sm-12">
-                        <div class="entry-form">
-                            <form id="registerApplicantForm" autocomplete="off">
-                                <h2>Únete a la comunidad</h2>
-                                <input type="text" name="firstNameApplicant" id="firstNameApplicant" class="form-control" placeholder="Nombre" required="" minlength="3" maxlength="50" pattern="[A-Za-z áéíóúñÑ]+">
-
-                                <input type="text" name="lastNameApplicant" id="lastNameApplicant" class="form-control" placeholder="Apellidos" required="" minlength="10" maxlength="50" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+" title="Inserte los dos apellidos">
-
-                                <input type="text" name="studentIdApplicant" id="studentIdApplicant" class="form-control" placeholder="Carnet" required="" minlength="6" maxlength="6" pattern="(?=.*[A-Z]).{1}[0-9]+" title="Valide su formato de Carnet">
-
-                                <input type="email" name="emailApplicant" id="emailApplicant" class="form-control" placeholder="Correo Institucional" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="El correo debe llevar el dominio @@ucr.ac.cr">
-
-                                <input type="password" name="passwordApplicant" id="passwordApplicant" class="form-control" placeholder="Contraseña" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="La contraseña necesita al menos 1 mayúscula, 1 minúscula, 1 número y un 1 símbolo (!. # $% ^ & * _ = + -)">
-                                <span id="showPasswordApplicant"><i class="fa fa-eye" id="iconPasswordApplicant"></i></span>
-
-                                <button type="submit" class="submit-btn form-control">Enviar</button>
-
-                                <div id="alertMessageAddStudent"></div>
-                            </form>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-        </section>
 
+                <div class="col-md-4 col-sm-12">
+                    <div class="entry-form">
+                        <form id="registerApplicantForm" autocomplete="off">
+                            <h2>Únete a la comunidad</h2>
+                            <input type="text" name="firstNameApplicant" id="firstNameApplicant" class="form-control" placeholder="Nombre" required="" minlength="3" maxlength="50" pattern="[A-Za-z áéíóúñÑ]+">
 
-        <!--  PROFESSOR -->
-        <section id="addProfessor" class="displayAdmin">
-            <div class="container">
-                <div class="row">
+                            <input type="text" name="lastNameApplicant" id="lastNameApplicant" class="form-control" placeholder="Apellidos" required="" minlength="10" maxlength="50" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+" title="Inserte los dos apellidos">
 
-                    <!-- LIST  -->
-                    <div class="col-md-6 addProfessor-info">
-                        <h2 id="professorTittle">Lista de Profesores</h2>
-                        <div class="row sidePadding">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered" id="professorTable">
-                                    <thead class="table-primary headTable">
-                                        <tr class="text-center">
-                                            <th>Id</th>
-                                            <th>Nombre</th>
-                                            <th>Correo Electrónico</th>
-                                            <th>Grupo</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="bodyProfessorTable" class="text-center font-weight-bold">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                            <input type="text" name="studentIdApplicant" id="studentIdApplicant" class="form-control" placeholder="Carnet" required="" minlength="6" maxlength="6" pattern="(?=.*[A-Z]).{1}[0-9]+" title="Valide su formato de Carnet">
+
+                            <input type="email" name="emailApplicant" id="emailApplicant" class="form-control" placeholder="Correo Institucional" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="El correo debe llevar el dominio @@ucr.ac.cr">
+
+                            <input type="password" name="passwordApplicant" id="passwordApplicant" class="form-control" placeholder="Contraseña" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="La contraseña necesita al menos 1 mayúscula, 1 minúscula, 1 número y un 1 símbolo (!. # $% ^ & * _ = + -)">
+                            <span id="showPasswordApplicant"><i class="fa fa-eye" id="iconPasswordApplicant"></i></span>
+
+                            <button type="submit" class="submit-btn form-control">Enviar</button>
+
+                            <div id="alertMessageAddStudent"></div>
+                        </form>
                     </div>
+                </div>
 
-                    <!-- ADD  -->
-                    <div class="col-md-6 col-sm-12">
-                        <div class="entry-form">
-                            <form id="registerProfessorForm" autocomplete="off">
-                                <h2>Agregar Profesor</h2>
-                                <input type="text" name="firstNameProfessor" id="firstNameProfessor" class="form-control" placeholder="Nombre" required="" minlength="3" maxlength="50" pattern="[A-Za-z áéíóúñÑ]+">
+            </div>
+        </div>
+    </section>
 
-                                <input type="text" name="lastNameProfessor" id="lastNameProfessor" class="form-control" placeholder="Apellidos" required="" minlength="10" maxlength="100" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+" title="Inserte los dos apellidos">
 
-                                <input type="text" name="IdProfessor" id="idProfessor" class="form-control" placeholder="ID Profesor" required="" minlength="7" maxlength="7" pattern="[0-9P-]+" title="Valide el formato de ID">
+    <!--  PROFESSOR -->
+    <section id="addProfessor" class="displayAdmin">
+        <div class="container">
+            <div class="row">
 
-                                <input type="email" name="emailProfessor" id="emailProfessor" class="form-control" placeholder="Correo Institucional" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="El correo debe llevar el dominio @@ucr.ac.cr">
-
-                                <input type="password" name="passwordProfessor" id="passwordProfessor" class="form-control" placeholder="Contraseña" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="La contraseña necesita al menos 1 mayúscula, 1 minúscula, 1 número y un 1 símbolo (!. # $% ^ & * _ = + -)">
-                                <span id="showPasswordProfessor"><i class="fa fa-eye" id="iconPasswordProfessor"></i></span>
-
-                                <button type="submit" class="submit-btn form-control">Registrar</button>
-
-                                <div id="alertMessageAddProfessor"></div>
-                            </form>
+                <!-- LIST  -->
+                <div class="col-md-6 addProfessor-info">
+                    <h2 id="professorTittle">Lista de Profesores</h2>
+                    <div class="row sidePadding">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered" id="professorTable">
+                                <thead class="table-primary headTable">
+                                    <tr class="text-center">
+                                        <th>Id</th>
+                                        <th>Nombre</th>
+                                        <th>Correo Electrónico</th>
+                                        <th>Grupo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyProfessorTable" class="text-center font-weight-bold">
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!--  REGISTER COURSE -->
-        <section id="addCourse" class="displayAdmin">
-            <div class="container">
-                <div class="row">
+                <!-- ADD  -->
+                <div class="col-md-6 col-sm-12">
+                    <div class="entry-form">
+                        <form id="registerProfessorForm" autocomplete="off">
+                            <h2>Agregar Profesor</h2>
+                            <input type="text" name="firstNameProfessor" id="firstNameProfessor" class="form-control" placeholder="Nombre" required="" minlength="3" maxlength="50" pattern="[A-Za-z áéíóúñÑ]+">
 
-                    <!-- ADD  -->
-                    <div class="col-md-6 col-sm-12">
-                        <div class="entry-form">
-                            <form id="registerCourseForm" autocomplete="off">
-                                <h2>Agregar Curso</h2>
-                                <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Nombre" required="" minlength="10" maxlength="150" title="Complete este campo con el nombre del curso">
+                            <input type="text" name="lastNameProfessor" id="lastNameProfessor" class="form-control" placeholder="Apellidos" required="" minlength="10" maxlength="100" pattern="[A-Za-záéíóúñÑ](?=.* ).{1,}[A-Za-záéíóúñÑ]+" title="Inserte los dos apellidos">
 
-                                <input type="text" name="idCourse" id="idCourse" class="form-control" placeholder="Código" required="" minlength="4" maxlength="4" pattern="[0-9IF-]+" title="Complete este campo con 4 números">
+                            <input type="text" name="IdProfessor" id="idProfessor" class="form-control" placeholder="ID Profesor" required="" minlength="7" maxlength="7" pattern="[0-9P-]+" title="Valide el formato de ID">
 
-                                <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Créditos" required="" minlength="1" maxlength="1" pattern="[1-4]+" title="Complete esta campo con un número en el rango de 1 a 4">
+                            <input type="email" name="emailProfessor" id="emailProfessor" class="form-control" placeholder="Correo Institucional" required="" pattern="[\w.%+-]+@@ucr\.ac\.cr" title="El correo debe llevar el dominio @@ucr.ac.cr">
 
-                                <div class="switchFlex">
-                                    <label id="courseStatusLabelOne">Estado</label>
-                                    <label class="switch" id="courseStatusLabelTwo">
-                                        <input type="checkbox" name="courseStatus" id="courseStatus" title="Escoja si el Curso esta activo o no">
-                                        <span class="slider round">
-                                            <!--ADDED HTML -->
-                                            <span class="on">Activo</span>
-                                            <span class="off">Inactivo</span>
-                                            <!--END-->
-                                        </span>
-                                    </label>
-                                </div>
+                            <input type="password" name="passwordProfessor" id="passwordProfessor" class="form-control" placeholder="Contraseña" required="" minlength="8" maxlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.#$%^&*_=+-]).{8,8}$" title="La contraseña necesita al menos 1 mayúscula, 1 minúscula, 1 número y un 1 símbolo (!. # $% ^ & * _ = + -)">
+                            <span id="showPasswordProfessor"><i class="fa fa-eye" id="iconPasswordProfessor"></i></span>
 
-                                <div id="buttonSubmitAddCourse">
-                                    <button type="submit" class="submit-btn form-control">Registrar</button>
-                                </div>
-                                <div id="alertMessageAddCourse"></div>
-                            </form>
-                        </div>
-                    </div>
+                            <button type="submit" class="submit-btn form-control">Registrar</button>
 
-                    <!-- LIST  -->
-                    <div class="col-md-6 addCourse-info">
-                        <h2 id="courseTittle">Lista de Cursos</h2>
-                        <div class="row sidePadding">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered" id="courseTable">
-                                    <thead class="table-primary headTable">
-                                        <tr class="text-center">
-                                            <th>Id</th>
-                                            <th>Nombre</th>
-                                            <th>Créditos</th>
-                                            <th>Estado</th>
-                                            <th>Acción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="bodyCourseTable" class="text-center font-weight-bold">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-
-        <!--  MODAL COURSE-GROUP -->
-        <div class="modal fade" id="modalCourseGroup" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" onclick="cleanFieldsModalCourseGroup()" aria-label="Close"><b>X</b></button>
-                        <h2 class="modal-title">Asociar Curso-Grupo</h2>
-                    </div>
-                    <div class="modal-body">
-                        <div id="courseTitleModal"></div>
-
-                        <form id="registerCourseGroup" autocomplete="off">
-                            <div class="form-group" id="inputAmount">
-                                <label for="usr">Cantidad de grupos:</label>
-                                <div id="inputAmountPosition">
-                                    <input type="number" class="form-control" id="groupsAmount" name="groupsAmount" onkeyup="calculateGroupsAmount()" placeholder="Ingrese solo números" onkeydown="javascript: return event.keyCode == 69 ? false : true" required="" min="1" max="99" title="Sólo permite números enteros positivos." />
-                                </div>
-                            </div>
-                            <div class="form-group" id="inputAssociate">
-                                <label for="pwd">Primer Grupo:</label>
-                                <div id="inputAssociatePosition">
-                                    <input type="number" id="associateGroupCourse" name="associateGroupCourse" placeholder="Ingrese solo números" onkeyup="calculateGroupsAmount()" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="form-control" min="1" max="99" title="Sólo permite números enteros positivos." required="" />
-                                </div>
-                            </div>
-                            <div class="form-group" id="textAreaCourseGroup">
-                                <label for="comment">Lista</label>
-                                <textarea class="form-control" rows="5" id="showAssociation" placeholder="Cursos agregados: " disabled></textarea>
-                            </div>
-
-                            <div class="modal-footer mt-4">
-                                <div class="col-12">
-                                    <button type="submit" id="buttonAddCourseGroup" class="btn btn-success">Aceptar</button>
-                                    <button type="button" class="btn btn-danger" onclick="cleanFieldsModalCourseGroup()" data-dismiss="modal">Cerrar</button>
-                                </div>
-                            </div>
+                            <div id="alertMessageAddProfessor"></div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!--  MODAL COURSE EDIT -->
-        <div class="modal fade" id="modalCourseEdit" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" id="buttonCloseModalEdit" class="btn btn-danger" data-dismiss="modal" onclick="cleanFieldsModalEdit()" aria-label="Close"><b>X</b></button>
-                        <h2 class="modal-title">Modificar Curso</h2>
-                    </div>
-                    <div class="modal-body">
-                        <div id="courseTitleModalEdit"></div>
+    <!--  REGISTER COURSE -->
+    <section id="addCourse" class="displayAdmin">
+        <div class="container">
+            <div class="row">
 
-                        <form id="registerCourseEdit" autocomplete="off">
-                            <div class="form-group" id="inputCourseNameEdit">
-                                <label>Nombre:</label>
-                                <div id="inputCourseNameEditPosition">
-                                    <input type="text" name="courseNameEdit" id="courseNameEdit" class="form-control" placeholder="Nombre" required="" minlength="10" maxlength="150" title="Complete este campo con el nombre del curso">
-                                </div>
-                            </div>
-                            <div class="form-group" id="inputCreditsNumberEdit">
-                                <label>Creditos:</label>
-                                <div id="inputCreditsNumberEditPosition">
-                                    <input type="text" name="creditsNumberEdit" id="creditsNumberEdit" class="form-control" placeholder="Créditos" required="" minlength="1" maxlength="1" pattern="[1-4]+" title="Complete esta campo con un número en el rango de 1 a 4">
-                                </div>
-                            </div>
+                <!-- ADD  -->
+                <div class="col-md-6 col-sm-12">
+                    <div class="entry-form">
+                        <form id="registerCourseForm" autocomplete="off">
+                            <h2>Agregar Curso</h2>
+                            <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Nombre" required="" minlength="10" maxlength="150" title="Complete este campo con el nombre del curso">
 
-                            <div class="form-group switchFlex">
-                                <label id="courseStatusLabelOneEdit">Estado</label>
+                            <input type="text" name="idCourse" id="idCourse" class="form-control" placeholder="Código" required="" minlength="4" maxlength="4" pattern="[0-9IF-]+" title="Complete este campo con 4 números">
+
+                            <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Créditos" required="" minlength="1" maxlength="1" pattern="[1-4]+" title="Complete esta campo con un número en el rango de 1 a 4">
+
+                            <div class="switchFlex">
+                                <label id="courseStatusLabelOne">Estado</label>
                                 <label class="switch" id="courseStatusLabelTwo">
-                                    <input type="checkbox" name="courseStatusEdit" id="courseStatusEdit" title="Escoja si el Curso esta activo o no">
+                                    <input type="checkbox" name="courseStatus" id="courseStatus" title="Escoja si el Curso esta activo o no">
                                     <span class="slider round">
                                         <!--ADDED HTML -->
                                         <span class="on">Activo</span>
@@ -663,225 +532,394 @@
                                 </label>
                             </div>
 
-                            <div class="modal-footer mt-4">
-                                <div class="col-12">
-                                    <button type="submit" id="buttonEditCourse" class="btn btn-warning">Modificar</button>
-                                    <button type="button" class="btn btn-danger" onclick="cleanFieldsModalEdit()" data-dismiss="modal">Cerrar</button>
-                                </div>
+                            <div id="buttonSubmitAddCourse">
+                                <button type="submit" class="submit-btn form-control">Registrar</button>
                             </div>
+                            <div id="alertMessageAddCourse"></div>
                         </form>
                     </div>
                 </div>
 
-            </div>
-        </div>
-
-        <!-- MODAL PERFIL STUDENT-->
-        <div class="modal" id="modalStudentProfile">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <div class="row">
-                            <button type="button" id="buttonCloseProfile" class="btn btn-danger pull-right" data-dismiss="modal" aria-label="Close"><b>X</b></button>
-                        </div>
-                        <div id="profileStudentImage"></div>
-
-                        <div class="text-center">
-                            <div class="row pHeadProfile" id="profileStudentName">
-                                <h2 class="modal-title" id="hProfileNameStudent"></h2>
-                            </div>
-                            <div class="row pHeadProfile" id="profileStudentEmail">
-                                <h3 class="modal-title" id="hProfileEmailStudent"></h3>
-                            </div>
-                            <div class="row pHeadProfile" id="profileStudentCarnet">
-                                <h3 class="modal-title" id="hProfileCarnetStudent"></h3>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body" id="modalProfileStudent">
-                        <form id="registerProfileStudent" autocomplete="off">
-                            <div class="form-group" id="divStudentHobbies">
-                                <label class="colorLabelProfile">Intereses</label>
-                                <div id="divStudentHobbies">
-                                    <textarea class="form-control withoutBorder" rows="3" id="inputStudentHobbies" placeholder="Intereses" minlenght="10" maxlength="200" title="Ingrese sus intereses y pasatiempos"></textarea>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-        <!-- MODAL PERFIL PROFESSOR-->
-        <div class="modal" id="modalProfessorProfile">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <div class="row">
-                            <button type="button" id="buttonCloseProfile" class="btn btn-danger pull-right" data-dismiss="modal" aria-label="Close"><b>X</b></button>
-                        </div>
-                        <div id="profileProfessorImage">
-
-                        </div>
-                        <div class="text-center">
-                            <div class="row pHeadProfile" id="profileProfessorName">
-                                <h2 class="modal-title" id="hProfileNameProfessor"></h2>
-                            </div>
-                            <div class="row pHeadProfile" id="profileProfessorEmail">
-                                <h3 class="modal-title" id="hProfileEmailProfessor"></h3>
-                            </div>
-                            <div class="row pHeadProfile" id="profileProfessorCode">
-                                <h3 class="modal-title" id="hProfileCodeProfessor"></h3>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body" id="modalProfileProfessor">
-                        <form id="registerProfileProfessor" autocomplete="off">
-                            <div class="form-group" id="divprofesionalTraining">
-                                <label class="colorLabelProfile">Formación Profesional</label>
-                                <div id="inputprofesionalTraining">
-                                    <textarea class="form-control withoutBorder" rows="3" id="inputProfessorTraining" placeholder="Formación profesional" minlenght="10" maxlength="200" title="Ingrese su formación academica"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group" id="divHobbies">
-                                <label class="colorLabelProfile">Intereses</label>
-                                <div id="inputHobbies">
-                                    <textarea class="form-control withoutBorder" rows="3" id="inputProfessorHobbies" placeholder="Intereses" minlenght="10" maxlength="200" title="Ingrese sus intereses y pasatiempos"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group" id="divFacebook">
-                                <label class="colorLabelProfile">URL Facebook</label>
-                                <div id="inputFacebook">
-                                    <input type="url" id="inputFacebookProfessor" placeholder="Facebook" class="form-control withoutBorder" minlenght="10" maxlength="100" pattern="https://.*" title="Ingrese Facebook" />
-                                </div>
-                            </div>
-                            <div class="form-group" id="divLinkedIn">
-                                <label class="colorLabelProfile">URL LinkedIn</label>
-                                <div id="inputLinkedIn">
-                                    <input type="url" id="inputProfessorLinkedIn" placeholder="LinkedIn" class="form-control withoutBorder" minlenght="10" maxlength="100" pattern="https://.*" title="Ingrese LinkedIn" />
-                                </div>
-                            </div>
-                            <div class="form-group" id="divGithub">
-                                <label class="colorLabelProfile">URL GitHub</label>
-                                <div id="inputGithub">
-                                    <input type="url" id="inputProfessorGithub" placeholder="GitHub" class="form-control withoutBorder" minlenght="10" maxlength="100" pattern="https://.*" title="Ingrese GitHub" />
-                                </div>
-                            </div>
-                            <div>
-                                <ul class="social-icon">
-                                    <li><a href="#" id="facebookProfileProfessor" target="_blank" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                                    <li><a href="#" id="linkedinProfileProfessor" target="_blank" class="fa fa-linkedin-square"></a></li>
-                                    <li><a href="#" id="githubProfileProfessor" target="_blank" class="fa fa-github-square"></a></li>
-                                </ul>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- APPLICANT LIST -->
-        <section id="applicantList" class="displayAdmin">
-            <div class="container">
-                <div class="col-md-12">
-                    <h2 id="applicantTittle">Lista de Aplicantes</h2>
+                <!-- LIST  -->
+                <div class="col-md-6 addCourse-info">
+                    <h2 id="courseTittle">Lista de Cursos</h2>
                     <div class="row sidePadding">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered" id="applicantTable">
+                            <table class="table table-striped table-bordered" id="courseTable">
                                 <thead class="table-primary headTable">
                                     <tr class="text-center">
-                                        <th>Carnet</th>
+                                        <th>Id</th>
                                         <th>Nombre</th>
-                                        <th>Correo Institucional</th>
+                                        <th>Créditos</th>
+                                        <th>Estado</th>
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
-                                <tbody id="bodyApplicantTable" class="text-center font-weight-bold">
+                                <tbody id="bodyCourseTable" class="text-center font-weight-bold">
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
+    <!--  Appoinment -->
+    <section id="addAppointment" class="displayStudent">
+        <div class="container">
+            <div class="row">
 
-
-        <!-- FOOTER -->
-        <footer id="footer" class="displayAll">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-4 col-sm-6">
-                        <div class="footer-info">
-                            <div class="section-title">
-                                <h2>Contacto Universidad</h2>
-                            </div>
-                            <address>
-                                <ul class="social-icon">
-                                    <li><a href="https://www.facebook.com/UniversidadCostaRica" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                                    <li><a href="https://twitter.com/UniversidadCR" class="fa fa-twitter"></a></li>
-                                    <li><a href="https://www.instagram.com/universidaddecostarica" class="fa fa-instagram"></a></li>
-                                </ul>
-                            </address>
-
-                            <div class="copyright-text">
-                                <p>Copyright &copy; Informática Empresarial Transaccional 2021</p>
-
-                                <p>Proyecto para el curso de Aplicaciones Comerciales 2021</p>
-                                <p>Universidad de Costa Rica</p>
-                            </div>
+                <!-- LIST  -->
+                <!--<div class="col-md-6 addProfessor-info">
+                    <h2 id="professorTittle">Lista de Profesores</h2>
+                    <div class="row sidePadding">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered" id="professorTable">
+                                <thead class="table-primary headTable">
+                                    <tr class="text-center">
+                                        <th>Id</th>
+                                        <th>Nombre</th>
+                                        <th>Correo Electrónico</th>
+                                        <th>Grupo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyProfessorTable" class="text-center font-weight-bold">
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                </div>-->
 
-                    <div class="col-md-4 col-sm-6">
-                        <div class="footer-info">
-                            <div class="section-title">
-                                <h2>Información de los Desarrolladores</h2>
+                <!-- ADD  -->
+                <div class="col-md-6 col-sm-12">
+                    <div class="entry-form">
+                        <form id="registerAppintmentForm" autocomplete="off">
+                            <h2>Agregar Cita</h2>
+                            <input type="date" name="dateAppointment" id="dateAppointment" class="form-control" placeholder="Fecha de cita" required="">
 
-                            </div>
-                            <address>
-                                <p> <i class="fab fa-github"> </i><span> </span><a href="https://github.com/JoseKatoche" target="_blank">José David Alvarado Céspedes</a></p>
-                                <p> <i class="fab fa-github"> </i><span> </span><a href="https://github.com/Diego-Coto95" target="_blank">Juan Diego Coto Ramírez</a></p>
-                                <p> <i class="fab fa-github"> </i><span> </span><a href="https://github.com/Jenipher099" target="_blank">Jenipher Mata</a></p>
-                                <p> <i class="fab fa-github"> </i><span> </span><a href="https://github.com/WinstonAOR" target="_blank">Winston Ortega</a></p>
-                            </address>
+                            <input type="time" name="timeAppointment" id="timeAppointment" class="form-control" placeholder="Hora de cita" required="">
+                            <label id="consultType">Tipo</label>
+                            <label class="switch">
+                                <input type="checkbox" id="consultTypeAppoCheck" name="consultTypeAppoCheck">
+                                <span class="slider round">
+                                    <!--ADDED HTML -->
+                                    <span class="on">Presencial</span>
+                                    <span class="off">Virtual</span>
+                                    <!--END-->
+                                </span>
+                            </label>
 
-                        </div>
+                            <div id="alertMessageAddAppointment"></div>
+                        </form>
                     </div>
-
                 </div>
             </div>
-        </footer>
+        </div>
+    </section>
+
+    <!--  MODAL COURSE-GROUP -->
+    <div class="modal fade" id="modalCourseGroup" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" onclick="cleanFieldsModalCourseGroup()" aria-label="Close"><b>X</b></button>
+                    <h2 class="modal-title">Asociar Curso-Grupo</h2>
+                </div>
+                <div class="modal-body">
+                    <div id="courseTitleModal"></div>
+
+                    <form id="registerCourseGroup" autocomplete="off">
+                        <div class="form-group" id="inputAmount">
+                            <label for="usr">Cantidad de grupos:</label>
+                            <div id="inputAmountPosition">
+                                <input type="number" class="form-control" id="groupsAmount" name="groupsAmount" onkeyup="calculateGroupsAmount()" placeholder="Ingrese solo números" onkeydown="javascript: return event.keyCode == 69 ? false : true" required="" min="1" max="99" title="Sólo permite números enteros positivos." />
+                            </div>
+                        </div>
+                        <div class="form-group" id="inputAssociate">
+                            <label for="pwd">Primer Grupo:</label>
+                            <div id="inputAssociatePosition">
+                                <input type="number" id="associateGroupCourse" name="associateGroupCourse" placeholder="Ingrese solo números" onkeyup="calculateGroupsAmount()" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="form-control" min="1" max="99" title="Sólo permite números enteros positivos." required="" />
+                            </div>
+                        </div>
+                        <div class="form-group" id="textAreaCourseGroup">
+                            <label for="comment">Lista</label>
+                            <textarea class="form-control" rows="5" id="showAssociation" placeholder="Cursos agregados: " disabled></textarea>
+                        </div>
+
+                        <div class="modal-footer mt-4">
+                            <div class="col-12">
+                                <button type="submit" id="buttonAddCourseGroup" class="btn btn-success">Aceptar</button>
+                                <button type="button" class="btn btn-danger" onclick="cleanFieldsModalCourseGroup()" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  MODAL COURSE EDIT -->
+    <div class="modal fade" id="modalCourseEdit" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="buttonCloseModalEdit" class="btn btn-danger" data-dismiss="modal" onclick="cleanFieldsModalEdit()" aria-label="Close"><b>X</b></button>
+                    <h2 class="modal-title">Modificar Curso</h2>
+                </div>
+                <div class="modal-body">
+                    <div id="courseTitleModalEdit"></div>
+
+                    <form id="registerCourseEdit" autocomplete="off">
+                        <div class="form-group" id="inputCourseNameEdit">
+                            <label>Nombre:</label>
+                            <div id="inputCourseNameEditPosition">
+                                <input type="text" name="courseNameEdit" id="courseNameEdit" class="form-control" placeholder="Nombre" required="" minlength="10" maxlength="150" title="Complete este campo con el nombre del curso">
+                            </div>
+                        </div>
+                        <div class="form-group" id="inputCreditsNumberEdit">
+                            <label>Creditos:</label>
+                            <div id="inputCreditsNumberEditPosition">
+                                <input type="text" name="creditsNumberEdit" id="creditsNumberEdit" class="form-control" placeholder="Créditos" required="" minlength="1" maxlength="1" pattern="[1-4]+" title="Complete esta campo con un número en el rango de 1 a 4">
+                            </div>
+                        </div>
+
+                        <div class="form-group switchFlex">
+                            <label id="courseStatusLabelOneEdit">Estado</label>
+                            <label class="switch" id="courseStatusLabelTwo">
+                                <input type="checkbox" name="courseStatusEdit" id="courseStatusEdit" title="Escoja si el Curso esta activo o no">
+                                <span class="slider round">
+                                    <!--ADDED HTML -->
+                                    <span class="on">Activo</span>
+                                    <span class="off">Inactivo</span>
+                                    <!--END-->
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="modal-footer mt-4">
+                            <div class="col-12">
+                                <button type="submit" id="buttonEditCourse" class="btn btn-warning">Modificar</button>
+                                <button type="button" class="btn btn-danger" onclick="cleanFieldsModalEdit()" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL PERFIL STUDENT-->
+    <div class="modal" id="modalStudentProfile">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div class="row">
+                        <button type="button" id="buttonCloseProfile" class="btn btn-danger pull-right" data-dismiss="modal" aria-label="Close"><b>X</b></button>
+                    </div>
+                    <div id="profileStudentImage"></div>
+
+                    <div class="text-center">
+                        <div class="row pHeadProfile" id="profileStudentName">
+                            <h2 class="modal-title" id="hProfileNameStudent"></h2>
+                        </div>
+                        <div class="row pHeadProfile" id="profileStudentEmail">
+                            <h3 class="modal-title" id="hProfileEmailStudent"></h3>
+                        </div>
+                        <div class="row pHeadProfile" id="profileStudentCarnet">
+                            <h3 class="modal-title" id="hProfileCarnetStudent"></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body" id="modalProfileStudent">
+                    <form id="registerProfileStudent" autocomplete="off">
+                        <div class="form-group" id="divStudentHobbies">
+                            <label class="colorLabelProfile">Intereses</label>
+                            <div id="divStudentHobbies">
+                                <textarea class="form-control withoutBorder" rows="3" id="inputStudentHobbies" placeholder="Intereses" minlenght="10" maxlength="200" title="Ingrese sus intereses y pasatiempos"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-        <!-- SCRIPTS -->
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/smoothscroll.js"></script>
-        <script src="js/custom.js"></script>
-        <script src="js/login.js"></script>
-        <script src="/js/applicant.js"></script>
-        <script src="js/professor.js"></script>
-        <script src="js/course.js"></script>
-        <script src="js/consult.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script> <!-- Mask inputs -->
-        <script src="https://smtpjs.com/v3/smtp.js"></script> <!-- Email -->
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script> <!-- Datatable -->
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> <!-- Sweet alerts -->
+
+
+
+    <!-- MODAL PERFIL PROFESSOR-->
+    <div class="modal" id="modalProfessorProfile">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div class="row">
+                        <button type="button" id="buttonCloseProfile" class="btn btn-danger pull-right" data-dismiss="modal" aria-label="Close"><b>X</b></button>
+                    </div>
+                    <div id="profileProfessorImage">
+
+                    </div>
+                    <div class="text-center">
+                        <div class="row pHeadProfile" id="profileProfessorName">
+                            <h2 class="modal-title" id="hProfileNameProfessor"></h2>
+                        </div>
+                        <div class="row pHeadProfile" id="profileProfessorEmail">
+                            <h3 class="modal-title" id="hProfileEmailProfessor"></h3>
+                        </div>
+                        <div class="row pHeadProfile" id="profileProfessorCode">
+                            <h3 class="modal-title" id="hProfileCodeProfessor"></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body" id="modalProfileProfessor">
+                    <form id="registerProfileProfessor" autocomplete="off">
+                        <div class="form-group" id="divprofesionalTraining">
+                            <label class="colorLabelProfile">Formación Profesional</label>
+                            <div id="inputprofesionalTraining">
+                                <textarea class="form-control withoutBorder" rows="3" id="inputProfessorTraining" placeholder="Formación profesional" minlenght="10" maxlength="200" title="Ingrese su formación academica"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group" id="divHobbies">
+                            <label class="colorLabelProfile">Intereses</label>
+                            <div id="inputHobbies">
+                                <textarea class="form-control withoutBorder" rows="3" id="inputProfessorHobbies" placeholder="Intereses" minlenght="10" maxlength="200" title="Ingrese sus intereses y pasatiempos"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group" id="divFacebook">
+                            <label class="colorLabelProfile">URL Facebook</label>
+                            <div id="inputFacebook">
+                                <input type="url" id="inputFacebookProfessor" placeholder="Facebook" class="form-control withoutBorder" minlenght="10" maxlength="100" pattern="https://.*" title="Ingrese Facebook" />
+                            </div>
+                        </div>
+                        <div class="form-group" id="divLinkedIn">
+                            <label class="colorLabelProfile">URL LinkedIn</label>
+                            <div id="inputLinkedIn">
+                                <input type="url" id="inputProfessorLinkedIn" placeholder="LinkedIn" class="form-control withoutBorder" minlenght="10" maxlength="100" pattern="https://.*" title="Ingrese LinkedIn" />
+                            </div>
+                        </div>
+                        <div class="form-group" id="divGithub">
+                            <label class="colorLabelProfile">URL GitHub</label>
+                            <div id="inputGithub">
+                                <input type="url" id="inputProfessorGithub" placeholder="GitHub" class="form-control withoutBorder" minlenght="10" maxlength="100" pattern="https://.*" title="Ingrese GitHub" />
+                            </div>
+                        </div>
+                        <div>
+                            <ul class="social-icon">
+                                <li><a href="#" id="facebookProfileProfessor" target="_blank" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                <li><a href="#" id="linkedinProfileProfessor" target="_blank" class="fa fa-linkedin-square"></a></li>
+                                <li><a href="#" id="githubProfileProfessor" target="_blank" class="fa fa-github-square"></a></li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- APPLICANT LIST -->
+    <section id="applicantList" class="displayAdmin">
+        <div class="container">
+            <div class="col-md-12">
+                <h2 id="applicantTittle">Lista de Aplicantes</h2>
+                <div class="row sidePadding">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="applicantTable">
+                            <thead class="table-primary headTable">
+                                <tr class="text-center">
+                                    <th>Carnet</th>
+                                    <th>Nombre</th>
+                                    <th>Correo Institucional</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyApplicantTable" class="text-center font-weight-bold">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- FOOTER -->
+    <footer id="footer" class="displayAll">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="footer-info">
+                        <div class="section-title">
+                            <h2>Contacto Universidad</h2>
+                        </div>
+                        <address>
+                            <ul class="social-icon">
+                                <li><a href="https://www.facebook.com/UniversidadCostaRica" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                <li><a href="https://twitter.com/UniversidadCR" class="fa fa-twitter"></a></li>
+                                <li><a href="https://www.instagram.com/universidaddecostarica" class="fa fa-instagram"></a></li>
+                            </ul>
+                        </address>
+
+                        <div class="copyright-text">
+                            <p>Copyright &copy; Informática Empresarial Transaccional 2021</p>
+
+                            <p>Proyecto para el curso de Aplicaciones Comerciales 2021</p>
+                            <p>Universidad de Costa Rica</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="footer-info">
+                        <div class="section-title">
+                            <h2>Información de los Desarrolladores</h2>
+
+                        </div>
+                        <address>
+                            <p> <i class="fab fa-github"> </i><span> </span><a href="https://github.com/JoseKatoche" target="_blank">José David Alvarado Céspedes</a></p>
+                            <p> <i class="fab fa-github"> </i><span> </span><a href="https://github.com/Diego-Coto95" target="_blank">Juan Diego Coto Ramírez</a></p>
+                            <p> <i class="fab fa-github"> </i><span> </span><a href="https://github.com/Jenipher099" target="_blank">Jenipher Mata</a></p>
+                            <p> <i class="fab fa-github"> </i><span> </span><a href="https://github.com/WinstonAOR" target="_blank">Winston Ortega</a></p>
+                        </address>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- SCRIPTS -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/smoothscroll.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/login.js"></script>
+    <script src="/js/applicant.js"></script>
+    <script src="js/professor.js"></script>
+    <script src="js/course.js"></script>
+    <script src="js/consult.js"></script>
+    <script src="~/js/appointment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script> <!-- Mask inputs -->
+    <script src="https://smtpjs.com/v3/smtp.js"></script> <!-- Email -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script> <!-- Datatable -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> <!-- Sweet alerts -->
 
 </body>
 </html>
