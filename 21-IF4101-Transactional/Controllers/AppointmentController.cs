@@ -72,5 +72,12 @@ namespace _21_IF4101_Transactional.Controllers
             return Ok(appointmentDAO.Delete(id));
         }
 
+        public IActionResult GetRequest()
+        {
+            //call model to get the appointments
+            appointmentDAO = new AppointmentDAO(_configuration);
+            return Json(new { data = appointmentDAO.GetRequest(HttpContext.Session.GetString("sNombre")) });
+        }
+
     }
 }

@@ -142,5 +142,34 @@ namespace _21_IF4101_Transactional.Models.Data
 
         }
 
+        public List<Appointment> GetRequest(String name)
+        {
+            List<Appointment> appointmentRequest = new List<Appointment>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("SelectAppointmentsRequest", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@ProfessorFullName", name);
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+
+                while (sqlDataReader.Read())
+                {
+                    appointmentRequest.Add(new Appointment
+                    {
+                        Id = Convert.ToInt32(sqlDataReader["Id"]),
+                        Student_FullName = sqlDataReader["Student_FullName"].ToString(),
+                        Type = Convert.ToInt32(sqlDataReader["Type"]),
+                        Professor_fullname = sqlDataReader["ProfessorName"].ToString(),
+                        Appointment_date = sqlDataReader["AppointmentDate"].ToString(),
+                        StudentId = sqlDataReader["StudentId"].ToString()
+                    });
+                }
+                connection.Close();
+            }
+            return appointmentRequest;
+        }
+
     }
 }
