@@ -97,7 +97,7 @@ registerAppintmentForm.addEventListener("submit", function (e) {
         return false;
     } else {
         $.ajax({
-            url: "/Appointment/Insert",
+            url: "/Appointment/InsertRequest",
             data: JSON.stringify(appointment),
             type: "POST",
             contentType: "application/json;charset=utf-8",
