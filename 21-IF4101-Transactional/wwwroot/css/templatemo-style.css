@@ -1230,3 +1230,23 @@ input:checked + .slider .off {
     margin-left: 250px;
     margin-top: -150px;
 }
+
+
+
+/*-------------------APPOINTMENT-------------*/
+
+#appointmentType {
+    margin-left: -70%;
+}
+
+#buttonSubmitAddAppointment {
+    margin-top: 3em;
+}
+
+#registerAppintmentForm {
+    padding: 25px 0;
+}
+
+#appointmentswitchlabel {
+    margin-left: 10%;
+}
