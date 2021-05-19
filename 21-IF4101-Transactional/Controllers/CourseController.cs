@@ -5,11 +5,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace _21_IF4101_Transactional.Controllers
 {
@@ -75,11 +72,11 @@ namespace _21_IF4101_Transactional.Controllers
             return Ok(courseDAO.InsertGroup(course));
         }
 
-        public IActionResult GetGroupByIdCourse()
+        public IActionResult GetGroupByIdCourse(int id)
         {
             //call model to get the courses
             courseDAO = new CourseDAO(_configuration);
-            return Json(new { data = courseDAO.GetGroupByIdCourse(1) });
+            return Json(new { data = courseDAO.GetGroupByIdCourse(id) });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

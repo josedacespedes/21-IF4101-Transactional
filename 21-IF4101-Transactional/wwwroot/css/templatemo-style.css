@@ -333,7 +333,7 @@ input:checked + .slider:before {
     float: right;
 }
 
-#showAssociation {
+#showAssociation, #showConsultTime {
     resize: none;
 }
 
@@ -356,6 +356,22 @@ input:checked + .slider:before {
     width: 36%;
 }
 
+#startHourConsult, #endHourConsult {
+    display: inline-block;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 2em;
+    width: 17%;
+}
+
+#buttonAddConsultTime {
+    margin-bottom: 2em;
+}
+
+#dayConsultProfessor {
+    display: inline-block;
+    width: 40%;
+}
 /*---------------------------------------
     PRE LOADER              
 -----------------------------------------*/

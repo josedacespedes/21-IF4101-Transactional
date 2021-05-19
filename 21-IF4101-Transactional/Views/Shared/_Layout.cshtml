@@ -545,6 +545,42 @@
         </div>
     </div>
 
+    <!--  MODAL CONSULT TIME PROFESSOR -->
+    <div class="modal fade" id="modalProfessorConsultTime" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" onclick="cleanFieldsModalConsultTime()" aria-label="Close"><b>X</b></button>
+                    <h2 class="modal-title">Asignar horas de consulta</h2>
+                </div>
+                <div class="modal-body">
+                    <div id="consultTimeTitleModal"></div>
+                    <form id="formConsultTime">
+
+                        <div>
+                            <select class="form-control without-margin" required="" name="dayConsultProfessor" id="dayConsultProfessor">
+                                <option value="" selected="">Seleccione el día de consulta</option>
+                            </select>
+                            <input type="time" class="formulario__input form-control" id="startHourConsult" name="startHourConsult" pattern="" required>
+                            <input type="time" class="formulario__input form-control" id="endHourConsult" name="endHourConsult" pattern="" required>
+                        </div>
+
+                        <button type="submit" id="buttonAddConsultTime" class="btn btn-primary">Agregar</button>
+
+                    </form>
+                    <textarea class="form-control" rows="5" id="showConsultTime" value=" " disabled></textarea>
+                    <div class="modal-footer mt-4">
+                        <div class="col-12">
+                            <button type="submit" id="buttonSaveConsultTime" class="btn btn-success">Guardar</button>
+                            <button type="button" class="btn btn-danger" onclick="cleanFieldsModalConsultTime()" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--  REGISTER COURSE -->
     <section id="addCourse" class="displayAdmin">
         <div class="container">

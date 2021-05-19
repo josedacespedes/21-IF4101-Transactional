@@ -5,13 +5,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
 
 namespace _21_IF4101_Transactional.Controllers
 {
@@ -117,6 +113,13 @@ namespace _21_IF4101_Transactional.Controllers
             }
 
             return Ok();
+        }
+
+        public IActionResult GetConsultTime(int idGroup)
+        {
+            //llamada al modelo para obtener horarios de consulta
+            professorDAO = new ProfessorDAO(_configuration);
+            return Ok(professorDAO.GetConsultTime(idGroup));
         }
 
 
