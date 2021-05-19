@@ -39,7 +39,8 @@ namespace _21_IF4101_Transactional.Controllers
         public IActionResult Insert([FromBody] Appointment appointment)
         {
             appointmentDAO = new AppointmentDAO(_configuration);
-            int resultToReturn = appointmentDAO.Insert(appointment, HttpContext.Session.GetString("sNombre"));
+            var StudentId = appointmentDAO.GetStudentId(HttpContext.Session.GetString("sEmail"));
+            int resultToReturn = appointmentDAO.Insert(appointment, HttpContext.Session.GetString("sNombre"), StudentId);
             return Ok(resultToReturn); //retornamos el 1 o el 0 a la vista
         }
 
@@ -47,7 +48,14 @@ namespace _21_IF4101_Transactional.Controllers
         {
             //call model to get the appointments
             appointmentDAO = new AppointmentDAO(_configuration);
-            return Json(new { data = appointmentDAO.Get(HttpContext.Session.GetString("sId")) });
+            return Json(new { data = appointmentDAO.Get(HttpContext.Session.GetString("sNombre")) });
+        }
+
+        public IActionResult GetDates(string ProfessorName)
+        {
+            //call model to get the appointments
+            appointmentDAO = new AppointmentDAO(_configuration);
+            return Json(appointmentDAO.GetDates(ProfessorName));
         }
 
         public IActionResult GetProfessors()

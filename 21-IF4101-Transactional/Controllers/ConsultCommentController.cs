@@ -43,9 +43,9 @@ namespace _21_IF4101_Transactional.Controllers
         {
             //llamada al modelo para obtener las carreras
             consultCommentDAO = new ConsultCommentDAO(_configuration);
-            List<ConsultComment> comments = new List<ConsultComment>();
-            comments = consultCommentDAO.GetComments(idConsult);
-            return Json(comments);
+            //List<ConsultComment> comments = new List<ConsultComment>();
+            //comments = consultCommentDAO.GetComments(idConsult);
+            return Json(new { data = consultCommentDAO.GetComments(idConsult) });
         }
 
 

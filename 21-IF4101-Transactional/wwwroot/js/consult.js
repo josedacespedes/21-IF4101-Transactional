@@ -132,20 +132,20 @@ function loadConsultListComments(id) {
         "destroy": true,
         "autoWidth": false,
         "columnDefs": [
-            { "width": "20%", "targets": [0, 4] }
+            { "width": "20%", "targets": [0, 2] }
         ],
         "ajax": {
-            "url": "/ConsultComment/GetComments/"+id,
+            "url": "/ConsultComment/GetComments/",
             "tpye": 'GET',
-            "datatype": "json"
-            //"data": { "idConsult" : id }
+            "datatype": "json",
+            "data": { "idConsult" : id }
         },
         lengthMenu: [7, 20, 50, 100],
         "columns": [
             { "data": "author" },
             { "data": "comment" },
             { "data": "date" }
-        ],
+        ]
         
     });
     

@@ -95,6 +95,7 @@ loginForm.addEventListener("submit", function (e) {
                     showDisplay("professor");
                     setNameProfessor();
                     loadConsultList();
+                    loadAppointment();
                 } else if (result == 0) {
                     alertMessageToSendLogin.innerHTML = `<label class="text-danger">Email o contraseña incorrecta</label>`;
                 }
