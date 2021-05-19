@@ -1,10 +1,13 @@
-"use strict";
+﻿"use strict";
 
 var formProfessor = document.getElementById("registerProfessorForm");
 var professor;
 var alertMessageAddProfessor = document.getElementById("alertMessageAddProfessor");
 var tableProfessor;
-
+var tableGroup = $("#professorGroupTable").DataTable;
+var formConsultTime = document.getElementById("formConsultTime");
+var dataInfoGroup;
+var dataInfoProfessor;
 //MASK
 $(document).ready(function () {
     $('#idProfessor').mask('P-00000');
@@ -186,8 +189,188 @@ function loadListProfessor() {
                 }
             },
             { "data": "emailProfessor" },
-            { defaultContent: "<button id='' name='' type='button' data-bs-toggle='' data-bs-target='' class='btn btn-primary' title='Grupos'><i class='fa fa-link'></i></button>" }
+            { defaultContent: "<button id='professorGroupModal' name='professorGroupModal' type='button' data-toggle='modal' data-target='#modalProfessorGroup' class='btn btn-primary' title='Asociar'><i class='fa fa-users'></i></button>" }
         ]
     });
 }
 
+/*--------------------------------------------- LIST GROUP-----------------------------------------------------------*/
+function loadListGroup(id) {
+    tableGroup = $("#professorGroupTable").DataTable({
+        "destroy": true,
+        "autoWidth": false,
+        "ajax": {
+            "url": "/Course/GetGroupByIdCourse/" + id,
+            "tpye": 'GET',
+            "datatype": "json",
+
+        },
+        lengthMenu: [7, 20, 50, 100],
+        "columns": [
+            { "data": "idGroup" },
+            { "data": "numGroup" },
+            { defaultContent: "<button id='groupModal' name='groupModal' type='button' data-toggle='modal' data-target='#modalProfessorConsultTime' class='btn btn-primary' title='Horas consulta'><i class='fa fa-calendar'></i></button>" }
+        ]
+    });
+}
+
+/*--------------------------------------------- OPEN MODAL PROFESSOR-GROUP-----------------------------------------------------------*/
+
+$("#professorTable tbody").on("click", "#professorGroupModal", function () {
+    dataInfoProfessor = tableProfessor.row($(this).parents("tr")).data();
+    document.getElementById("professorTitleModal").innerHTML = `<h4>Profesor: ${dataInfoProfessor.firstNameProfessor}  ${dataInfoProfessor.lastNameProfessor} </h4>`;
+    GetCourseGroup();
+    tableGroup.clear().draw();
+});
+
+/*--------------------------------------------- GET COURSES-----------------------------------------------------------*/
+
+function GetCourseGroup() {
+    $("#professorgroup").empty();
+    $("#professorgroup").html('<option value="0" selected="">seleccione el curso</option>');
+
+
+    $.ajax({
+        url: "/Consult/GetCourses",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            //llenar el dropdowns (select)
+            var html = '';
+            $.each(result, function (key, item) {
+                html += '<option id="courseOptionGroup" value="' + item.id + '">' + item.code + ' ' + item.name + '</option>';
+            });
+            $('#professorgroup').append(html);
+
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+$('#professorgroup').on('change', function () {
+
+    loadListGroup(this.value);
+});
+
+function GetWeekdays() {
+    $("#dayConsultProfessor").empty();
+    $("#dayConsultProfessor").html('<option value="" selected=""> Seleccione el día de consulta</option>');
+
+    $.ajax({
+        url: "/Professor/GetWeekDays",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            var i = 1;
+            //llenar el dropdowns (select)
+            var html = '';
+            $.each(result, function (key, item) {
+                html += '<option id="dayOptionId" value="' + i + '">' + item + '</option>';
+                i++;
+            });
+            $('#dayConsultProfessor').append(html);
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+$("#professorGroupTable tbody").on("click", "#groupModal", function () {
+    dataInfoGroup = tableGroup.row($(this).parents("tr")).data();
+    document.getElementById("consultTimeTitleModal").innerHTML = `<h4>Grupo: ${dataInfoGroup.numGroup}</h4>`;
+    GetWeekdays();
+    getConsultTime();
+
+});
+
+var timeConsult = "";
+
+formConsultTime.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var day = $('#dayConsultProfessor option:selected').text();
+    var startTime = $('#startHourConsult').val();
+    var endTime = $('#endHourConsult').val();
+
+    if (startTime < endTime) {
+        timeConsult += day + ':' + startTime + '-' + endTime + ',';
+        var details = timeConsult.replaceAll(",", "\n");
+        $('#showConsultTime').val(details);
+
+        formConsultTime.reset();
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La hora de final no puede ser mayor a la hora de inicio!'
+        })
+    }
+});
+
+function cleanFieldsModalConsultTime() {
+    timeConsult = "";
+    formConsultTime.reset();
+}
+
+$("#buttonSaveConsultTime").on("click", function () {
+
+    var idGroupP = parseInt(dataInfoGroup.idGroup);
+    var idProfessorP = parseInt(dataInfoProfessor.id);
+    var consultationHoursP = timeConsult;
+
+    if (timeConsult != "") {
+        $.ajax({
+            url: "/Professor/InsertProfessorGroup",
+            data: { idGroup: idGroupP, idProfessor: idProfessorP, consultationHours: consultationHoursP },
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $('#modalProfessorConsultTime').modal('hide')
+                    ;
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Guardado exitoso',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+
+            },
+            error: function (errorMessage) {
+                alert("Error");
+                alert(errorMessage.responseText);
+            }
+        });
+    }
+
+});
+
+/*--------------------------------------------- GET CONSULT TIME -----------------------------------------------------------*/
+
+function getConsultTime() {
+    $.ajax({
+        url: "/Professor/GetConsultTime",
+        data: { idGroup: parseInt(dataInfoGroup.idGroup) },
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+
+        success: function (result) {
+            if (result != "0") {
+                var consultTime = result.replaceAll(",", "\n");
+                $('#showConsultTime').val(consultTime);
+            }
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}

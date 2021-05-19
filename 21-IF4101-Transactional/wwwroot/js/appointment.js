@@ -1,7 +1,7 @@
 ﻿"use strict";
 var messageAppointment = document.getElementById("alertMessageAddAppointment");
 $(document).ready(function () {
-    GetProfessorAppointment();
+    //GetProfessorAppointment();
 });
 
 function GetProfessorAppointment() {

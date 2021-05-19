@@ -204,7 +204,7 @@ $("#consultTable tbody").on("click", "#btnModalDetails", function () {
     var html = '';
     
     html += '<div class="modal-header">';
-    html += '<button type="button" id="btnCloseModalConsult" class="btn btn-danger" data-dismiss="modal" onclick="return closeDetails()" aria-label="Close"><b>X</b></button>';
+    html += '<button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" aria-label="Close"><b>X</b></button>';
     html += '<h2 class="modal-title">Detalles de Consulta</h2>';
     html += '</div>';
     html += '<div class="modal-body">';
