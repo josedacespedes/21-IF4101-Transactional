@@ -83,5 +83,11 @@ namespace _21_IF4101_Transactional.Controllers
             return Ok(appointmentDAO.Insert(appointment));
         }
 
+        public IActionResult GetEmailStudent(string studentId)
+        {
+            appointmentDAO = new AppointmentDAO(_configuration);
+            return Ok(appointmentDAO.GetEmailStudent(studentId));
+        }
+
     }
 }

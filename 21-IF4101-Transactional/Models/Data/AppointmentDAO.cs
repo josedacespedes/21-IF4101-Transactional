@@ -191,5 +191,26 @@ namespace _21_IF4101_Transactional.Models.Data
             return resultToReturn;
         }
 
+        public string GetEmailStudent(String studentId)
+        {
+            string emailStudent = "";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("SelectEmailByStudentId", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@StudentId", studentId);
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+
+                if (sqlDataReader.Read())
+                {
+                    emailStudent = sqlDataReader["Email"].ToString();
+                }
+                connection.Close();
+            }
+            return emailStudent;
+        }
+
     }
 }
