@@ -1,12 +1,15 @@
-"use strict";
+﻿"use strict";
 
 //VARIABLES
 var formApplicant = document.getElementById("registerApplicantForm");
 var alertMessageAddStudent = document.getElementById("alertMessageAddStudent");
 var tableApplicant;
+var tableStudents;
+var dataInfoStudent;
+
 
 $(document).ready(function () {
-
+    loadListStudents();
     loadListApplicant();
 });
 
@@ -285,3 +288,81 @@ function sendEmailStudentWait(nameStudent, emailStudent) {
         Body: `Hi ${nameStudent}, wait for your registration response`
     });
 }
+
+/*--------------------------------------------- LIST STUDENTS-----------------------------------------------------------*/
+function loadListStudents() {
+    /*getIdPresident();*/
+    $.ajax({
+        url: "/President/Get",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+
+        success: function (result) {
+            var idPresident = result;
+            tableStudents = $("#studentsTable").DataTable({
+                "destroy": true,
+                "autoWidth": false,
+                "bSort": false,
+
+                "ajax": {
+                    "url": "/Student/Get",
+                    "tpye": 'GET',
+                    "datatype": "json",
+                },
+
+                lengthMenu: [7, 20, 50, 100],
+                "columns": [
+                    { "data": "studentId" },
+                    {
+                        render: function (data, type, row) {
+                            return row.firstName + " " + row.lastName;
+                        }
+                    },
+                    { "data": "email" },
+                    {
+                        defaultContent: null,
+                        render: function (data, type, row) {
+                            if (row.id == idPresident) {
+                                return "<button id='setPresident' name='setPresident' type='button' class='btn btn-secondary' title='Accept' disabled><i class='fa fa-user'></i></button>";
+                            } else {
+                                return "<button id='setPresident' name='setPresident' type='button' class='btn btn-secondary' title='Accept'><i class='fa fa-user-o'></i></button>";
+                            }
+
+                        }
+                    },
+                ]
+            });
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+
+
+}
+
+
+$("#studentsTable tbody").on("click", "#setPresident", function () {
+    dataInfoStudent = tableStudents.row($(this).parents("tr")).data();
+    var president = {
+        id: dataInfoStudent.id
+    }
+
+    $.ajax({
+        url: "/President/Insert",
+        data: JSON.stringify(president),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            loadListStudents();
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+
+
+});

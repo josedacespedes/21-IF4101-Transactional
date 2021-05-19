@@ -1,16 +1,11 @@
 ﻿using _21_IF4101_Transactional.Models;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
 
 namespace _21_IF4101_Transactional.Controllers
 {
@@ -48,7 +43,7 @@ namespace _21_IF4101_Transactional.Controllers
         {
             //llamada al modelo para obtener los estudiantes
             studentDAO = new StudentDAO(_configuration);
-            return Ok(studentDAO.Get());
+            return Json(new { data = studentDAO.Get() });
         }
 
 
