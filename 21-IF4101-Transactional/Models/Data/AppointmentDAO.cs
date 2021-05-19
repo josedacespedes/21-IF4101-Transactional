@@ -124,5 +124,94 @@ namespace _21_IF4101_Transactional.Models.Data
             return StudentId; //retornamos resultado al Controller.
         }
 
+        public int Delete(int id)
+        {
+            int resultToReturn;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("DeleteAppointmentRequest", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@id", id);
+                resultToReturn = command.ExecuteNonQuery();
+                connection.Close();
+            }
+
+            return resultToReturn;
+
+        }
+
+        public List<Appointment> GetRequest(String name)
+        {
+            List<Appointment> appointmentRequest = new List<Appointment>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("SelectAppointmentsRequest", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@ProfessorFullName", name);
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+
+                while (sqlDataReader.Read())
+                {
+                    appointmentRequest.Add(new Appointment
+                    {
+                        Id = Convert.ToInt32(sqlDataReader["Id"]),
+                        Student_FullName = sqlDataReader["Student_FullName"].ToString(),
+                        Type = Convert.ToInt32(sqlDataReader["Type"]),
+                        Professor_fullname = sqlDataReader["ProfessorName"].ToString(),
+                        Appointment_date = sqlDataReader["AppointmentDate"].ToString(),
+                        StudentId = sqlDataReader["StudentId"].ToString()
+                    });
+                }
+                connection.Close();
+            }
+            return appointmentRequest;
+        }
+
+        public int Insert(Appointment appointment)
+        {
+            int resultToReturn;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("InsertAppointment", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@id", appointment.Id);
+                command.Parameters.AddWithValue("@Student_FullName", appointment.Student_FullName);
+                command.Parameters.AddWithValue("@Type", appointment.Type);
+                command.Parameters.AddWithValue("@ProfessorName", appointment.Professor_fullname);
+                command.Parameters.AddWithValue("@AppointmentDate", appointment.Appointment_date);
+                command.Parameters.AddWithValue("@StudentId", appointment.StudentId);
+                resultToReturn = command.ExecuteNonQuery();
+                connection.Close();
+            }
+            return resultToReturn;
+        }
+
+        public string GetEmailStudent(String studentId)
+        {
+            string emailStudent = "";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("SelectEmailByStudentId", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@StudentId", studentId);
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+
+                if (sqlDataReader.Read())
+                {
+                    emailStudent = sqlDataReader["Email"].ToString();
+                }
+                connection.Close();
+            }
+            return emailStudent;
+        }
+
     }
 }

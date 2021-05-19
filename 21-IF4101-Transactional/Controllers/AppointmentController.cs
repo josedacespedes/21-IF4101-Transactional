@@ -34,8 +34,6 @@ namespace _21_IF4101_Transactional.Controllers
             return View();
         }
 
-
-
         public IActionResult InsertRequest([FromBody] Appointment appointment)
         {
             appointmentDAO = new AppointmentDAO(_configuration);
@@ -63,6 +61,32 @@ namespace _21_IF4101_Transactional.Controllers
             //llamada al modelo para obtener los profesores
             professorDAO = new ProfessorDAO(_configuration);
             return Json(professorDAO.Get());
+        }
+
+        public IActionResult Delete(int id)
+        {
+            //llamada al modelo para eliminar el estudiante
+            appointmentDAO = new AppointmentDAO(_configuration);
+            return Ok(appointmentDAO.Delete(id));
+        }
+
+        public IActionResult GetRequest()
+        {
+            //call model to get the appointments
+            appointmentDAO = new AppointmentDAO(_configuration);
+            return Json(new { data = appointmentDAO.GetRequest(HttpContext.Session.GetString("sNombre")) });
+        }
+
+        public IActionResult Insert([FromBody] Appointment appointment)
+        {
+            appointmentDAO = new AppointmentDAO(_configuration);
+            return Ok(appointmentDAO.Insert(appointment));
+        }
+
+        public IActionResult GetEmailStudent(string studentId)
+        {
+            appointmentDAO = new AppointmentDAO(_configuration);
+            return Ok(appointmentDAO.GetEmailStudent(studentId));
         }
 
     }
