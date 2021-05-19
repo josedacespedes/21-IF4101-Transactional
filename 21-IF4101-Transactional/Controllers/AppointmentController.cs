@@ -34,8 +34,6 @@ namespace _21_IF4101_Transactional.Controllers
             return View();
         }
 
-
-
         public IActionResult InsertRequest([FromBody] Appointment appointment)
         {
             appointmentDAO = new AppointmentDAO(_configuration);
