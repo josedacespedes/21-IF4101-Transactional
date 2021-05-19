@@ -137,7 +137,7 @@ function loadAppointment(id) {
         },
         lengthMenu: [7, 20, 50, 100],
         "columns": [
-            { "data": "AppointmentDate" },
+            { "data": "appointment_date" },
             { "data": "studentId" },
             { "data": "student_FullName" },
             {
