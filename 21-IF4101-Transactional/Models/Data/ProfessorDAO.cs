@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace _21_IF4101_Transactional.Models.Data
 {
@@ -304,6 +302,31 @@ namespace _21_IF4101_Transactional.Models.Data
 
 
             return weekDays;
+
+        }
+
+        public string GetConsultTime(int idGroup)
+        {
+            string consultTime = "0";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("SelectConsultHour", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@IdGroup", idGroup);
+
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+                if (sqlDataReader.Read())
+                {
+                    consultTime = sqlDataReader["ConsultationHours"].ToString();
+
+                }
+
+                connection.Close();
+            }
+
+
+            return consultTime;
 
         }
     }

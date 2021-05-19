@@ -156,7 +156,7 @@ function logOut() {
 
 /*--------------------------------------------- PROFILE STUDENT -----------------------------------------------------------*/
 
-var profileStudentHobbies, studentEmail, studentImage, newImageStudent, filePathStudentImage= null;
+var profileStudentHobbies, studentEmail, studentImage, newImageStudent, filePathStudentImage = null;
 
 
 function setNameStudent() {
@@ -185,7 +185,7 @@ $("#showModalStudentProfile").click(function () {
             } else {
                 document.getElementById('profileStudentImage').innerHTML = `<img src="images/userDefault.png" id="imgStudentProfile" class="center-block img-circle" alt="Imagen de Perfil" width="150" height="150">`;
             }
-           
+
             document.getElementById('hProfileNameStudent').innerHTML = result.firstName + ' ' + result.lastName;
             document.getElementById('hProfileEmailStudent').innerHTML = result.email;
             document.getElementById('hProfileCarnetStudent').innerHTML = result.studentId;
@@ -198,7 +198,7 @@ $("#showModalStudentProfile").click(function () {
             $('#imgStudentProfile').on("click", function () {
                 $('#imgFileProfileStudent').click();
             });
-                    
+
         },
         error: function (errorMessage) {
             alert(errorMessage.responseText);
@@ -244,10 +244,10 @@ $("#modalStudentProfile").on("click", "#buttonCloseProfile", function () {
     if ($('#imgFileProfileStudent').get(0).files.length === 0) {
         newImageStudent = studentImage;
     } else {
-        
+
         newImageStudent = 'images/' + document.getElementById("imgFileProfileStudent").files[0].name;
-    }   
-   
+    }
+
     if (profileStudentHobbies != $('#inputStudentHobbies').val() || studentImage != newImageStudent) {
 
         var student = {
@@ -270,7 +270,7 @@ $("#modalStudentProfile").on("click", "#buttonCloseProfile", function () {
                     if (studentImage != newImageStudent) {
                         saveStudentProfileImage();
                     }
-                    
+
                     $.ajax({
                         url: "/Student/UpdateProfile",
                         data: JSON.stringify(student),
@@ -303,8 +303,8 @@ $("#modalStudentProfile").on("click", "#buttonCloseProfile", function () {
 });
 
 function saveStudentProfileImage() {
-   
-    var imgFileProfileStudent =  document.getElementById("imgFileProfileStudent").files[0];
+
+    var imgFileProfileStudent = document.getElementById("imgFileProfileStudent").files[0];
     var formData = new FormData();
     formData.append("files", imgFileProfileStudent);
 
@@ -357,7 +357,7 @@ $("#showModalProfessorProfile").click(function () {
             } else {
                 document.getElementById('profileProfessorImage').innerHTML = `<img src="images/userDefault.png" id="imgProfessorProfile" class="center-block img-circle" alt="Imagen de Perfil" width="150" height="150">`;
             }
-            
+
             document.getElementById('hProfileNameProfessor').innerHTML = result.firstNameProfessor + ' ' + result.lastNameProfessor;
             document.getElementById('hProfileEmailProfessor').innerHTML = result.emailProfessor;
             document.getElementById('hProfileCodeProfessor').innerHTML = result.idProfessor;
@@ -384,12 +384,12 @@ $("#showModalProfessorProfile").click(function () {
             profileProfessorGithub = links[2];
 
             //VARIABLES NUEVAS PARA MODIFICAR
-           
+
 
             professorEmail = result.emailProfessor;
             newImageProfessor = result.imageProfessor;
 
-          
+
             $('#imgProfessorProfile').on("click", function () {
                 $('#imgFileProfileProfessor').click();
             });
@@ -417,7 +417,7 @@ function putErrorInputProfessorProfile(Professor) {
             icon: 'error',
             title: 'Oops...',
             text: 'Algo salió mal...',
-            footer: '<a href>El espacio de intereses debe ser más extenso, no se guardarán sus cambios.</a>'
+            footer: '<a>El espacio de intereses debe ser más extenso, no se guardarán sus cambios.</a>'
         });
 
         validate = true;
@@ -429,7 +429,7 @@ function putErrorInputProfessorProfile(Professor) {
             icon: 'error',
             title: 'Oops...',
             text: 'Algo salió mal...',
-            footer: '<a href>El espacio de formación profesional debe ser más extenso, no se guardarán sus cambios.</a>'
+            footer: '<a>El espacio de formación profesional debe ser más extenso, no se guardarán sus cambios.</a>'
         });
 
         validate = true;
@@ -441,26 +441,26 @@ function putErrorInputProfessorProfile(Professor) {
 function validateChanges(profileProfessorHobbies, profileProfessorVocationalTraining, profileProfessorFacebook, profileProfessorLinkedIn, profileProfessorGithub, profileProfessorImg) {
     var validate = false;
 
-      
+
     if (profileProfessorVocationalTraining != newVocational) {
         validate = true;
-    }else
-    if (profileProfessorHobbies != newProfessorHobbies) {
-        validate = true;
     } else
-    if (profileProfessorFacebook != newFacebook) {
-        validate = true;
-    } else
-    if (profileProfessorLinkedIn != newLinkedIn) {
-        validate = true;
-    } else
-    if (profileProfessorGithub != newGithub) {
-        validate = true;
-    } else
-    if (profileProfessorImg != newImageProfessor) {
-        validate = true;
-    }
-    
+        if (profileProfessorHobbies != newProfessorHobbies) {
+            validate = true;
+        } else
+            if (profileProfessorFacebook != newFacebook) {
+                validate = true;
+            } else
+                if (profileProfessorLinkedIn != newLinkedIn) {
+                    validate = true;
+                } else
+                    if (profileProfessorGithub != newGithub) {
+                        validate = true;
+                    } else
+                        if (profileProfessorImg != newImageProfessor) {
+                            validate = true;
+                        }
+
     return validate;
 }
 
@@ -478,7 +478,7 @@ $("#modalProfessorProfile").on("click", "#buttonCloseProfile", function () {
         newImageProfessor = profileProfessorImg;
     } else {
         newImageProfessor = 'images/' + document.getElementById("imgFileProfileProfessor").files[0].name;
-    } 
+    }
 
     if (validateChanges(profileProfessorHobbies, profileProfessorVocationalTraining, profileProfessorFacebook, profileProfessorLinkedIn, profileProfessorGithub, profileProfessorImg)) {
 
@@ -531,7 +531,7 @@ $("#modalProfessorProfile").on("click", "#buttonCloseProfile", function () {
             });
         }
 
-       
+
 
     }
 
