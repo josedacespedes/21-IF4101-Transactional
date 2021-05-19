@@ -36,11 +36,11 @@ namespace _21_IF4101_Transactional.Controllers
 
 
 
-        public IActionResult Insert([FromBody] Appointment appointment)
+        public IActionResult InsertRequest([FromBody] Appointment appointment)
         {
             appointmentDAO = new AppointmentDAO(_configuration);
             var StudentId = appointmentDAO.GetStudentId(HttpContext.Session.GetString("sEmail"));
-            int resultToReturn = appointmentDAO.Insert(appointment, HttpContext.Session.GetString("sNombre"), StudentId);
+            int resultToReturn = appointmentDAO.InsertRequest(appointment, HttpContext.Session.GetString("sNombre"), StudentId);
             return Ok(resultToReturn); //retornamos el 1 o el 0 a la vista
         }
 
