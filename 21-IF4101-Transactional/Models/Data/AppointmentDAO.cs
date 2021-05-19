@@ -180,6 +180,7 @@ namespace _21_IF4101_Transactional.Models.Data
                 SqlCommand command = new SqlCommand("InsertAppointment", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
+                command.Parameters.AddWithValue("@id", appointment.Id);
                 command.Parameters.AddWithValue("@Student_FullName", appointment.Student_FullName);
                 command.Parameters.AddWithValue("@Type", appointment.Type);
                 command.Parameters.AddWithValue("@ProfessorName", appointment.Professor_fullname);
