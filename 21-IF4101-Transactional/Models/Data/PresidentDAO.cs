@@ -1,11 +1,6 @@
 ﻿using _21_IF4101_Transactional.Models.Domain;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace _21_IF4101_Transactional.Models.Data
 {
@@ -53,9 +48,9 @@ namespace _21_IF4101_Transactional.Models.Data
             }
         }
 
-        public int Get()
+        public string Get()
         {
-            int idPresident = 0;
+            string idPresident = "0";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open(); //abrimos conexión
@@ -65,7 +60,7 @@ namespace _21_IF4101_Transactional.Models.Data
                 SqlDataReader sqlDataReader = command.ExecuteReader();
                 if (sqlDataReader.Read())
                 {
-                    idPresident = Convert.ToInt32(sqlDataReader["idStudent"]);
+                    idPresident = sqlDataReader["idStudent"].ToString();
                 }
 
                 connection.Close();

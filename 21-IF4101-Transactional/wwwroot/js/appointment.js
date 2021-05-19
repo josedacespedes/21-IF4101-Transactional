@@ -51,7 +51,7 @@ function DateAppointment() {
         type: "GET",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
-        data: {"ProfessorName": ProfessorName},
+        data: { "ProfessorName": ProfessorName },
         success: function (result) {
             //llenar el dropdowns (select)
             var html = '';
@@ -108,7 +108,7 @@ registerAppintmentForm.addEventListener("submit", function (e) {
                     $('#professorDateAppointment').val(0);
                     CleanDate();
                 } else if (result == 3) {
-                    
+
                     messageAppointment.innerHTML = "<label class='text-danger'>Esta Cita ya existe</label>";
                 }
                 else {
@@ -142,8 +142,8 @@ function loadAppointment(id) {
             { "data": "student_FullName" },
             {
                 render: function (data, type, row) {
-                return row.type == 1 ? 'Presencial' : 'Virtual';
-            },
+                    return row.type == 1 ? 'Presencial' : 'Virtual';
+                },
 
             },
             { defaultContent: "<button id='acceptApplicant' name='acceptApplicant' type='button' class='btn btn-success' title='Accept'><i class='fa fa-check'></i></button> <button id='rejectApplicant' name='rejectApplicant' type='button' class='btn btn-danger' title='Reject'><i class='fa fa-trash'></i></button>" }
