@@ -124,5 +124,23 @@ namespace _21_IF4101_Transactional.Models.Data
             return StudentId; //retornamos resultado al Controller.
         }
 
+        public int Delete(int id)
+        {
+            int resultToReturn;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("DeleteAppointmentRequest", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@id", id);
+                resultToReturn = command.ExecuteNonQuery();
+                connection.Close();
+            }
+
+            return resultToReturn;
+
+        }
+
     }
 }

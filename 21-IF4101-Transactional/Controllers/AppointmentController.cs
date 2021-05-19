@@ -65,5 +65,12 @@ namespace _21_IF4101_Transactional.Controllers
             return Json(professorDAO.Get());
         }
 
+        public IActionResult Delete(int id)
+        {
+            //llamada al modelo para eliminar el estudiante
+            appointmentDAO = new AppointmentDAO(_configuration);
+            return Ok(appointmentDAO.Delete(id));
+        }
+
     }
 }
