@@ -79,5 +79,11 @@ namespace _21_IF4101_Transactional.Controllers
             return Json(new { data = appointmentDAO.GetRequest(HttpContext.Session.GetString("sNombre")) });
         }
 
+        public IActionResult Insert([FromBody] Appointment appointment)
+        {
+            appointmentDAO = new AppointmentDAO(_configuration);
+            return Ok(appointmentDAO.Insert(appointment));
+        }
+
     }
 }

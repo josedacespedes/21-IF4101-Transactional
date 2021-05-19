@@ -171,5 +171,25 @@ namespace _21_IF4101_Transactional.Models.Data
             return appointmentRequest;
         }
 
+        public int Insert(Appointment appointment)
+        {
+            int resultToReturn;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("InsertAppointment", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@Student_FullName", appointment.Student_FullName);
+                command.Parameters.AddWithValue("@Type", appointment.Type);
+                command.Parameters.AddWithValue("@ProfessorName", appointment.Professor_fullname);
+                command.Parameters.AddWithValue("@AppointmentDate", appointment.Appointment_date);
+                command.Parameters.AddWithValue("@StudentId", appointment.StudentId);
+                resultToReturn = command.ExecuteNonQuery();
+                connection.Close();
+            }
+            return resultToReturn;
+        }
+
     }
 }
