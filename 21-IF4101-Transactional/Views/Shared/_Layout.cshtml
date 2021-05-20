@@ -276,6 +276,53 @@
         </div>
     </section>
 
+<<<<<<< HEAD
+=======
+    <!-- The Modal Consult Details -->
+    <form>
+        <div class="modal fade" id="consultModal" role="dialog">
+            <div>
+                <!-- Modal content-->
+                <div class="modal-contentConsult">
+
+                </div>
+                <div id="alertAddComment"></div>
+            </div>
+        </div>
+    </form>
+
+    <!-- The Modal Consult Comments -->
+    <form>
+        <div class="modal fade" id="consultModalComments" role="dialog">
+            <div class="modal-contentConsultComments">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-6 addCourse-info">
+                            <button type="button" id="btnCloseModalConsult" class="btn btn-danger" data-dismiss="modal" onclick="return closeComments()" aria-label="Close"><b>X</b></button>
+                            <h2 id="consultTittle">Lista de Comentarios</h2>
+                            <div class="row sidePadding">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered" id="commentTable">
+                                        <thead class="table-primary headTable">
+                                            <tr class="text-center">
+                                                <th>Autor</th>
+                                                <th>Comentario</th>
+                                                <th>Fecha</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="bodyCommentsTable" class="text-center font-weight-bold"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+>>>>>>> c79b663dfc7295d41c42d64e7953cbd7012d6133
     <!--  REGISTER NEWS -->
     <section id="addNews" class="displayAdmin">
         <div class="container">
@@ -718,6 +765,95 @@
             </div>
         </div>
     </div>
+
+    <!--  MODAL COMMENT APPOINTMENT -->
+    <div class="modal fade" id="modalCommentAppointment" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" onclick="cleanFieldsFormCommentAppointment()" aria-label="Close"><b>X</b></button>
+                    <h2 class="modal-title">Enviar comentario de cita</h2>
+                </div>
+
+                <div class="modal-body">
+                    <div id="commentAppointmentTitle"></div>
+
+                    <form autocomplete="off" id="formCommentAppointment">
+                        <textarea class="form-control" rows="5" id="appointmentComment" placeholder="Comentario de cita" required></textarea>
+
+                        <div class="modal-footer mt-4">
+                            <div class="col-12">
+                                <button type="submit" id="buttonSendCommentAppointment" class="btn btn-success">Enviar</button>
+                                <button type="button" class="btn btn-danger" onclick="cleanFieldsFormCommentAppointment()" data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="modal fade" id="modalProfessorConsultTime" role="dialog">
+        <div class="modal-dialog">-->
+    <!-- Modal content-->
+    <!--<div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" onclick="cleanFieldsModalConsultTime()" aria-label="Close"><b>X</b></button>
+                    <h2 class="modal-title">Asignar horas de consulta</h2>
+                </div>
+                <div class="modal-body">
+                    <div id="consultTimeTitleModal"></div>
+                    <form id="formConsultTime">
+
+                        <div>
+                            <select class="form-control without-margin" required="" name="dayConsultProfessor" id="dayConsultProfessor">
+                                <option value="" selected="">Seleccione el día de consulta</option>
+                            </select>
+                            <input type="time" class="formulario__input form-control" id="startHourConsult" name="startHourConsult" pattern="" required>
+                            <input type="time" class="formulario__input form-control" id="endHourConsult" name="endHourConsult" pattern="" required>
+                        </div>
+
+                        <button type="submit" id="buttonAddConsultTime" class="btn btn-primary">Agregar</button>
+
+                    </form>
+                    <textarea class="form-control" rows="5" id="showConsultTime" value=" " disabled></textarea>
+                    <div class="modal-footer mt-4">
+                        <div class="col-12">
+                            <button type="submit" id="buttonSaveConsultTime" class="btn btn-success">Guardar</button>
+                            <button type="button" class="btn btn-danger" onclick="cleanFieldsModalConsultTime()" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!-- Appointment Request LIST -->
+    <section id="appointmentRequestList" class="displayProfessor">
+        <div class="container">
+            <div class="col-md-12">
+                <h2 id="appointmentRequestTittle">Lista de Solicitud de Citas</h2>
+                <div class="row sidePadding">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="appointmentRequestTable">
+                            <thead class="table-primary headTable">
+                                <tr class="text-center">
+                                    <th>Fecha</th>
+                                    <th>Carnet Estudiante</th>
+                                    <th>Nombre Estudiante</th>
+                                    <th>Tipo</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyAppointmentRequestTable" class="text-center font-weight-bold">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!--  MODAL COURSE-GROUP -->
     <div class="modal fade" id="modalCourseGroup" role="dialog">
