@@ -15,6 +15,9 @@ body {
     padding-top: 70px;
 }
 
+#ucrLogo {
+    width: 5%;
+}
 
 /*---------------------------------------
      TYPOGRAPHY              
@@ -367,6 +370,7 @@ input:checked + .slider:before {
 #buttonAddConsultTime {
     margin-bottom: 2em;
 }
+
 
 #dayConsultProfessor {
     display: inline-block;
@@ -1236,6 +1240,7 @@ input:checked + .slider .off {
     border: 2% solid #888;
     width: 75%;
     border-radius: 1%;
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
 }
 
 .modalConsultCommets {
