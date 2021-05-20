@@ -146,9 +146,7 @@ function loadConsultListComments(id) {
             { "data": "comment" },
             { "data": "date" }
         ]
-        
-    });
-    
+    }); 
 }
 
 
@@ -208,39 +206,27 @@ $("#consultTable tbody").on("click", "#btnModalDetails", function () {
     html += '<h2 class="modal-title">Detalles de Consulta</h2>';
     html += '</div>';
     html += '<div class="modal-body">';
-    html += '<div ></div>';
     html += '<form autocomplete="off">';
-    html += '<div class="form-group">';
-    html += '<label>Titulo:</label>';
-    html += '<div>';
-    html += '<label id="dConsultTitle" type="text"> ' + dataInfoConsult.title + '</label>';
-    html += '</div>';
-    html += '</div>';
-    html += '<div id="DetailsId" class="form-group">';
-    html += '<label>ID:</label>';
-    html += '<div>';
-    html += '<label id="dConsultId" type="text">' + dataInfoConsult.id + '</label>';
-    html += '</div>';
-    html += '</div>';
-    html += '<div class="form-group">';
-    html += '<label>Autor:</label>';
-    html += '<div>';
-    html += '<label id="dConsultAuthor" type="text">' + dataInfoConsult.author + '</label>';
-    html += '</div>';
-    html += '</div>';
-    html += '<div class="form-group">';
-    html += '<label>Curso:</label>';
-    html += '<div>';
-    html += '<label id="dConsultCourse" type="text">' + dataInfoConsult.course + '</label>';
-    html += '</div>';
-    html += '</div>';
-    html += '<div id="DetailsDate" class="form-group">';
-    html += '<label>Fecha:</label>';
-    html += '<div>';
-    html += '<label id="dConsultDate" type="text">' + dataInfoConsult.date + '</label>';
-    html += '</div>';
-    html += '</div>';
-    html += '<div class="form-group">';
+    html += `<div class="table-responsive">
+            <table class="table text-center">
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">ID</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Curso</th>
+                <th scope="col">Fecha</th>
+            </tr>
+            <tbody>
+                <tr>
+                    <th scope="row">` + dataInfoConsult.title + `</th>
+                    <td>` + dataInfoConsult.id + `</td>
+                    <td>`+ dataInfoConsult.author + `</td>
+                    <td>`+ dataInfoConsult.course +`</td>
+                    <td>`+ dataInfoConsult.date +`</td>
+                </tr>
+            </tbody>
+            </table >
+            </div>`;
     html += '<label>Descripción:</label>';
     html += '<div>';
     html += '<textarea rows="4" cols="50" type="text" name="dConsultDescription" id="dConsultDescription" class="form-control" placeholder="Descripción" disabled>' + dataInfoConsult.description + '</textarea>';
@@ -272,6 +258,5 @@ $("#consultTable tbody").on("click", "#btnModalComments", function () {
     var dataInfoConsult = tableConsult.row($(this).parents("tr")).data();
     
     loadConsultListComments(dataInfoConsult.id);
-    
 
 });
