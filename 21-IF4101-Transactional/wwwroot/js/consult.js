@@ -6,9 +6,8 @@ var message = document.getElementById("alertAddComment");
 var tableConsult;
 var tableComments;
 $(document).ready(function () {
-    GetCourseConsult();
+    GetProfessorConsult();
     loadConsultListComments(0);
-    //setTimeout(loadConsultList, 20000);
 });
 
 //ACTION ADD
@@ -20,14 +19,14 @@ registerConsultForm.addEventListener("submit", function (e) {
     var consult = {
         title: $('#consultTitle').val(),
         description: $('#consultDescription').val(),
-        course: parseInt($('#courseConsult').val()),
+        professor: ($('#professorConsult').val()),
         type: parseInt(checkStatus)
     };
     console.log(consult);
-    if (consult.title == "" && consult.description == "" && consult.course == 0) {
+    if (consult.title == "" && consult.description == "" && consult.professor == "") {
         $('#consultTitle').addClass("formInput-error");
         $('#consultDescription').addClass("formInput-error");
-        $('#courseConsult').addClass("formInput-error");
+        $('#professorConsult').addClass("formInput-error");
         $('#consultTypeCheck').addClass("formInput-error");
         return false;
     } else if (consult.title == "") {
@@ -36,8 +35,8 @@ registerConsultForm.addEventListener("submit", function (e) {
     } else if (consult.description == "") {
         $('#consultDescription').addClass("formInput-error");
         return false;
-    } else if (consult.course == 0) {
-        $('#consultTypeCheck').addClass("formInput-error");
+    } else if (consult.professor == "") {
+        $('#professorConsult').addClass("formInput-error");
         return false;
     } else {
         $.ajax({
@@ -53,7 +52,7 @@ registerConsultForm.addEventListener("submit", function (e) {
                     $('#consultTable').DataTable().ajax.reload();
                     $('#consultTitle').val("");
                     $('#consultDescription').val("");
-                    $('#courseConsult').val(0);
+                    $('#professorConsult').val(0);
                 } else if (result == 3) {
                     $('#idCourse').addClass("formInput-error");
                     messageToSendConsult.innerHTML = "<label class='text-danger'>Esta consulta ya existe</label>";
@@ -113,14 +112,14 @@ function loadConsultList() {
         "columns": [
             { "data": "title" },
             { "data": "date" },
-            { "data": "course" },
+            { "data": "professor" },
             {
                 render: function (data, type, row) {
                     return row.type == 1 ? 'Pública' : 'Privada';
                 },
 
             },
-            { defaultContent: "<button id='btnModalDetails' name='btnModalDetails' type='button' data-toggle='modal' class='btn btn-primary' data-target='#consultModal' title='Detalles'><i class='fa fa-file-text'></i></button><button id='btnModalComments' name='btnModalComments' type='button' data-toggle='modal' data-target='#consultModalComments' class='btn btn-info' title='Comentarios'><i class='fa fa-comments'></i></button>" }
+            { defaultContent: "<button id='btnModalDetails' name='btnModalDetails' type='button' data-toggle='modal' class='btn btn-primary' data-target='#consultModal' title='Detalles'><i class='fa fa-file-text'></i></button>  <button id='btnModalComments' name='btnModalComments' type='button' data-toggle='modal' data-target='#consultModalComments' class='btn btn-info' title='Comentarios'><i class='fa fa-comments'></i></button>" }
         ]
     });
     
@@ -152,20 +151,20 @@ function loadConsultListComments(id) {
 }
 
 
-function GetCourseConsult() {
+function GetProfessorConsult() {
 
     $.ajax({
-        url: "/Consult/GetCourses",
+        url: "/Appointment/GetProfessors",
         type: "GET",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            //llenar el dropdowns (select)
+            console.log(result);
             var html = '';
             $.each(result, function (key, item) {
-                html += '<option value="' + item.id + '">' + item.name + '</option>';
+                html += '<option>' + item.firstNameProfessor + ' ' + item.lastNameProfessor + '</option>';
             });
-            $('#courseConsult').append(html);
+            $('#professorConsult').append(html);
         },
         error: function (errorMessage) {
             alert("Error");

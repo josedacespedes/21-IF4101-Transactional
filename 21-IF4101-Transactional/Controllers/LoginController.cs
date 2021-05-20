@@ -70,6 +70,11 @@ namespace _21_IF4101_Transactional.Controllers
 
         }
 
+        public IActionResult GetName()
+        {
+            return Json(new { name = HttpContext.Session.GetString("sNombre"), date = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fff") });
+        }
+
         public IActionResult Delete()
         {
             var email = HttpContext.Session.GetString("sEmail"); //ASI SE OBTIENE
