@@ -212,7 +212,7 @@ $("#consultTable tbody").on("click", "#btnModalDetails", function () {
                 <th scope="col">Title</th>
                 <th scope="col">ID</th>
                 <th scope="col">Autor</th>
-                <th scope="col">Curso</th>
+                <th scope="col">Profesor</th>
                 <th scope="col">Fecha</th>
             </tr>
             <tbody>
@@ -220,7 +220,7 @@ $("#consultTable tbody").on("click", "#btnModalDetails", function () {
                     <th scope="row">` + dataInfoConsult.title + `</th>
                     <td>` + dataInfoConsult.id + `</td>
                     <td>`+ dataInfoConsult.author + `</td>
-                    <td>`+ dataInfoConsult.course +`</td>
+                    <td>`+ dataInfoConsult.professor +`</td>
                     <td>`+ dataInfoConsult.date +`</td>
                 </tr>
             </tbody>
