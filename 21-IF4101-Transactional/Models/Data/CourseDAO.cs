@@ -197,5 +197,29 @@ namespace _21_IF4101_Transactional.Models.Data
             }
         }
 
+        public List<Group> GetGroupByIdCourse(int id)
+        {
+            List<Group> groups = new List<Group>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("SelectGroupByIdCourse", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Id", id);
+
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+                while (sqlDataReader.Read())
+                {
+                    groups.Add(new Group
+                    {
+                        IdGroup = Convert.ToInt32(sqlDataReader["IdGroup"]),
+                        NumGroup = Convert.ToInt32(sqlDataReader["NumGroup"])
+                    });
+                }
+                connection.Close();
+            }
+            return groups;
+        }
+
     }
 }

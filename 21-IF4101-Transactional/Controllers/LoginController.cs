@@ -41,7 +41,7 @@ namespace _21_IF4101_Transactional.Controllers
             HttpContext.Session.SetString("sEmail", email);
             HttpContext.Session.SetString("sNombre", loginDAO.GetNameUserByEmail(email)); //(AGREGAR ACA NOMBRE COMPLETO DE PERSONA)
             HttpContext.Session.SetInt32("sId", loginDAO.GetIdUserByEmail(email));
-           
+
             //var a = HttpContext.Session.GetString("nombreVariable"); //ASI SE OBTIENE
         }
 
@@ -68,6 +68,14 @@ namespace _21_IF4101_Transactional.Controllers
                 return Ok(0); //Error (contraseña o correo invalido)
             }
 
+        }
+
+        public IActionResult Delete()
+        {
+            var Id = Convert.ToInt32(HttpContext.Session.GetString("sId")); //ASI SE OBTIENE
+            //llamada al modelo para eliminar el estudiante
+            loginDAO = new LoginDAO(_configuration);
+            return Ok(loginDAO.Delete(Id));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

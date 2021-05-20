@@ -60,9 +60,11 @@ namespace _21_IF4101_Transactional.Controllers
 
         public IActionResult Get()
         {
+            
             //call model to get the courses
             consultDAO = new ConsultDAO(_configuration);
-            return Json(new { data = consultDAO.Get() });
+            return Json(new { data = consultDAO.Get(HttpContext.Session.GetString("sEmail")) });
+            
         }
 
         public IActionResult GetById(int id)

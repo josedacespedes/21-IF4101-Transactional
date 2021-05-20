@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace _21_IF4101_Transactional.Models.Data
 {
@@ -165,8 +163,6 @@ namespace _21_IF4101_Transactional.Models.Data
             return applicants; //retornamos resultado al Controller.  
 
         }
-
-
         public Professor GetProfile(string email)
         {
             SqlConnection connection = null;
@@ -207,6 +203,130 @@ namespace _21_IF4101_Transactional.Models.Data
                 if (connection != null)
                     connection.Close();
             }
+
+        }
+
+        public int UpdateProfile(Professor professor)
+        {
+            int resultToReturn;
+            SqlConnection connection = null;
+            try
+            {
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open(); //abrimos conexión
+                    SqlCommand command = new SqlCommand("UpdateProfessorPerfilByEmail", connection);
+
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Email", professor.EmailProfessor);
+                    command.Parameters.AddWithValue("@Image", professor.ImageProfessor);
+                    command.Parameters.AddWithValue("@Likes", professor.LikesProfessor);
+                    command.Parameters.AddWithValue("@VocationalTraining", professor.VocationalTrainingProfessor);
+                    command.Parameters.AddWithValue("@Links", professor.LinksProfessor);
+
+                    resultToReturn = command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                return resultToReturn;
+            }
+            catch (SqlException ex)
+            {
+                return ex.Number;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+
+        }
+
+        public int InsertProfessorGroup(int idGroup, int idProfessor, string consultationHours)
+        {
+            int resultToReturn = 0;
+
+            SqlConnection connection = null;
+            try
+            {
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("InsertProfessorGroup", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@IdGroup", idGroup);
+                    command.Parameters.AddWithValue("@IdProfessor", idProfessor);
+                    command.Parameters.AddWithValue("@ConsultationHours", consultationHours);
+                    resultToReturn = command.ExecuteNonQuery();
+                    connection.Close();
+                }
+
+                return resultToReturn;
+            }
+            catch (SqlException ex)
+            {
+                return ex.Number;
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+        }
+
+        public List<String> GetWeekDays()
+        {
+
+            List<String> weekDays = new List<String>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("SelectWeekDays", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+                if (sqlDataReader.Read())
+                {
+                    weekDays.Add(sqlDataReader["Lunes"].ToString());
+                    weekDays.Add(sqlDataReader["Martes"].ToString());
+                    weekDays.Add(sqlDataReader["Miercoles"].ToString());
+                    weekDays.Add(sqlDataReader["Jueves"].ToString());
+                    weekDays.Add(sqlDataReader["Viernes"].ToString());
+                    weekDays.Add(sqlDataReader["Sabado"].ToString());
+
+                }
+
+                connection.Close();
+            }
+
+
+            return weekDays;
+
+        }
+
+        public string GetConsultTime(int idGroup)
+        {
+            string consultTime = "0";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("SelectConsultHour", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@IdGroup", idGroup);
+
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+                if (sqlDataReader.Read())
+                {
+                    consultTime = sqlDataReader["ConsultationHours"].ToString();
+
+                }
+
+                connection.Close();
+            }
+
+
+            return consultTime;
 
         }
     }

@@ -108,7 +108,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
                     <li><a href="#news" class="smoothScroll">Noticias</a></li>
-                    <li><a href="#addConsult" class="smoothScroll">Consultas</a></li>
+                    <li><a href="#listConsult" class="smoothScroll">Consultas</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Registros
@@ -168,7 +168,7 @@
                 <ul class="nav navbar-nav navbar-nav-first">
                     <li><a href="#news" class="smoothScroll">Noticias</a></li>
                     <li><a href="#addConsult" class="smoothScroll">Consultas</a></li>
-                    <li><a href="#addProfessor" class="smoothScroll">Citas</a></li>
+                    <li><a href="#addAppointment" class="smoothScroll">Citas</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right" id="loginRight">
@@ -205,8 +205,8 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
                     <li><a href="#news" class="smoothScroll">Noticias</a></li>
-                    <li><a href="#addConsult" class="smoothScroll">Consultas</a></li>
-                    <li><a href="#addProfessor" class="smoothScroll">Citas</a></li>
+                    <li><a href="#listConsult" class="smoothScroll">Consultas</a></li>
+                    <li><a href="#appointmentList" class="smoothScroll">Citas</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right" id="loginRight">
@@ -270,6 +270,127 @@
                                 <h3>Nam eget sapien vel nibh euismod vulputate in vel nibh. Quisque eu ex eu urna venenatis sollicitudin ut at libero. Visit <a rel="nofollow" href="https://www.facebook.com/templatemo">templatemo</a> page.</h3>
                                 <a href="#contact" class="section-btn btn btn-default smoothScroll">Comunicate con nosotros</a>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Modal Consult Details -->
+    <form>
+        <div class="modal fade" id="consultModal" role="dialog">
+            <div>
+                <!-- Modal content-->
+                <div class="modal-contentConsult">
+
+                </div>
+                <div id="alertAddComment"></div>
+            </div>
+        </div>
+    </form>
+
+    <!-- The Modal Consult Comments -->
+    <form>
+        <div class="modal fade" id="consultModalComments" role="dialog">
+            <div class="modal-contentConsultComments">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-6 addCourse-info">
+                            <button type="button" id="btnCloseModalConsult" class="btn btn-danger" data-dismiss="modal" onclick="return closeComments()" aria-label="Close"><b>X</b></button>
+                            <h2 id="consultTittle">Lista de Comentarios</h2>
+                            <div class="row sidePadding">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered" id="commentTable">
+                                        <thead class="table-primary headTable">
+                                            <tr class="text-center">
+                                                <th>Autor</th>
+                                                <th>Comentario</th>
+                                                <th>Fecha</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="bodyCommentsTable" class="text-center font-weight-bold"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+    <!--  REGISTER CONSULT -->
+    <section id="addConsult" class="displayStudent">
+        <div class="container">
+            <div class="row">
+                <!-- ADD  -->
+                <div class="col-md-6 col-sm-12">
+                    <div id="consultEntry" class="entry-formConsult">
+                        <form id="registerConsultForm" autocomplete="off">
+                            <h2>Agregar Consulta</h2>
+
+                            <input type="text" name="consultTitle" id="consultTitle" class="form-control" placeholder="Titulo Consulta" required="" minlength="10" maxlength="150" title="Complete este campo con el titulo de consulta">
+                            <div id="typeConsult" class="switchFlex">
+                                <label id="consultType">Tipo</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="consultTypeCheck" name="consultTypeCheck">
+                                    <span class="slider round">
+                                        <!--ADDED HTML -->
+                                        <span class="on">Pública</span>
+                                        <span class="off">Privada</span>
+                                        <!--END-->
+                                    </span>
+                                </label>
+                            </div>
+                            <select class="form-control without-margin" required="" name="courseConsult" id="courseConsult">
+                                <option value="0" selected="">Seleccione el curso</option>
+                            </select>
+                            <textarea rows="4" cols="50" type="text" name="consultDescription" id="consultDescription" class="form-control" placeholder="Descripción" required="" minlength="10" title="Complete este campo con la descripcion de la consulta"></textarea>
+
+                            <div id="buttonSubmitAddCourse">
+                                <button type="submit" class="submit-btn form-control">Registrar</button>
+                            </div>
+                            <div id="alertMessageAddConsult"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <!--Image-->
+                <div class="col-md-6 col-sm-12">
+                    <div id="consultImage">
+                        <img id="imageUCRStudent" src="~/images/UCR1.jpg" alt="ImagenUCR" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--LIST CONSULT-->
+    <section id="listConsult" class="displayStudent displayAdmin displayProfessor">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12 addCourse-info">
+                    <h2 id="consultTittle">Lista de Consultas</h2>
+                    <div class="row sidePadding">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered" id="consultTable">
+                                <thead class="table-primary headTable">
+                                    <tr class="text-center">
+                                        <th>Titulo</th>
+                                        <th>Fecha</th>
+                                        <th>Curso</th>
+                                        <th>Tipo</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyConsultTable" class="text-center font-weight-bold">
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -391,6 +512,75 @@
         </div>
     </section>
 
+
+    <!--  MODAL PROFESSOR-GROUP -->
+    <div class="modal fade" id="modalProfessorGroup" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" onclick="" aria-label="Close"><b>X</b></button>
+                    <h2 class="modal-title">Asociar Profesor-Grupo</h2>
+                </div>
+                <div class="modal-body">
+                    <div id="professorTitleModal"></div>
+                    <select class="form-control without-margin" required="" name="professorgroup" id="professorgroup">
+                        <option value="0" selected="">seleccione el curso</option>
+                    </select>
+                    <table class="table table-striped table-bordered" id="professorGroupTable">
+                        <thead class="table-primary headTable">
+                            <tr class="text-center">
+                                <th>Id</th>
+                                <th>Grupo</th>
+                                <th>Asociar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyprofessorgrouptable" class="text-center font-weight-bold">
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--  MODAL CONSULT TIME PROFESSOR -->
+    <div class="modal fade" id="modalProfessorConsultTime" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" onclick="cleanFieldsModalConsultTime()" aria-label="Close"><b>X</b></button>
+                    <h2 class="modal-title">Asignar horas de consulta</h2>
+                </div>
+                <div class="modal-body">
+                    <div id="consultTimeTitleModal"></div>
+                    <form id="formConsultTime">
+
+                        <div>
+                            <select class="form-control without-margin" required="" name="dayConsultProfessor" id="dayConsultProfessor">
+                                <option value="" selected="">Seleccione el día de consulta</option>
+                            </select>
+                            <input type="time" class="formulario__input form-control" id="startHourConsult" name="startHourConsult" pattern="" required>
+                            <input type="time" class="formulario__input form-control" id="endHourConsult" name="endHourConsult" pattern="" required>
+                        </div>
+
+                        <button type="submit" id="buttonAddConsultTime" class="btn btn-primary">Agregar</button>
+
+                    </form>
+                    <textarea class="form-control" rows="5" id="showConsultTime" value=" " disabled></textarea>
+                    <div class="modal-footer mt-4">
+                        <div class="col-12">
+                            <button type="submit" id="buttonSaveConsultTime" class="btn btn-success">Guardar</button>
+                            <button type="button" class="btn btn-danger" onclick="cleanFieldsModalConsultTime()" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--  REGISTER COURSE -->
     <section id="addCourse" class="displayAdmin">
         <div class="container">
@@ -453,7 +643,73 @@
         </div>
     </section>
 
+    <!--  Appoinment -->
+    <section id="addAppointment" class="displayStudent">
+        <div class="container">
+            <div class="row">
 
+                <!-- ADD  -->
+                <div class="col-md-6 col-sm-12">
+                    <div class="entry-form">
+                        <form id="registerAppintmentForm" autocomplete="off">
+                            <h2>Agregar Cita</h2>
+
+                            <select class="form-control without-margin" required="" name="professorAppointment" id="professorAppointment" onchange="DateAppointment()">
+                                <option value="0" selected="">Seleccione el profesor</option>
+                            </select>
+
+                            <select class="form-control without-margin" required="" name="professorDateAppointment" id="professorDateAppointment">
+                                <option value="0" selected="">Seleccione el horario</option>
+                            </select>
+                            <div id="appointmentType">
+                                <label>Tipo</label>
+                                <label id="appointmentswitchlabel" class="switch">
+                                    <input type="checkbox" id="consultTypeAppoCheck" name="consultTypeAppoCheck">
+                                    <span class="slider round">
+                                        <!--ADDED HTML -->
+                                        <span class="on">Presencial</span>
+                                        <span class="off">Virtual</span>
+                                        <!--END-->
+                                    </span>
+                                </label>
+                            </div>
+                            <div id="buttonSubmitAddAppointment">
+                                <button type="submit" class="submit-btn form-control">Registrar</button>
+                            </div>
+                            <div id="alertMessageAddAppointment"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Appointment LIST -->
+    <section id="appointmentList" class="displayProfessor">
+        <div class="container">
+            <div class="col-md-12">
+                <h2 id="applicantTittle">Lista de Citas</h2>
+                <div class="row sidePadding">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="appointmentTable">
+                            <thead class="table-primary headTable">
+                                <tr class="text-center">
+                                    <th>Fecha</th>
+                                    <th>Carnet Estudiante</th>
+                                    <th>Nombre Estudiante</th>
+                                    <th>Tipo</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyApplicantTable" class="text-center font-weight-bold">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!--  MODAL COURSE-GROUP -->
     <div class="modal fade" id="modalCourseGroup" role="dialog">
@@ -560,7 +816,12 @@
                     <div class="row">
                         <button type="button" id="buttonCloseProfile" class="btn btn-danger pull-right" data-dismiss="modal" aria-label="Close"><b>X</b></button>
                     </div>
+
                     <div id="profileStudentImage"></div>
+
+                    <form name="form" action="/Student/SaveImageProfile" enctype="multipart/form-data" method="post">
+                        <input id="imgFileProfileStudent" type="file" required name="imgFileProfileStudent" accept="image/png, .jpg" hidden>
+                    </form>
 
                     <div class="text-center">
                         <div class="row pHeadProfile" id="profileStudentName">
@@ -590,10 +851,6 @@
         </div>
     </div>
 
-
-
-
-
     <!-- MODAL PERFIL PROFESSOR-->
     <div class="modal" id="modalProfessorProfile">
         <div class="modal-dialog">
@@ -604,9 +861,13 @@
                     <div class="row">
                         <button type="button" id="buttonCloseProfile" class="btn btn-danger pull-right" data-dismiss="modal" aria-label="Close"><b>X</b></button>
                     </div>
-                    <div id="profileProfessorImage">
+                    <div id="profileProfessorImage"></div>
 
-                    </div>
+                    <form name="form" action="/Professor/SaveImageProfile" enctype="multipart/form-data" method="post">
+                        <input id="imgFileProfileProfessor" type="file" required name="imgFileProfileProfessor" accept="image/png, .jpg" hidden>
+                    </form>
+
+
                     <div class="text-center">
                         <div class="row pHeadProfile" id="profileProfessorName">
                             <h2 class="modal-title" id="hProfileNameProfessor"></h2>
@@ -691,84 +952,32 @@
         </div>
     </section>
 
-    <!--  REGISTER CONSULT -->
-    <section id="addConsult" class="displayStudent displayAdmin displayProfessor">
+    <!-- STUDENTS LIST -->
+    <section id="studentsList" class="displayAdmin">
         <div class="container">
-            <div class="row">
-
-                <!-- ADD  -->  <!--pattern="[0-9IF-]+"-->
-                <div class="col-md-6 col-sm-12">
-                    <div id="consultEntry" class="entry-formConsult">
-                        <form id="registerConsultForm" autocomplete="off">
-                            <h2>Agregar Consulta</h2>
-
-                            <input type="text" name="consultTitle" id="consultTitle" class="form-control" placeholder="Titulo Consulta" required="" minlength="10" maxlength="150" title="Complete este campo con el titulo de consulta">
-                            <div id="typeConsult" class="switchFlex">
-
-                                <label id="consultType">Tipo</label>
-                                <label class="switch">
-                                    <input type="checkbox" id="consultTypeCheck" name="consultTypeCheck">
-                                    <span class="slider round">
-                                        <!--ADDED HTML -->
-                                        <span class="on">Pública</span>
-                                        <span class="off">Privada</span>
-                                        <!--END-->
-                                    </span>
-                                </label>
-                            </div>
-                            <select class="form-control without-margin" required="" name="courseConsult" id="courseConsult">
-                                <option value="0" selected="">Seleccione el curso</option>
-                            </select>
-                            <textarea rows="4" cols="50" type="text" name="consultDescription" id="consultDescription" class="form-control" placeholder="Descripción" required="" minlength="10" title="Complete este campo con la descripcion de la consulta"></textarea>
-
-                            <div id="buttonSubmitAddCourse">
-                                <button type="submit" class="submit-btn form-control">Registrar</button>
-                            </div>
-                            <div id="alertMessageAddConsult"></div>
-                        </form>
+            <div class="col-md-12">
+                <h2 id="studentsTitle">Lista de Estudiantes</h2>
+                <div class="row sidePadding">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="studentsTable">
+                            <thead class="table-primary headTable">
+                                <tr class="text-center">
+                                    <th>Carnet</th>
+                                    <th>Nombre</th>
+                                    <th>Correo Institucional</th>
+                                    <th>Presidente</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyStudentsTable" class="text-center font-weight-bold">
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </section>
 
-    <!--LIST CONSULT-->
-    <section id="listConsult" class="displayStudent">
-        <!-- LIST  -->
-        <div class="col-md-12 addCourse-info">
-            <h2 id="consultTittle">Lista de Consultas</h2>
-            <div class="row sidePadding">
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered" id="consultTable">
-                        <thead class="table-primary headTable">
-                            <tr class="text-center">
-                                <th>Titulo</th>
-                                <th>Fecha</th>
-                                <th>Curso</th>
-                                <th>Tipo</th>
-                                <th>Acción</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bodyConsultTable" class="text-center font-weight-bold">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- The Modal Consult -->
-    <div id="consultModal" name="consultModa" class="modalConsult">
-
-        <!-- Modal content -->
-        <div class="modal-contentConsult">
-            <span class="close">&times;</span>
-
-        </div>
-
-    </div>
 
     <!-- FOOTER -->
     <footer id="footer" class="displayAll">
@@ -829,6 +1038,7 @@
     <script src="js/professor.js"></script>
     <script src="js/course.js"></script>
     <script src="js/consult.js"></script>
+    <script src="~/js/appointment.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script> <!-- Mask inputs -->
     <script src="https://smtpjs.com/v3/smtp.js"></script> <!-- Email -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script> <!-- Datatable -->

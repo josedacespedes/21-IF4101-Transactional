@@ -1,5 +1,6 @@
 ﻿using _21_IF4101_Transactional.Models.Data;
 using _21_IF4101_Transactional.Models.Domain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -33,7 +34,7 @@ namespace _21_IF4101_Transactional.Controllers
             //llamada al modelo para insertar el estudiante aplicante
             consultCommentDAO = new ConsultCommentDAO(_configuration);
 
-            int resultToReturn = consultCommentDAO.Insert(consultComment);
+            int resultToReturn = consultCommentDAO.Insert(consultComment, HttpContext.Session.GetString("sNombre"));
             return Ok(resultToReturn); //retornamos el 1 o el 0 a la vista
 
         }
@@ -42,9 +43,9 @@ namespace _21_IF4101_Transactional.Controllers
         {
             //llamada al modelo para obtener las carreras
             consultCommentDAO = new ConsultCommentDAO(_configuration);
-            List<ConsultComment> comments = new List<ConsultComment>();
-            comments = consultCommentDAO.GetComments(idConsult);
-            return Json(comments);
+            //List<ConsultComment> comments = new List<ConsultComment>();
+            //comments = consultCommentDAO.GetComments(idConsult);
+            return Json(new { data = consultCommentDAO.GetComments(idConsult) });
         }
 
 

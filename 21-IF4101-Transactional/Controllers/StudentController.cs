@@ -3,11 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace _21_IF4101_Transactional.Controllers
 {
@@ -45,7 +43,7 @@ namespace _21_IF4101_Transactional.Controllers
         {
             //llamada al modelo para obtener los estudiantes
             studentDAO = new StudentDAO(_configuration);
-            return Ok(studentDAO.Get());
+            return Json(new { data = studentDAO.Get() });
         }
 
 
@@ -57,11 +55,37 @@ namespace _21_IF4101_Transactional.Controllers
             return Ok(studentDAO.GetProfile(email));
         }
 
+        public IActionResult UpdateProfile([FromBody] Student student)
+        {
+            //llamada al modelo para actualizar al perfil
+            studentDAO = new StudentDAO(_configuration);
+            return Ok(studentDAO.UpdateProfile(student));
+        }
+
         public IActionResult GetSessionVariables() //Obtener variables de sesion
         {
             string sNombre = HttpContext.Session.GetString("sNombre");
             return Ok(sNombre);
         }
+
+
+        [HttpPost]
+        public IActionResult SaveImageProfile(IFormFile files)
+        {
+            //Set Key Name
+            string ImageName = ContentDispositionHeaderValue.Parse(files.ContentDisposition).FileName.Trim('"');
+
+            //Get url To Save
+            string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", ImageName);
+
+            using (var stream = new FileStream(SavePath, FileMode.Create))
+            {
+                files.CopyTo(stream);
+            }
+
+            return Ok();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

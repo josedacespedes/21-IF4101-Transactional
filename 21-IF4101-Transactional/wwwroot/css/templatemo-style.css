@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 Known Template 
 
@@ -301,7 +301,7 @@ input:checked + .slider:before {
     border-radius: 0;
     box-shadow: none !important;
     border-color: white;
-    color:white;
+    color: white;
 }
 
 #registerProfileProfessor textarea, #registerProfileStudent textarea {
@@ -315,7 +315,7 @@ input:checked + .slider:before {
     }
 
 .colorLabelProfile {
-    color:gray;
+    color: gray;
 }
 
 #modalProfileProfessor, #modalProfileStudent {
@@ -333,7 +333,7 @@ input:checked + .slider:before {
     float: right;
 }
 
-#showAssociation {
+#showAssociation, #showConsultTime {
     resize: none;
 }
 
@@ -356,6 +356,22 @@ input:checked + .slider:before {
     width: 36%;
 }
 
+#startHourConsult, #endHourConsult {
+    display: inline-block;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 2em;
+    width: 17%;
+}
+
+#buttonAddConsultTime {
+    margin-bottom: 2em;
+}
+
+#dayConsultProfessor {
+    display: inline-block;
+    width: 40%;
+}
 /*---------------------------------------
     PRE LOADER              
 -----------------------------------------*/
@@ -407,12 +423,14 @@ input:checked + .slider:before {
     }
 }
 
-
-
+#professorgroup {
+    width: 50%;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
 /*---------------------------------------
       MENU              
   -----------------------------------------*/
-
 .custom-navbar {
     background: #ffffff;
     border-top: 5px solid #41ADE7;
@@ -532,10 +550,22 @@ input:checked + .slider:before {
     margin-top: 0.2em;
 }
 
+#imgStudentProfile, #imgProfessorProfile {
+    cursor: pointer;
+}
+
+#imgFileProfileProfessor, #imgFileProfileStudent {
+    display: contents;
+}
+
+#imgStudentProfile:hover, #imgProfessorProfile:hover {
+    opacity: 0.5;
+    border: 1.5px solid gray;
+}
+
 /*---------------------------------------
       HOME  & SLIDER            
   -----------------------------------------*/
-
 #home {
     padding: 0;
 }
@@ -844,7 +874,7 @@ footer {
         }
 
         .social-icon li .fa-github-square {
-            color: white ;
+            color: white;
         }
 
         .social-icon li .fa-instagram {
@@ -1031,7 +1061,7 @@ input:focus + .slider {
 input:checked + .slider:before {
     -webkit-transform: translateX(55px);
     -ms-transform: translateX(55px);
-    transform: translateX(75px);
+    transform: translateX(78px);
 }
 
 /*------ ADDED CSS ---------*/
@@ -1070,12 +1100,27 @@ input:checked + .slider .off {
         border-radius: 50%;
     }
 
+/*.entry-formConsult {
+    background: #252020;
+    text-align: center;
+    padding: 3em;
+    width: 70em;
+    height: 35em;
+    position: relative;
+    max-width: 109%;
+    max-height: 100%;
+}*/
+
 .entry-formConsult {
     background: #252020;
     text-align: center;
-    padding: 6em;
-    width: 900px;
-    height: 550px;
+    padding: 3em;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    max-width: 100%;
+    border-radius: 5%;
+    max-height: 100%;
 }
 
     .entry-formConsult h2 {
@@ -1109,19 +1154,142 @@ input:checked + .slider .off {
             color: #ffffff;
         }
 
-#consultDescription {
-    height: 150px;
+#consultDescription, #dConsultDescription, #dConsultAnswer, #dConsultComment {
+    height: 150%;
+    resize: none;
 }
 
 #consultTitle, #courseConsult {
-    width: 350px;
+    width: auto;
 }
 
 #typeConsult {
-    margin-top: -50px;
-    margin-left: 570px;
+    /*margin-top: -3em;
+    margin-left: 10em;*/
 }
 
-#addConsult, #listConsult {
-    height: 600px;
+/*-------Modal--------*/
+.modalConsult {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
+
+/* Modal Content/Box */
+.modal-contentConsult {
+    background-color: aliceblue;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 4%;
+    border: 2% solid #888;
+    width: 75%;
+    border-radius: 1%;
+}
+
+.modalConsultCommets {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-contentConsultComments {
+    background-color: aliceblue;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 45em;
+    height: 50%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+#dConsultTitle, #dConsultAuthor, #dConsultCourse, #dConsultDate, #dConsultId {
+    /*border-radius: 4px;
+    border: 1px solid #ccc;*/
+    padding: 1em 0em;
+}
+
+#btnCloseModalConsult {
+    /*margin-left: 60em;*/
+}
+
+#DetailsId, #DetailsDate {
+    /*    margin-top: -7em;
+    margin-left: 8em;*/
+}
+
+#table {
+    width: 800px;
+    background-color: white;
+}
+
+#thAuthor, #thComment, #thDate {
+    background-color: burlywood;
+}
+
+#alertAddComment {
+    margin-left: 250px;
+    margin-top: -150px;
+}
+
+
+
+
+/*-------------------APPOINTMENT-------------*/
+
+#appointmentType {
+    margin-left: -70%;
+}
+
+#buttonSubmitAddAppointment {
+    margin-top: 3em;
+}
+
+#registerAppintmentForm {
+    padding: 25px 0;
+}
+
+#appointmentswitchlabel {
+    margin-left: 10%;
+}
+
+#imageUCRStudent {
+    margin-left: 10%;
+    margin-top: 15%;
+    width: 85%;
+    height: 100%;
+    box-shadow: 7px 7px 15px #592A08;
+    border: 1px solid #ccc;
+}
+

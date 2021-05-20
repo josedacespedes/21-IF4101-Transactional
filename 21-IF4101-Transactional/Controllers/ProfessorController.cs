@@ -5,11 +5,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace _21_IF4101_Transactional.Controllers
 {
@@ -73,11 +71,57 @@ namespace _21_IF4101_Transactional.Controllers
             return Ok(professorDAO.GetProfile(email));
         }
 
+        public IActionResult UpdateProfile([FromBody] Professor professor)
+        {
+            //llamada al modelo para actualizar al perfil
+            professorDAO = new ProfessorDAO(_configuration);
+            return Ok(professorDAO.UpdateProfile(professor));
+        }
+
+        public IActionResult InsertProfessorGroup(int idGroup, int idProfessor, string consultationHours)
+        {
+            //llamada al modelo para agregar al profesor-grupo
+            professorDAO = new ProfessorDAO(_configuration);
+            return Ok(professorDAO.InsertProfessorGroup(idGroup, idProfessor, consultationHours));
+        }
+
+        public IActionResult GetWeekDays()
+        {
+            //llamada al modelo para obtener dias de semana
+            professorDAO = new ProfessorDAO(_configuration);
+            return Ok(professorDAO.GetWeekDays());
+        }
+
         public IActionResult GetSessionVariables() //Obtener variables de sesion
         {
             string sNombre = HttpContext.Session.GetString("sNombre");
             return Ok(sNombre);
         }
+
+        [HttpPost]
+        public IActionResult SaveImageProfile(IFormFile files)
+        {
+            //Set Key Name
+            string ImageName = ContentDispositionHeaderValue.Parse(files.ContentDisposition).FileName.Trim('"');
+
+            //Get url To Save
+            string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", ImageName);
+
+            using (var stream = new FileStream(SavePath, FileMode.Create))
+            {
+                files.CopyTo(stream);
+            }
+
+            return Ok();
+        }
+
+        public IActionResult GetConsultTime(int idGroup)
+        {
+            //llamada al modelo para obtener horarios de consulta
+            professorDAO = new ProfessorDAO(_configuration);
+            return Ok(professorDAO.GetConsultTime(idGroup));
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
