@@ -114,6 +114,7 @@ registerAppintmentForm.addEventListener("submit", function (e) {
                     $('#professorAppointment').val(0);
                     $('#professorDateAppointment').val(0);
                     CleanDate();
+                    sendEmailProfessorAppointment(appointment.professor_fullname, appointment.appointment_date);
                 } else if (result == 3) {
 
                     messageAppointment.innerHTML = "<label class='text-danger'>Esta Cita ya existe</label>";
@@ -165,7 +166,7 @@ function loadAppointmentRequest(id) {
         "destroy": true,
         "autoWidth": false,
         "columnDefs": [
-            { "width": "20%", "targets": [0, 4] }
+            { "width": "20%", "targets": [0, 3] }
         ],
         "ajax": {
             "url": "/Appointment/GetRequest",
@@ -184,11 +185,13 @@ function loadAppointmentRequest(id) {
 
             },
             { defaultContent: "<button id='acceptAppointment' name='acceptAppointment' data-toggle='modal' data-target='#modalCommentAppointment' type='button' class='btn btn-success' title='Accept'><i class='fa fa-check'></i></button> <button id='rejectAppointment' name='rejectAppointment' data-toggle='modal' data-target='#modalCommentAppointment' type='button' class='btn btn-danger' title='Reject'><i class='fa fa-trash'></i></button>" }
+
         ]
 
     });
 
 }
+
 
 function getEmailStudent(studentId) {
 
@@ -200,13 +203,35 @@ function getEmailStudent(studentId) {
         success: function (result) {
             emailStudent = result;
             emailStudentD = result;
+        }
+    });
+}
+
+function sendEmailProfessorAppointment(professorname, dateappointment) {
+    //nameStudent, emailProfessor,
+    $.ajax({
+        url: "/Appointment/GetInformation",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        data: { "professorname": professorname },
+        success: function (result) {
+            Email.send({
+                Host: "smtp.gmail.com",
+                Username: "ucrtransactionaladm1n@gmail.com",
+                Password: "usuarioadmin",
+                To: result.emailProfessor,
+                From: "ucrtransactionaladm1n@gmail.com",
+                Subject: `Cita de consulta`,
+                Body: `Hola ${nameProfessor}, el estudiante ${result.name} ha solicitado una reunión contigo el día ${dateappointment}`
+            });
+
         },
         error: function (errorMessage) {
             alert("Error");
             alert(errorMessage.responseText);
         }
     });
-
 }
 
 /*--------------------------------------------- DELETE APPOINTMMENT-----------------------------------------------------------*/

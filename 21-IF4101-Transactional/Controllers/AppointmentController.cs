@@ -85,5 +85,11 @@ namespace _21_IF4101_Transactional.Controllers
             return Ok(appointmentDAO.GetEmailStudent(studentId));
         }
 
+        public IActionResult GetInformation(string professorname)
+        {
+            appointmentDAO = new AppointmentDAO(_configuration);
+            return Json(new { emailProfessor = appointmentDAO.GetInformation(professorname), name = HttpContext.Session.GetString("sNombre") });
+        }
+
     }
 }

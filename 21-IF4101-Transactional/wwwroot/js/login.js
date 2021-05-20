@@ -597,3 +597,45 @@ function showImageProfessor(event) {
 }
 
 window.addEventListener('load', initProfessor, false);
+
+
+
+
+
+/*--------------------------------------------- DELETE PROFILE PROFESSOR-----------------------------------------------------------*/
+
+function verifyDeleteProfile() {
+    Swal.fire({
+        title: "¿Esta seguro que desea eliminar el perfil? Los cambios no serán reversibles",
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: `Confirmar`,
+        denyButtonText: `Cancelar`,
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "/Login/Delete",
+                type: "DELETE",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+
+                success: function (result) {
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Borrado Exitoso',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                },
+
+                error: function (errorMessage) {
+                    alert("Error");
+                    alert(errorMessage.responseText);
+                }
+            });
+            logOut();
+        }
+    });
+}
