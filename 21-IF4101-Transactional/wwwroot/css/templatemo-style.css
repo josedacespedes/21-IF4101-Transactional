@@ -196,10 +196,17 @@ section {
     color: white;
 }
 
+    .headTable select {
+        color: black;
+    }
+
+#selectTableAppointment {
+    width: 10em;
+    height: 2.1em;
+}
 /*---------------------------------------
      BUTTONS               
   -----------------------------------------*/
-
 .section-btn {
     background: transparent;
     border-radius: 50px;
@@ -375,6 +382,10 @@ input:checked + .slider:before {
 #dayConsultProfessor {
     display: inline-block;
     width: 40%;
+}
+
+#appointmentComment {
+    resize: none;
 }
 /*---------------------------------------
     PRE LOADER              
@@ -1038,7 +1049,7 @@ footer {
 }
 /*-----------CONSULT-------*/
 
-#consultTitle, #consultDescription, #consultType, #courseConsult, #newsTittle, #newsDescription {
+#consultTitle, #consultDescription, #consultType, #newsTittle, #newsDescription {
     color: white;
 }
 
@@ -1202,6 +1213,7 @@ input:checked + .slider .off {
             background: #3f51b5;
             color: #ffffff;
         }
+
 #consultDescription, #dConsultDescription, #dConsultAnswer, #dConsultComment, #newsDescription {
     height: 150%;
     resize: none;
@@ -1341,4 +1353,3 @@ input:checked + .slider .off {
     box-shadow: 7px 7px 15px #592A08;
     border: 1px solid #ccc;
 }
-

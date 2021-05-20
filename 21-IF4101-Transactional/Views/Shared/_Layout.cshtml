@@ -128,7 +128,7 @@
                         <div class="dropdown-menu" id="dropMenu">
                             <ul class="nav navbar-nav">
                                 <li class="li-100"><a href="#applicantList" class="dropdown-item smoothScroll signOut">Solicitudes</a></li>
-                                <li class="li-100"><a href="#applicantList" class="dropdown-item smoothScroll signOut">Asignar Presidente</a></li>
+                                <li class="li-100"><a href="#studentsList" class="dropdown-item smoothScroll signOut">Presidente</a></li>
                             </ul>
                         </div>
                     </li>
@@ -206,8 +206,22 @@
                 <ul class="nav navbar-nav navbar-nav-first">
                     <li><a href="#news" class="smoothScroll">Noticias</a></li>
                     <li><a href="#listConsult" class="smoothScroll">Consultas</a></li>
-                    <li><a href="#appointmentList" class="smoothScroll">Citas</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Citas
+                        </a>
+                        <div class="dropdown-menu" id="dropMenu">
+                            <ul class="nav navbar-nav">
+                                <li class="li-100"><a href="#appointmentList" class="dropdown-item smoothScroll signOut">Agendadas</a></li>
+                                <li class="li-100"><a href="#appointmentRequestList" class="dropdown-item smoothScroll signOut">Solicitudes</a></li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
+
+
+
 
                 <ul class="nav navbar-nav navbar-right" id="loginRight">
                     <li class="nav-item dropdown">
@@ -731,6 +745,32 @@
         </div>
     </div>
 
+    <!-- Appointment LIST -->
+    <section id="appointmentList" class="displayProfessor">
+        <div class="container">
+            <div class="col-md-12">
+                <h2 id="applicantTittle">Lista de Citas</h2>
+                <div class="row sidePadding">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="appointmentTable">
+                            <thead class="table-primary headTable">
+                                <tr class="text-center">
+                                    <th>Día</th>
+                                    <th>Hora</th>
+                                    <th>Carnet Estudiante</th>
+                                    <th>Nombre Estudiante</th>
+                                    <th>Tipo</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyApplicantTable" class="text-center font-weight-bold">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!--  MODAL COMMENT APPOINTMENT -->
     <div class="modal fade" id="modalCommentAppointment" role="dialog">
         <div class="modal-dialog">
@@ -761,7 +801,7 @@
     </div>
 
     <!--<div class="modal fade" id="modalProfessorConsultTime" role="dialog">
-        <div class="modal-dialog">-->
+    <div class="modal-dialog">-->
     <!-- Modal content-->
     <!--<div class="modal-content">
                 <div class="modal-header">
@@ -1078,31 +1118,6 @@
                                 </tr>
                             </thead>
                             <tbody id="bodyStudentsTable" class="text-center font-weight-bold">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Appointment LIST -->
-    <section id="appointmentList" class="displayProfessor">
-        <div class="container">
-            <div class="col-md-12">
-                <h2 id="applicantTittle">Lista de Citas</h2>
-                <div class="row sidePadding">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered" id="appointmentTable">
-                            <thead class="table-primary headTable">
-                                <tr class="text-center">
-                                    <th>Fecha</th>
-                                    <th>Carnet Estudiante</th>
-                                    <th>Nombre Estudiante</th>
-                                    <th>Tipo</th>
-                                </tr>
-                            </thead>
-                            <tbody id="bodyApplicantTable" class="text-center font-weight-bold">
                             </tbody>
                         </table>
                     </div>
