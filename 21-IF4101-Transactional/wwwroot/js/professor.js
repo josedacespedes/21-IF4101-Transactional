@@ -332,8 +332,7 @@ $("#buttonSaveConsultTime").on("click", function () {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                $('#modalProfessorConsultTime').modal('hide')
-                    ;
+                $('#modalProfessorConsultTime').modal('hide');
 
                 Swal.fire({
                     icon: 'success',

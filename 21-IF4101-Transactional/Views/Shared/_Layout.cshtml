@@ -717,21 +717,23 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" onclick="" aria-label="Close"><b>X</b></button>
-                    <h2 class="modal-title">Agregar comentario de cita</h2>
+                    <button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" onclick="cleanFieldsFormCommentAppointment()" aria-label="Close"><b>X</b></button>
+                    <h2 class="modal-title">Enviar comentario de cita</h2>
                 </div>
 
                 <div class="modal-body">
                     <div id="commentAppointmentTitle"></div>
 
-                    <textarea class="form-control" rows="5" id="appointmentComment" placeholder="Comentario de cita"></textarea>
+                    <form autocomplete="off" id="formCommentAppointment">
+                        <textarea class="form-control" rows="5" id="appointmentComment" placeholder="Comentario de cita" required></textarea>
 
-                    <div class="modal-footer mt-4">
-                        <div class="col-12">
-                            <button type="submit" id="buttonSendCommentConsult" class="btn btn-success">Enviar</button>
-                            <button type="button" class="btn btn-danger" onclick="" data-dismiss="modal">Cancelar</button>
+                        <div class="modal-footer mt-4">
+                            <div class="col-12">
+                                <button type="submit" id="buttonSendCommentAppointment" class="btn btn-success">Enviar</button>
+                                <button type="button" class="btn btn-danger" onclick="cleanFieldsFormCommentAppointment()" data-dismiss="modal">Cancelar</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

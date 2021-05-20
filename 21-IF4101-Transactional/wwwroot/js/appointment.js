@@ -1,6 +1,12 @@
 ﻿"use strict";
 var tableAppointmentRequest;
+var professorFullName;
 var messageAppointment = document.getElementById("alertMessageAddAppointment");
+var dataInfoAppointmentRequest;
+var formCommentAppointment = document.getElementById("formCommentAppointment");
+var dataInfoAppointmentRequestAdd;
+var flagCommentAppointment; // 1 acepta y 0 rechaza
+
 $(document).ready(function () {
     GetProfessorAppointment();
 });
@@ -150,7 +156,9 @@ registerAppintmentForm.addEventListener("submit", function (e) {
 //            { defaultContent: "<button id='acceptApplicant' name='acceptApplicant' type='button' class='btn btn-success' title='Accept'><i class='fa fa-check'></i></button> <button id='rejectApplicant' name='rejectApplicant' type='button' class='btn btn-danger' title='Reject'><i class='fa fa-trash'></i></button>" }
 //        ]
 
-//    });
+//});
+
+/*--------------------------------------------- REQUEST APPOINTMMENT LIST-----------------------------------------------------------*/
 
 function loadAppointmentRequest(id) {
     tableAppointmentRequest = $("#appointmentRequestTable").DataTable({
@@ -160,7 +168,7 @@ function loadAppointmentRequest(id) {
             { "width": "20%", "targets": [0, 4] }
         ],
         "ajax": {
-            "url": "/Appointment/Get/",
+            "url": "/Appointment/GetRequest",
             "tpye": 'GET',
             "datatype": "json"
         },
@@ -175,78 +183,147 @@ function loadAppointmentRequest(id) {
                 },
 
             },
-            { defaultContent: "<button id='acceptAppointment' name='acceptAppointment' data-toggle='modal' data-target='#modalCommentAppointment' type='button' class='btn btn-success' title='Accept'><i class='fa fa-check'></i></button> <button id='rejectAppointment' name='rejectAppointment' type='button' class='btn btn-danger' title='Reject'><i class='fa fa-trash'></i></button>" }
+            { defaultContent: "<button id='acceptAppointment' name='acceptAppointment' data-toggle='modal' data-target='#modalCommentAppointment' type='button' class='btn btn-success' title='Accept'><i class='fa fa-check'></i></button> <button id='rejectAppointment' name='rejectAppointment' data-toggle='modal' data-target='#modalCommentAppointment' type='button' class='btn btn-danger' title='Reject'><i class='fa fa-trash'></i></button>" }
         ]
 
     });
 
-}/*--------------------------------------------- DELETE APPOINTMMENT-----------------------------------------------------------*/
+}
 
-$("#appointmentRequestTable tbody").on("click", "#rejectAppointment", function () {
+function getEmailStudent(studentId) {
 
-    var data = tableAppointmentRequest.row($(this).parents("tr")).data();
-    var rowToRemove = $(this).parents('tr');
-
-    Swal.fire({
-        title: "¿Está seguro de rechazar esta cita?",
-        showDenyButton: true,
-        showCancelButton: false,
-        confirmButtonText: `Confirmar`,
-        denyButtonText: `Cancelar`,
-    }).then((result) => {
-
-        if (result.isConfirmed) {
-            $.ajax({
-                url: "/Appointment/Delete",
-                data: { id: data.id },
-                type: "GET",
-                contentType: "application/json;charset=utf-8",
-                dataType: "json",
-                success: function (result) {
-                    tableAppointmentRequest.row(rowToRemove).remove().draw(); //Remove of list
-                    //sendEmailStudentReject(data.firstNameApplicant, data.emailApplicant); //Send Email
-                },
-                error: function (errorMessage) {
-                    alert("Failed to delete Applicant");
-                }
-            });
-
+    $.ajax({
+        url: "/Appointment/GetEmailStudent",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        data: { "studentId": studentId },
+        success: function (result) {
+            emailStudent = result;
+            emailStudentD = result;
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
         }
     });
+
+}
+
+/*--------------------------------------------- DELETE APPOINTMMENT-----------------------------------------------------------*/
+var rowToRemove;
+
+$("#appointmentRequestTable tbody").on("click", "#rejectAppointment", function () {
+    dataInfoAppointmentRequest = tableAppointmentRequest.row($(this).parents("tr")).data();
+    document.getElementById("commentAppointmentTitle").innerHTML = `<h4>Estudiante: ${dataInfoAppointmentRequest.student_FullName}</h4>`;
+    rowToRemove = $(this).parents('tr');
+    flagCommentAppointment = 0;
+});
+var emailStudentD;
+formCommentAppointment.addEventListener("submit", function (e) {
+    if (flagCommentAppointment == 0) {
+        e.preventDefault();
+        getEmailStudent(dataInfoAppointmentRequest.studentId);
+
+        //$.ajax({
+        //    url: "/Appointment/Delete",
+        //    data: { id: dataInfoAppointmentRequest.id },
+        //    type: "GET",
+        //    contentType: "application/json;charset=utf-8",
+        //    success: function (result) {
+
+        //        var commentAppointmentAdd = $('#appointmentComment').val();
+        //        sendEmailStudentReject(dataInfoAppointmentRequest.student_FullName, emailStudent, dataInfoAppointmentRequest.appointment_date, dataInfoAppointmentRequest.professor_fullname, commentAppointmentAdd); //Send Email
+        //        tableAppointmentRequest.row(rowToRemove).remove().draw(); //Remove of list
+        //        $('#modalCommentAppointment').modal('hide');
+        //    },
+        //    error: function (errorMessage) {
+        //        alert("Failed to delete Applicant");
+        //    }
+        //});
+    }
 });
 
-var modalCommentAppointment = document.getElementById("modalCommentAppointment");
 
-//// AGREGAR APPLICANT
-$("#appointmentRequestTable tbody").on("click", "#acceptAppointment", function () {
 
-    modalCommentAppointment.style.display = "block";
-    var data = tableAppointmentRequest.row($(this).parents("tr")).data();
-    document.getElementById("commentAppointmentTitle").innerHTML = `<h4>Estudiante: ${data.student_FullName}</h4>`;
+//function sendEmailStudentReject(studentFullName, emailStudent, timeAppointment, professorFullName, professorComment) {
+//    Email.send({
+//        Host: "smtp.gmail.com",
+//        Username: "ucrtransactionaladm1n@gmail.com",
+//        Password: "usuarioadmin",
+//        To: emailStudent,
+//        From: "ucrtransactionaladm1n@gmail.com",
+//        Subject: `Administrator 21-IF4101-Transactional`,
+//        Body: `Saludos,  ${studentFullName}. <br/><br/> De parte de UCR Transactional le informamos que su cita con el profesor ${professorFullName} 
+//        para la fecha ${timeAppointment} ha sido rechazada.<br/><br/> 
+//        Comentario del profesor: </br>
+//        ${professorComment}`
+//    });
+//}
 
-    //var appointment = {
-    //    student_fullname: data.student_FullName,
-    //    type: data.row.type,
-    //    professor_fullname: HttpContext.Session.GetString("sNombre"),
-    //    appointment_date: data.appointment_date,
-    //    studentId: data.studentId
-    //};
 
-    //var rowToRemove = $(this).parents('tr');
+/*--------------------------------------------- ACCEPT APPOINTMMENT-----------------------------------------------------------*/
 
-    //$.ajax({
-    //    url: "/Applicant/InsertStudent",
-    //    data: JSON.stringify(applicant),
-    //    type: "POST",
-    //    contentType: "application/json;charset=utf-8",
-    //    dataType: "json",
-    //    success: function (result) {
-    //        tableApplicant.row(rowToRemove).remove().draw(); //Remove of list
-    //        sendEmailStudentAccept(data.firstNameApplicant, data.emailApplicant, data.passwordApplicant); //Send Email
-    //    },
-    //    error: function (errorMessage) {
-    //        alert("Error");
-    //        alert(errorMessage.responseText);
-    //    }
-    //});
-});
+//var rowToRemoveAdd;
+//$("#appointmentRequestTable tbody").on("click", "#acceptAppointment", function () {
+//    dataInfoAppointmentRequestAdd = tableAppointmentRequest.row($(this).parents("tr")).data();
+//    document.getElementById("commentAppointmentTitle").innerHTML = `<h4>Estudiante: ${dataInfoAppointmentRequestAdd.student_FullName}</h4>`;
+//    rowToRemoveAdd = $(this).parents('tr');
+//    flagCommentAppointment = 1;
+//});
+//var emailStudent;
+//formCommentAppointment.addEventListener("submit", function (e) {
+
+//    if (flagCommentAppointment == 1) {
+//        e.preventDefault();
+//        getEmailStudent(dataInfoAppointmentRequestAdd.studentId);
+
+//        var appointment = {
+//            id: dataInfoAppointmentRequestAdd.id,
+//            student_fullname: dataInfoAppointmentRequestAdd.student_FullName,
+//            type: dataInfoAppointmentRequestAdd.type,
+//            professor_fullname: dataInfoAppointmentRequestAdd.professor_fullname,
+//            appointment_date: dataInfoAppointmentRequestAdd.appointment_date,
+//            studentId: dataInfoAppointmentRequestAdd.studentId
+//        };
+
+//        $.ajax({
+//            url: "/Appointment/Insert",
+//            data: JSON.stringify(appointment),
+//            type: "POST",
+//            contentType: "application/json;charset=utf-8",
+//            dataType: "json",
+//            success: function (result) {
+
+
+//                var commentAppointmentAdd = $('#appointmentComment').val();
+//                sendEmailAppointmentAccept(dataInfoAppointmentRequestAdd.student_FullName, emailStudent, dataInfoAppointmentRequestAdd.appointment_date, dataInfoAppointmentRequestAdd.professor_fullname, commentAppointmentAdd); //Send Email
+
+//                $('#modalCommentAppointment').modal('hide');
+//                tableAppointmentRequest.row(rowToRemoveAdd).remove().draw(); //Remove of list
+//            },
+//            error: function (errorMessage) {
+//                alert("Error");
+//                alert(errorMessage.responseText);
+//            }
+//        });
+//    }
+//});
+
+//function sendEmailAppointmentAccept(studentFullName, emailStudent, timeAppointment, professorFullName, professorComment) {
+//    Email.send({
+//        Host: "smtp.gmail.com",
+//        Username: "ucrtransactionaladm1n@gmail.com",
+//        Password: "usuarioadmin",
+//        To: emailStudent,
+//        From: "ucrtransactionaladm1n@gmail.com",
+//        Subject: `Administrator 21-IF4101-Transactional`,
+//        Body: `Saludos,  ${studentFullName}. <br/><br/> De parte de UCR Transactional le confirmamos su cita con el profesor ${professorFullName} 
+//        para el día ${timeAppointment}.<br/><br/>
+//        Comentario del profesor: </br></br>
+//        ${professorComment}`
+//    });
+//}
+
+function cleanFieldsFormCommentAppointment() {
+    formCommentAppointment.reset();
+}
