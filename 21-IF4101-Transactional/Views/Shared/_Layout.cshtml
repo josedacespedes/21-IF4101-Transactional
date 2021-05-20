@@ -322,6 +322,46 @@
         </div>
     </form>
 
+    <!--  REGISTER NEWS -->
+    <section id="addNews" class="displayAdmin">
+        <div class="container">
+            <div class="row">
+                <!-- ADD  -->
+                <div class="col-md-6 col-sm-12">
+                    <div id="newsEntry" class="entry-formNews">
+                        <form id="registerNewsForm" autocomplete="off">
+                            <h2>Agregar Noticia</h2>
+
+                            <input type="text" name="newsTittle" id="newsTittle" class="form-control" placeholder="Titulo Noticia" required="" minlength="10" maxlength="50" title="Complete este campo con el titulo de la noticia">
+
+                            <textarea rows="4" cols="50" type="text" name="newsDescription" id="newsDescription" class="form-control" placeholder="Descripción" required="" minlength="10" maxlength="255" title="Complete este campo con la descripcion de la noticia"></textarea>
+                            <!--action="/Student/SaveImageProfile" enctype="multipart/form-data" method="post"-->
+                            <form name="form">
+                                <label>Imagen</label>
+                                <input id="imgFileNews" type="file" required name="imgFileNews" accept="image/png, .jpg" hidden>
+                            </form>
+                            <form name="form">
+                                <label>Archivo</label>
+                                <input id="FileNews" type="file" required name="FileNews" accept=".pdf, .txt, .docx, .doc" hidden>
+                            </form>
+                            <div id="buttonSubmitAddNews">
+                                <button type="submit" class="submit-btn form-control">Registrar</button>
+                            </div>
+                            <div id="alertMessageAddConsult"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <!--Image-->
+                <div class="col-md-6 col-sm-12">
+                    <div id="consultImage">
+                        <img id="imageUCRStudent" src="~/images/UCR1.jpg" alt="ImagenUCR" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!--  REGISTER CONSULT -->
     <section id="addConsult" class="displayStudent">
         <div class="container">
@@ -699,7 +739,6 @@
                                     <th>Carnet Estudiante</th>
                                     <th>Nombre Estudiante</th>
                                     <th>Tipo</th>
-                                    <th>Acción</th>
                                 </tr>
                             </thead>
                             <tbody id="bodyApplicantTable" class="text-center font-weight-bold">

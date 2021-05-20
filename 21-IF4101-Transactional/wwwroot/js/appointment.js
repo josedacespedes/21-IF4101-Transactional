@@ -107,6 +107,7 @@ registerAppintmentForm.addEventListener("submit", function (e) {
                     $('#professorAppointment').val(0);
                     $('#professorDateAppointment').val(0);
                     CleanDate();
+                    sendEmailProfessorAppointment(appointment.professor_fullname, appointment.appointment_date);
                 } else if (result == 3) {
 
                     messageAppointment.innerHTML = "<label class='text-danger'>Esta Cita ya existe</label>";
@@ -128,7 +129,7 @@ function loadAppointment(id) {
         "destroy": true,
         "autoWidth": false,
         "columnDefs": [
-            { "width": "20%", "targets": [0, 4] }
+            { "width": "20%", "targets": [0, 3] }
         ],
         "ajax": {
             "url": "/Appointment/Get/",
@@ -145,10 +146,39 @@ function loadAppointment(id) {
                     return row.type == 1 ? 'Presencial' : 'Virtual';
                 },
 
-            },
-            { defaultContent: "<button id='acceptApplicant' name='acceptApplicant' type='button' class='btn btn-success' title='Accept'><i class='fa fa-check'></i></button> <button id='rejectApplicant' name='rejectApplicant' type='button' class='btn btn-danger' title='Reject'><i class='fa fa-trash'></i></button>" }
+            }
         ]
 
     });
 
+}
+
+function sendEmailProfessorAppointment(professorname, dateappointment) {
+    //nameStudent, emailProfessor,
+    $.ajax({
+        url: "/Appointment/GetInformation",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        data: { "professorname": professorname },
+        success: function (result) {
+                Email.send({
+                    Host: "smtp.gmail.com",
+                    Username: "ucrtransactionaladm1n@gmail.com",
+                    Password: "usuarioadmin",
+                    To: result.emailProfessor,
+                    From: "ucrtransactionaladm1n@gmail.com",
+                    Subject: `Cita de consulta`,
+                    Body: `Hola ${nameProfessor}, el estudiante ${result.name} ha solicitado una reunión contigo el día ${dateappointment}`
+                });
+            
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+
+
+    
 }
