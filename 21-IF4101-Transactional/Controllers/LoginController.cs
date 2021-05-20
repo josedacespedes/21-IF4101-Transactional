@@ -72,10 +72,10 @@ namespace _21_IF4101_Transactional.Controllers
 
         public IActionResult Delete()
         {
-            var Id = Convert.ToInt32(HttpContext.Session.GetString("sId")); //ASI SE OBTIENE
+            var email = HttpContext.Session.GetString("sEmail"); //ASI SE OBTIENE
             //llamada al modelo para eliminar el estudiante
             loginDAO = new LoginDAO(_configuration);
-            return Ok(loginDAO.Delete(Id));
+            return Ok(loginDAO.Delete(email));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
