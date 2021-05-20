@@ -40,7 +40,7 @@ namespace _21_IF4101_Transactional.Models.Data
                 command.Parameters.AddWithValue("@Title", consult.Title);
                 command.Parameters.AddWithValue("@Author", name );//AQUÍ IRÍA EL NOMBRE COMPLETO
                 command.Parameters.AddWithValue("@Description", consult.Description);
-                command.Parameters.AddWithValue("@idCourse", consult.Course);
+                command.Parameters.AddWithValue("@Professor", consult.Professor);
                 command.Parameters.AddWithValue("@Type", consult.Type);
                 resultToReturn = command.ExecuteNonQuery(); //esta es la sentencia que ejecuta la inserción en BD y saca un 1 o un 0 dependiendo de si se modificó la tupla o no. Es decir, si se insertó en BD o no.
                 connection.Close(); //cerramos conexión.
@@ -73,7 +73,7 @@ namespace _21_IF4101_Transactional.Models.Data
                         Author = sqlDataReader["author"].ToString(),
                         Description = sqlDataReader["description"].ToString(),
                         Date = Convert.ToDateTime(sqlDataReader["date"]),
-                        Course = Convert.ToInt32(sqlDataReader["idCourse"]),
+                        Professor = sqlDataReader["professor"].ToString(),
                         Type = Convert.ToInt32(sqlDataReader["type"])
                 });
                 }
@@ -102,7 +102,7 @@ namespace _21_IF4101_Transactional.Models.Data
                     consult.Author = sqlDataReader["idAuthor"].ToString();
                     consult.Description = sqlDataReader["description"].ToString();
                     consult.Date = Convert.ToDateTime(sqlDataReader["date"]);
-                    consult.Course = Convert.ToInt32(sqlDataReader["idCourse"]);
+                    consult.Professor = sqlDataReader["professor"].ToString();
                     consult.Type = Convert.ToInt32(sqlDataReader["type"]);
                 }
                 connection.Close(); //cerramos conexión.

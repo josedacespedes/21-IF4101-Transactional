@@ -1,58 +1,67 @@
 ﻿"use strict";
 
 //VARIABLES
-var formNews = document.getElementById("registerNewsForm");
-
+var registerNewsForm = document.getElementById("registerNewsForm");
+var messageNews = document.getElementById("alertMessageAddNews");
 $(document).ready(function () {
 
 });
 
 registerNewsForm.addEventListener("submit", function (e) {
     e.preventDefault();
-
-    var news = {
-        title: $('#professorAppointment').val(),
-        description: $('#professorDateAppointment option:selected').text(),
-
-        type: parseInt(checkStatus)
-    };
-    //console.log(appointment);
-    if (appointment.professor_fullname == "" && appointment.appointment_date == "") {
-        $('#professorAppointment').addClass("formInput-error");
-        $('#professorDateAppointment').addClass("formInput-error");
-        return false;
-    } else if (appointment.professor_fullname == "") {
-        $('#professorAppointment').addClass("formInput-error");
-        return false;
-    } else if (appointment.appointment_date == "") {
-        $('#professorDateAppointment').addClass("formInput-error");
-        return false;
-    } else {
-        $.ajax({
-            url: "/Appointment/InsertRequest",
-            data: JSON.stringify(appointment),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                if (result == 1) {
-                    messageAppointment.innerHTML = "<label class='text-success'>Cita agregada exitosamente</label>";
-                    $('#professorAppointment').val(0);
-                    $('#professorDateAppointment').val(0);
-                    CleanDate();
-                    sendEmailProfessorAppointment(appointment.professor_fullname, appointment.appointment_date);
-                } else if (result == 3) {
-
-                    messageAppointment.innerHTML = "<label class='text-danger'>Esta Cita ya existe</label>";
-                }
-                else {
-                    messageAppointment.innerHTML = "<label class='text-danger'>Error al ingresar Cita</label>";
-                }
-            },
-            error: function (errorMessage) {
-                alert("Error");
-                alert(errorMessage.responseText);
+    $.ajax({
+        url: "/Login/GetName",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            var news = {
+                title: $('#newsTittle').val(),
+                description: $('#newsDescription').val(),
+                author: result.name,
+                publication_date: result.date,
+                modification_date: result.date,
+                file_new: $('#FileNews').val(),
+                imagen: $('#imgFileNews').val()
+            };
+            console.log(news);
+            if (news.title == "" && news.description == "" && news.author == "") {
+                $('#newsTittle').addClass("formInput-error");
+                $('#newsDescription').addClass("formInput-error");
+                return false;
+            } else if (news.title == "") {
+                $('#newsTittle').addClass("formInput-error");
+                return false;
+            } else if (news.description == "") {
+                $('#newsDescription').addClass("formInput-error");
+                return false;
+            } else {
+                $.ajax({
+                    url: "/NewsAPI/",
+                    data: JSON.stringify(news),
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        
+                        messageNews.innerHTML = "<label class='text-success'>Noticia agregada exitosamente</label>";
+                        $('#newsTittle').val();
+                        $('#newsDescription').val();
+                        $('#FileNews').val();
+                        $('#imgFileNews').val();
+                           
+                    },
+                    error: function (errorMessage) {
+                        alert("Error");
+                        alert(errorMessage.responseText);
+                    }
+                });
             }
-        });
-    }
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+    
 });

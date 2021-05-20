@@ -10,7 +10,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+    <link rel="icon" href="https://medios.ucr.ac.cr/plantillas/ucr_4/imagenes/favicon.png" type="image/png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"> <!--Font Awesome-->
 
@@ -290,18 +290,6 @@
         </div>
     </section>
 
-    <!-- The Modal Consult Details -->
-    <form>
-        <div class="modal fade" id="consultModal" role="dialog">
-            <div>
-                <!-- Modal content-->
-                <div class="modal-contentConsult">
-
-                </div>
-                <div id="alertAddComment"></div>
-            </div>
-        </div>
-    </form>
     <!--  REGISTER NEWS -->
     <section id="addNews" class="displayAdmin">
         <div class="container">
@@ -316,18 +304,17 @@
 
                             <textarea rows="4" cols="50" type="text" name="newsDescription" id="newsDescription" class="form-control" placeholder="Descripción" required="" minlength="10" maxlength="255" title="Complete este campo con la descripcion de la noticia"></textarea>
                             <!--action="/Student/SaveImageProfile" enctype="multipart/form-data" method="post"-->
-                            <form name="form">
-                                <label>Imagen</label>
-                                <input id="imgFileNews" type="file" required name="imgFileNews" accept="image/png, .jpg" hidden>
-                            </form>
-                            <form name="form">
-                                <label>Archivo</label>
-                                <input id="FileNews" type="file" required name="FileNews" accept=".pdf, .txt, .docx, .doc" hidden>
-                            </form>
+
+                            <label>Imagen</label>
+                            <input id="imgFileNews" type="file" required name="imgFileNews" accept="image/png, .jpg" hidden>
+
+                            <label>Archivo</label>
+                            <input id="FileNews" type="file" required name="FileNews" accept=".pdf, .txt, .docx, .doc" hidden>
+
                             <div id="buttonSubmitAddNews">
                                 <button type="submit" class="submit-btn form-control">Registrar</button>
                             </div>
-                            <div id="alertMessageAddConsult"></div>
+                            <div id="alertMessageAddNews"></div>
                         </form>
                     </div>
                 </div>
@@ -365,8 +352,8 @@
                                     </span>
                                 </label>
                             </div>
-                            <select class="form-control without-margin" required="" name="courseConsult" id="courseConsult">
-                                <option value="0" selected="">Seleccione el curso</option>
+                            <select class="form-control without-margin" required="" name="professorConsult" id="professorConsult">
+                                <option value="0" selected="">Seleccione el profesor</option>
                             </select>
                             <textarea rows="4" cols="50" type="text" name="consultDescription" id="consultDescription" class="form-control" placeholder="Descripción" required="" minlength="10" title="Complete este campo con la descripcion de la consulta"></textarea>
 
@@ -402,7 +389,7 @@
                                     <tr class="text-center">
                                         <th>Titulo</th>
                                         <th>Fecha</th>
-                                        <th>Curso</th>
+                                        <th>Profesor</th>
                                         <th>Tipo</th>
                                         <th>Acción</th>
                                     </tr>
@@ -1186,6 +1173,7 @@
     <script src="js/course.js"></script>
     <script src="js/consult.js"></script>
     <script src="~/js/appointment.js"></script>
+    <script src="~/js/news.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script> <!-- Mask inputs -->
     <script src="https://smtpjs.com/v3/smtp.js"></script> <!-- Email -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script> <!-- Datatable -->
