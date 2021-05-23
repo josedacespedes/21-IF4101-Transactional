@@ -220,7 +220,7 @@ $("#professorTable tbody").on("click", "#professorGroupModal", function () {
     dataInfoProfessor = tableProfessor.row($(this).parents("tr")).data();
     document.getElementById("professorTitleModal").innerHTML = `<h4>Profesor: ${dataInfoProfessor.firstNameProfessor}  ${dataInfoProfessor.lastNameProfessor} </h4>`;
     GetCourseGroup();
-    tableGroup.clear().draw();
+    //tableGroup.clear().draw();
 });
 
 /*--------------------------------------------- GET COURSES-----------------------------------------------------------*/
@@ -283,11 +283,11 @@ function GetWeekdays() {
 }
 
 $("#professorGroupTable tbody").on("click", "#groupModal", function () {
+    $("#showConsultTime").val("");
     dataInfoGroup = tableGroup.row($(this).parents("tr")).data();
     document.getElementById("consultTimeTitleModal").innerHTML = `<h4>Grupo: ${dataInfoGroup.numGroup}</h4>`;
     GetWeekdays();
     getConsultTime();
-
 });
 
 var timeConsult = "";
@@ -357,7 +357,7 @@ $("#buttonSaveConsultTime").on("click", function () {
 function getConsultTime() {
     $.ajax({
         url: "/Professor/GetConsultTime",
-        data: { idGroup: parseInt(dataInfoGroup.idGroup) },
+        data: { idGroup: parseInt(dataInfoGroup.idGroup), idProfessor: parseInt(dataInfoProfessor.id) },
         type: "GET",
         contentType: "application/json;charset=utf-8",
 

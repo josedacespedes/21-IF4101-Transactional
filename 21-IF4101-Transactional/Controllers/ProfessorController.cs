@@ -115,11 +115,11 @@ namespace _21_IF4101_Transactional.Controllers
             return Ok();
         }
 
-        public IActionResult GetConsultTime(int idGroup)
+        public IActionResult GetConsultTime(int idGroup, int idProfessor)
         {
             //llamada al modelo para obtener horarios de consulta
             professorDAO = new ProfessorDAO(_configuration);
-            return Ok(professorDAO.GetConsultTime(idGroup));
+            return Ok(professorDAO.GetConsultTime(idGroup, idProfessor));
         }
 
 
