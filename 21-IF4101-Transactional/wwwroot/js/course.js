@@ -6,7 +6,7 @@ var messageToSend = document.getElementById("alertMessageAddCourse");
 var tableCourse;
 var idCourseGroup;
 var idCourseEdit;
-
+var numGroupsCourse;
 /*--------------------------------------------- ADD COURSE-----------------------------------------------------------*/
 
 //MASK
@@ -155,7 +155,7 @@ function loadCourseList() {
                 }
             },
             {
-                defaultContent: "<button type='button' id='buttonModalCourseGroup' name='buttonModalCourseGroup' class='btn btn-primary' data-toggle='modal' data-target='#modalCourseGroup' title='Asociar grupo'><i class='fa fa-link'></i></button> <button type='button' id='buttonModalCourseEdit' name='buttonModalCourseEdit' class='btn btn-warning' data-toggle='modal' data-target='#modalCourseEdit' title='Modificar'><i class='fa fa-pencil'></i></button>"
+                defaultContent: "<button type='button' id='buttonModalCourseGroup' name='buttonModalCourseGroup' class='btn btn-primary' data-toggle='modal' data-target='#modalCourseGroup' title='Asociar grupo'><i class='fa fa-link'></i></button> <button type='button' id='buttonModalCourseEdit' name='buttonModalCourseEdit' class='btn btn-warning' data-toggle='modal' data-target='#modalCourseEdit' title='Modificar'><i class='fa fa-pencil'></i></button> <button type='button' id='buttonDeleteCourse' name='buttonDeleteCourse' class='btn btn-danger' title='Modificar'><i class='fa fa-trash-o'></i></button>"
             }
         ]
 
@@ -362,4 +362,71 @@ registerCourseEdit.addEventListener("submit", function (e) {
 
 function cleanFieldsModalEdit() {
     registerCourseEdit.reset();
+}
+
+
+/*--------------------------------------------- DELETE COURSE-----------------------------------------------------------*/
+$("#courseTable tbody").on("click", "#buttonDeleteCourse", function () {
+
+    var dataInfoCourse = tableCourse.row($(this).parents("tr")).data();
+    var rowToRemove = $(this).parents('tr');
+    getNumGroups(dataInfoCourse.id);
+
+    if (numGroupsCourse != 0) {
+        if (numGroupsCourse != 1) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No se puede eliminar, este curso tiene ' + numGroupsCourse + ' grupos asociados.'
+            })
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No se puede eliminar, este curso tiene ' + numGroupsCourse + ' grupo asociado.'
+            })
+        }
+
+    } else {
+
+        Swal.fire({
+            title: "¿Está seguro de eliminar este curso?",
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: `Confirmar`,
+            denyButtonText: `Cancelar`,
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "/Course/Delete",
+                    data: { id: dataInfoCourse.id },
+                    type: "GET",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        tableCourse.row(rowToRemove).remove().draw(); //Remove of list
+                    },
+                    error: function (errorMessage) {
+                        alert("Failed to delete Course");
+                    }
+                });
+            }
+        });
+    }
+});
+
+function getNumGroups(id) {
+    $.ajax({
+        url: "/Course/GetNumGroupsById",
+        data: { id: id },
+        type: "GET",
+
+        success: function (result) {
+            numGroupsCourse = 0;
+        },
+        error: function (errorMessage) {
+            alert("Failed to delete Applicant");
+        }
+    });
 }
