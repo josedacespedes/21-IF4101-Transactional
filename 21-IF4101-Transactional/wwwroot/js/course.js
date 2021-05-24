@@ -423,7 +423,7 @@ function getNumGroups(id) {
         type: "GET",
 
         success: function (result) {
-            numGroupsCourse = 0;
+            numGroupsCourse = result;
         },
         error: function (errorMessage) {
             alert("Failed to delete Applicant");
