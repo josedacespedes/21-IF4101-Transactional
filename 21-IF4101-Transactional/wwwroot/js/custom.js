@@ -75,7 +75,7 @@
 
     // SMOOTHSCROLL
     $(function () {
-        $('.navbar-nav-first li > a').on('click', function (event) {
+        $('.navbar-nav-first li > a, #home a').on('click', function (event) {
             var $anchor = $(this);
             $('html, body').stop().animate({
                 scrollTop: $($anchor.attr('href')).offset().top - 40
