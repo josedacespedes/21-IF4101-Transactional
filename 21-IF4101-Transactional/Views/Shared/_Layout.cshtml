@@ -1217,6 +1217,58 @@
         </div>
     </div>
 
+    <!--  MODAL COURSE EDIT -->
+    <div class="modal fade" id="modalNewsEdit" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="buttonCloseModalEditNews" class="btn btn-danger" data-dismiss="modal" aria-label="Close"><b>X</b></button>
+                    <h2 class="modal-title">Modificar Noticia</h2>
+                </div>
+                <div class="modal-body">
+                    <div id="newsTitleModalEdit"></div>
+
+                    <form id="formEditNews" autocomplete="off">
+                        <div class="form-group" id="inputCourseNameEdit">
+                            <label>Nombre:</label>
+                            <div id="inputCourseNameEditPosition">
+                                <input type="text" name="courseNameEdit" id="courseNameEdit" class="form-control" placeholder="Nombre" required="" minlength="10" maxlength="150" title="Complete este campo con el nombre del curso">
+                            </div>
+                        </div>
+                        <div class="form-group" id="inputCreditsNumberEdit">
+                            <label>Creditos:</label>
+                            <div id="inputCreditsNumberEditPosition">
+                                <input type="text" name="creditsNumberEdit" id="creditsNumberEdit" class="form-control" placeholder="Créditos" required="" minlength="1" maxlength="1" pattern="[1-4]+" title="Complete esta campo con un número en el rango de 1 a 4">
+                            </div>
+                        </div>
+
+                        <div class="form-group switchFlex">
+                            <label id="courseStatusLabelOneEdit">Estado</label>
+                            <label class="switch" id="courseStatusLabelTwo">
+                                <input type="checkbox" name="courseStatusEdit" id="courseStatusEdit" title="Escoja si el Curso esta activo o no">
+                                <span class="slider round">
+                                    <!--ADDED HTML -->
+                                    <span class="on">Activo</span>
+                                    <span class="off">Inactivo</span>
+                                    <!--END-->
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="modal-footer mt-4">
+                            <div class="col-12">
+                                <button type="submit" id="buttonEditNews" class="btn btn-warning">Modificar</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <!-- APPLICANT LIST -->
     <section id="applicantList" class="displayAdmin">
         <div class="container">
