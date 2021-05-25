@@ -440,28 +440,51 @@ function addNewComment(id) {
 }
 
 /*--------------------------------------------- LIST NEWS COMMENTS-----------------------------------------------------------*/
+$("#newsNoUserTable tbody").on("click", "#btnModalCommentsNews", function () {
+    modalConsultComments.style.display = "block";
 
-//function loadConsultListComments(id) {
-//    tableComments = $("#commentTable").DataTable({
-//        "destroy": true,
-//        "autoWidth": false,
-//        "columnDefs": [
-//            { "width": "20%", "targets": [0, 2] }
-//        ],
-//        "ajax": {
-//            "url": "/ConsultComment/GetComments/",
-//            "tpye": 'GET',
-//            "datatype": "json",
-//            "data": { "idConsult": id }
-//        },
-//        lengthMenu: [7, 20, 50, 100],
-//        "columns": [
-//            { "data": "author" },
-//            { "data": "comment" },
-//            { "data": "date" }
-//        ]
-//    });
-//}
+    var dataInfoComments = tableNewsNoUser.row($(this).parents("tr")).data();
+
+    loadNewsListComments(dataInfoComments.id);
+
+});
+$("#newsProfessorStudentTable tbody").on("click", "#btnModalCommentsNews", function () {
+    modalConsultComments.style.display = "block";
+
+    var dataInfoComments = tableNewsProfessorStudent.row($(this).parents("tr")).data();
+
+    loadNewsListComments(dataInfoComments.id);
+
+});
+$("#newsListPresidentAdminTable tbody").on("click", "#btnModalCommentsNews", function () {
+    modalConsultComments.style.display = "block";
+
+    var dataInfoComments = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
+
+    loadNewsListComments(dataInfoComments.id);
+
+});
+
+function loadNewsListComments(id) {
+    tableComments = $("#newsCommentsTable").DataTable({
+        "destroy": true,
+        "autoWidth": false,
+        "columnDefs": [
+            { "width": "20%", "targets": [0, 2] }
+        ],
+        "ajax": {
+            "url": "/NewsCommentController/id",
+            "tpye": 'GET',
+            "datatype": "json",
+        },
+        lengthMenu: [7, 20, 50, 100],
+        "columns": [
+            { "data": "author" },
+            { "data": "comment" },
+            { "data": "date" }
+        ]
+    });
+}
 
 /*--------------------------------------------- DELETE NEWS COMMENTS-----------------------------------------------------------*/
 //function loadConsultListComments(id) {
