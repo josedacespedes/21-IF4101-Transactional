@@ -157,7 +157,7 @@ function GetProfessorConsult() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            console.log(result);
+            
             var html = '';
             $.each(result, function (key, item) {
                 html += '<option>' + item.firstNameProfessor + ' ' + item.lastNameProfessor + '</option>';

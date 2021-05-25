@@ -8,23 +8,49 @@ var dataInfoAppointmentRequestAdd;
 var flagCommentAppointment; // 1 acepta y 0 rechaza
 
 $(document).ready(function () {
-    GetProfessorAppointment();
+    GetCourseAppointment();
+    //GetProfessorAppointment();
 });
 
-function GetProfessorAppointment() {
+function GetCourseAppointment() {
 
     $.ajax({
-        url: "/Appointment/GetProfessors",
+        url: "/Consult/GetCourses",
         type: "GET",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
+        success: function (result) {
+            //console.log(result);
+            var html = '';
+            $.each(result, function (key, item) {
+                html += '<option value="'+item.id+'">' + item.name + '</option>';
+            });
+            $('#CourseAppointment').append(html);
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function GetProfGroupAppointment() {
+    CleanProfGroup();
+    CleanDate();
+    var groupid = $('#groupAppointment').val();
+    $.ajax({
+        url: "/Appointment/GetProfGroupAppointment",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        data: { "groupid": groupid },
         success: function (result) {
             //llenar el dropdowns (select)
             var html = '';
             //console.log(result);
             $.each(result, function (key, item) {
                 //console.log(item);
-                html += '<option>' + item.firstNameProfessor + ' ' + item.lastNameProfessor + '</option>';
+                html += '<option value="'+item.id+'">' + item.firstNameProfessor + ' ' + item.lastNameProfessor + '</option>';
                 //html += '<option value="' + item.id + '">' + item.firstNameProfessor + ' ' + item.lastNameProfessor+ '</option>';
             });
             $('#professorAppointment').append(html);
@@ -36,8 +62,8 @@ function GetProfessorAppointment() {
     });
 }
 
-function CleanDate() {
-    var selectobject = document.getElementById("professorDateAppointment");
+function CleanProfGroup() {
+    var selectobject = document.getElementById("professorAppointment");
 
     if (selectobject.length > 1) {
         var options = selectobject.length;
@@ -49,28 +75,100 @@ function CleanDate() {
     }
 }
 
-function DateAppointment() {
+function CleanCourse() {
+    var selectobject = document.getElementById("professorCourseAppointment");
+
+    if (selectobject.length > 1) {
+        var options = selectobject.length;
+        while (options != 1) {
+            selectobject.remove(options - 1);
+            options--;
+        }
+
+    }
+}
+
+function CleanDate() {
+    var selectobject = document.getElementById("ProfDateAppointment");
+
+    if (selectobject.length > 1) {
+        var options = selectobject.length;
+        while (options != 1) {
+            selectobject.remove(options - 1);
+            options--;
+        }
+
+    }
+}
+
+function CleanGroup() {
+    var selectobject = document.getElementById("groupAppointment");
+
+    if (selectobject.length > 1) {
+        var options = selectobject.length;
+        while (options != 1) {
+            selectobject.remove(options - 1);
+            options--;
+        }
+
+    }
+}
+function GroupAppointment() {
+    CleanGroup();
     CleanDate();
-    var ProfessorName = $('#professorAppointment').val();
+    CleanProfGroup();
+    var Course = $('#CourseAppointment').val();
+    //console.log(ProfessorName);
+    $.ajax({
+        url: "/Appointment/GetGroupAppointment",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        data: { "courseid": Course },
+        success: function (result) {
+            //llenar el dropdowns (select)
+            var html = '';
+            //console.log(result);
+            $.each(result, function (key, item) {
+                //console.log(item);
+                //html += '<option>' + item + '</option>';
+                html += '<option value="' + item.idGroup + '">' + item.numGroup + '</option>';
+            });
+            $('#groupAppointment').append(html);
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+
+
+function DateAppointments() {
+    CleanDate();
+    var ProfessorId = $('#professorAppointment').val();
+    var groupid = $('#groupAppointment').val();
     //console.log(ProfessorName);
     $.ajax({
         url: "/Appointment/GetDates",
         type: "GET",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
-        data: { "ProfessorName": ProfessorName },
+        data: {
+            "ProfessorId": ProfessorId,
+            "groupid": groupid
+        },
         success: function (result) {
             //llenar el dropdowns (select)
             var html = '';
             //console.log(result);
-            var i = 1;
             $.each(result, function (key, item) {
-                //console.log(item);
+                console.log(item);
                 //html += '<option>' + item + '</option>';
-                html += '<option value="' + i + '">' + item + '</option>';
-                i++;
+                html += '<option>' + item + '</option>';
             });
-            $('#professorDateAppointment').append(html);
+            $('#ProfDateAppointment').append(html);
         },
         error: function (errorMessage) {
             alert("Error");
@@ -86,20 +184,20 @@ registerAppintmentForm.addEventListener("submit", function (e) {
     var checkStatus = $("input[name='consultTypeAppoCheck']").is(':checked') ? 1 : 0; //Validate if th input is checked or not
 
     var appointment = {
-        professor_fullname: $('#professorAppointment').val(),
-        appointment_date: $('#professorDateAppointment option:selected').text(),
+        professor_fullname: $('#professorAppointment option:selected').val(),
+        appointment_date: $('#ProfDateAppointment option:selected').text(),
         type: parseInt(checkStatus)
     };
     //console.log(appointment);
     if (appointment.professor_fullname == "" && appointment.appointment_date == "") {
         $('#professorAppointment').addClass("formInput-error");
-        $('#professorDateAppointment').addClass("formInput-error");
+        $('#ProfDateAppointment').addClass("formInput-error");
         return false;
     } else if (appointment.professor_fullname == "") {
         $('#professorAppointment').addClass("formInput-error");
         return false;
     } else if (appointment.appointment_date == "") {
-        $('#professorDateAppointment').addClass("formInput-error");
+        $('#ProfDateAppointment').addClass("formInput-error");
         return false;
     } else {
         $.ajax({
@@ -111,9 +209,11 @@ registerAppintmentForm.addEventListener("submit", function (e) {
             success: function (result) {
                 if (result == 1) {
                     messageAppointment.innerHTML = "<label class='text-success'>Cita agregada exitosamente</label>";
-                    $('#professorAppointment').val(0);
-                    $('#professorDateAppointment').val(0);
+                    $('#CourseAppointment').val(0);
+                    
                     CleanDate();
+                    CleanGroup();
+                    CleanProfGroup();
                     sendEmailProfessorAppointment(appointment.professor_fullname, appointment.appointment_date);
                 } else if (result == 3) {
 
