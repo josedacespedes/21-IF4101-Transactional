@@ -248,9 +248,6 @@
                     </li>
                 </ul>
 
-
-
-
                 <ul class="nav navbar-nav navbar-right" id="loginRight">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" name="profileNameProfessor" id="profileNameProfessor" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -523,7 +520,7 @@
             <div class="row">
 
                 <div class="col-md-12 addCourse-info">
-                    <h2 id="consultTittle">Lista de Consultas</h2>
+                    <h2 id="consultTittle">Lista de Citas de Consulta</h2>
                     <div class="row sidePadding">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered" id="consultTable">
@@ -644,27 +641,42 @@
                     </div>
                 </div>
 
-                <!-- LIST  -->
-                <div class="col-md-6 addCourse-info">
-                    <h2 id="courseTittle">Lista de Cursos</h2>
-                    <div class="row sidePadding">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered" id="courseTable">
-                                <thead class="table-primary headTable">
-                                    <tr class="text-center">
-                                        <th>Id</th>
-                                        <th>Nombre</th>
-                                        <th>Créditos</th>
-                                        <th>Estado</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="bodyCourseTable" class="text-center font-weight-bold">
-                                </tbody>
-                            </table>
-                        </div>
+                <!--Image-->
+                <div class="col-md-6 col-sm-12">
+                    <div id="consultImage">
+                        <img id="imageUCRStudent" src="~/images/UCR1.jpg" alt="ImagenUCR" />
                     </div>
                 </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Courses LIST -->
+    <section id="coursesList" class="displayAdmin">
+        <div class="container">
+            <div class="col-md-12 addCourse-info">
+                <!-- LIST  -->
+                <h2 id="courseTittle">Lista de Cursos</h2>
+                <div class="row sidePadding">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="courseTable">
+                            <thead class="table-primary headTable">
+                                <tr class="text-center">
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Créditos</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyCourseTable" class="text-center font-weight-bold">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -878,7 +890,7 @@
     <section id="appointmentList" class="displayProfessor">
         <div class="container">
             <div class="col-md-12">
-                <h2 id="applicantTittle">Lista de Citas</h2>
+                <h2 id="applicantTittle">Lista de Horas de Consulta</h2>
                 <div class="row sidePadding">
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered" id="appointmentTable">
