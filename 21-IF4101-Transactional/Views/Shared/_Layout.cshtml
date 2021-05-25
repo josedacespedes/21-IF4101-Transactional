@@ -699,11 +699,19 @@
                         <form id="registerAppintmentForm" autocomplete="off">
                             <h2>Agregar Cita</h2>
 
-                            <select class="form-control without-margin" required="" name="professorAppointment" id="professorAppointment" onchange="DateAppointment()">
+                            <select class="form-control without-margin" required="" name="CourseAppointment" id="CourseAppointment" onchange="GroupAppointment()">
+                                <option value="0" selected="">Seleccione el Curso</option>
+                            </select>
+
+                            <select class="form-control without-margin" required="" name="groupAppointment" id="groupAppointment" onchange="GetProfGroupAppointment()">
+                                <option value="0" selected="">Seleccione el Grupo</option>
+                            </select>
+
+                            <select class="form-control without-margin" required="" name="professorAppointment" id="professorAppointment" onchange="DateAppointments()">
                                 <option value="0" selected="">Seleccione el profesor</option>
                             </select>
 
-                            <select class="form-control without-margin" required="" name="professorDateAppointment" id="professorDateAppointment">
+                            <select class="form-control without-margin" required="" name="ProfDateAppointment" id="ProfDateAppointment">
                                 <option value="0" selected="">Seleccione el horario</option>
                             </select>
                             <div id="appointmentType">
