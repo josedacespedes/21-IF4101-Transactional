@@ -176,6 +176,7 @@ $("#newsListPresidentAdminTable tbody").on("click", "#deleteNews", function () {
 });
 
 /*--------------------------------------------- MODYFY NEWS-----------------------------------------------------------*/
+
 //ACTION WHEN  OPEN MODAL
 $("#newsListPresidentAdminTable tbody").on("click", "#buttonModalNewsEdit", function () {
     //var dataInfoNews = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
@@ -236,3 +237,251 @@ formEditNews.addEventListener("submit", function (e) {
     });
 
 });
+
+/*--------------------------------------------- NEWS DETAILS-----------------------------------------------------------*/
+
+$("#newsNoUserTable tbody").on("click", "#btnModalDetailsNews", function () {
+    var dataNewsPA = tableNewsNoUser.row($(this).parents("tr")).data();
+
+    message.innerHTML = "";
+    var html = '';
+
+    html += '<div class="modal-header">';
+    html += '<button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" aria-label="Close"><b>X</b></button>';
+    html += '<h2 class="modal-title">Detalles de Noticia</h2>';
+    html += '</div>';
+    html += '<div class="modal-body">';
+    html += '<form autocomplete="off">';
+    html += `<div class="table-responsive">
+            <table class="table text-center">
+            <tr>
+                <th scope="col">Título</th>
+                <th scope="col">ID</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Fecha de publicación</th>
+            </tr>
+            <tbody>
+                <tr>
+                    <th scope="row">` + dataNewsPA.title + `</th>
+                    <td>` + dataNewsPA.id + `</td>
+                    <td>`+ dataNewsPA.author + `</td>
+                    <td>`+ dataNewsPA.publication_Date + `</td>
+                </tr>
+            </tbody>
+            </table >
+            </div>`;
+    html += '<label>Descripción:</label>';
+    html += '<div>';
+    html += '<textarea rows="4" cols="50" type="text" name="dNewtDescription" id="dNewtDescription" class="form-control" placeholder="Descripción" disabled>' + dataNewsPA.description + '</textarea>';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="modal-footer mt-4">';
+    html += '<div class="col-12">';
+    html += '<button id="downloadNewFiles" type="button" class="btn btn-info" onclick="">Descargar Archivos</button>';
+    html += '</div>';
+    html += '</div>';
+    html += '</form>';
+    html += '</div>';
+
+    $('.modal-contentNew').html(html);
+
+});
+
+$("#newsProfessorStudentTable tbody").on("click", "#btnModalDetailsNews", function () {
+    var dataNewsPA = tableNewsProfessorStudent.row($(this).parents("tr")).data();
+
+    message.innerHTML = "";
+    var html = '';
+
+    html += '<div class="modal-header">';
+    html += '<button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" aria-label="Close"><b>X</b></button>';
+    html += '<h2 class="modal-title">Detalles de Noticia</h2>';
+    html += '</div>';
+    html += '<div class="modal-body">';
+    html += '<form autocomplete="off">';
+    html += `<div class="table-responsive">
+            <table class="table text-center">
+            <tr>
+                <th scope="col">Título</th>
+                <th scope="col">ID</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Fecha de publicación</th>
+            </tr>
+            <tbody>
+                <tr>
+                    <th scope="row">` + dataNewsPA.title + `</th>
+                    <td>` + dataNewsPA.id + `</td>
+                    <td>`+ dataNewsPA.author + `</td>
+                    <td>`+ dataNewsPA.publication_Date + `</td>
+                </tr>
+            </tbody>
+            </table >
+            </div>`;
+    html += '<label>Descripción:</label>';
+    html += '<div>';
+    html += '<textarea rows="4" cols="50" type="text" name="dNewtDescription" id="dNewtDescription" class="form-control" placeholder="Descripción" disabled>' + dataNewsPA.description + '</textarea>';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="modal-footer mt-4">';
+    html += '<div class="col-12">';
+    html += '<textarea rows="4" cols="50" type="text" name="dNewComment" id="dNewComment" required="" class="form-control" placeholder="Comentario"></textarea>';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="modal-footer mt-4">';
+    html += '<div class="col-12">';
+    html += '<button id="downloadNewFiles" type="button" class="btn btn-info" onclick="">Descargar Archivos</button>';
+    html += '<button type="button" class="btn btn-success" onclick="return addNewComment(' + dataNewsPA.id + ')">Comentar</button>';
+    html += '</div>';
+    html += '</div>';
+    html += '</form>';
+    html += '</div>';
+
+    $('.modal-contentNew').html(html);
+
+});
+
+$("#newsListPresidentAdminTable tbody").on("click", "#btnModalDetailsNews", function () {
+    var dataNewsPA = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
+
+    message.innerHTML = "";
+    var html = '';
+
+    html += '<div class="modal-header">';
+    html += '<button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" aria-label="Close"><b>X</b></button>';
+    html += '<h2 class="modal-title">Detalles de Noticia</h2>';
+    html += '</div>';
+    html += '<div class="modal-body">';
+    html += '<form autocomplete="off">';
+    html += `<div class="table-responsive">
+            <table class="table text-center">
+            <tr>
+                <th scope="col">Título</th>
+                <th scope="col">ID</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Fecha de publicación</th>
+            </tr>
+            <tbody>
+                <tr>
+                    <th scope="row">` + dataNewsPA.title + `</th>
+                    <td>` + dataNewsPA.id + `</td>
+                    <td>`+ dataNewsPA.author + `</td>
+                    <td>`+ dataNewsPA.publication_Date + `</td>
+                </tr>
+            </tbody>
+            </table >
+            </div>`;
+    html += '<label>Descripción:</label>';
+    html += '<div>';
+    html += '<textarea rows="4" cols="50" type="text" name="dNewtDescription" id="dNewtDescription" class="form-control" placeholder="Descripción" disabled>' + dataNewsPA.description + '</textarea>';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="modal-footer mt-4">';
+    html += '<div class="col-12">';
+    html += '<textarea rows="4" cols="50" type="text" name="dNewComment" id="dNewComment" required="" class="form-control" placeholder="Comentario"></textarea>';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="modal-footer mt-4">';
+    html += '<div class="col-12">';
+    html += '<button id="downloadNewFiles" type="button" class="btn btn-info" onclick="">Descargar Archivos</button>';
+    html += '<button type="button" class="btn btn-success" onclick="return addNewComment(' + dataNewsPA.id + ')">Comentar</button>';
+    html += '</div>';
+    html += '</div>';
+    html += '</form>';
+    html += '</div>';
+
+    $('.modal-contentNew').html(html);
+
+});
+/*--------------------------------------------- ADD NEWS COMMENTS-----------------------------------------------------------*/
+
+function addNewComment(id) {
+    //var dateTime = new Date();
+    //var comment = $('#dNewComment').val();
+
+    //if (comment != "") {
+    //    $.ajax({
+    //        url: "/Login/GetName",
+    //        type: "GET",
+    //        contentType: "application/json;charset=utf-8",
+    //        dataType: "json",
+    //        success: function (result) {
+
+    //            var newComment = {
+    //                author: result.name,
+    //                date: dateTime,
+    //                comment: $('#dNewComment').val(),
+    //                idNews: parseInt(id)
+    //            };
+
+    //            $.ajax({
+    //                url: "/api/<NewsCommentController>",
+    //                data: JSON.stringify(newComment),
+    //                type: "POST",
+    //                contentType: "application/json;charset=utf-8",
+    //                dataType: "json",
+    //                success: function (result) {
+    //                    $('#dNewComment').val("");
+    //                    message.innerHTML = "<label class='text-success'>Comentario agregado exitosamente</label>";
+    //                },
+    //                error: function (errorMessage) {
+    //                    message.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
+    //                }
+    //            });
+    //        },
+    //        error: function (errorMessage) {
+    //            alert("Error");
+    //            alert(errorMessage.responseText);
+    //        }
+    //    });
+
+    //} else {
+    //    message.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
+    //}
+}
+
+/*--------------------------------------------- LIST NEWS COMMENTS-----------------------------------------------------------*/
+
+//function loadConsultListComments(id) {
+//    tableComments = $("#commentTable").DataTable({
+//        "destroy": true,
+//        "autoWidth": false,
+//        "columnDefs": [
+//            { "width": "20%", "targets": [0, 2] }
+//        ],
+//        "ajax": {
+//            "url": "/ConsultComment/GetComments/",
+//            "tpye": 'GET',
+//            "datatype": "json",
+//            "data": { "idConsult": id }
+//        },
+//        lengthMenu: [7, 20, 50, 100],
+//        "columns": [
+//            { "data": "author" },
+//            { "data": "comment" },
+//            { "data": "date" }
+//        ]
+//    });
+//}
+
+/*--------------------------------------------- DELETE NEWS COMMENTS-----------------------------------------------------------*/
+//function loadConsultListComments(id) {
+//    tableComments = $("#commentTable").DataTable({
+//        "destroy": true,
+//        "autoWidth": false,
+//        "columnDefs": [
+//            { "width": "20%", "targets": [0, 2] }
+//        ],
+//        "ajax": {
+//            "url": "/ConsultComment/GetComments/",
+//            "tpye": 'GET',
+//            "datatype": "json",
+//            "data": { "idConsult": id }
+//        },
+//        lengthMenu: [7, 20, 50, 100],
+//        "columns": [
+//            { "data": "author" },
+//            { "data": "comment" },
+//            { "data": "date" }
+//        ]
+//    });
+//}
