@@ -355,7 +355,7 @@ function sendEmailProfessorAppointment(professorname, dateappointment) {
                 To: result.emailProfessor,
                 From: "ucrtransactionaladm1n@gmail.com",
                 Subject: `Cita de consulta`,
-                Body: `Hola ${nameProfessor}, el estudiante ${result.name} ha solicitado una reunión contigo el día ${dateappointment}`
+                Body: `Hola ${professorname}, el estudiante ${result.name} ha solicitado una reunión contigo el día ${dateappointment}`
             });
 
         },
