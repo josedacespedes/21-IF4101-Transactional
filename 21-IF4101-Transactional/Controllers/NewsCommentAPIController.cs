@@ -5,40 +5,43 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace _21_IF4101_Transactional.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class NewsAPIController : ControllerBase
+    public class NewsCommentController : ControllerBase
     {
-        // GET: api/News/GetNews
+        // GET: api/<NewsCommentController>
         [Route("[action]")]
         [HttpGet]
-        public IEnumerable<News> Get()
+        public IEnumerable<NewsComment> Get()
         {
-            IEnumerable<News> news = null;
+            IEnumerable<NewsComment> newsComment = null;
 
             try
             {
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("https://localhost:44397/api/News/");
-                    var responseTask = client.GetAsync("GetNews");
+                    client.BaseAddress = new Uri("https://localhost:44397/api/NewsComments/");
+                    var responseTask = client.GetAsync("GetNewsComments");
                     responseTask.Wait();
 
                     var result = responseTask.Result;
 
                     if (result.IsSuccessStatusCode)
                     {
-                        var readTask = result.Content.ReadAsAsync<IList<News>>();
+                        var readTask = result.Content.ReadAsAsync<IList<NewsComment>>();
                         readTask.Wait();
                         //lee las noticias provenientes de la API
-                        news = readTask.Result;
+                        newsComment = readTask.Result;
                     }
                     else
                     {
-                        news = Enumerable.Empty<News>();
+                        newsComment = Enumerable.Empty<NewsComment>();
                     }
                 }
             }
@@ -49,45 +52,42 @@ namespace _21_IF4101_Transactional.Controllers
 
             }
 
-            return news;
+            return newsComment;
         }
 
-        // GET api/NewsAPIController/5
-        //[HttpGet("{id}")]
-        public News GetById(int id)
+        // GET api/<NewsCommentController>/5
+        public NewsComment GetById(int id)
         {
-            News news = null;
+            NewsComment news = null;
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44397/api/News/" + id);
+                client.BaseAddress = new Uri("https://localhost:44397/api/NewsComments/" + id);
                 var responseTask = client.GetAsync(client.BaseAddress);
                 responseTask.Wait();
-
                 var result = responseTask.Result;
 
                 if (result.IsSuccessStatusCode)
                 {
-                    var readTask = result.Content.ReadAsAsync<News>();
+                    var readTask = result.Content.ReadAsAsync<NewsComment>();
                     readTask.Wait();
-                    //lee las noticia provenientes de la API
+                    //lee los comentarios de noticia provenientes de la API
                     news = readTask.Result;
                 }
             }
-
             return news;
         }
 
-        // POST api/News/Post
+        // POST api/<NewsCommentController>
         [HttpPost]
-        public JsonResult Post([FromBody] News news)
+        public JsonResult Post([FromBody] NewsComment newsComment)
         {
             try
             {
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("https://localhost:44397/api/News");
-                    var postTask = client.PostAsJsonAsync("news", news);
+                    client.BaseAddress = new Uri("https://localhost:44397/api/NewsComments/");
+                    var postTask = client.PostAsJsonAsync("newsComment", newsComment);
                     postTask.Wait();
 
                     var result = postTask.Result;
@@ -108,40 +108,7 @@ namespace _21_IF4101_Transactional.Controllers
             }
         }
 
-        // PUT: api/News/1
-        [HttpPut("{id}")]
-        public JsonResult Put(int id, [FromBody] News news)
-        {
-            try
-            {
-                using (var client = new HttpClient())
-                {
-
-                    client.BaseAddress = new Uri("https://localhost:44397/api/student/" + id);
-
-                    //HTTP POST
-                    var putTask = client.PutAsJsonAsync("news", news);
-                    putTask.Wait();
-
-                    var result = putTask.Result;
-                    if (result.IsSuccessStatusCode)
-                    {
-                        return new JsonResult(result);
-                    }
-                    else
-                    {
-                        return new JsonResult(result);
-                    }
-                }
-            }
-            catch (DbUpdateConcurrencyException exception)
-            {
-                return new JsonResult(exception);
-            }
-
-        }
-
-        // DELETE: api/News/1
+        // DELETE api/<NewsCommentController>/5
         [HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {
@@ -151,7 +118,7 @@ namespace _21_IF4101_Transactional.Controllers
                 client.BaseAddress = new Uri("http://localhost:44397/api/");
 
                 //HTTP DELETE
-                var deleteTask = client.DeleteAsync("News/" + id.ToString());
+                var deleteTask = client.DeleteAsync("NewsComments/" + id.ToString());
                 deleteTask.Wait();
 
                 var result = deleteTask.Result;
@@ -164,7 +131,6 @@ namespace _21_IF4101_Transactional.Controllers
                 {
                     //camino del error
                     return new JsonResult(result);
-
                 }
             }
         }
