@@ -102,6 +102,20 @@ function putErrorInputProfessor(professor) {
     return validate;
 }
 
+function randomPassword() {
+    var lower = "abcdefghijklmnopqrstuvwxyz";
+    var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var numbers = "0123456789";
+    var symbols = "!@#$%&*.-+=";
+    var pass = "";
+    pass += upper[Math.floor(Math.random() * 26)];
+    for (var i = 0; i < 5; i++) {
+        pass += lower[Math.floor(Math.random() * 26)];
+    }
+    pass += numbers[Math.floor(Math.random() * 10)];
+    pass += symbols[Math.floor(Math.random() * 11)];
+}
+
 //HIDE MSG FORM
 $("#firstNameProfessor").click(function () {
     alertMessageAddProfessor.innerHTML = "";
@@ -119,7 +133,7 @@ formProfessor.addEventListener("submit", function (e) {
         lastNameProfessor: $('#lastNameProfessor').val(),
         idProfessor: $('#idProfessor').val(),
         emailProfessor: $('#emailProfessor').val(),
-        passwordProfessor: $('#passwordProfessor').val()
+        passwordProfessor: randomPassword()//$('#passwordProfessor').val()
     };
 
     if (!putErrorInputProfessor(professor)) {
