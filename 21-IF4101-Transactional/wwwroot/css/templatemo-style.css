@@ -1267,6 +1267,17 @@ input:checked + .slider .off {
     background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
 }
 
+/* Modal Content/Box */
+.modal-contentNew {
+    background-color: aliceblue;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 4%;
+    border: 2% solid #888;
+    width: 75%;
+    border-radius: 1%;
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
 .modalConsultCommets {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
