@@ -370,8 +370,10 @@ $("#courseTable tbody").on("click", "#buttonDeleteCourse", function () {
 
     var dataInfoCourse = tableCourse.row($(this).parents("tr")).data();
     var rowToRemove = $(this).parents('tr');
-    getNumGroups(dataInfoCourse.id);
 
+    numGroupsCourse = parseInt(getNumGroups(dataInfoCourse.id));
+
+    console.log(numGroupsCourse);
     if (numGroupsCourse != 0) {
         if (numGroupsCourse != 1) {
             Swal.fire({
@@ -421,8 +423,10 @@ function getNumGroups(id) {
         url: "/Course/GetNumGroupsById",
         data: { id: id },
         type: "GET",
-
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
         success: function (result) {
+            console.log(result);
             numGroupsCourse = result;
         },
         error: function (errorMessage) {

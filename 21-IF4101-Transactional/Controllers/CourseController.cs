@@ -79,6 +79,19 @@ namespace _21_IF4101_Transactional.Controllers
             return Json(new { data = courseDAO.GetGroupByIdCourse(id) });
         }
 
+        public IActionResult GetNumGroupsById(int id)
+        {
+            //call model to get the courses
+            courseDAO = new CourseDAO(_configuration);
+            return Json(courseDAO.GetNumGroupsById(id));
+        }
+        public IActionResult Delete(int id)
+        {
+            //call model to get the courses
+            courseDAO = new CourseDAO(_configuration);
+            return Json(new { data = courseDAO.Delete(id) });
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
