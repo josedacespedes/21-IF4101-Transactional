@@ -1074,7 +1074,7 @@
                         <div class="modal-footer mt-4">
                             <div class="col-12">
                                 <button type="submit" id="buttonAddCourseGroup" class="btn btn-success">Aceptar</button>
-                                <button type="button" class="btn btn-danger" onclick="cleanFieldsModalCourseGroup()" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-danger" onclick="cleanFieldsModalCourseGroup()" data-dismiss="modal">Cancelar</button>
                             </div>
                         </div>
                     </form>
@@ -1125,7 +1125,7 @@
                         <div class="modal-footer mt-4">
                             <div class="col-12">
                                 <button type="submit" id="buttonEditCourse" class="btn btn-warning">Modificar</button>
-                                <button type="button" class="btn btn-danger" onclick="cleanFieldsModalEdit()" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-danger" onclick="cleanFieldsModalEdit()" data-dismiss="modal">Cancelar</button>
                             </div>
                         </div>
                     </form>
@@ -1256,7 +1256,7 @@
         </div>
     </div>
 
-    <!--  MODAL COURSE EDIT -->
+    <!--  MODAL EDIT NEWS -->
     <div class="modal fade" id="modalNewsEdit" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -1269,36 +1269,37 @@
                     <div id="newsTitleModalEdit"></div>
 
                     <form id="formEditNews" autocomplete="off">
-                        <div class="form-group" id="inputCourseNameEdit">
-                            <label>Nombre:</label>
-                            <div id="inputCourseNameEditPosition">
-                                <input type="text" name="courseNameEdit" id="courseNameEdit" class="form-control" placeholder="Nombre" required="" minlength="10" maxlength="150" title="Complete este campo con el nombre del curso">
+                        <div class="form-group" id="inputNewsTitleEdit">
+                            <label>Titulo:</label>
+                            <div id="inputNewsTitleEditPosition">
+                                <input type="text" name="newsTitleEdit" id="newsTitleEdit" class="form-control" required="" minlength="10" maxlength="50" title="Complete este campo con el titulo de la noticia">
                             </div>
                         </div>
-                        <div class="form-group" id="inputCreditsNumberEdit">
-                            <label>Creditos:</label>
-                            <div id="inputCreditsNumberEditPosition">
-                                <input type="text" name="creditsNumberEdit" id="creditsNumberEdit" class="form-control" placeholder="Créditos" required="" minlength="1" maxlength="1" pattern="[1-4]+" title="Complete esta campo con un número en el rango de 1 a 4">
+                        <div class="form-group" id="inputNewsDescriptionEdit">
+                            <label>Descripción:</label>
+                            <div id="inputNewsDescriptionEditPosition">
+                                <textarea rows="4" cols="50" type="text" name="newsEditDescription" id="newsEditDescription" class="form-control" required="" minlength="10" maxlength="255" title="Complete este campo con la descripcion de la noticia"></textarea>
                             </div>
                         </div>
 
-                        <div class="form-group switchFlex">
-                            <label id="courseStatusLabelOneEdit">Estado</label>
-                            <label class="switch" id="courseStatusLabelTwo">
-                                <input type="checkbox" name="courseStatusEdit" id="courseStatusEdit" title="Escoja si el Curso esta activo o no">
-                                <span class="slider round">
-                                    <!--ADDED HTML -->
-                                    <span class="on">Activo</span>
-                                    <span class="off">Inactivo</span>
-                                    <!--END-->
-                                </span>
-                            </label>
+                        <div class="form-group" id="inputNewsImageEdit">
+                            <label>Imagen:</label>
+                            <div id="inputNewsImageEditPosition">
+                                <input id="imgFileNewsEdit" type="file" required name="imgFileNewsEdit" accept="image/png, .jpg" hidden>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="inputNewsFileEdit">
+                            <label>Archivo:</label>
+                            <div id="inputNewsFileEditPosition">
+                                <input id="fileNewsEdit" type="file" required name="fileNewsEdit" accept=".pdf, .txt, .docx, .doc" hidden>
+                            </div>
                         </div>
 
                         <div class="modal-footer mt-4">
                             <div class="col-12">
                                 <button type="submit" id="buttonEditNews" class="btn btn-warning">Modificar</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                             </div>
                         </div>
                     </form>

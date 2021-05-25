@@ -316,7 +316,7 @@ input:checked + .slider:before {
     color: white;
 }
 
-#registerProfileProfessor textarea, #registerProfileStudent textarea {
+#registerProfileProfessor textarea, #registerProfileStudent textarea, #newsEditDescription {
     resize: none;
     height: 4em;
 }
