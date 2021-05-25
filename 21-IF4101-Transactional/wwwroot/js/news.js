@@ -3,10 +3,17 @@
 //VARIABLES
 var registerNewsForm = document.getElementById("registerNewsForm");
 var messageNews = document.getElementById("alertMessageAddNews");
-$(document).ready(function () {
+var tableNewsNoUser;
+var tableNewsProfessorStudent;
+var tableNewsPresidentAdmin;
 
+$(document).ready(function () {
+    loadNewsNoUserList();
+    loadNewsProfessorStudentList();
+    loadNewsPresidentAdminList();
 });
 
+/*--------------------------------------------- ADD NEWS-----------------------------------------------------------*/
 registerNewsForm.addEventListener("submit", function (e) {
     e.preventDefault();
     $.ajax({
@@ -43,13 +50,13 @@ registerNewsForm.addEventListener("submit", function (e) {
                     contentType: "application/json;charset=utf-8",
                     dataType: "json",
                     success: function (result) {
-                        
+
                         messageNews.innerHTML = "<label class='text-success'>Noticia agregada exitosamente</label>";
                         $('#newsTittle').val();
                         $('#newsDescription').val();
                         $('#FileNews').val();
                         $('#imgFileNews').val();
-                           
+
                     },
                     error: function (errorMessage) {
                         alert("Error");
@@ -63,5 +70,108 @@ registerNewsForm.addEventListener("submit", function (e) {
             alert(errorMessage.responseText);
         }
     });
-    
+
 });
+
+/*--------------------------------------------- LIST NEWS-----------------------------------------------------------*/
+function loadNewsNoUserList() {
+    tableNewsNoUser = $("#newsNoUserTable").DataTable({
+        //"destroy": true,
+        //"autoWidth": false,
+        //"columnDefs": [
+        //    { "width": "20%", "targets": [0, 4] }
+        //],
+        //"ajax": {
+        //    "url": "/NewsAPI/Get",
+        //    "tpye": 'GET',
+        //    "datatype": "json"
+        //},
+        //lengthMenu: [7, 20, 50, 100],
+        //"columns": [
+        //    { "data": "title" },
+        //    { "data": "publication_Date" },
+        //    { "data": "author" },
+        //    { defaultContent: "<button id='btnModalDetailsNews' name='btnModalDetailsNews' type='button' data-toggle='modal' class='btn btn-primary' data-target='#newsModal' title='Detalles'><i class='fa fa-file-text'></i></button>  <button id='btnModalCommentsNews' name='btnModalCommentsNews' type='button' data-toggle='modal' data-target='#newsModalComments' class='btn btn-info' title='Comentarios'><i class='fa fa-comments'></i></button>" }
+        //]
+    });
+}
+
+function loadNewsProfessorStudentList() {
+    tableNewsProfessorStudent = $("#newsProfessorStudentTable").DataTable({
+        //"destroy": true,
+        //"autoWidth": false,
+        //"columnDefs": [
+        //    { "width": "20%", "targets": [0, 4] }
+        //],
+        //"ajax": {
+        //    "url": "/NewsAPI/Get",
+        //    "tpye": 'GET',
+        //    "datatype": "json"
+        //},
+        //lengthMenu: [7, 20, 50, 100],
+        //"columns": [
+        //    { "data": "title" },
+        //    { "data": "publication_Date" },
+        //    { "data": "author" },
+        //    { defaultContent: "<button id='btnModalDetailsNews' name='btnModalDetailsNews' type='button' data-toggle='modal' class='btn btn-primary' data-target='#newsModal' title='Detalles'><i class='fa fa-file-text'></i></button>  <button id='btnModalCommentsNews' name='btnModalCommentsNews' type='button' data-toggle='modal' data-target='#newsModalComments' class='btn btn-info' title='Comentarios'><i class='fa fa-comments'></i></button>" }
+        //]
+    });
+}
+
+function loadNewsPresidentAdminList() {
+    tableNewsPresidentAdmin = $("#newsListPresidentAdminTable").DataTable({
+        //"destroy": true,
+        //"autoWidth": false,
+        //"columnDefs": [
+        //    { "width": "20%", "targets": [0, 4] }
+        //],
+        //"ajax": {
+        //    "url": "/NewsAPI/Get",
+        //    "tpye": 'GET',
+        //    "datatype": "json"
+        //},
+        //lengthMenu: [7, 20, 50, 100],
+        //"columns": [
+        //    { "data": "title" },
+        //    { "data": "publication_Date" },
+        //    { "data": "author" },
+        //    { defaultContent: "<button id='btnModalDetailsNews' name='btnModalDetailsNews' type='button' data-toggle='modal' class='btn btn-primary' data-target='#newsModal' title='Detalles'><i class='fa fa-file-text'></i></button> <button id='btnModalCommentsNews' name='btnModalCommentsNews' type='button' data-toggle='modal' data-target='#newsModalComments' class='btn btn-info' title='Comentarios'><i class='fa fa-comments'></i></button>" },
+        //    { defaultContent: "<button type = 'button' id = 'buttonModalNewsEdit' name = 'buttonModalNewsEdit' class= 'btn btn-warning' data - toggle='modal' data - target='#modalNewsEdit' title = 'Modificar' > <i class='fa fa-pencil'></i></button > <button id='deleteNews' name='deleteNews' type='button' class='btn btn-danger' title='Delete'><i class='fa fa-trash'></i></button>" }
+        //]
+    });
+}
+
+/*--------------------------------------------- DELETE NEWS-----------------------------------------------------------*/
+$("#newsListPresidentAdminTable tbody").on("click", "#deleteNews", function () {
+
+    var data = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
+    var rowToRemove = $(this).parents('tr');
+
+    Swal.fire({
+        title: "Esta seguro de eliminar esta noticia (incluido comentarios)?",
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: `Confirmar`,
+        denyButtonText: `Cancelar`,
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            //$.ajax({
+            //    url: "/NewsAPIController/Delete",
+            //    data: { Id: data.id },
+            //    type: "GET",
+            //    contentType: "application/json;charset=utf-8",
+            //    dataType: "json",
+            //    success: function (result) {
+            //        tableNewsPresidentAdmin.row(rowToRemove).remove().draw(); //Remove of list
+            //    },
+            //    error: function (errorMessage) {
+            //        alert("Failed to delete Applicant");
+            //    }
+            //});
+
+        }
+    });
+});
+
+/*--------------------------------------------- MODYFY NEWS-----------------------------------------------------------*/

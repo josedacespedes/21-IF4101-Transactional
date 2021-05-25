@@ -341,7 +341,7 @@ input:checked + .slider:before {
     width: 70%;
 }
 
-#buttonCloseModal, #buttonCloseModalEdit {
+#buttonCloseModal, #buttonCloseModalEdit, #buttonCloseModalEditNews {
     float: right;
 }
 
@@ -641,10 +641,12 @@ input:checked + .slider:before {
 
 .home-slider .item-second {
     background-image: url(../images/slider-image2.jpg);
+    background-position: center;
 }
 
 .home-slider .item-third {
     background-image: url(../images/slider-image3.jpg);
+    background-position: center;
 }
 
 
