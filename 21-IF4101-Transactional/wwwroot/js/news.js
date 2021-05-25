@@ -2,10 +2,12 @@
 
 //VARIABLES
 var registerNewsForm = document.getElementById("registerNewsForm");
+var formEditNews = document.getElementById("formEditNews");
 var messageNews = document.getElementById("alertMessageAddNews");
 var tableNewsNoUser;
 var tableNewsProfessorStudent;
 var tableNewsPresidentAdmin;
+var idNewsEdit;
 
 $(document).ready(function () {
     loadNewsNoUserList();
@@ -31,7 +33,6 @@ registerNewsForm.addEventListener("submit", function (e) {
                 file_new: $('#FileNews').val(),
                 imagen: $('#imgFileNews').val()
             };
-            console.log(news);
             if (news.title == "" && news.description == "" && news.author == "") {
                 $('#newsTittle').addClass("formInput-error");
                 $('#newsDescription').addClass("formInput-error");
@@ -175,3 +176,63 @@ $("#newsListPresidentAdminTable tbody").on("click", "#deleteNews", function () {
 });
 
 /*--------------------------------------------- MODYFY NEWS-----------------------------------------------------------*/
+//ACTION WHEN  OPEN MODAL
+$("#newsListPresidentAdminTable tbody").on("click", "#buttonModalNewsEdit", function () {
+    //var dataInfoNews = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
+    //idNewsEdit = dataInfoNews.id;
+
+    //$('#newsTitleEdit').val(dataInfoNews.title);
+    //$('#newsEditDescription').val(dataInfoNews.description);
+    //$('#imgFileNewsEdit').val(dataInfoNews.imagen);
+    //$('#fileNewsEdit').val(dataInfoNews.file_New);
+});
+
+//ACTION UPDATE
+formEditNews.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    var news = {
+        id: idNewsEdit,
+        title: $('#newsTitleEdit').val(),
+        description: $('#newsEditDescription').val(),
+        file_New: $('#fileNewsEdit').val(),
+        imagen: $('#imgFileNewsEdit').val(),
+    };
+
+    Swal.fire({
+        title: "Esta seguro que desea modificar esta noticia?",
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: `Confirmar`,
+        denyButtonText: `Cancelar`,
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            //$.ajax({
+            //    url: "/NewsAPI/Put",
+            //    data: { id: news.id, news: news },
+            //    type: "PUT",
+            //    contentType: "application/json;charset=utf-8",
+            //    dataType: "json",
+            //    success: function (result) {
+
+            //        $('#modalNewsEdit').modal('hide');
+            //        $('#newsListPresidentAdminTable').DataTable().ajax.reload();
+            //        Swal.fire({
+            //            icon: 'success',
+            //            title: 'Modificado Exitoso',
+            //            showConfirmButton: false,
+            //            timer: 1500
+            //        })
+
+            //    },
+            //    error: function (errorMessage) {
+            //        alert("Error");
+            //        alert(errorMessage.responseText);
+            //    }
+            //});
+
+        }
+    });
+
+});
