@@ -5,20 +5,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace _21_IF4101_Transactional.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
-    public class NewsCommentController : ControllerBase
+    public class NewsCommentAPIController : Controller
     {
         // GET: api/<NewsCommentController>
         [Route("[action]")]
         [HttpGet]
-        public IEnumerable<NewsComment> Get()
+        public IActionResult Get()
         {
             IEnumerable<NewsComment> newsComment = null;
 
@@ -52,7 +51,7 @@ namespace _21_IF4101_Transactional.Controllers
 
             }
 
-            return newsComment;
+            return Json(new { data = newsComment }); ;
         }
 
         // GET api/<NewsCommentController>/5
