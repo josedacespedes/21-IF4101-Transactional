@@ -138,7 +138,7 @@ $("#newsListPresidentAdminTable tbody").on("click", "#deleteNews", function () {
 
     var data = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
     var rowToRemove = $(this).parents('tr');
-
+    alert(data.id);
     Swal.fire({
         title: "Esta seguro de eliminar esta noticia (incluido comentarios)?",
         showDenyButton: true,
@@ -148,20 +148,19 @@ $("#newsListPresidentAdminTable tbody").on("click", "#deleteNews", function () {
     }).then((result) => {
 
         if (result.isConfirmed) {
-            //$.ajax({
-            //    url: "/NewsAPIController/Delete",
-            //    data: { Id: data.id },
-            //    type: "GET",
-            //    contentType: "application/json;charset=utf-8",
-            //    dataType: "json",
-            //    success: function (result) {
-            //        tableNewsPresidentAdmin.row(rowToRemove).remove().draw(); //Remove of list
-            //    },
-            //    error: function (errorMessage) {
-            //        alert("Failed to delete Applicant");
-            //    }
-            //});
-
+            $.ajax({
+                url: "/NewsAPI/Delete",
+                data: { id: data.id },
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    tableNewsPresidentAdmin.row(rowToRemove).remove().draw(); //Remove of list
+                },
+                error: function (errorMessage) {
+                    alert("Failed to delete Applicant");
+                }
+            });
         }
     });
 });
