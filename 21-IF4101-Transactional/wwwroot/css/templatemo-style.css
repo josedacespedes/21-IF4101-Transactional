@@ -316,15 +316,20 @@ input:checked + .slider:before {
     color: white;
 }
 
-#registerProfileProfessor textarea, #registerProfileStudent textarea, #newsEditDescription {
+#registerProfileProfessor textarea, #registerProfileStudent textarea {
     resize: none;
     height: 4em;
 }
 
+#newsEditDescription {
+    resize: none;
+    height: 8em;
+}
 
-    #registerProfileProfessor textarea ::-webkit-input-placeholder, #registerProfileStudent textarea ::-webkit-input-placeholder {
-        text-align: center;
-    }
+
+#registerProfileProfessor textarea ::-webkit-input-placeholder, #registerProfileStudent textarea ::-webkit-input-placeholder {
+    text-align: center;
+}
 
 .colorLabelProfile {
     color: gray;
