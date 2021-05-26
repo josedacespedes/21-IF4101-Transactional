@@ -143,7 +143,6 @@ $("#newsListPresidentAdminTable tbody").on("click", "#deleteNews", function () {
 
     var data = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
     var rowToRemove = $(this).parents('tr');
-    alert(data.id);
     Swal.fire({
         title: "Esta seguro de eliminar esta noticia (incluido comentarios)?",
         showDenyButton: true,
