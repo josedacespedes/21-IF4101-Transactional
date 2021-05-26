@@ -33,8 +33,8 @@ namespace _21_IF4101_Transactional.Controllers
                     {
                         var readTask = result.Content.ReadAsAsync<IList<News>>();
                         readTask.Wait();
-                        //lee las noticias provenientes de la API
-                        news = readTask.Result;
+                        
+                        news = readTask.Result;//lee las noticias provenientes de la API
                     }
                     else
                     {
