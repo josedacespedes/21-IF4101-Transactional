@@ -392,6 +392,7 @@ $("#newsListPresidentAdminTable tbody").on("click", "#btnModalDetailsNews", func
     $('.modal-contentNew').html(html);
 
 });
+
 /*--------------------------------------------- ADD NEWS COMMENTS-----------------------------------------------------------*/
 
 function addNewComment(id) {
@@ -454,12 +455,11 @@ $("#newsProfessorStudentTable tbody").on("click", "#btnModalCommentsNews", funct
 });
 $("#newsListPresidentAdminTable tbody").on("click", "#btnModalCommentsNews", function () {
     var dataInfoComments = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
-
-    loadNewsListComments(dataInfoComments.id);
+    loadPANewsListComments(dataInfoComments.id);
 });
 
-function loadNewsListComments(id) {
-    tableComments = $("#newsCommentsTable").DataTable({
+function loadPANewsListComments(id) {
+    tableComments = $("#newsPACommentsTable").DataTable({
         "destroy": true,
         "autoWidth": false,
         "columnDefs": [
@@ -480,12 +480,28 @@ function loadNewsListComments(id) {
     });
 }
 
+function loadNewsListComments(id) {
+    tableComments = $("#newsCommentsTable").DataTable({
+        "destroy": true,
+        "autoWidth": false,
+        "columnDefs": [
+            { "width": "20%", "targets": [0, 2] }
+        ],
+        "ajax": {
+            "url": "/NewsCommentController/" + id,
+            "tpye": 'GET',
+            "datatype": "json",
+        },
+        lengthMenu: [7, 20, 50, 100],
+        "columns": [
+            { "data": "author" },
+            { "data": "comment" },
+            { "data": "date" }
+        ]
+    });
+}
 /*--------------------------------------------- DELETE NEWS COMMENTS-----------------------------------------------------------*/
-$("#bodyNewsCommentsTable tbody").on("click", "#buttonNewCommentDelete", function () {
-    modalConsultComments.style.display = "block";
-
-    var dataInfoComments = tableNewsNoUser.row($(this).parents("tr")).data();
-
-    loadNewsListComments(dataInfoComments.id);
-
+$("#bodyNewsPACommentsTable tbody").on("click", "#buttonNewCommentDelete", function () {
+    //var dataInfoComments = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
+    //loadNewsListComments(dataInfoComments.id);
 });
