@@ -27,7 +27,6 @@ registerNewsForm.addEventListener("submit", function (e) {
             var news = {
                 title: $('#newsTittle').val(),
                 description: $('#newsDescription').val(),
-                //result.name
                 author: 'Administrador',
                 publicationDate: result.date,
                 modificationDate: result.date,

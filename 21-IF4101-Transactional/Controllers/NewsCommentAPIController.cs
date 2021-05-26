@@ -87,7 +87,7 @@ namespace _21_IF4101_Transactional.Controllers
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri("https://localhost:44397/api/NewsComments/");
-                    var postTask = client.PostAsJsonAsync("newsComment", newsComment);
+                    var postTask = client.PostAsJsonAsync("PostNewsComment", newsComment);
                     postTask.Wait();
 
                     var result = postTask.Result;
