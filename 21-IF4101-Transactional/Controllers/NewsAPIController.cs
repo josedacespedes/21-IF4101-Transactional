@@ -33,7 +33,7 @@ namespace _21_IF4101_Transactional.Controllers
                     {
                         var readTask = result.Content.ReadAsAsync<IList<News>>();
                         readTask.Wait();
-                        
+
                         news = readTask.Result;//lee las noticias provenientes de la API
                     }
                     else
@@ -49,7 +49,7 @@ namespace _21_IF4101_Transactional.Controllers
 
             }
 
-            return Json(new { data =  news });
+            return Json(new { data = news });
         }
 
         // GET api/NewsAPIController/5

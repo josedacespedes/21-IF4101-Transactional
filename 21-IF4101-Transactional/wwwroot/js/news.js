@@ -8,11 +8,13 @@ var tableNewsNoUser;
 var tableNewsProfessorStudent;
 var tableNewsPresidentAdmin;
 var idNewsEdit;
+var tableNewsComments;
 
 $(document).ready(function () {
     loadNewsNoUserList();
     loadNewsProfessorStudentList();
     loadNewsPresidentAdminList();
+    loadPANewsListComments(0);
 });
 
 /*--------------------------------------------- ADD NEWS-----------------------------------------------------------*/
@@ -28,9 +30,9 @@ registerNewsForm.addEventListener("submit", function (e) {
                 title: $('#newsTittle').val(),
                 description: $('#newsDescription').val(),
                 author: result.name,
-                publication_date: result.date,
-                modification_date: result.date,
-                file_new: $('#FileNews').val(),
+                publicationDate: result.date,
+                modificationDate: result.date,
+                fileNews: $('#FileNews').val(),
                 imagen: $('#imgFileNews').val()
             };
             if (news.title == "" && news.description == "" && news.author == "") {
@@ -45,7 +47,7 @@ registerNewsForm.addEventListener("submit", function (e) {
                 return false;
             } else {
                 $.ajax({
-                    url: "/NewsAPI/",
+                    url: "/NewsAPI/PostNews",
                     data: JSON.stringify(news),
                     type: "POST",
                     contentType: "application/json;charset=utf-8",
@@ -127,7 +129,7 @@ function loadNewsPresidentAdminList() {
             { "data": "title" },
             { "data": "publicationDate" },
             { "data": "author" },
-            { defaultContent: "<button id='btnModalDetailsNews' name='btnModalDetailsNews' type='button' data-toggle='modal' class='btn btn-primary' data-target='#newsModal' title='Detalles'><i class='fa fa-file-text'></i></button> <button id='btnModalCommentsNews' name='btnModalCommentsNews' type='button' data-toggle='modal' data-target='#newsModalComments' class='btn btn-info' title='Comentarios'><i class='fa fa-comments'></i></button>" },
+            { defaultContent: "<button id='btnModalDetailsNews' name='btnModalDetailsNews' type='button' data-toggle='modal' class='btn btn-primary' data-target='#newsModal' title='Detalles'><i class='fa fa-file-text'></i></button> <button id='btnModalPACommentsNews' name='btnModalPACommentsNews' type='button' data-toggle='modal' data-target='#newsPAModalComments' class='btn btn-info' title='Comentarios'><i class='fa fa-comments'></i></button>" },
             { defaultContent: "<button type = 'button' id = 'buttonModalNewsEdit' name = 'buttonModalNewsEdit' class= 'btn btn-warning' data - toggle='modal' data - target='#modalNewsEdit' title = 'Modificar' > <i class='fa fa-pencil'></i></button > <button id='deleteNews' name='deleteNews' type='button' class='btn btn-danger' title='Delete'><i class='fa fa-trash'></i></button>" }
         ]
     });
@@ -387,48 +389,53 @@ $("#newsListPresidentAdminTable tbody").on("click", "#btnModalDetailsNews", func
 /*--------------------------------------------- ADD NEWS COMMENTS-----------------------------------------------------------*/
 
 function addNewComment(id) {
-    //var dateTime = new Date();
-    //var comment = $('#dNewComment').val();
 
-    //if (comment != "") {
-    //    $.ajax({
-    //        url: "/Login/GetName",
-    //        type: "GET",
-    //        contentType: "application/json;charset=utf-8",
-    //        dataType: "json",
-    //        success: function (result) {
+    var comment = $('#dNewComment').val();
+    var authorComment;
 
-    //            var newComment = {
-    //                author: result.name,
-    //                date: dateTime,
-    //                comment: $('#dNewComment').val(),
-    //                idNews: parseInt(id)
-    //            };
+    if (comment != "") {
+        $.ajax({
+            url: "/Login/GetName",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                if (result.name == " ") {
+                    authorComment = "Administrador";
+                } else {
+                    authorComment = result.name;
+                }
+                var newComment = {
+                    author: authorComment,
+                    date: result.date,
+                    comment: $('#dNewComment').val(),
+                    idNews: parseInt(id)
+                };
 
-    //            $.ajax({
-    //                url: "/api/<NewsCommentController>",
-    //                data: JSON.stringify(newComment),
-    //                type: "POST",
-    //                contentType: "application/json;charset=utf-8",
-    //                dataType: "json",
-    //                success: function (result) {
-    //                    $('#dNewComment').val("");
-    //                    message.innerHTML = "<label class='text-success'>Comentario agregado exitosamente</label>";
-    //                },
-    //                error: function (errorMessage) {
-    //                    message.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
-    //                }
-    //            });
-    //        },
-    //        error: function (errorMessage) {
-    //            alert("Error");
-    //            alert(errorMessage.responseText);
-    //        }
-    //    });
+                $.ajax({
+                    url: "/NewsCommentsAPI/Post",
+                    data: JSON.stringify(newComment),
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        $('#dNewComment').val("");
+                        message.innerHTML = "<label class='text-success'>Comentario agregado exitosamente</label>";
+                    },
+                    error: function (errorMessage) {
+                        message.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
+                    }
+                });
+            },
+            error: function (errorMessage) {
+                alert("Error");
+                alert(errorMessage.responseText);
+            }
+        });
 
-    //} else {
-    //    message.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
-    //}
+    } else {
+        message.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
+    }
 }
 
 /*--------------------------------------------- LIST NEWS COMMENTS-----------------------------------------------------------*/
@@ -444,20 +451,24 @@ $("#newsProfessorStudentTable tbody").on("click", "#btnModalCommentsNews", funct
     loadNewsListComments(dataInfoComments.id);
 
 });
-$("#newsListPresidentAdminTable tbody").on("click", "#btnModalCommentsNews", function () {
+
+var modalCommentsPA = document.getElementById("newsPAModalComments");
+
+$("#newsListPresidentAdminTable tbody").on("click", "#btnModalPACommentsNews", function () {
+    modalCommentsPA.style.display = "block";
     var dataInfoComments = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
     loadPANewsListComments(dataInfoComments.id);
 });
 
 function loadPANewsListComments(id) {
-    tableComments = $("#newsPACommentsTable").DataTable({
+    tableNewsComments = $("#newsPACommentsTable").DataTable({
         "destroy": true,
         "autoWidth": false,
         "columnDefs": [
             { "width": "20%", "targets": [0, 2] }
         ],
         "ajax": {
-            "url": "/NewsCommentController/" + id,
+            "url": "/NewsCommentAPI/Get/" + id,
             "tpye": 'GET',
             "datatype": "json",
         },
@@ -479,7 +490,7 @@ function loadNewsListComments(id) {
             { "width": "20%", "targets": [0, 2] }
         ],
         "ajax": {
-            "url": "/NewsCommentController/" + id,
+            "url": "/NewsCommentControllerAPI/Get/" + id,
             "tpye": 'GET',
             "datatype": "json",
         },
