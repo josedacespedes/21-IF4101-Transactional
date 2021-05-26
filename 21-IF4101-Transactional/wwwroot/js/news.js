@@ -77,68 +77,59 @@ registerNewsForm.addEventListener("submit", function (e) {
 /*--------------------------------------------- LIST NEWS-----------------------------------------------------------*/
 function loadNewsNoUserList() {
     tableNewsNoUser = $("#newsNoUserTable").DataTable({
-        //"destroy": true,
-        //"autoWidth": false,
-        //"columnDefs": [
-        //    { "width": "20%", "targets": [0, 4] }
-        //],
-        //"ajax": {
-        //    "url": "/NewsAPI/Get",
-        //    "tpye": 'GET',
-        //    "datatype": "json"
-        //},
-        //lengthMenu: [7, 20, 50, 100],
-        //"columns": [
-        //    { "data": "title" },
-        //    { "data": "publication_Date" },
-        //    { "data": "author" },
-        //    { defaultContent: "<button id='btnModalDetailsNews' name='btnModalDetailsNews' type='button' data-toggle='modal' class='btn btn-primary' data-target='#newsModal' title='Detalles'><i class='fa fa-file-text'></i></button>  <button id='btnModalCommentsNews' name='btnModalCommentsNews' type='button' data-toggle='modal' data-target='#newsModalComments' class='btn btn-info' title='Comentarios'><i class='fa fa-comments'></i></button>" }
-        //]
+        "destroy": true,
+        "autoWidth": false,
+        "ajax": {
+            "url": "/NewsAPI/Get",
+            "tpye": 'GET',
+            "datatype": "json"
+        },
+        lengthMenu: [7, 20, 50, 100],
+        "columns": [
+            { "data": "title" },
+            { "data": "publicationDate" },
+            { "data": "author" },
+            { defaultContent: "<button id='btnModalDetailsNews' name='btnModalDetailsNews' type='button' data-toggle='modal' class='btn btn-primary' data-target='#newsModal' title='Detalles'><i class='fa fa-file-text'></i></button>  <button id='btnModalCommentsNews' name='btnModalCommentsNews' type='button' data-toggle='modal' data-target='#newsModalComments' class='btn btn-info' title='Comentarios'><i class='fa fa-comments'></i></button>" }
+        ]
     });
 }
 
 function loadNewsProfessorStudentList() {
     tableNewsProfessorStudent = $("#newsProfessorStudentTable").DataTable({
-        //"destroy": true,
-        //"autoWidth": false,
-        //"columnDefs": [
-        //    { "width": "20%", "targets": [0, 4] }
-        //],
-        //"ajax": {
-        //    "url": "/NewsAPI/Get",
-        //    "tpye": 'GET',
-        //    "datatype": "json"
-        //},
-        //lengthMenu: [7, 20, 50, 100],
-        //"columns": [
-        //    { "data": "title" },
-        //    { "data": "publication_Date" },
-        //    { "data": "author" },
-        //    { defaultContent: "<button id='btnModalDetailsNews' name='btnModalDetailsNews' type='button' data-toggle='modal' class='btn btn-primary' data-target='#newsModal' title='Detalles'><i class='fa fa-file-text'></i></button>  <button id='btnModalCommentsNews' name='btnModalCommentsNews' type='button' data-toggle='modal' data-target='#newsModalComments' class='btn btn-info' title='Comentarios'><i class='fa fa-comments'></i></button>" }
-        //]
+        "destroy": true,
+        "autoWidth": false,
+        "ajax": {
+            "url": "/NewsAPI/Get",
+            "tpye": 'GET',
+            "datatype": "json"
+        },
+        lengthMenu: [7, 20, 50, 100],
+        "columns": [
+            { "data": "title" },
+            { "data": "publicationDate" },
+            { "data": "author" },
+            { defaultContent: "<button id='btnModalDetailsNews' name='btnModalDetailsNews' type='button' data-toggle='modal' class='btn btn-primary' data-target='#newsModal' title='Detalles'><i class='fa fa-file-text'></i></button>  <button id='btnModalCommentsNews' name='btnModalCommentsNews' type='button' data-toggle='modal' data-target='#newsModalComments' class='btn btn-info' title='Comentarios'><i class='fa fa-comments'></i></button>" }
+        ]
     });
 }
 
 function loadNewsPresidentAdminList() {
     tableNewsPresidentAdmin = $("#newsListPresidentAdminTable").DataTable({
-        //"destroy": true,
-        //"autoWidth": false,
-        //"columnDefs": [
-        //    { "width": "20%", "targets": [0, 4] }
-        //],
-        //"ajax": {
-        //    "url": "/NewsAPI/Get",
-        //    "tpye": 'GET',
-        //    "datatype": "json"
-        //},
-        //lengthMenu: [7, 20, 50, 100],
-        //"columns": [
-        //    { "data": "title" },
-        //    { "data": "publication_Date" },
-        //    { "data": "author" },
-        //    { defaultContent: "<button id='btnModalDetailsNews' name='btnModalDetailsNews' type='button' data-toggle='modal' class='btn btn-primary' data-target='#newsModal' title='Detalles'><i class='fa fa-file-text'></i></button> <button id='btnModalCommentsNews' name='btnModalCommentsNews' type='button' data-toggle='modal' data-target='#newsModalComments' class='btn btn-info' title='Comentarios'><i class='fa fa-comments'></i></button>" },
-        //    { defaultContent: "<button type = 'button' id = 'buttonModalNewsEdit' name = 'buttonModalNewsEdit' class= 'btn btn-warning' data - toggle='modal' data - target='#modalNewsEdit' title = 'Modificar' > <i class='fa fa-pencil'></i></button > <button id='deleteNews' name='deleteNews' type='button' class='btn btn-danger' title='Delete'><i class='fa fa-trash'></i></button>" }
-        //]
+        "destroy": true,
+        "autoWidth": false,
+        "ajax": {
+            "url": "/NewsAPI/Get",
+            "tpye": 'GET',
+            "datatype": "json"
+        },
+        lengthMenu: [7, 20, 50, 100],
+        "columns": [
+            { "data": "title" },
+            { "data": "publicationDate" },
+            { "data": "author" },
+            { defaultContent: "<button id='btnModalDetailsNews' name='btnModalDetailsNews' type='button' data-toggle='modal' class='btn btn-primary' data-target='#newsModal' title='Detalles'><i class='fa fa-file-text'></i></button> <button id='btnModalCommentsNews' name='btnModalCommentsNews' type='button' data-toggle='modal' data-target='#newsModalComments' class='btn btn-info' title='Comentarios'><i class='fa fa-comments'></i></button>" },
+            { defaultContent: "<button type = 'button' id = 'buttonModalNewsEdit' name = 'buttonModalNewsEdit' class= 'btn btn-warning' data - toggle='modal' data - target='#modalNewsEdit' title = 'Modificar' > <i class='fa fa-pencil'></i></button > <button id='deleteNews' name='deleteNews' type='button' class='btn btn-danger' title='Delete'><i class='fa fa-trash'></i></button>" }
+        ]
     });
 }
 
