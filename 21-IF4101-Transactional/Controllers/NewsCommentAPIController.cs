@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -87,7 +86,7 @@ namespace _21_IF4101_Transactional.Controllers
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri("https://localhost:44397/api/NewsComments/");
-                    var postTask = client.PostAsJsonAsync("newsComment", newsComment);
+                    var postTask = client.PostAsJsonAsync("PostNewsComment", newsComment);
                     postTask.Wait();
 
                     var result = postTask.Result;
