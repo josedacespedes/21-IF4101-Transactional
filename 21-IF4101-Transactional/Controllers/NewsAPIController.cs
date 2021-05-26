@@ -10,12 +10,12 @@ namespace _21_IF4101_Transactional.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class NewsAPIController : ControllerBase
+    public class NewsAPIController : Controller
     {
         // GET: api/News/GetNews
         [Route("[action]")]
         [HttpGet]
-        public IEnumerable<News> Get()
+        public IActionResult Get()
         {
             IEnumerable<News> news = null;
 
@@ -33,8 +33,8 @@ namespace _21_IF4101_Transactional.Controllers
                     {
                         var readTask = result.Content.ReadAsAsync<IList<News>>();
                         readTask.Wait();
-                        //lee las noticias provenientes de la API
-                        news = readTask.Result;
+                        
+                        news = readTask.Result;//lee las noticias provenientes de la API
                     }
                     else
                     {
@@ -49,7 +49,7 @@ namespace _21_IF4101_Transactional.Controllers
 
             }
 
-            return news;
+            return Json(new { data =  news });
         }
 
         // GET api/NewsAPIController/5

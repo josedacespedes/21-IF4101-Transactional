@@ -143,8 +143,6 @@ function GroupAppointment() {
     });
 }
 
-
-
 function DateAppointments() {
     CleanDate();
     var ProfessorId = $('#professorAppointment').val();
@@ -164,9 +162,15 @@ function DateAppointments() {
             var html = '';
             //console.log(result);
             $.each(result, function (key, item) {
-                console.log(item);
+                //console.log(item);
+                //console.log(key);
                 //html += '<option>' + item + '</option>';
-                html += '<option>' + item + '</option>';
+                var array = item.split(",");
+                var i = 0;
+                while (i < array.length-1) {
+                    html += '<option>' + array[i] + '</option>';
+                    i++;
+                }
             });
             $('#ProfDateAppointment').append(html);
         },
@@ -184,7 +188,7 @@ registerAppintmentForm.addEventListener("submit", function (e) {
     var checkStatus = $("input[name='consultTypeAppoCheck']").is(':checked') ? 1 : 0; //Validate if th input is checked or not
 
     var appointment = {
-        professor_fullname: $('#professorAppointment option:selected').val(),
+        professor_fullname: $('#professorAppointment option:selected').text(),
         appointment_date: $('#ProfDateAppointment option:selected').text(),
         type: parseInt(checkStatus)
     };
