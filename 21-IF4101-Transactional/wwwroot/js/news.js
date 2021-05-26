@@ -4,6 +4,10 @@
 var registerNewsForm = document.getElementById("registerNewsForm");
 var formEditNews = document.getElementById("formEditNews");
 var messageNews = document.getElementById("alertMessageAddNews");
+var saveNewsPAComment = document.getElementById("formPAComment");
+var modalPADetails = document.getElementById("newsModal");
+var modalPAComments = document.getElementById("newsPAModalComments");
+
 var tableNewsNoUser;
 var tableNewsProfessorStudent;
 var tableNewsPresidentAdmin;
@@ -14,7 +18,6 @@ $(document).ready(function () {
     loadNewsNoUserList();
     loadNewsProfessorStudentList();
     loadNewsPresidentAdminList();
-    loadPANewsListComments(0);
 });
 
 /*--------------------------------------------- ADD NEWS-----------------------------------------------------------*/
@@ -32,8 +35,8 @@ registerNewsForm.addEventListener("submit", function (e) {
                 author: 'Administrador',
                 publicationDate: result.date,
                 modificationDate: result.date,
-                fileNews: $('#FileNews').val(),
-                imagen: $('#imgFileNews').val()
+                fileNews: 'files/' + document.getElementById("FileNews").files[0].name,
+                imagen: 'images/' + document.getElementById("imgFileNews").files[0].name
             };
             if (news.title == "" && news.description == "" && news.author == "") {
                 $('#newsTittle').addClass("formInput-error");
@@ -47,7 +50,7 @@ registerNewsForm.addEventListener("submit", function (e) {
                 return false;
             } else {
                 $.ajax({
-                    url: "/NewsAPI/PostNews",
+                    url: "/NewsAPI/",
                     data: JSON.stringify(news),
                     type: "POST",
                     contentType: "application/json;charset=utf-8",
@@ -230,7 +233,112 @@ formEditNews.addEventListener("submit", function (e) {
 
 });
 
-/*--------------------------------------------- NEWS DETAILS-----------------------------------------------------------*/
+//--------------------------------------------- NEWS DETAILS-----------------------------------------------------------
+function addPAComment(id) {
+    var comment = $('#dNewComment').val();
+    var authorComment;
+
+    $.ajax({
+        url: "/Login/GetName",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            console.log(result);
+            if (result.name == " ") {
+                authorComment = "Administrador";
+            } else {
+                authorComment = result.name;
+            }
+            var newsComment = {
+                author: authorComment,
+                date: result.date,
+                comment: $('#dNewComment').val(),
+                idNews: parseInt(id)
+            };
+            if (comment != "") {
+                $.ajax({
+                    url: "/NewsCommentAPI/",
+                    data: JSON.stringify(newsComment),
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+
+                    success: function (result) {
+                        console.log(result);
+                        $('#dNewComment').val("");
+                        message.innerHTML = "<label class='text-success'>Comentario agregado exitosamente</label>";
+                    },
+                    error: function (errorMessage) {
+                        message.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
+                    }
+                });
+            } else {
+                message.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
+            }
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+$("#newsListPresidentAdminTable tbody").on("click", "#btnModalDetailsNews", function () {
+    var dataNewsPA = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
+    modalPADetails.style.display = "block";
+
+    message.innerHTML = "";
+    var html = '';
+
+    html += '<div class="modal-header">';
+    html += '<button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" aria-label="Close"><b>X</b></button>';
+    html += '<h2 class="modal-title">Detalles de Noticia</h2>';
+    html += '</div>';
+    html += '<div class="modal-body">';
+    html += '<form autocomplete="off">';
+    html += `<div class="table-responsive">
+            <table class="table text-center">
+            <tr>
+                <th scope="col">Título</th>
+                <th scope="col">ID</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Fecha de publicación</th>
+                <th scope="col">Fecha de modificación</th>
+            </tr>
+            <tbody>
+                <tr>
+                    <th scope="row">` + dataNewsPA.title + `</th>
+                    <td>` + dataNewsPA.id + `</td>
+                    <td>`+ dataNewsPA.author + `</td>
+                    <td>`+ dataNewsPA.publicationDate + `</td>
+                    <td>`+ dataNewsPA.modificationDate + `</td>
+                </tr>
+            </tbody>
+            </table >
+            </div>`;
+    html += '<label>Descripción:</label>';
+    html += '<div>';
+    html += '<textarea rows="4" cols="50" type="text" name="dNewtDescription" id="dNewtDescription" class="form-control" placeholder="Descripción" disabled>' + dataNewsPA.description + '</textarea>';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="modal-footer mt-4">';
+    html += '<div class="col-12">';
+    html += '<textarea rows="4" cols="50" type="text" name="dNewComment" id="dNewComment" required="" class="form-control" placeholder="Comentario"></textarea>';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="modal-footer mt-4">';
+    html += '<div class="col-12">';
+    html += '<button id="downloadNewFiles" type="button" class="btn btn-info" onclick="">Descargar Archivos</button>';
+    html += '<button type="button" class="btn btn-success" onclick="return addPAComment(' + dataNewsPA.id + ')">Comentar</button>';
+    html += '</div>';
+    html += '</div>';
+    html += '</form>';
+    html += '</div>';
+
+    $('.modal-contentNew').html(html);
+
+});
 
 $("#newsNoUserTable tbody").on("click", "#btnModalDetailsNews", function () {
     var dataNewsPA = tableNewsNoUser.row($(this).parents("tr")).data();
@@ -251,13 +359,16 @@ $("#newsNoUserTable tbody").on("click", "#btnModalDetailsNews", function () {
                 <th scope="col">ID</th>
                 <th scope="col">Autor</th>
                 <th scope="col">Fecha de publicación</th>
+                <th scope="col">Fecha de modificación</th>
             </tr>
             <tbody>
                 <tr>
                     <th scope="row">` + dataNewsPA.title + `</th>
                     <td>` + dataNewsPA.id + `</td>
                     <td>`+ dataNewsPA.author + `</td>
-                    <td>`+ dataNewsPA.publication_Date + `</td>
+                    <td>`+ dataNewsPA.publicationDate + `</td>
+                    <td>`+ dataNewsPA.modificationDate + `</td>
+
                 </tr>
             </tbody>
             </table >
@@ -298,13 +409,16 @@ $("#newsProfessorStudentTable tbody").on("click", "#btnModalDetailsNews", functi
                 <th scope="col">ID</th>
                 <th scope="col">Autor</th>
                 <th scope="col">Fecha de publicación</th>
+                <th scope="col">Fecha de modificación</th>
             </tr>
             <tbody>
                 <tr>
                     <th scope="row">` + dataNewsPA.title + `</th>
                     <td>` + dataNewsPA.id + `</td>
                     <td>`+ dataNewsPA.author + `</td>
-                    <td>`+ dataNewsPA.publication_Date + `</td>
+                    <td>`+ dataNewsPA.publicationDate + `</td>
+                    <td>`+ dataNewsPA.modificationDate + `</td>
+
                 </tr>
             </tbody>
             </table >
@@ -322,7 +436,7 @@ $("#newsProfessorStudentTable tbody").on("click", "#btnModalDetailsNews", functi
     html += '<div class="modal-footer mt-4">';
     html += '<div class="col-12">';
     html += '<button id="downloadNewFiles" type="button" class="btn btn-info" onclick="">Descargar Archivos</button>';
-    html += '<button type="button" class="btn btn-success" onclick="return addNewComment(' + dataNewsPA.id + ')">Comentar</button>';
+    html += '<button type="button" class="btn btn-success" onclick="return addPAComment(' + dataNewsPA.id + ')">Comentar</button>';
     html += '</div>';
     html += '</div>';
     html += '</form>';
@@ -331,133 +445,23 @@ $("#newsProfessorStudentTable tbody").on("click", "#btnModalDetailsNews", functi
     $('.modal-contentNew').html(html);
 
 });
-
-$("#newsListPresidentAdminTable tbody").on("click", "#btnModalDetailsNews", function () {
-    var dataNewsPA = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
-
-    message.innerHTML = "";
-    var html = '';
-
-    html += '<div class="modal-header">';
-    html += '<button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" aria-label="Close"><b>X</b></button>';
-    html += '<h2 class="modal-title">Detalles de Noticia</h2>';
-    html += '</div>';
-    html += '<div class="modal-body">';
-    html += '<form autocomplete="off">';
-    html += `<div class="table-responsive">
-            <table class="table text-center">
-            <tr>
-                <th scope="col">Título</th>
-                <th scope="col">ID</th>
-                <th scope="col">Autor</th>
-                <th scope="col">Fecha de publicación</th>
-            </tr>
-            <tbody>
-                <tr>
-                    <th scope="row">` + dataNewsPA.title + `</th>
-                    <td>` + dataNewsPA.id + `</td>
-                    <td>`+ dataNewsPA.author + `</td>
-                    <td>`+ dataNewsPA.publication_Date + `</td>
-                </tr>
-            </tbody>
-            </table >
-            </div>`;
-    html += '<label>Descripción:</label>';
-    html += '<div>';
-    html += '<textarea rows="4" cols="50" type="text" name="dNewtDescription" id="dNewtDescription" class="form-control" placeholder="Descripción" disabled>' + dataNewsPA.description + '</textarea>';
-    html += '</div>';
-    html += '</div>';
-    html += '<div class="modal-footer mt-4">';
-    html += '<div class="col-12">';
-    html += '<textarea rows="4" cols="50" type="text" name="dNewComment" id="dNewComment" required="" class="form-control" placeholder="Comentario"></textarea>';
-    html += '</div>';
-    html += '</div>';
-    html += '<div class="modal-footer mt-4">';
-    html += '<div class="col-12">';
-    html += '<button id="downloadNewFiles" type="button" class="btn btn-info" onclick="">Descargar Archivos</button>';
-    html += '<button type="button" class="btn btn-success" onclick="return addNewComment(' + dataNewsPA.id + ')">Comentar</button>';
-    html += '</div>';
-    html += '</div>';
-    html += '</form>';
-    html += '</div>';
-
-    $('.modal-contentNew').html(html);
-
-});
-
-/*--------------------------------------------- ADD NEWS COMMENTS-----------------------------------------------------------*/
-
-function addNewComment(id) {
-
-    var comment = $('#dNewComment').val();
-    var authorComment;
-
-    if (comment != "") {
-        $.ajax({
-            url: "/Login/GetName",
-            type: "GET",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                if (result.name == " ") {
-                    authorComment = "Administrador";
-                } else {
-                    authorComment = result.name;
-                }
-                var newComment = {
-                    author: authorComment,
-                    date: result.date,
-                    comment: $('#dNewComment').val(),
-                    idNews: parseInt(id)
-                };
-
-                $.ajax({
-                    url: "/NewsCommentsAPI/Post",
-                    data: JSON.stringify(newComment),
-                    type: "POST",
-                    contentType: "application/json;charset=utf-8",
-                    dataType: "json",
-                    success: function (result) {
-                        $('#dNewComment').val("");
-                        message.innerHTML = "<label class='text-success'>Comentario agregado exitosamente</label>";
-                    },
-                    error: function (errorMessage) {
-                        message.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
-                    }
-                });
-            },
-            error: function (errorMessage) {
-                alert("Error");
-                alert(errorMessage.responseText);
-            }
-        });
-
-    } else {
-        message.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
-    }
-}
 
 /*--------------------------------------------- LIST NEWS COMMENTS-----------------------------------------------------------*/
 $("#newsNoUserTable tbody").on("click", "#btnModalCommentsNews", function () {
     var dataInfoComments = tableNewsNoUser.row($(this).parents("tr")).data();
-
     loadNewsListComments(dataInfoComments.id);
 
 });
 $("#newsProfessorStudentTable tbody").on("click", "#btnModalCommentsNews", function () {
     var dataInfoComments = tableNewsProfessorStudent.row($(this).parents("tr")).data();
-
     loadNewsListComments(dataInfoComments.id);
 
 });
-
-var modalCommentsPA = document.getElementById("newsPAModalComments");
-
 $("#newsListPresidentAdminTable tbody").on("click", "#btnModalPACommentsNews", function () {
-    modalCommentsPA.style.display = "block";
     var dataInfoComments = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
     loadPANewsListComments(dataInfoComments.id);
 });
+
 
 function loadPANewsListComments(id) {
     tableNewsComments = $("#newsPACommentsTable").DataTable({
@@ -467,7 +471,7 @@ function loadPANewsListComments(id) {
             { "width": "20%", "targets": [0, 2] }
         ],
         "ajax": {
-            "url": "/NewsCommentAPI/Get/" + id,
+            "url": "/NewsAPI/Get" + id,
             "tpye": 'GET',
             "datatype": "json",
         },
@@ -502,7 +506,7 @@ function loadNewsListComments(id) {
     });
 }
 /*--------------------------------------------- DELETE NEWS COMMENTS-----------------------------------------------------------*/
-$("#bodyNewsPACommentsTable tbody").on("click", "#buttonNewCommentDelete", function () {
-    //var dataInfoComments = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
-    //loadNewsListComments(dataInfoComments.id);
-});
+//$("#bodyNewsPACommentsTable tbody").on("click", "#buttonNewCommentDelete", function () {
+//    //var dataInfoComments = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
+//    //loadNewsListComments(dataInfoComments.id);
+//});
