@@ -117,10 +117,10 @@ namespace _21_IF4101_Transactional.Controllers
                 using (var client = new HttpClient())
                 {
 
-                    client.BaseAddress = new Uri("https://localhost:44397/api/student/" + id);
+                    client.BaseAddress = new Uri("https://localhost:44397/api/News/");
 
                     //HTTP POST
-                    var putTask = client.PutAsJsonAsync("news", news);
+                    var putTask = client.PutAsJsonAsync("PutNews", news);
                     putTask.Wait();
 
                     var result = putTask.Result;
