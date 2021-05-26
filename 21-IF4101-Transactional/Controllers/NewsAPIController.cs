@@ -33,7 +33,7 @@ namespace _21_IF4101_Transactional.Controllers
                     {
                         var readTask = result.Content.ReadAsAsync<IList<News>>();
                         readTask.Wait();
-                        
+
                         news = readTask.Result;//lee las noticias provenientes de la API
                     }
                     else
@@ -49,7 +49,7 @@ namespace _21_IF4101_Transactional.Controllers
 
             }
 
-            return Json(new { data =  news });
+            return Json(new { data = news });
         }
 
         // GET api/NewsAPIController/5
@@ -142,16 +142,16 @@ namespace _21_IF4101_Transactional.Controllers
         }
 
         // DELETE: api/News/1
-        [HttpDelete("{id}")]
+        [Route("[action]")]
         public JsonResult Delete(int id)
         {
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44397/api/");
+                client.BaseAddress = new Uri("https://localhost:44397/api/News/");
 
                 //HTTP DELETE
-                var deleteTask = client.DeleteAsync("News/" + id.ToString());
+                var deleteTask = client.DeleteAsync(id.ToString());
                 deleteTask.Wait();
 
                 var result = deleteTask.Result;
