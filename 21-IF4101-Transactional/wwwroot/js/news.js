@@ -27,10 +27,10 @@ registerNewsForm.addEventListener("submit", function (e) {
             var news = {
                 title: $('#newsTittle').val(),
                 description: $('#newsDescription').val(),
-                author: result.name,
-                publication_date: result.date,
-                modification_date: result.date,
-                file_new: $('#FileNews').val(),
+                author: 'Administrador',
+                publicationDate: result.date,
+                modificationDate: result.date,
+                fileNews: $('#FileNews').val(),
                 imagen: $('#imgFileNews').val()
             };
             if (news.title == "" && news.description == "" && news.author == "") {
