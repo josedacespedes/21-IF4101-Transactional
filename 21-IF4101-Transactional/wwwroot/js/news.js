@@ -21,6 +21,12 @@ $(document).ready(function () {
     loadNewsPresidentAdminList();
 });
 
+
+function cleanFieldsAddNews() {
+    registerNewsForm.reset();
+}
+
+
 /*--------------------------------------------- ADD NEWS-----------------------------------------------------------*/
 registerNewsForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -57,12 +63,11 @@ registerNewsForm.addEventListener("submit", function (e) {
                     contentType: "application/json;charset=utf-8",
                     dataType: "json",
                     success: function (result) {
-
+                        SaveFileToInsert();
+                        SaveImageToInsert();
                         messageNews.innerHTML = "<label class='text-success'>Noticia agregada exitosamente</label>";
-                        $('#newsTittle').val();
-                        $('#newsDescription').val();
-                        $('#FileNews').val();
-                        $('#imgFileNews').val();
+                        $('#newsListPresidentAdminTable').DataTable().ajax.reload();
+                        cleanFieldsAddNews();
 
                     },
                     error: function (errorMessage) {
@@ -609,6 +614,50 @@ function SaveFile() {
 function SaveImage() {
 
     var imgNewNews = document.getElementById("imgFileNewsEdit").files[0];
+    var formData = new FormData();
+    formData.append("image", imgNewNews);
+
+    $.ajax({
+        url: "/Student/SaveImage",
+        data: formData,
+        type: "POST",
+        contentType: false,
+        processData: false,
+
+        success: function (result) {
+        },
+
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+
+function SaveFileToInsert() {
+    var fileNewNews = document.getElementById("FileNews").files[0];
+    var formData = new FormData();
+    formData.append("file", fileNewNews);
+
+    $.ajax({
+        url: "/Student/SaveFile",
+        data: formData,
+        type: "POST",
+        contentType: false,
+        processData: false,
+        success: function (result) {
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function SaveImageToInsert() {
+
+    var imgNewNews = document.getElementById("imgFileNews").files[0];
     var formData = new FormData();
     formData.append("image", imgNewNews);
 

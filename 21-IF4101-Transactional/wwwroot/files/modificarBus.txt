@@ -1,0 +1,38 @@
+ 
+ <!-- MODAL MODIFICAR -->
+    <div class="modal fade" id="modal_modificar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="table-title">
+                        <div class="col-sm-12">
+                            <h3>Modificar Bus</h3>
+                        </div>
+                    </div>
+                    <button type="button" onclick="limpiarValidaciones();" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close"><b>x</b></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container col-md-12">
+                        <form class="row needs-validation" autocomplete="off" id=formulario>
+                            <div id="component-bus" class="row col-md-12">
+                            </div>
+                            <div class="formulario__grupo col-md-6" id="grupo__marca">
+                                <label class="form-label">Marca</label>
+                                <input type="text" id="marca" class="formulario__input form-control" name="marca" minlength="3" maxlength="20" pattern="[A-Za-zñ ]+" title="Tamaño mínimo de 6 y máximo 20 caracteres, Sólo permite letras." required>
+                            </div>
+                            <div class="formulario__grupo col-md-6" id="grupo__modelo">
+                                <label class="form-label">Modelo</label>
+                                <input type="text" id="modelo" class="formulario__input form-control" name="modelo" minlength="3" maxlength="20" pattern="[A-Za-z0-9]+" title="Tamaño mínimo de 6 y máximo 20 caracteres, Sólo permite letras y números." required>
+                            </div>
+                            <div class="modal-footer mt-4">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-warning" name="modificar">Modificar</button>
+                                    <button type="button" onclick="limpiarValidaciones();" name="cancelar" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
