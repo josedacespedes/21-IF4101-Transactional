@@ -185,41 +185,6 @@ $("#newsListPresidentAdminTable tbody").on("click", "#buttonModalNewsEdit", func
 //ACTION UPDATE
 formEditNews.addEventListener("submit", function (e) {
     e.preventDefault();
-    var news;
-    if ($('#fileNewsEdit').get(0).files.length === 0 && $('#imgFileNewsEdit').get(0).files.length != 0) {
-        news = {
-            id: idNewsEdit,
-            title: $('#newsTitleEdit').val(),
-            description: $('#newsEditDescription').val(),
-            author: dataInfoNews.author,
-            publicationDate: dataInfoNews.publicationDate,
-            modificationDate: dataInfoNews.modificationDate,
-            fileNews: dataInfoNews.fileNews,
-            imagen: 'images/' + document.getElementById("imgFileNewsEdit").files[0].name
-        };
-    } else if ($('#imgFileNewsEdit').get(0).files.length === 0 && $('#fileNewsEdit').get(0).files.length != 0) {
-        news = {
-            id: idNewsEdit,
-            title: $('#newsTitleEdit').val(),
-            description: $('#newsEditDescription').val(),
-            author: dataInfoNews.author,
-            publicationDate: dataInfoNews.publicationDate,
-            modificationDate: dataInfoNews.modificationDate,
-            fileNews: 'files/' + document.getElementById("fileNewsEdit").files[0].name,
-            imagen: dataInfoNews.imagen,
-        };
-    } else if ($('#fileNewsEdit').get(0).files.length === 0 && $('#imgFileNewsEdit').get(0).files.length === 0) {
-        news = {
-            id: idNewsEdit,
-            title: $('#newsTitleEdit').val(),
-            description: $('#newsEditDescription').val(),
-            author: dataInfoNews.author,
-            publicationDate: dataInfoNews.publicationDate,
-            modificationDate: dataInfoNews.modificationDate,
-            fileNews: dataInfoNews.fileNews,
-            imagen: dataInfoNews.imagen
-        };
-    }
 
     Swal.fire({
         title: "Esta seguro que desea modificar esta noticia?",
@@ -230,6 +195,60 @@ formEditNews.addEventListener("submit", function (e) {
     }).then((result) => {
 
         if (result.isConfirmed) {
+            if ($('#fileNewsEdit').get(0).files.length != 0) {
+                SaveFile();
+            }
+            if ($('#imgFileNewsEdit').get(0).files.length != 0) {
+                SaveImage();
+            }
+
+            var news;
+            if ($('#fileNewsEdit').get(0).files.length === 0 && $('#imgFileNewsEdit').get(0).files.length != 0) {
+                news = {
+                    id: idNewsEdit,
+                    title: $('#newsTitleEdit').val(),
+                    description: $('#newsEditDescription').val(),
+                    author: dataInfoNews.author,
+                    publicationDate: dataInfoNews.publicationDate,
+                    modificationDate: dataInfoNews.modificationDate,
+                    fileNews: dataInfoNews.fileNews,
+                    imagen: 'images/' + document.getElementById("imgFileNewsEdit").files[0].name
+                };
+            } else if ($('#imgFileNewsEdit').get(0).files.length === 0 && $('#fileNewsEdit').get(0).files.length != 0) {
+                news = {
+                    id: idNewsEdit,
+                    title: $('#newsTitleEdit').val(),
+                    description: $('#newsEditDescription').val(),
+                    author: dataInfoNews.author,
+                    publicationDate: dataInfoNews.publicationDate,
+                    modificationDate: dataInfoNews.modificationDate,
+                    fileNews: 'files/' + document.getElementById("fileNewsEdit").files[0].name,
+                    imagen: dataInfoNews.imagen,
+                };
+            } else if ($('#fileNewsEdit').get(0).files.length === 0 && $('#imgFileNewsEdit').get(0).files.length === 0) {
+                news = {
+                    id: idNewsEdit,
+                    title: $('#newsTitleEdit').val(),
+                    description: $('#newsEditDescription').val(),
+                    author: dataInfoNews.author,
+                    publicationDate: dataInfoNews.publicationDate,
+                    modificationDate: dataInfoNews.modificationDate,
+                    fileNews: dataInfoNews.fileNews,
+                    imagen: dataInfoNews.imagen
+                };
+            } else {
+                news = {
+                    id: idNewsEdit,
+                    title: $('#newsTitleEdit').val(),
+                    description: $('#newsEditDescription').val(),
+                    author: dataInfoNews.author,
+                    publicationDate: dataInfoNews.publicationDate,
+                    modificationDate: dataInfoNews.modificationDate,
+                    fileNews: 'files/' + document.getElementById("fileNewsEdit").files[0].name,
+                    imagen: 'images/' + document.getElementById("imgFileNewsEdit").files[0].name
+                };
+            }
+
             $.ajax({
                 url: "/NewsAPI/" + news.id,
                 data: JSON.stringify(news),
@@ -540,3 +559,46 @@ function loadNewsListComments() {
 //    //var dataInfoComments = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
 //    //loadNewsListComments(dataInfoComments.id);
 //});
+
+function SaveFile() {
+    var fileNewNews = document.getElementById("fileNewsEdit").files[0];
+    var formData = new FormData();
+    formData.append("file", fileNewNews);
+
+    $.ajax({
+        url: "/Student/SaveFile",
+        data: formData,
+        type: "POST",
+        contentType: false,
+        processData: false,
+        success: function (result) {
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function SaveImage() {
+
+    var imgNewNews = document.getElementById("imgFileNewsEdit").files[0];
+    var formData = new FormData();
+    formData.append("image", imgNewNews);
+
+    $.ajax({
+        url: "/Student/SaveImage",
+        data: formData,
+        type: "POST",
+        contentType: false,
+        processData: false,
+
+        success: function (result) {
+        },
+
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}

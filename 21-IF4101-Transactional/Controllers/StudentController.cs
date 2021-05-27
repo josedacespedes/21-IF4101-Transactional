@@ -86,6 +86,36 @@ namespace _21_IF4101_Transactional.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        public IActionResult SaveFile(IFormFile file)
+        {
+            //Set Key Name
+            string FileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            //Get url To Save
+            string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/files", FileName);
+            using (var stream = new FileStream(SavePath, FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult SaveImage(IFormFile image)
+        {
+            //Set Key Name
+            string ImageName = ContentDispositionHeaderValue.Parse(image.ContentDisposition).FileName.Trim('"');
+            //Get url To Save
+            string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", ImageName);
+            using (var stream = new FileStream(SavePath, FileMode.Create))
+            {
+                image.CopyTo(stream);
+            }
+
+            return Ok();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
