@@ -62,6 +62,7 @@ namespace _21_IF4101_Transactional.Models.Data
 
                 while (sqlDataReader.Read())
                 {
+                    //metodo para traer solo los de esta semana
                     DateTime datenow = DateTime.Now;
                     DateTime datebase = Convert.ToDateTime(sqlDataReader["AppointmentCreate"]);
                     TimeSpan t = datenow - datebase;
