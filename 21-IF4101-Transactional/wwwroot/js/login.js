@@ -10,6 +10,8 @@ $(document).ready(function () {
     $(".displayAdmin").hide();
     $(".displayStudent").hide();
     $(".displayProfessor").hide();
+    $(".displayStudentAdmin").hide();
+    $(".displayStudentNoAdmin").hide();
 });
 
 //SHOW/HID PASSWORD
@@ -79,7 +81,7 @@ loginForm.addEventListener("submit", function (e) {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
 
-            success: function (result) {  //(result = 1): Admin  (result = 2): Student  (result = 3): Professor
+            success: function (result) {  //(result = 1): Admin  (result = 2): Student  (result = 3): Professor (result = 4):Student Admin
                 if (result == 1) {
                     loginForm.reset(); //Clean form fields
                     showDisplay("admin");
@@ -90,7 +92,12 @@ loginForm.addEventListener("submit", function (e) {
                     showDisplay("student");
                     setNameStudent();
                     loadConsultList();
-                } else if (result == 3) {
+                } else if (result == 4) {
+                    loginForm.reset(); //Clean form fields
+                    showDisplay("studentAdmin");
+                    setNameStudent();
+                    loadConsultList();
+                }else if (result == 3) {
                     loginForm.reset(); //Clean form fields
                     showDisplay("professor");
                     setNameProfessor();
@@ -122,6 +129,8 @@ function hiddenAll() {
     $(".displayStudent").hide();
     $(".displayProfessor").hide();
     $(".displayNoUser").hide();
+    $(".displayStudentAdmin").hide();
+    $(".displayStudentNoAdmin").hide();
 }
 
 function showDisplay(usuario) {
@@ -139,6 +148,13 @@ function showDisplay(usuario) {
             hiddenAll();
             $(".displayAll").show();
             $(".displayStudent").show();
+            $(".displayStudentNoAdmin").show();
+            break;
+        case "studentAdmin":
+            hiddenAll();
+            $(".displayAll").show();
+            $(".displayStudent").show();
+            $(".displayStudentAdmin").show();
             break;
         case "professor":
             hiddenAll();
@@ -154,6 +170,8 @@ function logOut() {
     $(".displayProfessor").hide();
     $(".displayAll").show();
     $(".displayNoUser").show();
+    $(".displayStudentAdmin").hide();
+    $(".displayStudentNoAdmin").hide();
 }
 
 /*--------------------------------------------- PROFILE STUDENT -----------------------------------------------------------*/
