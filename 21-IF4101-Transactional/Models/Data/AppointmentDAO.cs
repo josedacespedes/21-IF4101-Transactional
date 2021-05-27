@@ -62,15 +62,22 @@ namespace _21_IF4101_Transactional.Models.Data
 
                 while (sqlDataReader.Read())
                 {
-                    appointment.Add(new Appointment
+                    DateTime datenow = DateTime.Now;
+                    DateTime datebase = Convert.ToDateTime(sqlDataReader["AppointmentCreate"]);
+                    TimeSpan t = datenow - datebase;
+                    double NrOfDays = t.TotalDays;
+                    if (NrOfDays < 8)
                     {
-                        Id = Convert.ToInt32(sqlDataReader["Id"]),
-                        Student_FullName = sqlDataReader["Student_FullName"].ToString(),
-                        Type = Convert.ToInt32(sqlDataReader["Type"]),
-                        Professor_fullname = sqlDataReader["ProfessorName"].ToString(),
-                        Appointment_date = sqlDataReader["AppointmentDate"].ToString(),
-                        StudentId = sqlDataReader["StudentId"].ToString()
-                    });
+                        appointment.Add(new Appointment
+                        {
+                            Id = Convert.ToInt32(sqlDataReader["Id"]),
+                            Student_FullName = sqlDataReader["Student_FullName"].ToString(),
+                            Type = Convert.ToInt32(sqlDataReader["Type"]),
+                            Professor_fullname = sqlDataReader["ProfessorName"].ToString(),
+                            Appointment_date = sqlDataReader["AppointmentDate"].ToString(),
+                            StudentId = sqlDataReader["StudentId"].ToString()
+                        });
+                    }
                 }
                 connection.Close(); //cerramos conexión.
             }
