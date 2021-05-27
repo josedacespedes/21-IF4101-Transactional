@@ -134,7 +134,7 @@ function loadNewsPresidentAdminList() {
             { "data": "publicationDate" },
             { "data": "author" },
             { defaultContent: "<button id='btnModalDetailsNews' name='btnModalDetailsNews' type='button' data-toggle='modal' class='btn btn-primary' data-target='#newsModal' title='Detalles'><i class='fa fa-file-text'></i></button> <button id='btnModalPACommentsNews' name='btnModalPACommentsNews' type='button' data-toggle='modal' data-target='#newsPAModalComments' class='btn btn-info' title='Comentarios'><i class='fa fa-comments'></i></button>" },
-            { defaultContent: "<button type = 'button' id = 'buttonModalNewsEdit' name = 'buttonModalNewsEdit' class= 'btn btn-warning' data - toggle='modal' data - target='#modalNewsEdit' title = 'Modificar' > <i class='fa fa-pencil'></i></button > <button id='deleteNews' name='deleteNews' type='button' class='btn btn-danger' title='Delete'><i class='fa fa-trash'></i></button>" }
+            { defaultContent: "<button type='button' id='buttonModalNewsEdit' name='buttonModalNewsEdit' class='btn btn-warning' data-toggle='modal' data-target='#modalNewsEdit' title='Modificar'><i class='fa fa-pencil'></i></button> <button id='deleteNews' name='deleteNews' type='button' class='btn btn-danger' title='Delete'><i class='fa fa-trash'></i></button>" }
         ]
     });
 }
@@ -173,27 +173,53 @@ $("#newsListPresidentAdminTable tbody").on("click", "#deleteNews", function () {
 /*--------------------------------------------- MODYFY NEWS-----------------------------------------------------------*/
 
 //ACTION WHEN  OPEN MODAL
+var dataInfoNews;
 $("#newsListPresidentAdminTable tbody").on("click", "#buttonModalNewsEdit", function () {
-    //var dataInfoNews = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
-    //idNewsEdit = dataInfoNews.id;
+    dataInfoNews = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
+    idNewsEdit = dataInfoNews.id;
 
-    //$('#newsTitleEdit').val(dataInfoNews.title);
-    //$('#newsEditDescription').val(dataInfoNews.description);
-    //$('#imgFileNewsEdit').val(dataInfoNews.imagen);
-    //$('#fileNewsEdit').val(dataInfoNews.file_New);
+    $('#newsTitleEdit').val(dataInfoNews.title);
+    $('#newsEditDescription').val(dataInfoNews.description);
 });
 
 //ACTION UPDATE
 formEditNews.addEventListener("submit", function (e) {
     e.preventDefault();
-
-    var news = {
-        id: idNewsEdit,
-        title: $('#newsTitleEdit').val(),
-        description: $('#newsEditDescription').val(),
-        file_New: $('#fileNewsEdit').val(),
-        imagen: $('#imgFileNewsEdit').val(),
-    };
+    var news;
+    if ($('#fileNewsEdit').get(0).files.length === 0 && $('#imgFileNewsEdit').get(0).files.length != 0) {
+        news = {
+            id: idNewsEdit,
+            title: $('#newsTitleEdit').val(),
+            description: $('#newsEditDescription').val(),
+            author: dataInfoNews.author,
+            publicationDate: dataInfoNews.publicationDate,
+            modificationDate: dataInfoNews.modificationDate,
+            fileNews: dataInfoNews.fileNews,
+            imagen: 'images/' + document.getElementById("imgFileNewsEdit").files[0].name
+        };
+    } else if ($('#imgFileNewsEdit').get(0).files.length === 0 && $('#fileNewsEdit').get(0).files.length != 0) {
+        news = {
+            id: idNewsEdit,
+            title: $('#newsTitleEdit').val(),
+            description: $('#newsEditDescription').val(),
+            author: dataInfoNews.author,
+            publicationDate: dataInfoNews.publicationDate,
+            modificationDate: dataInfoNews.modificationDate,
+            fileNews: 'files/' + document.getElementById("fileNewsEdit").files[0].name,
+            imagen: dataInfoNews.imagen,
+        };
+    } else if ($('#fileNewsEdit').get(0).files.length === 0 && $('#imgFileNewsEdit').get(0).files.length === 0) {
+        news = {
+            id: idNewsEdit,
+            title: $('#newsTitleEdit').val(),
+            description: $('#newsEditDescription').val(),
+            author: dataInfoNews.author,
+            publicationDate: dataInfoNews.publicationDate,
+            modificationDate: dataInfoNews.modificationDate,
+            fileNews: dataInfoNews.fileNews,
+            imagen: dataInfoNews.imagen
+        };
+    }
 
     Swal.fire({
         title: "Esta seguro que desea modificar esta noticia?",
@@ -204,34 +230,39 @@ formEditNews.addEventListener("submit", function (e) {
     }).then((result) => {
 
         if (result.isConfirmed) {
-            //$.ajax({
-            //    url: "/NewsAPI/Put",
-            //    data: { id: news.id, news: news },
-            //    type: "PUT",
-            //    contentType: "application/json;charset=utf-8",
-            //    dataType: "json",
-            //    success: function (result) {
+            $.ajax({
+                url: "/NewsAPI/" + news.id,
+                data: JSON.stringify(news),
+                type: "PUT",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
 
-            //        $('#modalNewsEdit').modal('hide');
-            //        $('#newsListPresidentAdminTable').DataTable().ajax.reload();
-            //        Swal.fire({
-            //            icon: 'success',
-            //            title: 'Modificado Exitoso',
-            //            showConfirmButton: false,
-            //            timer: 1500
-            //        })
+                    $('#modalNewsEdit').modal('hide');
+                    cleanFieldsModalNewsEdit();
+                    $('#newsListPresidentAdminTable').DataTable().ajax.reload();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Modificado Exitoso',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
 
-            //    },
-            //    error: function (errorMessage) {
-            //        alert("Error");
-            //        alert(errorMessage.responseText);
-            //    }
-            //});
+                },
+                error: function (errorMessage) {
+                    alert("Error");
+                    alert(errorMessage.responseText);
+                }
+            });
 
         }
     });
 
 });
+
+function cleanFieldsModalNewsEdit() {
+    formEditNews.reset();
+}
 
 //--------------------------------------------- NEWS DETAILS-----------------------------------------------------------
 function addPAComment(id) {
