@@ -56,27 +56,42 @@ namespace _21_IF4101_Transactional.Controllers
 
         // GET api/<NewsCommentController>/5
         [Route("[action]")]
-        [HttpGet("{id}")]
+
         public IActionResult GetById(int id)
         {
-            NewsComment news = null;
+            IEnumerable<NewsComment> newsComment = null;
 
-            using (var client = new HttpClient())
+            try
             {
-                client.BaseAddress = new Uri("https://localhost:44397/api/NewsComments/" + id);
-                var responseTask = client.GetAsync(client.BaseAddress);
-                responseTask.Wait();
-                var result = responseTask.Result;
-
-                if (result.IsSuccessStatusCode)
+                using (var client = new HttpClient())
                 {
-                    var readTask = result.Content.ReadAsAsync<NewsComment>();
-                    readTask.Wait();
-                    //lee los comentarios de noticia provenientes de la API
-                    news = readTask.Result;
+                    client.BaseAddress = new Uri("https://localhost:44397/api/NewsComments/" + id);
+                    var responseTask = client.GetAsync(client.BaseAddress);
+                    responseTask.Wait();
+
+                    var result = responseTask.Result;
+
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var readTask = result.Content.ReadAsAsync<IList<NewsComment>>();
+                        readTask.Wait();
+                        //lee las noticias provenientes de la API
+                        newsComment = readTask.Result;
+                    }
+                    else
+                    {
+                        newsComment = Enumerable.Empty<NewsComment>();
+                    }
                 }
             }
-            return Json(new { data = news });
+            catch
+            {
+
+                ModelState.AddModelError(string.Empty, "Server error. Please contact an administrator");
+
+            }
+
+            return Json(new { data = newsComment });
         }
 
         // POST api/<NewsCommentController>

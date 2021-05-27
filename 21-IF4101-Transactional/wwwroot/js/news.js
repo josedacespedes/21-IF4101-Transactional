@@ -500,29 +500,29 @@ $("#newsProfessorStudentTable tbody").on("click", "#btnModalDetailsNews", functi
 /*--------------------------------------------- LIST NEWS COMMENTS-----------------------------------------------------------*/
 $("#newsNoUserTable tbody").on("click", "#btnModalCommentsNews", function () {
     var dataInfoComments = tableNewsNoUser.row($(this).parents("tr")).data();
-    loadNewsListComments();
+    loadNewsListComments(dataInfoComments.id);
 
 });
 $("#newsProfessorStudentTable tbody").on("click", "#btnModalCommentsNews", function () {
     var dataInfoComments = tableNewsProfessorStudent.row($(this).parents("tr")).data();
-    loadNewsListComments();
+    loadNewsListComments(dataInfoComments.id);
 
 });
 $("#newsListPresidentAdminTable tbody").on("click", "#btnModalPACommentsNews", function () {
     modalPAComments.style.display = "block";
     var data = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
-    loadPANewsListComments();
+    loadPANewsListComments(data.id);
 });
 
-function loadPANewsListComments() {
+function loadPANewsListComments(id) {
 
     tableNewsComments = $("#newsPACommentsTable").DataTable({
         "destroy": true,
         "autoWidth": false,
         "ajax": {
-            "url": "/NewsCommentAPI/Get",
-            //"data": { id: id },
-            "tpye": 'GET',
+            "url": "/NewsCommentAPI/GetById/",
+            "data": { id: id },
+            "type": 'GET',
             "datatype": "json",
         },
         lengthMenu: [7, 20, 50, 100],
@@ -536,14 +536,14 @@ function loadPANewsListComments() {
 
 }
 
-function loadNewsListComments() {
+function loadNewsListComments(id) {
     tableComments = $("#newsCommentsTable").DataTable({
         "destroy": true,
         "autoWidth": false,
         "ajax": {
-            "url": "/NewsCommentAPI/Get",
-            //"data": { id: id },
-            "tpye": 'GET',
+            "url": "/NewsCommentAPI/GetById/",
+            "data": { id: id },
+            "type": 'GET',
             "datatype": "json",
         },
         lengthMenu: [7, 20, 50, 100],
