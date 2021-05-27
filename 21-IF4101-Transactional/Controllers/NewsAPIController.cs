@@ -5,17 +5,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace _21_IF4101_Transactional.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class NewsAPIController : ControllerBase
+    public class NewsAPIController : Controller
     {
-        // GET: api/NewsAPIController
+        // GET: api/News/GetNews
         [Route("[action]")]
         [HttpGet]
-        public IEnumerable<News> Get()
+        public IActionResult Get()
         {
             IEnumerable<News> news = null;
 
@@ -23,7 +26,7 @@ namespace _21_IF4101_Transactional.Controllers
             {
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("https://localhost:44323/api/News/");
+                    client.BaseAddress = new Uri("https://localhost:44397/api/News/");
                     var responseTask = client.GetAsync("GetNews");
                     responseTask.Wait();
 
@@ -33,8 +36,8 @@ namespace _21_IF4101_Transactional.Controllers
                     {
                         var readTask = result.Content.ReadAsAsync<IList<News>>();
                         readTask.Wait();
-                        //lee las noticias provenientes de la API
-                        news = readTask.Result;
+
+                        news = readTask.Result;//lee las noticias provenientes de la API
                     }
                     else
                     {
@@ -49,7 +52,7 @@ namespace _21_IF4101_Transactional.Controllers
 
             }
 
-            return news;
+            return Json(new { data = news });
         }
 
         // GET api/NewsAPIController/5
@@ -60,7 +63,7 @@ namespace _21_IF4101_Transactional.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44323/api/News/" + id);
+                client.BaseAddress = new Uri("https://localhost:44397/api/News/" + id);
                 var responseTask = client.GetAsync(client.BaseAddress);
                 responseTask.Wait();
 
@@ -78,7 +81,7 @@ namespace _21_IF4101_Transactional.Controllers
             return news;
         }
 
-        // POST api/NewsAPIController
+        // POST api/News/Post
         [HttpPost]
         public JsonResult Post([FromBody] News news)
         {
@@ -86,8 +89,8 @@ namespace _21_IF4101_Transactional.Controllers
             {
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("https://localhost:44323/api/News");
-                    var postTask = client.PostAsJsonAsync("news", news);
+                    client.BaseAddress = new Uri("https://localhost:44397/api/News/");
+                    var postTask = client.PostAsJsonAsync("PostNews", news);
                     postTask.Wait();
 
                     var result = postTask.Result;
@@ -108,7 +111,7 @@ namespace _21_IF4101_Transactional.Controllers
             }
         }
 
-        // PUT: api/News/5
+        // PUT: api/News/1
         [HttpPut("{id}")]
         public JsonResult Put(int id, [FromBody] News news)
         {
@@ -117,10 +120,10 @@ namespace _21_IF4101_Transactional.Controllers
                 using (var client = new HttpClient())
                 {
 
-                    client.BaseAddress = new Uri("https://localhost:44323/api/student/" + id);
+                    client.BaseAddress = new Uri("https://localhost:44397/api/News/");
 
                     //HTTP POST
-                    var putTask = client.PutAsJsonAsync("news", news);
+                    var putTask = client.PutAsJsonAsync("PutNews", news);
                     putTask.Wait();
 
                     var result = putTask.Result;
@@ -141,17 +144,17 @@ namespace _21_IF4101_Transactional.Controllers
 
         }
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
+        // DELETE: api/News/1
+        [Route("[action]")]
         public JsonResult Delete(int id)
         {
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44323/api/");
+                client.BaseAddress = new Uri("https://localhost:44397/api/News/");
 
                 //HTTP DELETE
-                var deleteTask = client.DeleteAsync("News/" + id.ToString());
+                var deleteTask = client.DeleteAsync(id.ToString());
                 deleteTask.Wait();
 
                 var result = deleteTask.Result;
@@ -167,7 +170,6 @@ namespace _21_IF4101_Transactional.Controllers
 
                 }
             }
-
         }
     }
 }

@@ -3,8 +3,6 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace _21_IF4101_Transactional.Models.Data
 {
@@ -34,6 +32,7 @@ namespace _21_IF4101_Transactional.Models.Data
                 SqlCommand command = new SqlCommand("InsertAppointmentRequest", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo.
                 command.CommandType = System.Data.CommandType.StoredProcedure; //acá decimos que lo que se ejecutará es un SP
                                                                                //acá abajo le pasamos los parámetros al SP. En @ van los nombres de los parámetros en SP y a la par los valores. No pasamos el Id porque es autoincremental en la tabla, entonces no lo necesitamos:
+
                 command.Parameters.AddWithValue("@Student_FullName", name);//AQUÍ IRÍA EL NOMBRE COMPLETO
                 command.Parameters.AddWithValue("@Type", appointment.Type);
                 command.Parameters.AddWithValue("@ProfessorName", appointment.Professor_fullname);
@@ -63,38 +62,101 @@ namespace _21_IF4101_Transactional.Models.Data
 
                 while (sqlDataReader.Read())
                 {
-                    appointment.Add(new Appointment
+                    //metodo para traer solo los de esta semana
+                    DateTime datenow = DateTime.Now;
+                    DateTime datebase = Convert.ToDateTime(sqlDataReader["AppointmentCreate"]);
+                    TimeSpan t = datenow - datebase;
+                    double NrOfDays = t.TotalDays;
+                    if (NrOfDays < 8)
                     {
-                        Id = Convert.ToInt32(sqlDataReader["Id"]),
-                        Student_FullName = sqlDataReader["Student_FullName"].ToString(),
-                        Type = Convert.ToInt32(sqlDataReader["Type"]),
-                        Professor_fullname = sqlDataReader["ProfessorName"].ToString(),
-                        Appointment_date = sqlDataReader["AppointmentDate"].ToString(),
-                        StudentId = sqlDataReader["StudentId"].ToString()
-                    });
+                        appointment.Add(new Appointment
+                        {
+                            Id = Convert.ToInt32(sqlDataReader["Id"]),
+                            Student_FullName = sqlDataReader["Student_FullName"].ToString(),
+                            Type = Convert.ToInt32(sqlDataReader["Type"]),
+                            Professor_fullname = sqlDataReader["ProfessorName"].ToString(),
+                            Appointment_date = sqlDataReader["AppointmentDate"].ToString(),
+                            StudentId = sqlDataReader["StudentId"].ToString()
+                        });
+                    }
                 }
                 connection.Close(); //cerramos conexión.
             }
             return appointment; //retornamos resultado al Controller.
         }
-
-        public List<String> GetDates(String ProfessorName)
+        public List<Group> GetGroupsAppointment(int CourseId)
         {
-            List<String> appointments = new List<String>();
+            List<Group> groups = new List<Group>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open(); //abrimos conexión
-                SqlCommand command = new SqlCommand("SelectAppointmentDate", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo.
+                SqlCommand command = new SqlCommand("SelectGroupByIdCourse", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo.
                 command.CommandType = System.Data.CommandType.StoredProcedure; //acá decimos que lo que se ejecutará es un SP      
-                command.Parameters.AddWithValue("@ProfessorFullName", ProfessorName);
+                command.Parameters.AddWithValue("@Id", CourseId);
                 //logica del get/select
                 SqlDataReader sqlDataReader = command.ExecuteReader();
                 //leemos todas las filas provenientes de BD
 
                 while (sqlDataReader.Read())
                 {
-                    appointments.Add(sqlDataReader["DateHourAppointment"].ToString());
+                    groups.Add(new Group
+                    {
+                        IdGroup = Convert.ToInt32(sqlDataReader["IdGroup"]),
+                        NumGroup = Convert.ToInt32(sqlDataReader["NumGroup"])
+                    });
+                }
+                connection.Close(); //cerramos conexión.
+            }
+            return groups; //retornamos resultado al Controller.
+        }
+
+        public List<Professor> GetProfessorGroupAppointment(int groupid)
+        {
+            List<Professor> professors = new List<Professor>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("ProfessorByIdGroup", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo.
+                command.CommandType = System.Data.CommandType.StoredProcedure; //acá decimos que lo que se ejecutará es un SP      
+                command.Parameters.AddWithValue("@IdGroup", groupid);
+                //logica del get/select
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+                //leemos todas las filas provenientes de BD
+
+                while (sqlDataReader.Read())
+                {
+                    professors.Add(new Professor
+                    {
+                        Id = Convert.ToInt32(sqlDataReader["Id"]),
+                        FirstNameProfessor = sqlDataReader["FirstNameProfessor"].ToString(),
+                        LastNameProfessor = sqlDataReader["LastNameProfessor"].ToString()
+                    });
+                }
+                connection.Close(); //cerramos conexión.
+            }
+            return professors; //retornamos resultado al Controller.
+        }
+
+        public List<String> GetDates(int ProfessorId, int groupid)
+        {
+            List<String> appointments = new List<String>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("ConsultDate", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo.
+                command.CommandType = System.Data.CommandType.StoredProcedure; //acá decimos que lo que se ejecutará es un SP      
+                command.Parameters.AddWithValue("@IdGroup", groupid);
+                command.Parameters.AddWithValue("@IdProfessor", ProfessorId);
+                //logica del get/select
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+                //leemos todas las filas provenientes de BD
+
+                while (sqlDataReader.Read())
+                {
+                    appointments.Add(sqlDataReader["ConsultationHours"].ToString());
                 }
                 connection.Close(); //cerramos conexión.
             }
@@ -191,7 +253,7 @@ namespace _21_IF4101_Transactional.Models.Data
             }
             return resultToReturn;
         }
-
+        
         public string GetEmailStudent(String studentId)
         {
             string emailStudent = "";
@@ -211,6 +273,28 @@ namespace _21_IF4101_Transactional.Models.Data
                 connection.Close();
             }
             return emailStudent;
+        }
+
+        public string GetInformation(String professorname)
+        {
+            string information = "";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //abrimos conexión
+                SqlCommand command = new SqlCommand("SelectEmailByName", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Name", professorname);
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+
+                if (sqlDataReader.Read())
+                {
+                    information = sqlDataReader["EmailProfessor"].ToString();
+                       
+                }
+                connection.Close();
+            }
+            return information;
         }
 
     }

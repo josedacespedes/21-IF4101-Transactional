@@ -10,7 +10,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+    <link rel="icon" href="https://medios.ucr.ac.cr/plantillas/ucr_4/imagenes/favicon.png" type="image/png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"> <!--Font Awesome-->
 
@@ -57,9 +57,9 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
-                    <li><a href="#news" class="smoothScroll">Noticias</a></li>
+                    <li><a href="#news" class="smoothScroll">Recinto</a></li>
+                    <li><a href="#newsListNoUser" class="smoothScroll">Noticias</a></li>
                     <li><a href="#addApplicant" class="smoothScroll">Registro</a></li>
-
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right" id="loginRight">
@@ -107,7 +107,21 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
-                    <li><a href="#news" class="smoothScroll">Noticias</a></li>
+                    <li><a href="#news" class="smoothScroll">Recinto</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Noticias
+                        </a>
+                        <div class="dropdown-menu" id="dropMenu">
+                            <ul class="nav navbar-nav">
+                                <li class="li-100"><a href="#newsListPresidentAdmin" class="dropdown-item smoothScroll signOut">Lista</a></li>
+                                <li class="li-100"><a href="#addNews" class="dropdown-item smoothScroll signOut">Agregar</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+
                     <li><a href="#listConsult" class="smoothScroll">Consultas</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -115,8 +129,8 @@
                         </a>
                         <div class="dropdown-menu" id="dropMenu">
                             <ul class="nav navbar-nav">
-                                <li class="li-100"><a href="#addProfessor" class="dropdown-item smoothScroll signOut">Docente</a></li>
                                 <li class="li-100"><a href="#addCourse" class="dropdown-item smoothScroll signOut">Curso</a></li>
+                                <li class="li-100"><a href="#addProfessor" class="dropdown-item smoothScroll signOut">Docente</a></li>
                             </ul>
                         </div>
                     </li>
@@ -128,7 +142,7 @@
                         <div class="dropdown-menu" id="dropMenu">
                             <ul class="nav navbar-nav">
                                 <li class="li-100"><a href="#applicantList" class="dropdown-item smoothScroll signOut">Solicitudes</a></li>
-                                <li class="li-100"><a href="#applicantList" class="dropdown-item smoothScroll signOut">Asignar Presidente</a></li>
+                                <li class="li-100"><a href="#studentsList" class="dropdown-item smoothScroll signOut">Presidente</a></li>
                             </ul>
                         </div>
                     </li>
@@ -150,7 +164,6 @@
         </div>
     </section>
 
-
     <!-- MENU STUDENT-->
     <section class="navbar custom-navbar navbar-fixed-top displayStudent" role="navigation" hidden>
         <div class="container">
@@ -166,8 +179,21 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
-                    <li><a href="#news" class="smoothScroll">Noticias</a></li>
-                    <li><a href="#addConsult" class="smoothScroll">Consultas</a></li>
+                    <li><a href="#news" class="smoothScroll">Recinto</a></li>
+                    <li><a href="#newsListProfessorStudent" class="smoothScroll">Noticias</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Consultas
+                        </a>
+                        <div class="dropdown-menu" id="dropMenu">
+                            <ul class="nav navbar-nav">
+                                <li class="li-100"><a href="#addConsult" class="dropdown-item smoothScroll signOut">Agregar</a></li>
+                                <li class="li-100"><a href="#listConsult" class="dropdown-item smoothScroll signOut">Lista</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
                     <li><a href="#addAppointment" class="smoothScroll">Citas</a></li>
                 </ul>
 
@@ -178,8 +204,8 @@
                         </a>
                         <div class="dropdown-menu" id="dropMenu">
                             <ul class="nav navbar-nav">
-                                <li class="li-100"><a class="dropdown-item signOut" href="#" id="showModalStudentProfile" data-toggle='modal' data-target='#modalStudentProfile'><i class="fa fa-user-o"></i> Perfil </a></li>
-                                <li class="li-100"><a href="#" class="dropdown-item signOut"><i class="fa fa-trash"></i> Eliminar Perfil</a></li>
+                                <li class="li-100"><a href="#" class="dropdown-item signOut" id="showModalStudentProfile" data-toggle='modal' data-target='#modalStudentProfile'><i class="fa fa-user-o"></i> Perfil </a></li>
+                                <li class="li-100"><a href="#" class="dropdown-item signOut" onclick="verifyDeleteProfile()"><i class="fa fa-trash"></i> Eliminar Perfil</a></li>
                                 <li class="li-100"><a href="#" class="dropdown-item signOut" onclick="logOut()"><i class="fa fa-power-off"></i> Cerrar Sesión</a></li>
                             </ul>
                         </div>
@@ -204,9 +230,21 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
-                    <li><a href="#news" class="smoothScroll">Noticias</a></li>
+                    <li><a href="#news" class="smoothScroll">Recinto</a></li>
+                    <li><a href="#newsListProfessorStudent" class="smoothScroll">Noticias</a></li>
                     <li><a href="#listConsult" class="smoothScroll">Consultas</a></li>
-                    <li><a href="#appointmentList" class="smoothScroll">Citas</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Citas
+                        </a>
+                        <div class="dropdown-menu" id="dropMenu">
+                            <ul class="nav navbar-nav">
+                                <li class="li-100"><a href="#appointmentList" class="dropdown-item smoothScroll signOut">Agendadas</a></li>
+                                <li class="li-100"><a href="#appointmentRequestList" class="dropdown-item smoothScroll signOut">Solicitudes</a></li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right" id="loginRight">
@@ -218,7 +256,7 @@
                         <div class="dropdown-menu" id="dropMenu">
                             <ul class="nav navbar-nav">
                                 <li class="li-100"><a class="dropdown-item signOut" id="showModalProfessorProfile" href="#" data-toggle='modal' data-target='#modalProfessorProfile'><i class="fa fa-user-o"></i> Perfil</a></li>
-                                <li class="li-100"><a href="#" class="dropdown-item signOut"><i class="fa fa-trash"></i> Eliminar Perfil</a></li>
+                                <li class="li-100"><a href="#" class="dropdown-item signOut" onclick="verifyDeleteProfile()"><i class="fa fa-trash"></i> Eliminar Perfil</a></li>
                                 <li class="li-100"><a href="#" class="dropdown-item signOut" onclick="logOut()"><i class="fa fa-power-off"></i> Cerrar Sesión</a></li>
                             </ul>
                         </div>
@@ -228,11 +266,10 @@
         </div>
     </section>
 
-
-    <!-- NEWS -->
+    <!-- CARROUSEL -->
     <section id="home" class="displayAll">
         <div class="text-center">
-            <h2 id="main_title" class="display-4">Bienvenido a las noticias de la comunidad de Informática Empresarial</h2>
+            <h2 id="main_title" class="display-4">Bienvenido a la comunidad de Informática Empresarial del recinto de paraíso</h2>
         </div>
 
         <div class="row">
@@ -242,9 +279,9 @@
                     <div class="caption">
                         <div class="container">
                             <div class="col-md-6 col-sm-12">
-                                <h1>Centro de Educación de Aprendizaje a Distancia</h1>
-                                <h3>Nuestros cursos en línea están diseñados para adaptarse a su industria y brindar soporte completo con las últimas tecnologías.</h3>
-                                <a href="#feature" class="section-btn btn btn-default smoothScroll">Más información acá</a>
+                                <h1>Universidad de Costa Rica  Recinto de Paraíso</h1>
+                                <h3>Creada para democratizar el acceso a la educación superior y fomentar una transformación integral</h3>
+                                <a href="#footer" class="section-btn btn btn-default smoothScroll">Contactos</a>
                             </div>
                         </div>
                     </div>
@@ -254,9 +291,9 @@
                     <div class="caption">
                         <div class="container">
                             <div class="col-md-6 col-sm-12">
-                                <h1>Comienza tu viaje con nuestros cursos prácticos.</h1>
-                                <h3>Nuestros cursos en línea se crean en asociación con líderes en tecnología y están diseñados para satisfacer las demandas de la industria.</h3>
-                                <a href="#courses" class="section-btn btn btn-default smoothScroll">Tomar un curso</a>
+                                <h1>Profesionales integros.</h1>
+                                <h3>Formando profesionales que ofrezcan sistemas de información integrales que faciliten el proceso de toma de decisiones en todos los niveles de la organización</h3>
+                                <a href="#footer" class="section-btn btn btn-default smoothScroll">Contactos</a>
                             </div>
                         </div>
                     </div>
@@ -266,9 +303,9 @@
                     <div class="caption">
                         <div class="container">
                             <div class="col-md-6 col-sm-12">
-                                <h1>Métodos de aprendizaje eficientes</h1>
-                                <h3>Nam eget sapien vel nibh euismod vulputate in vel nibh. Quisque eu ex eu urna venenatis sollicitudin ut at libero. Visit <a rel="nofollow" href="https://www.facebook.com/templatemo">templatemo</a> page.</h3>
-                                <a href="#contact" class="section-btn btn btn-default smoothScroll">Comunicate con nosotros</a>
+                                <h1>Informatica Empresarial</h1>
+                                <h3>Profesionales con capacidad para el desarrollo y la administración de proyectos informáticos tendientes a organizar sistemas, recursos y finanzas en la empresa, al optimizar el  acceso, la sistematización y la organización de la información. .</h3>
+                                <a href="#footer" class="section-btn btn btn-default smoothScroll">Contactos</a>
                             </div>
                         </div>
                     </div>
@@ -277,50 +314,187 @@
         </div>
     </section>
 
+    <!-- NEWS LIST NO USER-->
+    <section id="newsListNoUser" class="displayNoUser">
+        <div class="container">
+            <div class="col-md-12">
+                <h2 id="newsNoUserTittle">Lista de Noticias</h2>
+                <div class="row sidePadding">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="newsNoUserTable">
+                            <thead class="table-primary headTable">
+                                <tr class="text-center">
+                                    <th>Titulo</th>
+                                    <th>Fecha</th>
+                                    <th>Autor</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyNewsNoUserTable" class="text-center font-weight-bold">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- NEWS LIST PROFESSOR/STUDENT-->
+    <section id="newsListProfessorStudent" class="displayStudentNoAdmin displayProfessor">
+        <div class="container">
+            <div class="col-md-12">
+                <h2 id="newsProfessorStudentTittle">Lista de Noticias</h2>
+                <div class="row sidePadding">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="newsProfessorStudentTable">
+                            <thead class="table-primary headTable">
+                                <tr class="text-center">
+                                    <th>Titulo</th>
+                                    <th>Fecha</th>
+                                    <th>Autor</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyNewsProfessorStudentTable" class="text-center font-weight-bold">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWS LIST PRESIDENT/ADMIN-->
+    <section id="newsListPresidentAdmin" class="displayAdmin displayStudentAdmin">
+        <div class="container">
+            <div class="col-md-12">
+                <h2 id="newsListPresidentAdminTittle">Lista de Noticias</h2>
+                <div class="row sidePadding">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="newsListPresidentAdminTable">
+                            <thead class="table-primary headTable">
+                                <tr class="text-center">
+                                    <th>Titulo</th>
+                                    <th>Fecha</th>
+                                    <th>Autor</th>
+                                    <th>Acción</th>
+                                    <th>Acción avanzada</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyNewsListPresidentAdminTable" class="text-center font-weight-bold">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- The Modal Consult Details -->
     <form>
-        <div class="modal fade" id="consultModal" role="dialog">
+        <div class="modal fade" id="newsModal" role="dialog">
             <div>
                 <!-- Modal content-->
-                <div class="modal-contentConsult">
+                <div class="modal-contentNew">
 
                 </div>
-                <div id="alertAddComment"></div>
+                <div id="alertAddNewComment"></div>
             </div>
         </div>
     </form>
 
-    <!-- The Modal Consult Comments -->
-    <form>
-        <div class="modal fade" id="consultModalComments" role="dialog">
-            <div class="modal-contentConsultComments">
-                <div class="container">
-                    <div class="row">
+    <!-- The Modal News Comments -->
+    <div class="modal fade" id="newsPAModalComments" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" aria-label="Close"><b>X</b></button>
+                    <h2 class="modal-title">Lista de Comentarios</h2>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-bordered" id="newsPACommentsTable">
+                        <thead class="table-primary headTable">
+                            <tr class="text-center">
+                                <th>Autor</th>
+                                <th>Fecha</th>
+                                <th>Comentario</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyNewsPACommentsTable" class="text-center font-weight-bold">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                        <div class="col-md-6 addCourse-info">
-                            <button type="button" id="btnCloseModalConsult" class="btn btn-danger" data-dismiss="modal" onclick="return closeComments()" aria-label="Close"><b>X</b></button>
-                            <h2 id="consultTittle">Lista de Comentarios</h2>
-                            <div class="row sidePadding">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered" id="commentTable">
-                                        <thead class="table-primary headTable">
-                                            <tr class="text-center">
-                                                <th>Autor</th>
-                                                <th>Comentario</th>
-                                                <th>Fecha</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="bodyCommentsTable" class="text-center font-weight-bold"></tbody>
-                                    </table>
-                                </div>
+    <!-- The Modal News Comments -->
+    <div class="modal fade" id="newsModalComments" role="dialog">
+        <div class="modal-dialog">
+            Modal content
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" aria-label="Close"><b>X</b></button>
+                    <h2 class="modal-title">Lista de Comentarios</h2>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-bordered" id="newsCommentsTable">
+                        <thead class="table-primary headTable">
+                            <tr class="text-center">
+                                <th>Autor</th>
+                                <th>Comentario</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyNewsCommentsTable" class="text-center font-weight-bold">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  REGISTER NEWS -->
+    <section id="addNews" class="displayAdmin displayStudentAdmin">
+        <div class="container">
+            <div class="row">
+                <!-- ADD  -->
+                <div class="col-md-6 col-sm-12">
+                    <div id="newsEntry" class="entry-formNews">
+                        <form id="registerNewsForm" autocomplete="off">
+                            <h2>Agregar Noticia</h2>
+
+                            <input type="text" name="newsTittle" id="newsTittle" class="form-control" placeholder="Titulo Noticia" required="" minlength="10" maxlength="50" title="Complete este campo con el titulo de la noticia">
+
+                            <textarea rows="4" cols="50" type="text" name="newsDescription" id="newsDescription" class="form-control" placeholder="Descripción" required="" minlength="10" maxlength="255" title="Complete este campo con la descripcion de la noticia"></textarea>
+                            <!--action="/Student/SaveImageProfile" enctype="multipart/form-data" method="post"-->
+
+                            <label>Imagen</label>
+                            <input id="imgFileNews" type="file" required name="imgFileNews" accept="image/png, .jpg" hidden>
+
+                            <label>Archivo</label>
+                            <input id="FileNews" type="file" required name="FileNews" accept=".pdf, .txt, .docx, .doc" hidden>
+
+                            <div id="buttonSubmitAddNews">
+                                <button type="submit" class="submit-btn form-control">Registrar</button>
                             </div>
-                        </div>
+                            <div id="alertMessageAddNews"></div>
+                        </form>
                     </div>
                 </div>
 
+                <!--Image-->
+                <div class="col-md-6 col-sm-12">
+                    <div id="consultImage">
+                        <img id="imageUCRStudent" src="~/images/UCR1.jpg" alt="ImagenUCR" />
+                    </div>
+                </div>
             </div>
         </div>
-    </form>
+    </section>
 
     <!--  REGISTER CONSULT -->
     <section id="addConsult" class="displayStudent">
@@ -345,8 +519,8 @@
                                     </span>
                                 </label>
                             </div>
-                            <select class="form-control without-margin" required="" name="courseConsult" id="courseConsult">
-                                <option value="0" selected="">Seleccione el curso</option>
+                            <select class="form-control without-margin" required="" name="professorConsult" id="professorConsult">
+                                <option value="0" selected="">Seleccione el profesor</option>
                             </select>
                             <textarea rows="4" cols="50" type="text" name="consultDescription" id="consultDescription" class="form-control" placeholder="Descripción" required="" minlength="10" title="Complete este campo con la descripcion de la consulta"></textarea>
 
@@ -368,14 +542,13 @@
         </div>
     </section>
 
-
-    <!--LIST CONSULT-->
+    <!-- LIST CONSULT-->
     <section id="listConsult" class="displayStudent displayAdmin displayProfessor">
         <div class="container">
             <div class="row">
 
                 <div class="col-md-12 addCourse-info">
-                    <h2 id="consultTittle">Lista de Consultas</h2>
+                    <h2 id="consultTittle">Lista de Citas de Consulta</h2>
                     <div class="row sidePadding">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered" id="consultTable">
@@ -383,7 +556,7 @@
                                     <tr class="text-center">
                                         <th>Titulo</th>
                                         <th>Fecha</th>
-                                        <th>Curso</th>
+                                        <th>Profesor</th>
                                         <th>Tipo</th>
                                         <th>Acción</th>
                                     </tr>
@@ -459,6 +632,138 @@
         </div>
     </section>
 
+    <!--  REGISTER COURSE -->
+    <section id="addCourse" class="displayAdmin">
+        <div class="container">
+            <div class="row">
+
+                <!-- ADD  -->
+                <div class="col-md-6 col-sm-12">
+                    <div class="entry-form">
+                        <form id="registerCourseForm" autocomplete="off">
+                            <h2>Agregar Curso</h2>
+                            <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Nombre" required="" minlength="10" maxlength="150" title="Complete este campo con el nombre del curso">
+
+                            <input type="text" name="idCourse" id="idCourse" class="form-control" placeholder="Código" required="" minlength="4" maxlength="4" pattern="[0-9IF-]+" title="Complete este campo con 4 números">
+
+                            <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Créditos" required="" minlength="1" maxlength="1" pattern="[1-4]+" title="Complete esta campo con un número en el rango de 1 a 4">
+
+                            <div class="switchFlex">
+                                <label id="courseStatusLabelOne">Estado</label>
+                                <label class="switch" id="courseStatusLabelTwo">
+                                    <input type="checkbox" name="courseStatus" id="courseStatus" title="Escoja si el Curso esta activo o no">
+                                    <span class="slider round">
+                                        <!--ADDED HTML -->
+                                        <span class="on">Activo</span>
+                                        <span class="off">Inactivo</span>
+                                        <!--END-->
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div id="buttonSubmitAddCourse">
+                                <button type="submit" class="submit-btn form-control">Registrar</button>
+                            </div>
+                            <div id="alertMessageAddCourse"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <!--Image-->
+                <div class="col-md-6 col-sm-12">
+                    <div id="consultImage">
+                        <img id="imageUCRStudent" src="~/images/UCR1.jpg" alt="ImagenUCR" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Courses LIST -->
+    <section id="coursesList" class="displayAdmin">
+        <div class="container">
+            <div class="col-md-12 addCourse-info">
+                <!-- LIST  -->
+                <h2 id="courseTittle">Lista de Cursos</h2>
+                <div class="row sidePadding">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="courseTable">
+                            <thead class="table-primary headTable">
+                                <tr class="text-center">
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Créditos</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyCourseTable" class="text-center font-weight-bold">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- REGISTER APPOINTMENT -->
+    <section id="addAppointment" class="displayStudent">
+        <div class="container">
+            <div class="row">
+
+                <!--Image-->
+                <div class="col-md-6 col-sm-12">
+                    <div id="consultImage">
+                        <img id="imageUCRStudent" src="~/images/UCR2.jpg" alt="ImagenUCR" />
+                    </div>
+                </div>
+
+                <!-- ADD  -->
+                <div class="col-md-6 col-sm-12">
+                    <div class="entry-form">
+                        <form id="registerAppintmentForm" autocomplete="off">
+                            <h2>Agregar Cita</h2>
+
+                            <select class="form-control without-margin" required="" name="CourseAppointment" id="CourseAppointment" onchange="GroupAppointment()">
+                                <option value="0" selected="">Seleccione el Curso</option>
+                            </select>
+
+                            <select class="form-control without-margin" required="" name="groupAppointment" id="groupAppointment" onchange="GetProfGroupAppointment()">
+                                <option value="0" selected="">Seleccione el Grupo</option>
+                            </select>
+
+                            <select class="form-control without-margin" required="" name="professorAppointment" id="professorAppointment" onchange="DateAppointments()">
+                                <option value="0" selected="">Seleccione el profesor</option>
+                            </select>
+
+                            <select class="form-control without-margin" required="" name="ProfDateAppointment" id="ProfDateAppointment">
+                                <option value="0" selected="">Seleccione el horario</option>
+                            </select>
+                            <div id="appointmentType">
+                                <label>Tipo</label>
+                                <label id="appointmentswitchlabel" class="switch">
+                                    <input type="checkbox" id="consultTypeAppoCheck" name="consultTypeAppoCheck">
+                                    <span class="slider round">
+                                        <!--ADDED HTML -->
+                                        <span class="on">Presencial</span>
+                                        <span class="off">Virtual</span>
+                                        <!--END-->
+                                    </span>
+                                </label>
+                            </div>
+                            <div id="buttonSubmitAddAppointment">
+                                <button type="submit" class="submit-btn form-control">Registrar</button>
+                            </div>
+                            <div id="alertMessageAddAppointment"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!--  PROFESSOR -->
     <section id="addProfessor" class="displayAdmin">
@@ -512,7 +817,6 @@
         </div>
     </section>
 
-
     <!--  MODAL PROFESSOR-GROUP -->
     <div class="modal fade" id="modalProfessorGroup" role="dialog">
         <div class="modal-dialog">
@@ -538,10 +842,8 @@
                         <tbody id="bodyprofessorgrouptable" class="text-center font-weight-bold">
                         </tbody>
                     </table>
-
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -581,118 +883,107 @@
         </div>
     </div>
 
-    <!--  REGISTER COURSE -->
-    <section id="addCourse" class="displayAdmin">
-        <div class="container">
-            <div class="row">
+    <!-- The Modal Consult Details -->
+    <form>
+        <div class="modal fade" id="consultModal" role="dialog">
+            <div>
+                <!-- Modal content-->
+                <div class="modal-contentConsult">
 
-                <!-- ADD  -->
-                <div class="col-md-6 col-sm-12">
-                    <div class="entry-form">
-                        <form id="registerCourseForm" autocomplete="off">
-                            <h2>Agregar Curso</h2>
-                            <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Nombre" required="" minlength="10" maxlength="150" title="Complete este campo con el nombre del curso">
-
-                            <input type="text" name="idCourse" id="idCourse" class="form-control" placeholder="Código" required="" minlength="4" maxlength="4" pattern="[0-9IF-]+" title="Complete este campo con 4 números">
-
-                            <input type="text" name="creditsNumber" id="creditsNumber" class="form-control" placeholder="Créditos" required="" minlength="1" maxlength="1" pattern="[1-4]+" title="Complete esta campo con un número en el rango de 1 a 4">
-
-                            <div class="switchFlex">
-                                <label id="courseStatusLabelOne">Estado</label>
-                                <label class="switch" id="courseStatusLabelTwo">
-                                    <input type="checkbox" name="courseStatus" id="courseStatus" title="Escoja si el Curso esta activo o no">
-                                    <span class="slider round">
-                                        <!--ADDED HTML -->
-                                        <span class="on">Activo</span>
-                                        <span class="off">Inactivo</span>
-                                        <!--END-->
-                                    </span>
-                                </label>
-                            </div>
-
-                            <div id="buttonSubmitAddCourse">
-                                <button type="submit" class="submit-btn form-control">Registrar</button>
-                            </div>
-                            <div id="alertMessageAddCourse"></div>
-                        </form>
-                    </div>
                 </div>
+                <div id="alertAddComment"></div>
+            </div>
+        </div>
+    </form>
 
-                <!-- LIST  -->
-                <div class="col-md-6 addCourse-info">
-                    <h2 id="courseTittle">Lista de Cursos</h2>
-                    <div class="row sidePadding">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered" id="courseTable">
-                                <thead class="table-primary headTable">
-                                    <tr class="text-center">
-                                        <th>Id</th>
-                                        <th>Nombre</th>
-                                        <th>Créditos</th>
-                                        <th>Estado</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="bodyCourseTable" class="text-center font-weight-bold">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+    <!-- The Modal Consult Comments -->
+    <div class="modal fade" id="consultModalComments" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" aria-label="Close"><b>X</b></button>
+                    <h2 class="modal-title">Lista de Comentarios</h2>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-bordered" id="commentTable">
+                        <thead class="table-primary headTable">
+                            <tr class="text-center">
+                                <th>Autor</th>
+                                <th>Comentario</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyCommentsTable" class="text-center font-weight-bold">
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!--  Appoinment -->
-    <section id="addAppointment" class="displayStudent">
-        <div class="container">
-            <div class="row">
-
-                <!-- ADD  -->
-                <div class="col-md-6 col-sm-12">
-                    <div class="entry-form">
-                        <form id="registerAppintmentForm" autocomplete="off">
-                            <h2>Agregar Cita</h2>
-
-                            <select class="form-control without-margin" required="" name="professorAppointment" id="professorAppointment" onchange="DateAppointment()">
-                                <option value="0" selected="">Seleccione el profesor</option>
-                            </select>
-
-                            <select class="form-control without-margin" required="" name="professorDateAppointment" id="professorDateAppointment">
-                                <option value="0" selected="">Seleccione el horario</option>
-                            </select>
-                            <div id="appointmentType">
-                                <label>Tipo</label>
-                                <label id="appointmentswitchlabel" class="switch">
-                                    <input type="checkbox" id="consultTypeAppoCheck" name="consultTypeAppoCheck">
-                                    <span class="slider round">
-                                        <!--ADDED HTML -->
-                                        <span class="on">Presencial</span>
-                                        <span class="off">Virtual</span>
-                                        <!--END-->
-                                    </span>
-                                </label>
-                            </div>
-                            <div id="buttonSubmitAddAppointment">
-                                <button type="submit" class="submit-btn form-control">Registrar</button>
-                            </div>
-                            <div id="alertMessageAddAppointment"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    </div>
 
     <!-- Appointment LIST -->
     <section id="appointmentList" class="displayProfessor">
         <div class="container">
             <div class="col-md-12">
-                <h2 id="applicantTittle">Lista de Citas</h2>
+                <h2 id="applicantTittle">Lista de Horas de Consulta</h2>
                 <div class="row sidePadding">
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered" id="appointmentTable">
+                            <thead class="table-primary headTable">
+                                <tr class="text-center">
+                                    <th>Día</th>
+                                    <th>Hora</th>
+                                    <th>Carnet Estudiante</th>
+                                    <th>Nombre Estudiante</th>
+                                    <th>Tipo</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyApplicantTable" class="text-center font-weight-bold">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--  MODAL COMMENT APPOINTMENT -->
+    <div class="modal fade" id="modalCommentAppointment" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" id="buttonCloseModal" class="btn btn-danger" data-dismiss="modal" onclick="cleanFieldsFormCommentAppointment()" aria-label="Close"><b>X</b></button>
+                    <h2 class="modal-title">Enviar comentario de cita</h2>
+                </div>
+
+                <div class="modal-body">
+                    <div id="commentAppointmentTitle"></div>
+
+                    <form autocomplete="off" id="formCommentAppointment">
+                        <textarea class="form-control" rows="5" id="appointmentComment" placeholder="Comentario de cita" required></textarea>
+
+                        <div class="modal-footer mt-4">
+                            <div class="col-12">
+                                <button type="submit" id="buttonSendCommentAppointment" class="btn btn-success">Enviar</button>
+                                <button type="button" class="btn btn-danger" onclick="cleanFieldsFormCommentAppointment()" data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Appointment Request LIST -->
+    <section id="appointmentRequestList" class="displayProfessor">
+        <div class="container">
+            <div class="col-md-12">
+                <h2 id="appointmentRequestTittle">Lista de Solicitud de Citas</h2>
+                <div class="row sidePadding">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="appointmentRequestTable">
                             <thead class="table-primary headTable">
                                 <tr class="text-center">
                                     <th>Fecha</th>
@@ -702,7 +993,7 @@
                                     <th>Acción</th>
                                 </tr>
                             </thead>
-                            <tbody id="bodyApplicantTable" class="text-center font-weight-bold">
+                            <tbody id="bodyAppointmentRequestTable" class="text-center font-weight-bold">
                             </tbody>
                         </table>
                     </div>
@@ -745,7 +1036,7 @@
                         <div class="modal-footer mt-4">
                             <div class="col-12">
                                 <button type="submit" id="buttonAddCourseGroup" class="btn btn-success">Aceptar</button>
-                                <button type="button" class="btn btn-danger" onclick="cleanFieldsModalCourseGroup()" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-danger" onclick="cleanFieldsModalCourseGroup()" data-dismiss="modal">Cancelar</button>
                             </div>
                         </div>
                     </form>
@@ -796,7 +1087,7 @@
                         <div class="modal-footer mt-4">
                             <div class="col-12">
                                 <button type="submit" id="buttonEditCourse" class="btn btn-warning">Modificar</button>
-                                <button type="button" class="btn btn-danger" onclick="cleanFieldsModalEdit()" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-danger" onclick="cleanFieldsModalEdit()" data-dismiss="modal">Cancelar</button>
                             </div>
                         </div>
                     </form>
@@ -927,6 +1218,59 @@
         </div>
     </div>
 
+    <!--  MODAL EDIT NEWS -->
+    <div class="modal fade" id="modalNewsEdit" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="buttonCloseModalEditNews" class="btn btn-danger" data-dismiss="modal" onclick="cleanFieldsModalNewsEdit()" aria-label="Close"><b>X</b></button>
+                    <h2 class="modal-title">Modificar Noticia</h2>
+                </div>
+                <div class="modal-body">
+                    <div id="newsTitleModalEdit"></div>
+
+                    <form id="formEditNews" autocomplete="off">
+                        <div class="form-group" id="inputNewsTitleEdit">
+                            <label>Titulo:</label>
+                            <div id="inputNewsTitleEditPosition">
+                                <input type="text" name="newsTitleEdit" id="newsTitleEdit" class="form-control" required="" minlength="10" maxlength="50" title="Complete este campo con el titulo de la noticia">
+                            </div>
+                        </div>
+                        <div class="form-group" id="inputNewsDescriptionEdit">
+                            <label>Descripción:</label>
+                            <div id="inputNewsDescriptionEditPosition">
+                                <textarea rows="6" cols="50" type="text" name="newsEditDescription" id="newsEditDescription" class="form-control" required="" minlength="10" maxlength="255" title="Complete este campo con la descripcion de la noticia"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="inputNewsImageEdit">
+                            <label>Nueva imagen:</label>
+                            <div id="inputNewsImageEditPosition">
+                                <input id="imgFileNewsEdit" type="file" name="imgFileNewsEdit" accept="image/png, .jpg">
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="inputNewsFileEdit">
+                            <label>Nuevo archivo:</label>
+                            <div id="inputNewsFileEditPosition">
+                                <input id="fileNewsEdit" type="file" name="fileNewsEdit" accept=".pdf, .txt, .docx, .doc">
+                            </div>
+                        </div>
+
+                        <div class="modal-footer mt-4">
+                            <div class="col-12">
+                                <button type="submit" id="buttonEditNews" class="btn btn-warning">Modificar</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cleanFieldsModalNewsEdit()">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <!-- APPLICANT LIST -->
     <section id="applicantList" class="displayAdmin">
         <div class="container">
@@ -976,8 +1320,6 @@
             </div>
         </div>
     </section>
-
-
 
     <!-- FOOTER -->
     <footer id="footer" class="displayAll">
@@ -1039,6 +1381,7 @@
     <script src="js/course.js"></script>
     <script src="js/consult.js"></script>
     <script src="~/js/appointment.js"></script>
+    <script src="~/js/news.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script> <!-- Mask inputs -->
     <script src="https://smtpjs.com/v3/smtp.js"></script> <!-- Email -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script> <!-- Datatable -->

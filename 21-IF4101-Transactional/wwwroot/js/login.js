@@ -10,6 +10,8 @@ $(document).ready(function () {
     $(".displayAdmin").hide();
     $(".displayStudent").hide();
     $(".displayProfessor").hide();
+    $(".displayStudentAdmin").hide();
+    $(".displayStudentNoAdmin").hide();
 });
 
 //SHOW/HID PASSWORD
@@ -79,7 +81,7 @@ loginForm.addEventListener("submit", function (e) {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
 
-            success: function (result) {  //(result = 1): Admin  (result = 2): Student  (result = 3): Professor
+            success: function (result) {  //(result = 1): Admin  (result = 2): Student  (result = 3): Professor (result = 4):Student Admin
                 if (result == 1) {
                     loginForm.reset(); //Clean form fields
                     showDisplay("admin");
@@ -90,11 +92,17 @@ loginForm.addEventListener("submit", function (e) {
                     showDisplay("student");
                     setNameStudent();
                     loadConsultList();
-                } else if (result == 3) {
+                } else if (result == 4) {//student admin
+                    loginForm.reset(); //Clean form fields
+                    showDisplay("studentAdmin");
+                    setNameStudent();
+                    loadConsultList();
+                }else if (result == 3) {
                     loginForm.reset(); //Clean form fields
                     showDisplay("professor");
                     setNameProfessor();
                     loadConsultList();
+                    loadAppointmentRequest();
                     loadAppointment();
                 } else if (result == 0) {
                     alertMessageToSendLogin.innerHTML = `<label class="text-danger">Email o contraseña incorrecta</label>`;
@@ -121,6 +129,8 @@ function hiddenAll() {
     $(".displayStudent").hide();
     $(".displayProfessor").hide();
     $(".displayNoUser").hide();
+    $(".displayStudentAdmin").hide();
+    $(".displayStudentNoAdmin").hide();
 }
 
 function showDisplay(usuario) {
@@ -138,6 +148,13 @@ function showDisplay(usuario) {
             hiddenAll();
             $(".displayAll").show();
             $(".displayStudent").show();
+            $(".displayStudentNoAdmin").show();
+            break;
+        case "studentAdmin":
+            hiddenAll();
+            $(".displayAll").show();
+            $(".displayStudent").show();
+            $(".displayStudentAdmin").show();
             break;
         case "professor":
             hiddenAll();
@@ -153,6 +170,8 @@ function logOut() {
     $(".displayProfessor").hide();
     $(".displayAll").show();
     $(".displayNoUser").show();
+    $(".displayStudentAdmin").hide();
+    $(".displayStudentNoAdmin").hide();
 }
 
 /*--------------------------------------------- PROFILE STUDENT -----------------------------------------------------------*/
@@ -596,3 +615,45 @@ function showImageProfessor(event) {
 }
 
 window.addEventListener('load', initProfessor, false);
+
+
+
+
+
+/*--------------------------------------------- DELETE PROFILE PROFESSOR-----------------------------------------------------------*/
+
+function verifyDeleteProfile() {
+    Swal.fire({
+        title: "¿Esta seguro que desea eliminar el perfil? Los cambios no serán reversibles",
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: `Confirmar`,
+        denyButtonText: `Cancelar`,
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "/Login/Delete",
+                type: "DELETE",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+
+                success: function (result) {
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Borrado Exitoso',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                },
+
+                error: function (errorMessage) {
+                    alert("Error");
+                    alert(errorMessage.responseText);
+                }
+            });
+            logOut();
+        }
+    });
+}

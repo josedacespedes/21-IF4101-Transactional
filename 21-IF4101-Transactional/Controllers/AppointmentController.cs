@@ -4,10 +4,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace _21_IF4101_Transactional.Controllers
 {
@@ -49,11 +45,11 @@ namespace _21_IF4101_Transactional.Controllers
             return Json(new { data = appointmentDAO.Get(HttpContext.Session.GetString("sNombre")) });
         }
 
-        public IActionResult GetDates(string ProfessorName)
+        public IActionResult GetDates(int ProfessorId, int groupid)
         {
             //call model to get the appointments
             appointmentDAO = new AppointmentDAO(_configuration);
-            return Json(appointmentDAO.GetDates(ProfessorName));
+            return Json(appointmentDAO.GetDates(ProfessorId, groupid));
         }
 
         public IActionResult GetProfessors()
@@ -87,6 +83,22 @@ namespace _21_IF4101_Transactional.Controllers
         {
             appointmentDAO = new AppointmentDAO(_configuration);
             return Ok(appointmentDAO.GetEmailStudent(studentId));
+        }
+        public IActionResult GetGroupAppointment(int courseid)
+        {
+            appointmentDAO = new AppointmentDAO(_configuration);
+            return Json(appointmentDAO.GetGroupsAppointment(courseid));
+        }
+        public IActionResult GetProfGroupAppointment(int groupid)
+        {
+            appointmentDAO = new AppointmentDAO(_configuration);
+            return Json(appointmentDAO.GetProfessorGroupAppointment(groupid));
+        }
+
+        public IActionResult GetInformation(string professorname)
+        {
+            appointmentDAO = new AppointmentDAO(_configuration);
+            return Json(new { emailProfessor = appointmentDAO.GetInformation(professorname), name = HttpContext.Session.GetString("sNombre") });
         }
 
     }

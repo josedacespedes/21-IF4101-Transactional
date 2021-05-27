@@ -102,6 +102,20 @@ function putErrorInputProfessor(professor) {
     return validate;
 }
 
+function randomPassword() {
+    var lower = "abcdefghijklmnopqrstuvwxyz";
+    var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var numbers = "0123456789";
+    var symbols = "!@#$%&*.-+=";
+    var pass = "";
+    pass += upper[Math.floor(Math.random() * 26)];
+    for (var i = 0; i < 5; i++) {
+        pass += lower[Math.floor(Math.random() * 26)];
+    }
+    pass += numbers[Math.floor(Math.random() * 10)];
+    pass += symbols[Math.floor(Math.random() * 11)];
+}
+
 //HIDE MSG FORM
 $("#firstNameProfessor").click(function () {
     alertMessageAddProfessor.innerHTML = "";
@@ -119,7 +133,7 @@ formProfessor.addEventListener("submit", function (e) {
         lastNameProfessor: $('#lastNameProfessor').val(),
         idProfessor: $('#idProfessor').val(),
         emailProfessor: $('#emailProfessor').val(),
-        passwordProfessor: $('#passwordProfessor').val()
+        passwordProfessor: randomPassword()//$('#passwordProfessor').val()
     };
 
     if (!putErrorInputProfessor(professor)) {
@@ -177,7 +191,7 @@ function loadListProfessor() {
         "autoWidth": false,
         "ajax": {
             "url": "/Professor/Get",
-            "tpye": 'GET',
+            "type": 'GET',
             "datatype": "json"
         },
         lengthMenu: [7, 20, 50, 100],
@@ -201,7 +215,7 @@ function loadListGroup(id) {
         "autoWidth": false,
         "ajax": {
             "url": "/Course/GetGroupByIdCourse/" + id,
-            "tpye": 'GET',
+            "type": 'GET',
             "datatype": "json",
 
         },
@@ -220,7 +234,7 @@ $("#professorTable tbody").on("click", "#professorGroupModal", function () {
     dataInfoProfessor = tableProfessor.row($(this).parents("tr")).data();
     document.getElementById("professorTitleModal").innerHTML = `<h4>Profesor: ${dataInfoProfessor.firstNameProfessor}  ${dataInfoProfessor.lastNameProfessor} </h4>`;
     GetCourseGroup();
-    tableGroup.clear().draw();
+    //tableGroup.clear().draw();
 });
 
 /*--------------------------------------------- GET COURSES-----------------------------------------------------------*/
@@ -283,11 +297,11 @@ function GetWeekdays() {
 }
 
 $("#professorGroupTable tbody").on("click", "#groupModal", function () {
+    $("#showConsultTime").val("");
     dataInfoGroup = tableGroup.row($(this).parents("tr")).data();
     document.getElementById("consultTimeTitleModal").innerHTML = `<h4>Grupo: ${dataInfoGroup.numGroup}</h4>`;
     GetWeekdays();
     getConsultTime();
-
 });
 
 var timeConsult = "";
@@ -332,8 +346,7 @@ $("#buttonSaveConsultTime").on("click", function () {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                $('#modalProfessorConsultTime').modal('hide')
-                    ;
+                $('#modalProfessorConsultTime').modal('hide');
 
                 Swal.fire({
                     icon: 'success',
@@ -358,7 +371,7 @@ $("#buttonSaveConsultTime").on("click", function () {
 function getConsultTime() {
     $.ajax({
         url: "/Professor/GetConsultTime",
-        data: { idGroup: parseInt(dataInfoGroup.idGroup) },
+        data: { idGroup: parseInt(dataInfoGroup.idGroup), idProfessor: parseInt(dataInfoProfessor.id) },
         type: "GET",
         contentType: "application/json;charset=utf-8",
 

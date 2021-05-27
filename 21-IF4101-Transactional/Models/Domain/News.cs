@@ -11,34 +11,34 @@ namespace _21_IF4101_Transactional.Models.Domain
         private string title;
         private string description;
         private string author;
-        private DateTime publication_Date;
-        private DateTime modification_Date;
-        private string file_New;
+        private string publicationDate;
+        private string modificationDate;
+        private string fileNews;
         private string imagen;
 
         public News()
         {
         }
 
-        public News(int id, string title, string description, string author, DateTime publication_Date, DateTime modification_Date, string file_New, string imagen)
+        public News(int id, string title, string description, string author, string file_New, string imagen, string publicationDate, string modificationDate)
         {
             this.Id = id;
             this.Title = title;
             this.Description = description;
             this.Author = author;
-            this.Publication_Date = publication_Date;
-            this.Modification_Date = modification_Date;
-            this.File_New = file_New;
+            this.FileNews = fileNews;
             this.Imagen = imagen;
+            this.publicationDate = publicationDate;
+            this.modificationDate = modificationDate;
         }
 
         public int Id { get => id; set => id = value; }
         public string Title { get => title; set => title = value; }
         public string Description { get => description; set => description = value; }
         public string Author { get => author; set => author = value; }
-        public DateTime Publication_Date { get => publication_Date; set => publication_Date = value; }
-        public DateTime Modification_Date { get => modification_Date; set => modification_Date = value; }
-        public string File_New { get => file_New; set => file_New = value; }
+        public string FileNews { get => fileNews; set => fileNews = value; }
         public string Imagen { get => imagen; set => imagen = value; }
+        public string PublicationDate { get => publicationDate; set => publicationDate = value; }
+        public string ModificationDate { get => modificationDate; set => modificationDate = value; }
     }
 }

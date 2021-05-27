@@ -305,7 +305,7 @@ namespace _21_IF4101_Transactional.Models.Data
 
         }
 
-        public string GetConsultTime(int idGroup)
+        public string GetConsultTime(int idGroup, int idProfessor)
         {
             string consultTime = "0";
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -313,7 +313,8 @@ namespace _21_IF4101_Transactional.Models.Data
                 connection.Open(); //abrimos conexión
                 SqlCommand command = new SqlCommand("SelectConsultHour", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@IdGroup", idGroup);
+                command.Parameters.AddWithValue("@idGroup", idGroup);
+                command.Parameters.AddWithValue("@idProfessor", idProfessor);
 
                 SqlDataReader sqlDataReader = command.ExecuteReader();
                 if (sqlDataReader.Read())

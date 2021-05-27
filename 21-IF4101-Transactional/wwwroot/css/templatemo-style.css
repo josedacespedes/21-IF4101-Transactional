@@ -9,11 +9,16 @@ https://templatemo.com/tm-516-known
 @import url('https://fonts.googleapis.com/css?family=Muli:300,700|Nunito');
 
 body {
-    background: #ffffff;
+    background-color: #eee;
     font-family: 'Nunito', sans-serif;
     overflow-x: hidden;
     padding-top: 70px;
 }
+
+#ucrLogo {
+    width: 5%;
+}
+
 
 
 /*---------------------------------------
@@ -166,6 +171,8 @@ input, button,
 section {
     position: relative;
     padding: 100px 0;
+    box-shadow: 0px 40px #337ab7;
+    border-radius: 25px;
 }
 
 #team,
@@ -193,10 +200,17 @@ section {
     color: white;
 }
 
+    .headTable select {
+        color: black;
+    }
+
+#selectTableAppointment {
+    width: 10em;
+    height: 2.1em;
+}
 /*---------------------------------------
      BUTTONS               
   -----------------------------------------*/
-
 .section-btn {
     background: transparent;
     border-radius: 50px;
@@ -226,9 +240,7 @@ section {
     margin-top: -15px;
 }
 
-body {
-    background-color: #e3f2fd;
-}
+
 
 /*---------------------------------------
        SWITCH              
@@ -309,10 +321,15 @@ input:checked + .slider:before {
     height: 4em;
 }
 
+#newsEditDescription {
+    resize: none;
+    height: 8em;
+}
 
-    #registerProfileProfessor textarea ::-webkit-input-placeholder, #registerProfileStudent textarea ::-webkit-input-placeholder {
-        text-align: center;
-    }
+
+#registerProfileProfessor textarea ::-webkit-input-placeholder, #registerProfileStudent textarea ::-webkit-input-placeholder {
+    text-align: center;
+}
 
 .colorLabelProfile {
     color: gray;
@@ -329,7 +346,7 @@ input:checked + .slider:before {
     width: 70%;
 }
 
-#buttonCloseModal, #buttonCloseModalEdit {
+#buttonCloseModal, #buttonCloseModalEdit, #buttonCloseModalEditNews {
     float: right;
 }
 
@@ -358,19 +375,27 @@ input:checked + .slider:before {
 
 #startHourConsult, #endHourConsult {
     display: inline-block;
+    margin-bottom: 2em;
+    width: 23%;
+}
+
+#startHourConsult {
     margin-left: 2em;
     margin-right: 2em;
-    margin-bottom: 2em;
-    width: 17%;
 }
 
 #buttonAddConsultTime {
     margin-bottom: 2em;
 }
 
+
 #dayConsultProfessor {
     display: inline-block;
     width: 40%;
+}
+
+#appointmentComment {
+    resize: none;
 }
 /*---------------------------------------
     PRE LOADER              
@@ -621,10 +646,12 @@ input:checked + .slider:before {
 
 .home-slider .item-second {
     background-image: url(../images/slider-image2.jpg);
+    background-position: center;
 }
 
 .home-slider .item-third {
     background-image: url(../images/slider-image3.jpg);
+    background-position: center;
 }
 
 
@@ -750,6 +777,7 @@ table th {
 footer {
     background: #252020;
     padding: 120px 0;
+    margin-top: 2.8em;
 }
 
     footer .section-title {
@@ -875,6 +903,10 @@ footer {
 
         .social-icon li .fa-github-square {
             color: white;
+        }
+
+        .social-icon li .fa-twitter {
+            color: #1DA1F2;
         }
 
         .social-icon li .fa-instagram {
@@ -1034,7 +1066,7 @@ footer {
 }
 /*-----------CONSULT-------*/
 
-#consultTitle, #consultDescription, #consultType, #courseConsult {
+#consultTitle, #consultDescription, #consultType, #newsTittle, #newsDescription {
     color: white;
 }
 
@@ -1154,7 +1186,52 @@ input:checked + .slider .off {
             color: #ffffff;
         }
 
-#consultDescription, #dConsultDescription, #dConsultAnswer, #dConsultComment {
+
+.entry-formNews {
+    background: #252020;
+    text-align: center;
+    padding: 3em;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    max-width: 100%;
+    border-radius: 5%;
+    max-height: 100%;
+    color: white;
+}
+
+    .entry-formNews h2 {
+        color: #ffffff;
+        margin: 0;
+    }
+
+    .entry-formNews .form-control {
+        background: transparent;
+        border: 0;
+        border-bottom: 1px solid;
+        border-radius: 0;
+        box-shadow: none;
+        height: 45px;
+        margin: 10px 0;
+    }
+
+    .entry-formNews .submit-btn {
+        background: #ffffff;
+        border-radius: 50px;
+        border: 0;
+        color: #252020;
+        width: 50%;
+        height: 50px;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+
+        .entry-formNews .submit-btn:hover {
+            background: #3f51b5;
+            color: #ffffff;
+        }
+
+#consultDescription, #dConsultDescription, #dConsultAnswer, #dConsultComment, #newsDescription {
     height: 150%;
     resize: none;
 }
@@ -1192,6 +1269,18 @@ input:checked + .slider .off {
     border: 2% solid #888;
     width: 75%;
     border-radius: 1%;
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+/* Modal Content/Box */
+.modal-contentNew {
+    background-color: aliceblue;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 4%;
+    border: 2% solid #888;
+    width: 75%;
+    border-radius: 1%;
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
 }
 
 .modalConsultCommets {
@@ -1272,7 +1361,7 @@ input:checked + .slider .off {
     margin-left: -70%;
 }
 
-#buttonSubmitAddAppointment {
+#buttonSubmitAddAppointment, #buttonSubmitAddNews {
     margin-top: 3em;
 }
 
@@ -1292,4 +1381,3 @@ input:checked + .slider .off {
     box-shadow: 7px 7px 15px #592A08;
     border: 1px solid #ccc;
 }
-
