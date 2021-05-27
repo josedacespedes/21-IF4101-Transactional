@@ -633,7 +633,6 @@ function SaveImage() {
         }
     });
 }
-<<<<<<< HEAD
 
 
 function SaveFileToInsert() {
@@ -678,5 +677,3 @@ function SaveImageToInsert() {
         }
     });
 }
-=======
->>>>>>> 78e00738ad6ad5652f0f3b19da45c58415f742e5
