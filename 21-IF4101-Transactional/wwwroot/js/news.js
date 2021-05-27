@@ -144,6 +144,7 @@ $("#newsListPresidentAdminTable tbody").on("click", "#deleteNews", function () {
 
     var data = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
     var rowToRemove = $(this).parents('tr');
+
     Swal.fire({
         title: "Esta seguro de eliminar esta noticia (incluido comentarios)?",
         showDenyButton: true,
@@ -513,7 +514,6 @@ $("#newsListPresidentAdminTable tbody").on("click", "#btnModalPACommentsNews", f
     loadPANewsListComments();
 });
 
-
 function loadPANewsListComments() {
 
     tableNewsComments = $("#newsPACommentsTable").DataTable({
@@ -530,7 +530,7 @@ function loadPANewsListComments() {
             { "data": "author" },
             { "data": "date" },
             { "data": "comment" },
-            { defaultContent: "<button id='buttonNewCommentDelete' name='buttonNewCommentDelete' type='button' class='btn btn-danger' title='Eliminar'><i class='fa fa-trash'></i></button>" }
+            { defaultContent: "<button id='buttonNewCommentDelete' name='buttonNewCommentDelete' type='button' class='btn btn-danger' title='Delete'><i class='fa fa-trash'></i></button>" }
         ]
     });
 
@@ -554,11 +554,37 @@ function loadNewsListComments() {
         ]
     });
 }
-/*--------------------------------------------- DELETE NEWS COMMENTS-----------------------------------------------------------*/
-//$("#bodyNewsPACommentsTable tbody").on("click", "#buttonNewCommentDelete", function () {
-//    //var dataInfoComments = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
-//    //loadNewsListComments(dataInfoComments.id);
-//});
+/*--------------------------------------------- DELETE COMMENTS-----------------------------------------------------------*/
+
+$("#newsPACommentsTable tbody").on("click", "#buttonNewCommentDelete", function () {
+    var data = tableNewsComments.row($(this).parents("tr")).data();
+    var rowToRemove = $(this).parents('tr');
+    Swal.fire({
+        title: "¿Está seguro que desea eliminar este comentario?",
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: `Confirmar`,
+        denyButtonText: `Cancelar`,
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "/NewsCommentAPI/Delete",
+                data: { id: data.id },
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    tableNewsComments.row(rowToRemove).remove().draw(); //Remove of list
+                },
+                error: function (errorMessage) {
+                    alert("Failed to delete Comment");
+                }
+            });
+        }
+    });
+});
+
 
 function SaveFile() {
     var fileNewNews = document.getElementById("fileNewsEdit").files[0];
