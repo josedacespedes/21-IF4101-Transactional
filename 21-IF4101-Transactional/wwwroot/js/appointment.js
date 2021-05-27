@@ -8,7 +8,7 @@ var dataInfoAppointmentRequestAdd;
 var flagCommentAppointment; // 1 acepta y 0 rechaza
 
 $(document).ready(function () {
-    GetCourseAppointment();
+    
     //GetProfessorAppointment();
 });
 

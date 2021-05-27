@@ -50,7 +50,7 @@ namespace _21_IF4101_Transactional.Models.Data
 
         
 
-        public List<Consult> Get(string email)
+        public List<Consult> Get(string email, string author)
         {
             List<Consult> consults = new List<Consult>();
 
@@ -60,6 +60,7 @@ namespace _21_IF4101_Transactional.Models.Data
                 SqlCommand command = new SqlCommand("SelectConsult", connection);//llamamos a un procedimiento almacenado (SP) que crearemos en el punto siguiente. La idea es no tener acá en el código una sentencia INSERT INTO directa, pues es una mala práctica y además insostenible e inmantenible en el tiempo.
                 command.CommandType = System.Data.CommandType.StoredProcedure; //acá decimos que lo que se ejecutará es un SP      
                 command.Parameters.AddWithValue("@Email", email);
+                command.Parameters.AddWithValue("@Author", author);
                 //logica del get/select
                 SqlDataReader sqlDataReader = command.ExecuteReader();
                 //leemos todas las filas provenientes de BD

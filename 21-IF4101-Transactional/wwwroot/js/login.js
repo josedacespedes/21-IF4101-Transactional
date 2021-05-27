@@ -92,11 +92,13 @@ loginForm.addEventListener("submit", function (e) {
                     showDisplay("student");
                     setNameStudent();
                     loadConsultList();
+                    GetCourseAppointment();
                 } else if (result == 4) {//student admin
                     loginForm.reset(); //Clean form fields
                     showDisplay("studentAdmin");
                     setNameStudent();
                     loadConsultList();
+                    GetCourseAppointment();
                 }else if (result == 3) {
                     loginForm.reset(); //Clean form fields
                     showDisplay("professor");
