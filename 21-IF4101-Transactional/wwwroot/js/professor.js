@@ -114,6 +114,7 @@ function randomPassword() {
     }
     pass += numbers[Math.floor(Math.random() * 10)];
     pass += symbols[Math.floor(Math.random() * 11)];
+    return pass;
 }
 
 //HIDE MSG FORM
@@ -313,7 +314,7 @@ formConsultTime.addEventListener("submit", function (e) {
     var endTime = $('#endHourConsult').val();
 
     if (startTime < endTime) {
-        timeConsult += day + ':' + startTime + '-' + endTime + ',';
+        timeConsult += day + ' ' + startTime + '-' + endTime + ',';
         var details = timeConsult.replaceAll(",", "\n");
         $('#showConsultTime').val(details);
 

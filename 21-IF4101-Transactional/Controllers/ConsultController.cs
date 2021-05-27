@@ -63,7 +63,7 @@ namespace _21_IF4101_Transactional.Controllers
             
             //call model to get the courses
             consultDAO = new ConsultDAO(_configuration);
-            return Json(new { data = consultDAO.Get(HttpContext.Session.GetString("sEmail")) });
+            return Json(new { data = consultDAO.Get(HttpContext.Session.GetString("sEmail"), HttpContext.Session.GetString("sNombre")) });
             
         }
 
