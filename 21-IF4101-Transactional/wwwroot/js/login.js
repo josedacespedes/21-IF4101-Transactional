@@ -92,7 +92,7 @@ loginForm.addEventListener("submit", function (e) {
                     showDisplay("student");
                     setNameStudent();
                     loadConsultList();
-                } else if (result == 4) {
+                } else if (result == 4) {//student admin
                     loginForm.reset(); //Clean form fields
                     showDisplay("studentAdmin");
                     setNameStudent();
