@@ -23,7 +23,7 @@ function GetCourseAppointment() {
             //console.log(result);
             var html = '';
             $.each(result, function (key, item) {
-                html += '<option value="'+item.id+'">' + item.name + '</option>';
+                html += '<option value="' + item.id + '">' + item.name + '</option>';
             });
             $('#CourseAppointment').append(html);
         },
@@ -50,7 +50,7 @@ function GetProfGroupAppointment() {
             //console.log(result);
             $.each(result, function (key, item) {
                 //console.log(item);
-                html += '<option value="'+item.id+'">' + item.firstNameProfessor + ' ' + item.lastNameProfessor + '</option>';
+                html += '<option value="' + item.id + '">' + item.firstNameProfessor + ' ' + item.lastNameProfessor + '</option>';
                 //html += '<option value="' + item.id + '">' + item.firstNameProfessor + ' ' + item.lastNameProfessor+ '</option>';
             });
             $('#professorAppointment').append(html);
@@ -167,7 +167,7 @@ function DateAppointments() {
                 //html += '<option>' + item + '</option>';
                 var array = item.split(",");
                 var i = 0;
-                while (i < array.length-1) {
+                while (i < array.length - 1) {
                     html += '<option>' + array[i] + '</option>';
                     i++;
                 }
@@ -214,7 +214,7 @@ registerAppintmentForm.addEventListener("submit", function (e) {
                 if (result == 1) {
                     messageAppointment.innerHTML = "<label class='text-success'>Cita agregada exitosamente</label>";
                     $('#CourseAppointment').val(0);
-                    
+
                     CleanDate();
                     CleanGroup();
                     CleanProfGroup();
@@ -235,6 +235,9 @@ registerAppintmentForm.addEventListener("submit", function (e) {
     }
 });
 
+$("#CourseAppointment").click(function () {
+    messageAppointment.innerHTML = " ";
+});
 
 
 

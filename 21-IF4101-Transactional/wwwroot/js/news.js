@@ -39,10 +39,16 @@ registerNewsForm.addEventListener("submit", function (e) {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
+            var authorNews;
+            if (result.name == " ") {
+                authorNews = "Administrador";
+            } else {
+                authorNews = result.name;
+            }
             var news = {
                 title: $('#newsTittle').val(),
                 description: $('#newsDescription').val(),
-                author: 'Administrador',
+                author: authorNews,
                 publicationDate: result.date,
                 modificationDate: result.date,
                 fileNews: 'files/' + document.getElementById("FileNews").files[0].name,
@@ -86,6 +92,11 @@ registerNewsForm.addEventListener("submit", function (e) {
         }
     });
 
+});
+
+
+$("#newsTittle").click(function () {
+    messageNews.innerHTML = " ";
 });
 
 /*--------------------------------------------- LIST NEWS-----------------------------------------------------------*/
