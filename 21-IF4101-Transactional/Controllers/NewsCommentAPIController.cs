@@ -51,11 +51,13 @@ namespace _21_IF4101_Transactional.Controllers
 
             }
 
-            return Json(new { data = newsComment }); ;
+            return Json(new { data = newsComment });
         }
 
         // GET api/<NewsCommentController>/5
-        public NewsComment GetById(int id)
+        [Route("[action]")]
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
         {
             NewsComment news = null;
 
@@ -74,7 +76,7 @@ namespace _21_IF4101_Transactional.Controllers
                     news = readTask.Result;
                 }
             }
-            return news;
+            return Json(new { data = news });
         }
 
         // POST api/<NewsCommentController>

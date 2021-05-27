@@ -7,6 +7,7 @@ var messageNews = document.getElementById("alertMessageAddNews");
 var saveNewsPAComment = document.getElementById("formPAComment");
 var modalPADetails = document.getElementById("newsModal");
 var modalPAComments = document.getElementById("newsPAModalComments");
+var alertComment = document.getElementById("alertAddNewComment");
 
 var tableNewsNoUser;
 var tableNewsProfessorStudent;
@@ -316,14 +317,14 @@ function addPAComment(id) {
                     success: function (result) {
                         console.log(result);
                         $('#dNewComment').val("");
-                        message.innerHTML = "<label class='text-success'>Comentario agregado exitosamente</label>";
+                        alertComment.innerHTML = "<label class='text-success'>Comentario agregado exitosamente</label>";
                     },
                     error: function (errorMessage) {
-                        message.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
+                        alertComment.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
                     }
                 });
             } else {
-                message.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
+                alertComment.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
             }
         },
         error: function (errorMessage) {
@@ -337,7 +338,7 @@ $("#newsListPresidentAdminTable tbody").on("click", "#btnModalDetailsNews", func
     var dataNewsPA = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
     modalPADetails.style.display = "block";
 
-    message.innerHTML = "";
+    alertComment.innerHTML = "";
     var html = '';
 
     html += '<div class="modal-header">';
@@ -392,7 +393,7 @@ $("#newsListPresidentAdminTable tbody").on("click", "#btnModalDetailsNews", func
 $("#newsNoUserTable tbody").on("click", "#btnModalDetailsNews", function () {
     var dataNewsPA = tableNewsNoUser.row($(this).parents("tr")).data();
 
-    message.innerHTML = "";
+    alertComment.innerHTML = "";
     var html = '';
 
     html += '<div class="modal-header">';
@@ -442,7 +443,7 @@ $("#newsNoUserTable tbody").on("click", "#btnModalDetailsNews", function () {
 $("#newsProfessorStudentTable tbody").on("click", "#btnModalDetailsNews", function () {
     var dataNewsPA = tableNewsProfessorStudent.row($(this).parents("tr")).data();
 
-    message.innerHTML = "";
+    alertComment.innerHTML = "";
     var html = '';
 
     html += '<div class="modal-header">';
@@ -498,51 +499,50 @@ $("#newsProfessorStudentTable tbody").on("click", "#btnModalDetailsNews", functi
 /*--------------------------------------------- LIST NEWS COMMENTS-----------------------------------------------------------*/
 $("#newsNoUserTable tbody").on("click", "#btnModalCommentsNews", function () {
     var dataInfoComments = tableNewsNoUser.row($(this).parents("tr")).data();
-    loadNewsListComments(dataInfoComments.id);
+    loadNewsListComments();
 
 });
 $("#newsProfessorStudentTable tbody").on("click", "#btnModalCommentsNews", function () {
     var dataInfoComments = tableNewsProfessorStudent.row($(this).parents("tr")).data();
-    loadNewsListComments(dataInfoComments.id);
+    loadNewsListComments();
 
 });
 $("#newsListPresidentAdminTable tbody").on("click", "#btnModalPACommentsNews", function () {
-    var dataInfoComments = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
-    loadPANewsListComments(dataInfoComments.id);
+    modalPAComments.style.display = "block";
+    var data = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
+    loadPANewsListComments();
 });
 
 
-function loadPANewsListComments(id) {
+function loadPANewsListComments() {
+
     tableNewsComments = $("#newsPACommentsTable").DataTable({
         "destroy": true,
         "autoWidth": false,
-        "columnDefs": [
-            { "width": "20%", "targets": [0, 2] }
-        ],
         "ajax": {
-            "url": "/NewsAPI/Get" + id,
+            "url": "/NewsCommentAPI/Get",
+            //"data": { id: id },
             "tpye": 'GET',
             "datatype": "json",
         },
         lengthMenu: [7, 20, 50, 100],
         "columns": [
             { "data": "author" },
-            { "data": "comment" },
             { "data": "date" },
+            { "data": "comment" },
             { defaultContent: "<button id='buttonNewCommentDelete' name='buttonNewCommentDelete' type='button' class='btn btn-danger' title='Eliminar'><i class='fa fa-trash'></i></button>" }
         ]
     });
+
 }
 
-function loadNewsListComments(id) {
+function loadNewsListComments() {
     tableComments = $("#newsCommentsTable").DataTable({
         "destroy": true,
         "autoWidth": false,
-        "columnDefs": [
-            { "width": "20%", "targets": [0, 2] }
-        ],
         "ajax": {
-            "url": "/NewsCommentControllerAPI/Get/" + id,
+            "url": "/NewsCommentAPI/Get",
+            //"data": { id: id },
             "tpye": 'GET',
             "datatype": "json",
         },
