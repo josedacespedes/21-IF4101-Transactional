@@ -191,7 +191,7 @@ function loadListProfessor() {
         "autoWidth": false,
         "ajax": {
             "url": "/Professor/Get",
-            "tpye": 'GET',
+            "type": 'GET',
             "datatype": "json"
         },
         lengthMenu: [7, 20, 50, 100],
@@ -215,7 +215,7 @@ function loadListGroup(id) {
         "autoWidth": false,
         "ajax": {
             "url": "/Course/GetGroupByIdCourse/" + id,
-            "tpye": 'GET',
+            "type": 'GET',
             "datatype": "json",
 
         },
@@ -387,4 +387,3 @@ function getConsultTime() {
         }
     });
 }
-
