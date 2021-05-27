@@ -110,16 +110,16 @@ namespace _21_IF4101_Transactional.Controllers
         }
 
         // DELETE api/<NewsCommentController>/5
-        [HttpDelete("{id}")]
+        [Route("[action]")]
         public JsonResult Delete(int id)
         {
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44397/api/");
+                client.BaseAddress = new Uri("https://localhost:44397/api/NewsComments/");
 
                 //HTTP DELETE
-                var deleteTask = client.DeleteAsync("NewsComments/" + id.ToString());
+                var deleteTask = client.DeleteAsync(id.ToString());
                 deleteTask.Wait();
 
                 var result = deleteTask.Result;
