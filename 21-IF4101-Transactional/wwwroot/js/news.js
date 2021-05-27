@@ -15,6 +15,9 @@ var tableNewsPresidentAdmin;
 var idNewsEdit;
 var tableNewsComments;
 
+var fileName;
+var imageName;
+
 $(document).ready(function () {
     loadNewsNoUserList();
     loadNewsProfessorStudentList();
@@ -323,14 +326,13 @@ function addPAComment(id) {
                     success: function (result) {
                         console.log(result);
                         $('#dNewComment').val("");
-                        alertComment.innerHTML = "<label class='text-success'>Comentario agregado exitosamente</label>";
                     },
                     error: function (errorMessage) {
-                        alertComment.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
+                        alert("Error");
                     }
                 });
             } else {
-                alertComment.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
+                alert("Error");
             }
         },
         error: function (errorMessage) {
@@ -342,6 +344,9 @@ function addPAComment(id) {
 
 $("#newsListPresidentAdminTable tbody").on("click", "#btnModalDetailsNews", function () {
     var dataNewsPA = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
+    fileName = dataNewsPA.fileNews;
+    imageName = dataNewsPA.imagen;
+
     modalPADetails.style.display = "block";
 
     alertComment.innerHTML = "";
@@ -385,7 +390,7 @@ $("#newsListPresidentAdminTable tbody").on("click", "#btnModalDetailsNews", func
     html += '</div>';
     html += '<div class="modal-footer mt-4">';
     html += '<div class="col-12">';
-    html += '<button id="downloadNewFiles" type="button" class="btn btn-info" onclick="">Descargar Archivos</button>';
+    html += '<button id="downloadNewFiles" type="button" class="btn btn-info">Descargar Archivos</button>';
     html += '<button type="button" class="btn btn-success" onclick="return addPAComment(' + dataNewsPA.id + ')">Comentar</button>';
     html += '</div>';
     html += '</div>';
@@ -393,11 +398,16 @@ $("#newsListPresidentAdminTable tbody").on("click", "#btnModalDetailsNews", func
     html += '</div>';
 
     $('.modal-contentNew').html(html);
-
+    $("#downloadNewFiles").click(function () {
+        window.open(fileName, '_blank');
+        window.open(imageName, '_blank');
+    });
 });
 
 $("#newsNoUserTable tbody").on("click", "#btnModalDetailsNews", function () {
     var dataNewsPA = tableNewsNoUser.row($(this).parents("tr")).data();
+    fileName = dataNewsPA.fileNews;
+    imageName = dataNewsPA.imagen;
 
     alertComment.innerHTML = "";
     var html = '';
@@ -436,18 +446,23 @@ $("#newsNoUserTable tbody").on("click", "#btnModalDetailsNews", function () {
     html += '</div>';
     html += '<div class="modal-footer mt-4">';
     html += '<div class="col-12">';
-    html += '<button id="downloadNewFiles" type="button" class="btn btn-info" onclick="">Descargar Archivos</button>';
+    html += '<button id="downloadNewFiles" type="button" class="btn btn-info">Descargar Archivos</button>';
     html += '</div>';
     html += '</div>';
     html += '</form>';
     html += '</div>';
 
     $('.modal-contentNew').html(html);
-
+    $("#downloadNewFiles").click(function () {
+        window.open(fileName, '_blank');
+        window.open(imageName, '_blank');
+    });
 });
 
 $("#newsProfessorStudentTable tbody").on("click", "#btnModalDetailsNews", function () {
     var dataNewsPA = tableNewsProfessorStudent.row($(this).parents("tr")).data();
+    fileName = dataNewsPA.fileNews;
+    imageName = dataNewsPA.imagen;
 
     alertComment.innerHTML = "";
     var html = '';
@@ -491,7 +506,7 @@ $("#newsProfessorStudentTable tbody").on("click", "#btnModalDetailsNews", functi
     html += '</div>';
     html += '<div class="modal-footer mt-4">';
     html += '<div class="col-12">';
-    html += '<button id="downloadNewFiles" type="button" class="btn btn-info" onclick="">Descargar Archivos</button>';
+    html += '<button id="downloadNewFiles" type="button" class="btn btn-info">Descargar Archivos</button>';
     html += '<button type="button" class="btn btn-success" onclick="return addPAComment(' + dataNewsPA.id + ')">Comentar</button>';
     html += '</div>';
     html += '</div>';
@@ -499,8 +514,14 @@ $("#newsProfessorStudentTable tbody").on("click", "#btnModalDetailsNews", functi
     html += '</div>';
 
     $('.modal-contentNew').html(html);
-
+    $("#downloadNewFiles").click(function () {
+        window.open(fileName, '_blank');
+        window.open(imageName, '_blank');
+    });
 });
+
+
+
 
 /*--------------------------------------------- LIST NEWS COMMENTS-----------------------------------------------------------*/
 $("#newsNoUserTable tbody").on("click", "#btnModalCommentsNews", function () {
