@@ -15,11 +15,20 @@ var tableNewsPresidentAdmin;
 var idNewsEdit;
 var tableNewsComments;
 
+var fileName;
+var imageName;
+
 $(document).ready(function () {
     loadNewsNoUserList();
     loadNewsProfessorStudentList();
     loadNewsPresidentAdminList();
 });
+
+
+function cleanFieldsAddNews() {
+    registerNewsForm.reset();
+}
+
 
 /*--------------------------------------------- ADD NEWS-----------------------------------------------------------*/
 registerNewsForm.addEventListener("submit", function (e) {
@@ -57,12 +66,11 @@ registerNewsForm.addEventListener("submit", function (e) {
                     contentType: "application/json;charset=utf-8",
                     dataType: "json",
                     success: function (result) {
-
+                        SaveFileToInsert();
+                        SaveImageToInsert();
                         messageNews.innerHTML = "<label class='text-success'>Noticia agregada exitosamente</label>";
-                        $('#newsTittle').val();
-                        $('#newsDescription').val();
-                        $('#FileNews').val();
-                        $('#imgFileNews').val();
+                        $('#newsListPresidentAdminTable').DataTable().ajax.reload();
+                        cleanFieldsAddNews();
 
                     },
                     error: function (errorMessage) {
@@ -144,6 +152,7 @@ $("#newsListPresidentAdminTable tbody").on("click", "#deleteNews", function () {
 
     var data = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
     var rowToRemove = $(this).parents('tr');
+
     Swal.fire({
         title: "Esta seguro de eliminar esta noticia (incluido comentarios)?",
         showDenyButton: true,
@@ -317,14 +326,13 @@ function addPAComment(id) {
                     success: function (result) {
                         console.log(result);
                         $('#dNewComment').val("");
-                        alertComment.innerHTML = "<label class='text-success'>Comentario agregado exitosamente</label>";
                     },
                     error: function (errorMessage) {
-                        alertComment.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
+                        alert("Error");
                     }
                 });
             } else {
-                alertComment.innerHTML = "<label class='text-danger'>Error, por favor llene el comentario primero</label>";
+                alert("Error");
             }
         },
         error: function (errorMessage) {
@@ -336,6 +344,9 @@ function addPAComment(id) {
 
 $("#newsListPresidentAdminTable tbody").on("click", "#btnModalDetailsNews", function () {
     var dataNewsPA = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
+    fileName = dataNewsPA.fileNews;
+    imageName = dataNewsPA.imagen;
+
     modalPADetails.style.display = "block";
 
     alertComment.innerHTML = "";
@@ -379,7 +390,7 @@ $("#newsListPresidentAdminTable tbody").on("click", "#btnModalDetailsNews", func
     html += '</div>';
     html += '<div class="modal-footer mt-4">';
     html += '<div class="col-12">';
-    html += '<button id="downloadNewFiles" type="button" class="btn btn-info" onclick="">Descargar Archivos</button>';
+    html += '<button id="downloadNewFiles" type="button" class="btn btn-info">Descargar Archivos</button>';
     html += '<button type="button" class="btn btn-success" onclick="return addPAComment(' + dataNewsPA.id + ')">Comentar</button>';
     html += '</div>';
     html += '</div>';
@@ -387,11 +398,16 @@ $("#newsListPresidentAdminTable tbody").on("click", "#btnModalDetailsNews", func
     html += '</div>';
 
     $('.modal-contentNew').html(html);
-
+    $("#downloadNewFiles").click(function () {
+        window.open(fileName, '_blank');
+        window.open(imageName, '_blank');
+    });
 });
 
 $("#newsNoUserTable tbody").on("click", "#btnModalDetailsNews", function () {
     var dataNewsPA = tableNewsNoUser.row($(this).parents("tr")).data();
+    fileName = dataNewsPA.fileNews;
+    imageName = dataNewsPA.imagen;
 
     alertComment.innerHTML = "";
     var html = '';
@@ -430,18 +446,23 @@ $("#newsNoUserTable tbody").on("click", "#btnModalDetailsNews", function () {
     html += '</div>';
     html += '<div class="modal-footer mt-4">';
     html += '<div class="col-12">';
-    html += '<button id="downloadNewFiles" type="button" class="btn btn-info" onclick="">Descargar Archivos</button>';
+    html += '<button id="downloadNewFiles" type="button" class="btn btn-info">Descargar Archivos</button>';
     html += '</div>';
     html += '</div>';
     html += '</form>';
     html += '</div>';
 
     $('.modal-contentNew').html(html);
-
+    $("#downloadNewFiles").click(function () {
+        window.open(fileName, '_blank');
+        window.open(imageName, '_blank');
+    });
 });
 
 $("#newsProfessorStudentTable tbody").on("click", "#btnModalDetailsNews", function () {
     var dataNewsPA = tableNewsProfessorStudent.row($(this).parents("tr")).data();
+    fileName = dataNewsPA.fileNews;
+    imageName = dataNewsPA.imagen;
 
     alertComment.innerHTML = "";
     var html = '';
@@ -485,7 +506,7 @@ $("#newsProfessorStudentTable tbody").on("click", "#btnModalDetailsNews", functi
     html += '</div>';
     html += '<div class="modal-footer mt-4">';
     html += '<div class="col-12">';
-    html += '<button id="downloadNewFiles" type="button" class="btn btn-info" onclick="">Descargar Archivos</button>';
+    html += '<button id="downloadNewFiles" type="button" class="btn btn-info">Descargar Archivos</button>';
     html += '<button type="button" class="btn btn-success" onclick="return addPAComment(' + dataNewsPA.id + ')">Comentar</button>';
     html += '</div>';
     html += '</div>';
@@ -493,36 +514,41 @@ $("#newsProfessorStudentTable tbody").on("click", "#btnModalDetailsNews", functi
     html += '</div>';
 
     $('.modal-contentNew').html(html);
-
+    $("#downloadNewFiles").click(function () {
+        window.open(fileName, '_blank');
+        window.open(imageName, '_blank');
+    });
 });
+
+
+
 
 /*--------------------------------------------- LIST NEWS COMMENTS-----------------------------------------------------------*/
 $("#newsNoUserTable tbody").on("click", "#btnModalCommentsNews", function () {
     var dataInfoComments = tableNewsNoUser.row($(this).parents("tr")).data();
-    loadNewsListComments();
+    loadNewsListComments(dataInfoComments.id);
 
 });
 $("#newsProfessorStudentTable tbody").on("click", "#btnModalCommentsNews", function () {
     var dataInfoComments = tableNewsProfessorStudent.row($(this).parents("tr")).data();
-    loadNewsListComments();
+    loadNewsListComments(dataInfoComments.id);
 
 });
 $("#newsListPresidentAdminTable tbody").on("click", "#btnModalPACommentsNews", function () {
     modalPAComments.style.display = "block";
     var data = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
-    loadPANewsListComments();
+    loadPANewsListComments(data.id);
 });
 
-
-function loadPANewsListComments() {
+function loadPANewsListComments(id) {
 
     tableNewsComments = $("#newsPACommentsTable").DataTable({
         "destroy": true,
         "autoWidth": false,
         "ajax": {
-            "url": "/NewsCommentAPI/Get",
-            //"data": { id: id },
-            "tpye": 'GET',
+            "url": "/NewsCommentAPI/GetById/",
+            "data": { id: id },
+            "type": 'GET',
             "datatype": "json",
         },
         lengthMenu: [7, 20, 50, 100],
@@ -530,20 +556,20 @@ function loadPANewsListComments() {
             { "data": "author" },
             { "data": "date" },
             { "data": "comment" },
-            { defaultContent: "<button id='buttonNewCommentDelete' name='buttonNewCommentDelete' type='button' class='btn btn-danger' title='Eliminar'><i class='fa fa-trash'></i></button>" }
+            { defaultContent: "<button id='buttonNewCommentDelete' name='buttonNewCommentDelete' type='button' class='btn btn-danger' title='Delete'><i class='fa fa-trash'></i></button>" }
         ]
     });
 
 }
 
-function loadNewsListComments() {
+function loadNewsListComments(id) {
     tableComments = $("#newsCommentsTable").DataTable({
         "destroy": true,
         "autoWidth": false,
         "ajax": {
-            "url": "/NewsCommentAPI/Get",
-            //"data": { id: id },
-            "tpye": 'GET',
+            "url": "/NewsCommentAPI/GetById/",
+            "data": { id: id },
+            "type": 'GET',
             "datatype": "json",
         },
         lengthMenu: [7, 20, 50, 100],
@@ -554,11 +580,37 @@ function loadNewsListComments() {
         ]
     });
 }
-/*--------------------------------------------- DELETE NEWS COMMENTS-----------------------------------------------------------*/
-//$("#bodyNewsPACommentsTable tbody").on("click", "#buttonNewCommentDelete", function () {
-//    //var dataInfoComments = tableNewsPresidentAdmin.row($(this).parents("tr")).data();
-//    //loadNewsListComments(dataInfoComments.id);
-//});
+/*--------------------------------------------- DELETE COMMENTS-----------------------------------------------------------*/
+
+$("#newsPACommentsTable tbody").on("click", "#buttonNewCommentDelete", function () {
+    var data = tableNewsComments.row($(this).parents("tr")).data();
+    var rowToRemove = $(this).parents('tr');
+    Swal.fire({
+        title: "¿Está seguro que desea eliminar este comentario?",
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: `Confirmar`,
+        denyButtonText: `Cancelar`,
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "/NewsCommentAPI/Delete",
+                data: { id: data.id },
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    tableNewsComments.row(rowToRemove).remove().draw(); //Remove of list
+                },
+                error: function (errorMessage) {
+                    alert("Failed to delete Comment");
+                }
+            });
+        }
+    });
+});
+
 
 function SaveFile() {
     var fileNewNews = document.getElementById("fileNewsEdit").files[0];
@@ -583,6 +635,50 @@ function SaveFile() {
 function SaveImage() {
 
     var imgNewNews = document.getElementById("imgFileNewsEdit").files[0];
+    var formData = new FormData();
+    formData.append("image", imgNewNews);
+
+    $.ajax({
+        url: "/Student/SaveImage",
+        data: formData,
+        type: "POST",
+        contentType: false,
+        processData: false,
+
+        success: function (result) {
+        },
+
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+
+function SaveFileToInsert() {
+    var fileNewNews = document.getElementById("FileNews").files[0];
+    var formData = new FormData();
+    formData.append("file", fileNewNews);
+
+    $.ajax({
+        url: "/Student/SaveFile",
+        data: formData,
+        type: "POST",
+        contentType: false,
+        processData: false,
+        success: function (result) {
+        },
+        error: function (errorMessage) {
+            alert("Error");
+            alert(errorMessage.responseText);
+        }
+    });
+}
+
+function SaveImageToInsert() {
+
+    var imgNewNews = document.getElementById("imgFileNews").files[0];
     var formData = new FormData();
     formData.append("image", imgNewNews);
 

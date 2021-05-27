@@ -141,7 +141,7 @@ function loadCourseList() {
         ],
         "ajax": {
             "url": "/Course/Get",
-            "tpye": 'GET',
+            "type": 'GET',
             "datatype": "json"
         },
         lengthMenu: [7, 20, 50, 100],
